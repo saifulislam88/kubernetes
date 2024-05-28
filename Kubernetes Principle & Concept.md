@@ -107,5 +107,5 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
 
 
 
-[Kubernetes Definition]: https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#Definition
-[Kubernetes Cluster Architecture]: https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#components-brief-master--worker
+[Kubernetes Definition]:https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#Definition
+[Kubernetes Cluster Architecture]:https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#components-brief-master--worker

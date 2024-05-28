@@ -27,7 +27,7 @@ tool for managing clusters of containers.**
 
 
 **Kubernetes follows a client-server architecture**. A Kubernetes cluster consists of at least **one Master Node ** (multi-master for high availability) and multiple compute nodes. 
-The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster. The master server consists of various components including
+The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster. The **Master Node** consists of various components including
  
       ⮚ Kube-apiserver 
       ⮚ ETCD 
@@ -50,3 +50,4 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
       1. A Master node that coordinates the cluster.
       2. Nodes (called workers) where the application runs.
 
+## Kubernetes Components Elaboration (Master & Worker Node)

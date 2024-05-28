@@ -20,7 +20,8 @@ tool for managing clusters of containers.**
     ⮚	Auto-scalable infrastructure
 
 ## Kubernetes Cluster Architecture
-     ![Kubernestes111](https://github.com/saifulislam88/kubernetes/assets/68442870/007ec3ae-0930-458b-a598-7c04dd1df88a)
+![Kubernestes111](https://github.com/saifulislam88/kubernetes/assets/68442870/9f2519f5-1462-43ff-9162-fccac03a931b)
+
 
 **Kubernetes follows a client-server architecture**. A Kubernetes cluster consists of at least **one master** (multi-master for high availability) and multiple compute nodes. 
 The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster. The master server consists of various components including

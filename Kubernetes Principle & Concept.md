@@ -60,9 +60,11 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
 ## K8s Components Brief (Master & Worker)
 
 - **Kube-APISERVER**
+
  ⮚ Acts as the front-end for the Kubernetes control plane & Handles API requests and provides access to the cluster's state.
   
 - **ETCD**
+
  ⮚ A consistent and highly-available key-value store & Stores all cluster data and configuration information.
 
 - **Kube-Controller-Manager**

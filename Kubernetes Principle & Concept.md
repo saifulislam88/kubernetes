@@ -50,4 +50,4 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
       1. A Master node that coordinates the cluster.
       2. Nodes (called workers) where the application runs.
 
-## Kubernetes Components Elaboration (Master & Worker Node)
+## Components Brief [Master & Worker Node]

@@ -2,8 +2,8 @@
 # Kubernetes Overview
 
 ## Table of Contents
-- [Kubernetes Definition](#Definition)
-- [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#components-brief-master--worker)
+- [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#kubernetes-definition)
+- [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
 
 
 ----

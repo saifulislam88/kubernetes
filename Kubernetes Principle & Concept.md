@@ -2,6 +2,7 @@
 ## Kubernetes Overview
 
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
+
 ----
 
 Kubernetes, which translates from Grek to “pilot” or “helmsman”, is an open-source system for automating deployment, scaling, 

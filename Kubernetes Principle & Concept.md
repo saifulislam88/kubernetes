@@ -3,7 +3,7 @@
 
 ## Table of Contents
 -  [Kubernetes Definition](#Definition)
--  [Kubernetes Cluster Architecture](#Kubernetes Cluster Architecture)
+-  [Kubernetes Cluster Architecture](#Architecture)
 
 
 ----

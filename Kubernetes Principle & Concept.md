@@ -12,7 +12,7 @@ tool for managing clusters of containers.**
 
 ----
 
-    # Features of Kubernetes
+    # **Features of Kubernetes**
     
     ⮚	Continues development, integration and deployment
     ⮚	Containerized infrastructure

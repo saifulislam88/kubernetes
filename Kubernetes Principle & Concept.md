@@ -1,7 +1,8 @@
 
 # Kubernetes Overview
 
-<img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
+![kubernestes-arch](https://github.com/saifulislam88/kubernetes/assets/68442870/4add76fa-2894-4c26-a527-fb8233cdfdbb)
+
 
 ----
 ## Kubernetes Definition

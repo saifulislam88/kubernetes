@@ -21,7 +21,8 @@ tool for managing clusters of containers.**
 
 ## Kubernetes Cluster Architecture
 
-![kubernestes-arch](https://github.com/saifulislam88/kubernetes/assets/68442870/ec3c0447-4819-4831-b0af-09a113f47114)
+![kubernestes-arch](https://github.com/saifulislam88/kubernetes/assets/68442870/e47edbad-e743-493b-a0d8-a9a1f4561b3a)
+
 
 
 

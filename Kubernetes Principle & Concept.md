@@ -57,7 +57,7 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
 
 [Back to Top](#top)
 
-## Components Brief (Master & Worker)
+## K8s Components Brief (Master & Worker)
 
 - **Kube-APISERVER**
   - Acts as the front-end for the Kubernetes control plane.

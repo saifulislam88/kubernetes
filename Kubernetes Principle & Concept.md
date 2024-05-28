@@ -46,6 +46,6 @@ The master is responsible  for exposing the application program interface (API),
 like Docker, and an agent that communicates with the master (kubelet). Nodes (Worker Nodes) expose compute, networking and storage resources to applications. They can be virtual machines (VMs) running in a cloud or bare metal servers running within a data center.
 
 So a Kubernetes cluster consists of **two types of nodes (minions)**:
-1.	**A Master node** that coordinates the cluster.
-2.	**Nodes (called workers)** where the application runs.
+      1.**A Master node** that coordinates the cluster.
+      2.**Nodes (called workers)** where the application runs.
 

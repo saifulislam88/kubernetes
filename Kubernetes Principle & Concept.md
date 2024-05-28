@@ -2,7 +2,7 @@
 # Kubernetes Overview
 
 ## Table of Contents
-[Kubernetes Definition](#Definition)
+- [Kubernetes Definition](#Definition)
 - [Kubernetes Cluster Architecture](#Architecture)
 
 
@@ -87,3 +87,24 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
   - Software responsible for running containers.
   - Supports containerized application execution.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Kubernetes Definition]: 

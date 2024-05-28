@@ -85,7 +85,8 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
 - **Container Runtime (Docker, Podman)** (both master and worker).
   - Software responsible for running containers.
   - Supports containerized application execution.
-[Back to Top](#top)
+
+<td><a href="#top">Back to Top</a></td>
 
 
 

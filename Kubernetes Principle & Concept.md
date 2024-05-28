@@ -2,8 +2,8 @@
 # Kubernetes Overview
 
 ## Table of Contents
-- [Kubernetes Definition](#Kubernetes Definition)
-- [Kubernetes Cluster Architecture](#Kubernetes Cluster Architecture)
+- [Kubernetes Definition]
+- [Kubernetes Cluster Architecture]
 
 
 ----

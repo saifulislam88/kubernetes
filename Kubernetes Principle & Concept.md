@@ -86,7 +86,7 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
   - Software responsible for running containers.
   - Supports containerized application execution.
 
-<td><a href="#top">Back to Top</a></td>
+<sup>Back to Top</sup>](#top)
 
 
 

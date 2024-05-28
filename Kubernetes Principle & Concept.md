@@ -1,7 +1,6 @@
 
 # Kubernetes Overview
 
-![kubernestes-arch](https://github.com/saifulislam88/kubernetes/assets/68442870/4add76fa-2894-4c26-a527-fb8233cdfdbb)
 
 
 ----
@@ -21,7 +20,8 @@ tool for managing clusters of containers.**
     ⮚	Auto-scalable infrastructure
 
 ## Kubernetes Cluster Architecture
-![Uploading kubernestes-arch.jpg…]()
+
+![kubernestes-arch](https://github.com/saifulislam88/kubernetes/assets/68442870/ec3c0447-4819-4831-b0af-09a113f47114)
 
 
 

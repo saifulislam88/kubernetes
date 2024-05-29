@@ -61,7 +61,7 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
 
 - **Kube-APISERVER**
 
-     ⮚ Acts as the front-end for the Kubernetes control plane **&** Handles API requests and provides access to the cluster's state.
+     ⮚ Acts as the front-end for the Kubernetes control plane **&** ⮚ Handles API requests and provides access to the cluster's state.
   
 - **ETCD**
 

@@ -67,7 +67,7 @@ Imagine a friend, like another developer, wants to work with your code. They'd n
 They'd go to a platform like GitHub and download your project files. Then, they'd install any extra tools needed to run your code smoothly.
 But sometimes, their computer might have different settings that make it hard for your code to work right.
 That's where containers come in handy. They wrap up your code with all the settings and tools it needs to run, no matter where it's put.
-**Containers are like pre-packaged sets of tools and code. You just plug them in, and they start working without any fuss |OR| Containers are predefined configurations and dependencies, along with the code files that make it possible for the code to run seamlessly.**
+**Containers are like pre-packaged sets of tools and code. You just plug them in, and they start working without any fuss. |OR| Containers are predefined configurations and dependencies, along with the code files that make it possible for the code to run seamlessly.**
 And that's where Kubernetes steps in. It helps manage these containers, making sure they have enough resources and spreading out the work evenly.
 
 

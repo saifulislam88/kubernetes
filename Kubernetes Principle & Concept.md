@@ -13,10 +13,29 @@
 
    **1.Local Deployment (Own Computer/Laptop)**
 
-   If you're new to web development, you've likely used a local server, such as 'localhost' or '127.0.0.1', to view your website or handle requests like GET HTTP.
+   If you're new to web development, you've likely used a local server, such as **'localhost' or '127.0.0.1'**, to view your website or handle requests like GET HTTP.
    In simple terms, you've worked on your own computer.
-   Setting up your app locally means you can view it on your own computer using a web address like http://localhost:3000/.
+   Setting up your app locally means you can view it on your own computer using a web address like **http://localhost:3000/**.
    Your app's files are only on your computer. Nobody else can see them.
+
+  **2.On-prem (VM or Phisycal Server)**
+
+  When you use on-prem (short for on-premises), you're putting your application on a physical server.
+  This means people from outside your company can access your app. But if lots of people try to use it at once, your server might struggle.
+  To handle more users, you might need to add extra servers. This is called "horizontal scaling."
+  Or you might need to upgrade your server's power, like adding more memory. That's called "vertical scaling."
+
+  **3.Cloud Deployment**
+  
+  In the last two scenarios, when you needed to handle more requests, you had to manually increase your server's capacity or add more servers. However, there's a simpler option called cloud deployment.
+  With cloud deployment, you place your application on servers owned by another company, such as Amazon Web Services (AWS). These companies handle tasks like making your servers bigger or adding more 
+  if necessary. Similar to using your own servers, your application is accessible to anyone, not just individuals within your organization.
+  
+  Companies like AWS are commonly referred to as "public cloud vendors." Think of it as renting an apartment in a large building. You have your own space, but there are other tenants sharing the     
+  building with you, each with their own separate apartments. In addition to public cloud offerings, these vendors also provide private servers known as VPCs (virtual private clouds). Within a VPC, 
+  certain resources are reserved exclusively for your use, 
+  ensuring they remain readily available whenever you require them. Therefore, you have two primary deployment options: public cloud deployments and private cloud deployments. With this understanding 
+  of deployment methods, let's now explore Kubernetes.
 
 
 ## Kubernetes Definition
@@ -25,6 +44,10 @@ Kubernetes, which translates from **Grek** to **"pilot"** or **"helmsman"**, is 
 and managing containerized applications that which developed in Google lab to manage containerized applications in different 
 kind of environments such as physical, virtual, and cloud infrastructure. **Kubernetes is an open source orchestration 
 tool for managing clusters of containers.**
+
+**Kubernetes (K8s) is usually defined as a container orchestration service. Kubernetes is simply a tool to manage containers.**
+  **Now, what are containers?**
+
 
 ----
 

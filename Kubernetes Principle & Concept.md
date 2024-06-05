@@ -9,7 +9,7 @@
 ----
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 
-##Before we begin(Kubernetes), let's cover some basic ideas
+## Before we begin(Kubernetes), let's cover some basic ideas
 
    **1.Local Deployment (Own Computer/Laptop)**
 

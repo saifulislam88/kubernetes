@@ -76,7 +76,10 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 ![kubernestes-arch](https://github.com/saifulislam88/kubernetes/assets/68442870/e47edbad-e743-493b-a0d8-a9a1f4561b3a)
 
 
+There are two main components in K8s. So a Kubernetes cluster consists of **two types of nodes (minions)**:
 
+      1. A Master node that coordinates the cluster.
+      2. Nodes (called workers) where the application runs.
 
 **Kubernetes follows a client-server architecture**. A Kubernetes cluster consists of at least **one Master Node ** (multi-master for high availability) and multiple Worker nodes. 
 The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster. The **Master Node** consists of various components including
@@ -97,10 +100,7 @@ The master is responsible  for exposing the application program interface (API),
       ⮚ Each node runs a container runtime, 
 like Docker, and an agent that communicates with the master (kubelet). Nodes (Worker Nodes) expose compute, networking and storage resources to applications. They can be virtual machines (VMs) running in a cloud or bare metal servers running within a data center.
 
-So a Kubernetes cluster consists of **two types of nodes (minions)**:
 
-      1. A Master node that coordinates the cluster.
-      2. Nodes (called workers) where the application runs.
 
 [Back to Top](#top)
 

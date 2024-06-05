@@ -9,6 +9,16 @@
 ----
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 
+**Before we begin(Kubernetes), let's cover some basic ideas**
+
+# Local Deployment (Own Computer/Laptop)
+
+If you're new to web development, you've likely used a local server, such as 'localhost' or '127.0.0.1', to view your website or handle requests like GET HTTP.
+In simple terms, you've worked on your own computer.
+Setting up your app locally means you can view it on your own computer using a web address like http://localhost:3000/.
+Your app's files are only on your computer. Nobody else can see them.
+
+
 ## Kubernetes Definition
 
 Kubernetes, which translates from **Grek** to **"pilot"** or **"helmsman"**, is an open-source system for automating deployment, scaling, 

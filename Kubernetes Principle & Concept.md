@@ -11,7 +11,7 @@
 
 **Before we begin(Kubernetes), let's cover some basic ideas**
 
-   **Local Deployment (Own Computer/Laptop)**
+   **1.Local Deployment (Own Computer/Laptop)**
 
    If you're new to web development, you've likely used a local server, such as 'localhost' or '127.0.0.1', to view your website or handle requests like GET HTTP.
    In simple terms, you've worked on your own computer.

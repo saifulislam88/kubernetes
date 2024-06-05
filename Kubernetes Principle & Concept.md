@@ -99,6 +99,7 @@ So a Kubernetes cluster consists of **two types of nodes (minions)**:
 ### Types of Volumes:
 
 In Kubernetes, volumes serve as directories accessible to all pod containers, facilitating data sharing and persistence beyond container lifetimes. Let's delve into the types and best practices.
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/0e027e81-4bcd-4e18-9572-4d4c583585ec)
 
 📂 **EmptyDir**:
 - Starts as an empty directory.

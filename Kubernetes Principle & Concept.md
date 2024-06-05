@@ -62,7 +62,7 @@ kind of environments such as physical, virtual, and cloud infrastructure.
 
 **Containers**
 
-Let's revisit the different ways of deploying applications we talked about—locally, on your own server, and in the cloud.
+Let's revisit the different ways of deploying applications we talked about—**locally, On-prem, and in the cloud.**
 Imagine a friend, like another developer, wants to work with your code. They'd need to get their own "copy" of it.
 They'd go to a platform like GitHub and download your project files. Then, they'd install any extra tools needed to run your code smoothly.
 But sometimes, their computer might have different settings that make it hard for your code to work right.

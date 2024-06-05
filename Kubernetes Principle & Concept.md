@@ -82,7 +82,9 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
       2. Nodes (called workers) where the application runs.
 
 **Kubernetes follows a client-server architecture**. A Kubernetes cluster consists of at least **one Master Node ** (multi-master for high availability) and multiple Worker nodes. 
-The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster. The **Master Node** consists of various components including
+The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster. 
+
+The **Master Node** consists of various components including
  
       ⮚ Kube-apiserver 
       ⮚ ETCD 
@@ -104,11 +106,11 @@ like Docker, and an agent that communicates with the master (kubelet). Nodes (Wo
 
 [Back to Top](#top)
 
-## K8s Components Brief (Master & Worker)
+**K8s Components Brief (Master & Worker)**
 
-- **Kube-APISERVER**
-
-     ⮚ Acts as the front-end for the Kubernetes control plane **&** ⮚ Handles API requests and provides access to the cluster's state.
+  - **Kube-APISERVER**
+  
+       ⮚ Acts as the front-end for the Kubernetes control plane **&** ⮚ Handles API requests and provides access to the cluster's state.
   
 - **ETCD**
 

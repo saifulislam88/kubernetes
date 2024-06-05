@@ -43,11 +43,11 @@
 
 Kubernetes, which translates from **Grek** to **"pilot"** or **"helmsman"**, is an open-source system for automating deployment, scaling, 
 and managing containerized applications that which developed in Google lab to manage containerized applications in different 
-kind of environments such as physical, virtual, and cloud infrastructure. **Kubernetes is an open source orchestration 
-tool for managing clusters of containers.**
+kind of environments such as physical, virtual, and cloud infrastructure. 
 
-**Kubernetes (K8s) is usually defined as a container orchestration service. Kubernetes is simply a tool to manage containers.**
-  **Now, what are containers?**
+**Kubernetes (K8s) is usually defined as a container orchestration service. Kubernetes is an open source orchestration 
+ tool for managing clusters of containers. So Kubernetes is simply a tool to manage containers.**
+  **Now, what are containers???**
 
 
 ----

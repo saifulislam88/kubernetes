@@ -8,4 +8,4 @@ https://www.linkedin.com/pulse/containers-kubernetes-six-strategies-application-
 2. Managing K8s across multiple clouds or a mix of on-premises and cloud.
 3. Keeping track of the health, security and performance of a large scale cluster.
 
-I know complexity often arises from the combination of factors. What's the most complex Kubernetes task/tasks you have handled so far?
+ I know complexity often arises from the combination of factors. What's the most complex Kubernetes task/tasks you have handled so far?

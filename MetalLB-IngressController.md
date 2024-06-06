@@ -1,3 +1,6 @@
+https://github.com/nasirnjs/kubernetes/blob/main/k8s-cluster-setup/metallb-l2-configuration.md
+
+
 # Bare-metal considerations
 
 In traditional *cloud* environments, where network load balancers are available on-demand, a single Kubernetes manifest

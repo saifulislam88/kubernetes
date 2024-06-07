@@ -2,8 +2,7 @@
 - [Q2?. What is the most complex Kubernetes task in your organization? Often, it is about](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q2-what-is-the-most-complex-kubernetes-task-in-your-organization-often-it-is-about)
 - [Q3?. Can we call a ReplicaSet a declarative object as well? If yes, what is the key difference between a Deployment and a ReplicaSet, and when should we use each?](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q3-can-we-call-a-replicaset-a-declarative-object-as-well-if-yes-what-is-the-key-difference-between-a-deployment-and-a-replicaset-and-when-should-we-use-each)
 - [Q4?. Kubernetes Objects Comparison](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q4-kubernetes-objects-comparison)
-
-
+- [Q5?. Kubernetes Oobjects vs Resources](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q5-kubernetes-objects-vs-resources)
 
 
 

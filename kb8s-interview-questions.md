@@ -1,7 +1,7 @@
 - [Q1?. Containers, and Kubernetes: Six Strategies for Application Deployment](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q1-containers-and-kubernetes-six-strategies-for-application-deployment)
-- [Q2?. What is the most complex Kubernetes task in your organization? Often, it is about]
-- [Q3?. Can we call a ReplicaSet a declarative object as well? If yes, what is the key difference between a Deployment and a ReplicaSet, and when should we use each?]
-- [Q4?. Kubernetes Objects Comparison]
+- [Q2?. What is the most complex Kubernetes task in your organization? Often, it is about](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q2-what-is-the-most-complex-kubernetes-task-in-your-organization-often-it-is-about)
+- [Q3?. Can we call a ReplicaSet a declarative object as well? If yes, what is the key difference between a Deployment and a ReplicaSet, and when should we use each?](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q3-can-we-call-a-replicaset-a-declarative-object-as-well-if-yes-what-is-the-key-difference-between-a-deployment-and-a-replicaset-and-when-should-we-use-each)
+- [Q4?. Kubernetes Objects Comparison](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q4-kubernetes-objects-comparison)
 
 
 
@@ -30,7 +30,7 @@ https://www.linkedin.com/pulse/containers-kubernetes-six-strategies-application-
 While both Deployments and ReplicaSets are declarative objects used to manage Pods in Kubernetes, Deployments provide a higher level of abstraction with additional features for managing application updates, rollbacks, and scaling. ReplicaSets are more basic and are usually managed by Deployments rather than being used directly. For most use cases, especially for stateless applications that require version control and updates, Deployments are the recommended choice.
 
 
-# Comparison
+**Comparison**
 
 | Feature                | Deployment                                       | ReplicaSet                                       | Replication Controller                                   |
 |------------------------|--------------------------------------------------|--------------------------------------------------|---------------------------------------------------------|

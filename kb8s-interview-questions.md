@@ -61,35 +61,13 @@ While both Deployments and ReplicaSets are declarative objects used to manage Po
 | **Supports Annotations**   | Yes                                            | Yes                                            | Yes                                              | Yes                                          | Yes                                            | Yes                                            | Yes                                            | Yes                                            | Yes                                            | Yes                                           |
 | **Supports Namespaces**    | Yes                                            | Yes                                            | Yes                                              | Yes                                          | Yes                                            | Yes                                            | Yes                                            | Yes                                            | Yes                                            | Yes                                           |
 
-### Example Usage
-```yaml
-# Deployment Example
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
 
 ### Q5?. Kubernetes Objects vs. Resources
 
 
-Think of Kubernetes objects as recipes. They define what you want in your cluster, like how many pods to run (number of ingredients) and what image they should use (type of dish).
+**Think of Kubernetes objects as recipes.** They define what you want in your cluster, like how many pods to run (number of ingredients) and what image they should use (type of dish).
 
-Kubernetes resources are like the kitchen. They provide the tools (commands) to interact with those recipes (objects). You can use these tools to create new recipes (deployments), check existing ones (pods), or adjust them (scaling replicas).
+**Kubernetes resources are like the kitchen**. They provide the tools (commands) to interact with those recipes (objects). You can use these tools to create new recipes (deployments), check existing ones (pods), or adjust them (scaling replicas).
 
 In short:
 
@@ -102,7 +80,8 @@ In short:
 - Resource: The deployments command to create or scale that deployment.
 
 
- **Here's a table summarizing the key differences:**
+
+**Here's a table summarizing the key differences:**
  
  | Feature   | Kubernetes Object      | Kubernetes Resource  |
  |-----------|------------------------|----------------------|

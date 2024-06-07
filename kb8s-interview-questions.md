@@ -83,3 +83,34 @@ spec:
         image: nginx:1.14.2
         ports:
         - containerPort: 80
+
+### Q5?. Kubernetes Objects vs. Resources
+
+
+Think of Kubernetes objects as recipes. They define what you want in your cluster, like how many pods to run (number of ingredients) and what image they should use (type of dish).
+
+Kubernetes resources are like the kitchen. They provide the tools (commands) to interact with those recipes (objects). You can use these tools to create new recipes (deployments), check existing ones (pods), or adjust them (scaling replicas).
+
+In short:
+
+- Objects define what you want (recipes).
+- Resources give you the tools to manage those things (kitchen).
+
+**Examples:**
+
+- Object: A deployment recipe specifying 3 pods running a specific image.
+- Resource: The deployments command to create or scale that deployment.
+
+
+ **Here's a table summarizing the key differences:**
+ 
+ | Feature   | Kubernetes Object      | Kubernetes Resource  |
+ |-----------|------------------------|----------------------|
+ | Definition| Persistent entity representing desired or actual state | API endpoint for interacting with objects |
+ | Analogy   | Blueprint or configuration file | URL or access point for managing objects |
+ | Examples  | Deployment, Pod, Service | pods, deployments, services |
+ | Focus     | Definition of application state | Interaction with objects |
+
+
+
+

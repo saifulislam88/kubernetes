@@ -1,4 +1,4 @@
-[Q1?. Containers, and Kubernetes: Six Strategies for Application Deployment]https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q1-containers-and-kubernetes-six-strategies-for-application-deployment
+[Q1?. Containers, and Kubernetes: Six Strategies for Application Deployment](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q1-containers-and-kubernetes-six-strategies-for-application-deployment)
 
 
 

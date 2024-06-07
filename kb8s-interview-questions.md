@@ -13,4 +13,4 @@ https://www.linkedin.com/pulse/containers-kubernetes-six-strategies-application-
 
  I know complexity often arises from the combination of factors. What's the most complex Kubernetes task/tasks you have handled so far?
 
-## **Q?Can we call a ReplicaSet a declarative object as well? If yes, what is the key difference between a Deployment and a ReplicaSet, and when should we use each?**
+**Q?Can we call a ReplicaSet a declarative object as well? If yes, what is the key difference between a Deployment and a ReplicaSet, and when should we use each?**

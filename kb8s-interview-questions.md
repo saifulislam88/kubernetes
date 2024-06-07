@@ -16,3 +16,17 @@ https://www.linkedin.com/pulse/containers-kubernetes-six-strategies-application-
 **Q3?. Can we call a ReplicaSet a declarative object as well? If yes, what is the key difference between a Deployment and a ReplicaSet, and when should we use each?**
 
 While both Deployments and ReplicaSets are declarative objects used to manage Pods in Kubernetes, Deployments provide a higher level of abstraction with additional features for managing application updates, rollbacks, and scaling. ReplicaSets are more basic and are usually managed by Deployments rather than being used directly. For most use cases, especially for stateless applications that require version control and updates, Deployments are the recommended choice.
+
+
+# Comparison
+
+| Feature                | Deployment                                       | ReplicaSet                                       | Replication Controller                                   |
+|------------------------|--------------------------------------------------|--------------------------------------------------|---------------------------------------------------------|
+| **Primary Use**        | Manages ReplicaSets and provides declarative updates. | Ensures a specified number of pods are running.    | Ensures a specified number of pods are running (older method). |
+| **Rolling Updates**    | Yes                                              | No                                               | No                                                      |
+| **Rollbacks**          | Yes                                              | No                                               | No                                                      |
+| **Declarative Updates**| Yes                                              | No                                               | No                                                      |
+| **Self-healing**       | Yes                                              | Yes                                              | Yes                                                     |
+| **Scaling**            | Yes                                              | Yes                                              | Yes                                                     |
+| **Controller Management** | Manages ReplicaSets                              | Manages Pods                                      | Manages Pods                                             |
+| **Preferred Usage**    | Recommended for managing stateless applications. | Used internally by Deployments, not typically used directly. | Legacy, use ReplicaSet or Deployment instead.            |

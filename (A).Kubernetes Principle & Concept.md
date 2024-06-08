@@ -278,7 +278,7 @@ Here is a short explanation with real-world examples 👇
 
 A service is an abstract mechanism for exposing pods on a network. Kubernetes workloads aren’t network-visible by default. You make containers available to the local or outside world by creating a service. Service resources route traffic into the containers within pods. Kubernetes supports several ways of getting external traffic into your cluster. 
 
-**1.ClusterIP,**
+[**1.ClusterIP,**](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
  
 **2.NodePort,**
 

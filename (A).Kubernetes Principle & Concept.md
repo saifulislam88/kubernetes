@@ -9,6 +9,7 @@
   - [Part 01](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
   - [Part 02](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
   - [Objects organized in categories](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
+- Kubernetes Object Services
 - [Volume](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
 
 
@@ -271,6 +272,59 @@ Here is a short explanation with real-world examples 👇
 
 
 [Back to Top](#top)
+
+
+## Kubernetes Object Services
+
+A service is an abstract mechanism for exposing pods on a network. Kubernetes workloads aren’t network-visible by default. You make containers available to the local or outside world by creating a service. Service resources route traffic into the containers within pods. Kubernetes supports several ways of getting external traffic into your cluster. 
+
+**1.ClusterIP,**
+ 
+**2.NodePort,**
+
+**3.LoadBalancer,**
+ 
+**4.ExternalName,**
+ 
+**5.Headless and**
+
+**6.Ingress** services are five widely used resources that all have a role in routing traffic. Each one lets you expose services with a unique set of features and trade-offs.
+
+
+**Why use a Service?**
+
+Suppose you decide to create an HTTP server cluster to manage request coming from thousands of browsers, you create a deployment file where you specify to run an Nginx application in 3 copies on 3 Pods. These Pods are accessible via the node IP. If a Pod on a node goes down and recreated on another node its IP change and the question is: how can I reference that Pod?
+To make Pods accessible from external, Kubernetes uses a Service as a level of abstraction. A Service, basically, lives between clients and Pods and when an HTTP request arrives, it forwards the request to the right Pod.
+Service get a stable IP address that can use to contact Pods. A client sends a request to the stable IP address, and the request is routed to one of the Pods in the Service.
+A Service identifies its member Pods with a selector. For a Pod to be a member of the Service, the Pod must have all of the labels specified in the selector. A label is an arbitrary key/value pair that is attached to an object.
+The following Service manifest has a selector that specifies two labels. The selector field says any Pod that has both the app: metrics label and the department: engineering label is a member of this
+ 
+  Service.
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: my-service
+  spec:
+    selector:
+      app: metrics
+      department: engineering
+    ports:
+    ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Types of Volumes:

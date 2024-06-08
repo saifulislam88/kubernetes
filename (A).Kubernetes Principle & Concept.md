@@ -9,7 +9,7 @@
   - [Part 01](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
   - [Part 02](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
   - [Objects organized in categories](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
-- Kubernetes Object Services
+- [Kubernetes Object Services](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-object-services)
 - [Volume](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
 
 

@@ -344,19 +344,20 @@ The following Service manifest has a selector that specifies two labels. The sel
 - **Access:** External traffic can access the service using <NodeIP>:<NodePort>.
 - **Example:** Useful for development, testing, or small-scale environments
 
-      apiVersion: v1
-    kind: Service
-    metadata:
-      name: my-service
-    spec:
-      type: NodePort
-      selector:
-        app: my-app
-      ports:
-        - protocol: TCP
-          port: 8080                     [Internal ClusterIP Port]
-          targetPort: 80                 [Apps listen port on Pod/Container]
-          nodePort: 30080                [NodePort] Ex; http://nodeIP:30080 ->8080 ->80
+        apiVersion: v1
+      kind: Service
+      metadata:
+        name: my-service
+      spec:
+        type: NodePort
+        selector:
+          app: my-app
+        ports:
+          - protocol: TCP
+            port: 8080                     [Internal ClusterIP Port]
+            targetPort: 80                 [Apps listen port on Pod/Container]
+            nodePort: 30080                [NodePort] Ex; http://nodeIP:30080 ->8080 ->80
+
 
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/a81806fd-a5e2-468a-a959-3ecc0d42f933)

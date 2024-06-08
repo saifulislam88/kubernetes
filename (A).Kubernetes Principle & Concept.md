@@ -253,7 +253,7 @@ Here is a short explanation with real-world examples 👇
 | **Storage**                  | 1. PersistentVolumes                                                                                 |
 |                              | 2. PersistentVolumeClaims                                                                            |
 |                              | 3. StorageClasses                                                                                    |
-| **Configuration & Management**| 1. ConfigMaps                                                                                       |
+|**Configuration & Management**| 1. ConfigMaps                                                                                       |
 |                              | 2. Namespaces                                                                                        |
 |                              | 3. ResourceQuotas                                                                                    |
 |                              | 4. LimitRanges                                                                                       |

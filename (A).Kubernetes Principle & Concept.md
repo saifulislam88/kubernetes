@@ -360,7 +360,8 @@ The following Service manifest has a selector that specifies two labels. The sel
 
 
 
-![image](https://github.com/saifulislam88/kubernetes/assets/68442870/a81806fd-a5e2-468a-a959-3ecc0d42f933)
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/45ff2e4f-666d-4226-b335-6f52577e7175)
+
 
 
 

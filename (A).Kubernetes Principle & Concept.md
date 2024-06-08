@@ -5,8 +5,10 @@
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
 - [Kubernetes Components](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
-- [Kubernetes Native Object](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
-  - Object types organized in categories
+- [Kubernetes Native Objects](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
+  - [Part 01](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
+  - [Part 02](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
+  - [Objects organized in categories](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
 - [Volume](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
 
 
@@ -227,7 +229,7 @@ Here is a short explanation with real-world examples 👇
 ### **The following table shows the important native Kubernetes object types organized in categories.**
 
 
-| **Category**                 |                                         **Kubernetes Objects**                                                                               |
+| **Category**                 |**Kubernetes Objects**                                                                                                                        |
 |------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | **Workload**                 |                                         1. Pods                                                                                              |
 |                              |                                         2. ReplicaSets                                                                                       |

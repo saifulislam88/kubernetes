@@ -150,6 +150,116 @@ like Docker, and an agent that communicates with the master (kubelet). Nodes (Wo
 
 
 
+## Kubernetes Native Objects
+
+### Part 01
+Here is a short explanation with real-world examples 👇
+
+- 𝗣𝗼𝗱: Deployment Unit - Running a single-instance, e.g., Nginx web server
+
+- 𝗦𝗲𝗿𝘃𝗶𝗰𝗲: Networking - Exposing a set of pods to other pods within the cluster. e.g., Exposing a set of Redis server pods.
+
+- 𝗩𝗼𝗹𝘂𝗺𝗲: Storage - Storing database files for a MySQL server running in a pod.
+
+- 𝗡𝗮𝗺𝗲𝘀𝗽𝗮𝗰𝗲: Workload Isolation - Segregating apps/teams/projects in a dedicated/shared cluster. e.g., Different namespaces for apps or stages like development, testing, and production.
+
+- 𝗥𝗲𝗽𝗹𝗶𝗰𝗮𝗦𝗲𝘁: Replication - Running five replicas of a web server application. e.g. Nginx server with multiple replicas for load balancing.
+
+- 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁: Management - Uses Replicaset + Rolling out a new version of a web server application. e.g. Upgrading from Nginx version 1.19 to 1.20.
+
+- 𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹𝗦𝗲𝘁: State Management - Scaling a distributed database like Cassandra. e.g. Cassandra cluster with multiple nodes.
+
+- 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁: Node Operation - Running a log collection daemon on every node. e.g. Fluentd or Filebeat for log collection.
+
+- 𝗝𝗼𝗯: Task Execution - Processing a large compute job using several workers. e.g. A data processing job using Apache Spark.
+
+- 𝗖𝗿𝗼𝗻𝗝𝗼𝗯: Scheduled Tasks - Running a batch job at specific times. e.g. A nightly backup job.
+
+- 𝗦𝗲𝗰𝗿𝗲𝘁: Sensitive Data - Storing the password for a database. e.g. MongoDB password.
+
+- 𝗖𝗼𝗻𝗳𝗶𝗴𝗠𝗮𝗽: Configuration - Storing the configuration for a web server. e.g. Nginx configuration file.
+
+- 𝗜𝗻𝗴𝗿𝗲𝘀𝘀: External Access - Exposing a web application to the internet. e.g. A web application running on Apache.
+
+- 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗣𝗼𝗹𝗶𝗰𝘆: Network Rules - Defining how pods communicate with each other. e.g. Allowing traffic from a specific IP range or bewtween namespace ot pods with specific labels.
+
+- 𝗛𝗼𝗿𝗶𝘇𝗼𝗻𝘁𝗮𝗹 𝗣𝗼𝗱 𝗔𝘂𝘁𝗼𝘀𝗰𝗮𝗹𝗲𝗿 (𝗛𝗣𝗔): Scalability - Automatically scaling a web server application based on CPU usage. e.g. An auto-scaling Nginx deployment.
+
+- 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁𝗩𝗼𝗹𝘂𝗺𝗲 (𝗣𝗩): Persistent Storage - Providing a file system for a MongoDB database pod.
+
+- 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁𝗩𝗼𝗹𝘂𝗺𝗲𝗖𝗹𝗮𝗶𝗺 (𝗣𝗩𝗖): Storage Request - Requesting storage for a PostgreSQL database pod.
+
+- 𝗘𝗻𝗱𝗽𝗼𝗶𝗻𝘁𝘀𝗹𝗶𝗰𝗲𝘀: Network endpoint Points - Storing IP addresses for a service. e.g., IP addresses of pods running an Nginx server.
+
+- 𝗦𝗲𝗿𝘃𝗶𝗰𝗲𝗔𝗰𝗰𝗼𝘂𝗻𝘁: Authentication - Giving a pod the necessary permissions to interact with the Kubernetes API.
+
+- 𝗥𝗼𝗹𝗲/𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝗥𝗼𝗹𝗲: Authorization - Granting read access to pods in a specific namespace.
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/334db1f0-3240-4e5e-b058-a2d908a1cb9e)
+
+### Part 02
+
+Here is a short explanation with real-world examples 👇
+
+- 𝗥𝗼𝗹𝗲𝘀: Namespace Scopped Permissions, E.g., a developer/service account has a role that allows updates to pods in the development namespace.
+
+- 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝗥𝗼𝗹𝗲𝘀: Clusterwide-permissions. E.g., a cluster administrator/service account has a ClusterRole that allows node maintenance tasks such as rebooting or upgrading nodes.
+
+- 𝗣𝗿𝗶𝗼𝗿𝗶𝘁𝘆𝗖𝗹𝗮𝘀𝘀: Pod Prioritization. E.g., a payment processing Pod has a PriorityClass that ensures it gets scheduled before less critical workloads.
+
+- 𝗣𝗼𝗱𝗗𝗶𝘀𝗿𝘂𝗽𝘁𝗶𝗼𝗻𝗕𝘂𝗱𝗴𝗲𝘁𝘀: Availability - A PodDisruptionBudget ensures at least three are always running for a service with five replicas. E.g., an API service with a PodDisruptionBudget to maintain availability during voluntary disruptions.
+
+- 𝗟𝗶𝗺𝗶𝘁𝗥𝗮𝗻𝗴𝗲𝘀: Resource Constraints - Eg: A policy set to restrict each container in a specific namespace to a maximum of 2 CPU cores and 2GB of memory.
+
+- 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝗤𝘂𝗼𝘁𝗮: Usage Limits. E.g., A ResourceQuota that limits the "dev" namespace to a maximum of 10 GB of memory and 4 vCPUs.
+
+- 𝗦𝘁𝗼𝗿𝗮𝗴𝗲𝗖𝗹𝗮𝘀𝘀𝗲𝘀: Storage-provisioning - Eg: Configuring fast-storage volumes with SSDs for databases and slow-storage volumes with HDDs for log processing. When creating PVs, storage class has to be mentioned if required.
+
+- 𝗥𝘂𝗻𝘁𝗶𝗺𝗲𝗖𝗹𝗮𝘀𝘀: Contianer Runtime-specification: Eg: A Pod specification that requires a gVisor as the container runtime.
+
+- 𝗖𝘂𝘀𝘁𝗼𝗺𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝗗𝗲𝗳𝗶𝗻𝗶𝘁𝗶𝗼𝗻𝘀: Extendability. E.g., a CRD to manage a new type of resource, such as a MongoDB instance, managed by a MongoDB Operator.
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/42b7edd0-dd4c-4356-b1f6-50ec946d9107)
+
+
+The following table shows the important native Kubernetes object types organized in categories.
+
+| Category                     | Kubernetes Objects                                                                                   |
+|------------------------------|------------------------------------------------------------------------------------------------------|
+| **Workload**                 | 1. Pods                                                                                              |
+|                              | 2. ReplicaSets                                                                                       |
+|                              | 3. Deployments                                                                                       |
+|                              | 4. StatefulSets                                                                                      |
+|                              | 5. DaemonSets                                                                                        |
+|                              | 6. Jobs                                                                                              |
+|                              | 7. CronJobs                                                                                          |
+|                              | 8. Horizontal Pod Autoscaler                                                                         |
+|                              | 9. Vertical Pod Autoscaler                                                                           |
+| **Service & Networking**     | 1. Services                                                                                          |
+|                              | 2. Ingress                                                                                           |
+|                              | 3. IngressClasses                                                                                    |
+|                              | 4. Network Policies                                                                                  |
+|                              | 5. Endpoints                                                                                         |
+|                              | 6. EndpointSlices                                                                                    |
+| **Storage**                  | 1. PersistentVolumes                                                                                 |
+|                              | 2. PersistentVolumeClaims                                                                            |
+|                              | 3. StorageClasses                                                                                    |
+| **Configuration & Management**| 1. ConfigMaps                                                                                       |
+|                              | 2. Namespaces                                                                                        |
+|                              | 3. ResourceQuotas                                                                                    |
+|                              | 4. LimitRanges                                                                                       |
+|                              | 5. Pod Disruption Budgets (PDB)                                                                      |
+|                              | 6. Pod Priority and Preemption                                                                       |
+| **Security**                 | 1. Secrets                                                                                           |
+|                              | 2. ServiceAccounts (sa)                                                                              |
+|                              | 3. Roles                                                                                            |
+|                              | 4. RoleBindings                                                                                      |
+|                              | 5. ClusterRoles                                                                                      |
+|                              | 6. ClusterRoleBindings                                                                               |
+| **Metadata**                 | 1. Labels and Selectors                                                                              |
+|                              | 2. Annotations                                                                                       |
+|                              | 3. Finalizers                                                                                        |
+
+
+
 ### Types of Volumes:
 
 In Kubernetes, volumes serve as directories accessible to all pod containers, facilitating data sharing and persistence beyond container lifetimes. Let's delve into the types and best practices.

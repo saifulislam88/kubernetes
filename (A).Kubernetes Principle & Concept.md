@@ -323,18 +323,18 @@ The following Service manifest has a selector that specifies two labels. The sel
 - **Example:** A backend service accessed only by other services within the cluster.
 
   
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: my-service
-    spec:
-      selector:
-        app: my-app
-      ports:
-        - protocol: TCP
-          port: 80                     [Internal ClusterIP Port]
-          targetPort: 8080             [Apps listen port on Pod/Container]
-    
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: my-service
+      spec:
+        selector:
+          app: my-app
+        ports:
+          - protocol: TCP
+            port: 80                     [Internal ClusterIP Port]
+            targetPort: 8080             [Apps listen port on Pod/Container]
+      
 
 
 

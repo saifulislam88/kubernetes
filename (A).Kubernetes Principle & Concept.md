@@ -6,6 +6,7 @@
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
 - [Kubernetes Components](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
 - [Kubernetes Native Object](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
+  - Object types organized in categories
 - [Volume](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
 
 
@@ -223,9 +224,9 @@ Here is a short explanation with real-world examples 👇
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/42b7edd0-dd4c-4356-b1f6-50ec946d9107)
 
 
-**The following table shows the important native Kubernetes object types organized in categories.**
+### **The following table shows the important native Kubernetes object types organized in categories.**
 
-|------------------------------|-----------------------------------------------------------------------------------------------------------
+
 | **Category**                 |                                         **Kubernetes Objects**                                                                               |
 |------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | **Workload**                 |                                         1. Pods                                                                                              |
@@ -237,32 +238,27 @@ Here is a short explanation with real-world examples 👇
 |                              |                                         7. CronJobs                                                                                          |
 |                              |                                         8. Horizontal Pod Autoscaler                                                                         |
 |                              |                                         9. Vertical Pod Autoscaler                                                                           |
-
 | **Service & Networking**     |                                         1. Services                                                                                          |
 |                              |                                         2. Ingress                                                                                           |
 |                              |                                         3. IngressClasses                                                                                    |
 |                              |                                         4. Network Policies                                                                                  |
 |                              |                                         5. Endpoints                                                                                         |
 |                              |                                         6. EndpointSlices                                                                                    |
-
 | **Storage**                  |                                         1. PersistentVolumes                                                                                 |
 |                              |                                         2. PersistentVolumeClaims                                                                            |
 |                              |                                         3. StorageClasses                                                                                    |
-
 |**Configuration & Management**|                                        1. ConfigMaps                                                                                         |
 |                              |                                         2. Namespaces                                                                                        |
 |                              |                                         3. ResourceQuotas                                                                                    |
 |                              |                                         4. LimitRanges                                                                                       |
 |                              |                                         5. Pod Disruption Budgets (PDB)                                                                      |
 |                              |                                         6. Pod Priority and Preemption                                                                       |
-
 | **Security**                 |                                         1. Secrets                                                                                           |
 |                              |                                         2. ServiceAccounts (sa)                                                                              |
 |                              |                                         3. Roles                                                                                             |
 |                              |                                         4. RoleBindings                                                                                      |
 |                              |                                         5. ClusterRoles                                                                                      |
 |                              |                                         6. ClusterRoleBindings                                                                               |
-
 | **Metadata**                 |                                         1. Labels and Selectors                                                                              |
 |                              |                                         2. Annotations                                                                                       |
 |                              |                                         3. Finalizers                                                                                        |

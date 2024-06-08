@@ -295,8 +295,10 @@ A service is an abstract mechanism for exposing pods on a network. Kubernetes wo
 
 Suppose you decide to create an HTTP server cluster to manage request coming from thousands of browsers, you create a deployment file where you specify to run an Nginx application in 3 copies on 3 Pods. These Pods are accessible via the node IP. If a Pod on a node goes down and recreated on another node its IP change and the question is: how can I reference that Pod?
 To make Pods accessible from external, Kubernetes uses a Service as a level of abstraction. A Service, basically, lives between clients and Pods and when an HTTP request arrives, it forwards the request to the right Pod.
+
 Service get a stable IP address that can use to contact Pods. A client sends a request to the stable IP address, and the request is routed to one of the Pods in the Service.
 A Service identifies its member Pods with a selector. For a Pod to be a member of the Service, the Pod must have all of the labels specified in the selector. A label is an arbitrary key/value pair that is attached to an object.
+
 The following Service manifest has a selector that specifies two labels. The selector field says any Pod that has both the app: metrics label and the department: engineering label is a member of this
  
   Service.
@@ -312,10 +314,29 @@ The following Service manifest has a selector that specifies two labels. The sel
     ...
 
 
+### 1. ClusterIP(Default)
 
+ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: ClusterIP
 
+**Usage:** Internal communication within the cluster.
 
+**Access:** Other services and pods within the same cluster can access this service.
 
+**Example:** A backend service accessed only by other services within the cluster.
+
+  
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: my-service
+    spec:
+      selector:
+        app: my-app
+      ports:
+        - protocol: TCP
+          port: 80                     [Internal ClusterIP Port]
+          targetPort: 8080             [Apps listen port on Pod/Container]
+    
 
 
 

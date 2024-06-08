@@ -333,8 +333,12 @@ The following Service manifest has a selector that specifies two labels. The sel
         ports:
           - protocol: TCP
             port: 80                     [Internal ClusterIP Port]
-            targetPort: 8080             [Apps listen port on Pod/Container]
+            targetPort: 80               [Apps listen port on Pod/Container]
       
+
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/d5c7a15c-ba8a-4705-a5c2-425fa9b392ea)
+
+
 
 ### 2. NodePort
 

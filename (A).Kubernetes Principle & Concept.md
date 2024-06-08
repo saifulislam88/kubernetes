@@ -318,10 +318,9 @@ The following Service manifest has a selector that specifies two labels. The sel
 
 **ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: ClusterIP**
 
-**Usage:** Internal communication within the cluster.
-**Access:** Other services and pods within the same cluster can access this service.
-
-**Example:** A backend service accessed only by other services within the cluster.
+- **Usage:** Internal communication within the cluster.
+- **Access:** Other services and pods within the same cluster can access this service.
+- **Example:** A backend service accessed only by other services within the cluster.
 
   
     apiVersion: v1

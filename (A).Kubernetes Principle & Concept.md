@@ -1,7 +1,7 @@
 # Kubernetes (K8s)
 <a name="top"></a>
 **Table of Contents**
-- [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
+- [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20%26%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
 - [Kubernetes Components](https://github.com/saifulislam88/kubernetes/blob/main/Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)

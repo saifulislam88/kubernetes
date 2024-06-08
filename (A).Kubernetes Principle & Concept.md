@@ -362,10 +362,21 @@ The following Service manifest has a selector that specifies two labels. The sel
             targetPort: 80                 [Apps listen port on Pod/Container]
             nodePort: 30080                [NodePort] Ex; http://nodeIP:30080 ->8080 ->80
 
-
-
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/45ff2e4f-666d-4226-b335-6f52577e7175)
 
+
+
+### 2. LoadBalancer
+
+**A LoadBalancer(Network LoadBalancer) service is the standard way to expose a service to the internet. The LoadBalancer service is the simplest and the fastest way to expose a service inside a Kubernetes cluster to the external world/outside or Internet. This external load balancer is associated with a specific IP address and routes external traffic to a Kubernetes service in your cluster.**
+
+The problem with this type of service is that it is only available on the Cloud platform(AWS, GCP, Azure,others ) of some vendors and you should pay for it. On Cloud (AWS, GCP, Azure) will create Cloud Load Balancer service in the backend and generate a public IP address. 
+                  
+**But On Premises or So for local Kubernetes cluster NodePort is best option with external LoadBalancer (HaProxy, Nginx) that will give you a single public IP address that will forward all traffic to your NodePort service.**
+
+- **Usage:** Exposes the service externally using a cloud provider’s load balancer.
+- **Access:** External traffic can access the service via the load balancer’s IP.
+- **Example:** Used in cloud environments (AWS, GCP, Azure) for production services.
 
 
 

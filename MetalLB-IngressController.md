@@ -1,5 +1,7 @@
 https://github.com/nasirnjs/kubernetes/blob/main/k8s-cluster-setup/metallb-l2-configuration.md
 
+https://blog.cloudnloud.com/kubernetes-loadbalancer
+
 
 # Bare-metal considerations
 

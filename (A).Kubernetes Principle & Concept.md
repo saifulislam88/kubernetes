@@ -201,6 +201,9 @@ Here is a short explanation with real-world examples 👇
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/334db1f0-3240-4e5e-b058-a2d908a1cb9e)
 
+
+[Back to Top](#top)
+
 ### Part 02
 
 Here is a short explanation with real-world examples 👇
@@ -225,6 +228,7 @@ Here is a short explanation with real-world examples 👇
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/42b7edd0-dd4c-4356-b1f6-50ec946d9107)
 
+[Back to Top](#top)
 
 ### **The following table shows the important native Kubernetes object types organized in categories.**
 
@@ -249,7 +253,7 @@ Here is a short explanation with real-world examples 👇
 | **Storage**                  |                                         1. PersistentVolumes                                                                                 |
 |                              |                                         2. PersistentVolumeClaims                                                                            |
 |                              |                                         3. StorageClasses                                                                                    |
-|**Configuration & Management**|                                        1. ConfigMaps                                                                                         |
+|**Configuration & Management**|                                         1. ConfigMaps                                                                                         |
 |                              |                                         2. Namespaces                                                                                        |
 |                              |                                         3. ResourceQuotas                                                                                    |
 |                              |                                         4. LimitRanges                                                                                       |
@@ -265,6 +269,8 @@ Here is a short explanation with real-world examples 👇
 |                              |                                         2. Annotations                                                                                       |
 |                              |                                         3. Finalizers                                                                                        |
 
+
+[Back to Top](#top)
 
 
 ### Types of Volumes:

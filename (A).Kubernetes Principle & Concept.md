@@ -280,7 +280,7 @@ A service is an abstract mechanism for exposing pods on a network. Kubernetes wo
 
 [**1.ClusterIP,**](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
  
-**2.NodePort,**
+[**2.NodePort,**](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
 
 **3.LoadBalancer,**
  

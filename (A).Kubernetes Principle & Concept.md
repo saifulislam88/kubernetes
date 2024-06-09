@@ -321,7 +321,7 @@ The following Service manifest has a selector that specifies two labels. The sel
     ...
 
 
-### 1. ClusterIP(Default)
+### [1. ClusterIP(Default)](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
 
 **ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: ClusterIP**
 
@@ -347,7 +347,7 @@ The following Service manifest has a selector that specifies two labels. The sel
 
 
 
-### 2. NodePort
+### [2. NodePort](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
 
 **The NodePort service serves as the external entry point for incoming requests for your app.**
 

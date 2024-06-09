@@ -434,11 +434,9 @@ The problem with this type of service is that it is only available on the Cloud 
     52.23.45.67:80 (ELB) -> 192.168.1.2:31457 or 192.168.1.3:31457 (NodePort) -> 10.0.85.137:80 (ClusterIP Service) -> 10.1.0.1:80 or 10.1.0.2:80 (Pods)
 
 
-
-
 **Deployment and Service YAML**
 
- //web-server-deployment.yaml//
+ **web-server-deployment.yaml**
           
           apiVersion: apps/v1
       kind: Deployment
@@ -462,7 +460,7 @@ The problem with this type of service is that it is only available on the Cloud 
 
 
 
-//web-server-service.yaml//
+**web-server-service.yaml**
 
         apiVersion: v1
         kind: Service

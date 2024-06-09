@@ -379,52 +379,53 @@ The problem with this type of service is that it is only available on the Cloud 
 - **Example:** Used in cloud environments (AWS, GCP, Azure) for production services.
 
 
-   ### AWS Kubernetes Load Balancer Setup
+     **AWS Kubernetes Load Balancer Setup**
+    
+    ```plaintext
+        +----------------------------+
+        |          Internet          |
+        +-------------+--------------+
+                      |
+                      v
+        +----------------------------+
+        |   AWS Load Balancer (ELB)  |  <------ External IP: 52.23.45.67 (Port 80)
+        +-------------+--------------+
+                      |
+                      v
+        +----------------------------+
+        |        EKS Cluster         |
+        | +------------------------+ |
+        | |                        | |
+        | |  Service (ELB)         | |
+        | |  Cluster IP: 10.0.85.137 |
+        | |  Ports: 80:31457/TCP   |  <------ Internal IP and Node Port within Kubernetes
+        | |                        | |
+        | +-----------+------------+ |
+                      |
+                      v
+        | +------------------------+ |
+        | |     Worker Node 1      | |
+        | |   Private IP: 10.0.1.1 | |
+        | | +--------------------+ | |
+        | |    Web Server Pod      | |
+        | |    Pod IP: 10.1.0.1    | |
+        | |    Container Port: 80  | |
+        | | +--------------------+ | |
+        | +------------------------+ |
+        | +------------------------+ |
+        | |     Worker Node 2      | |
+        | |   Private IP: 10.0.1.2 | |
+        | | +--------------------+ | |
+        | |    Web Server Pod      | |
+        | |    Pod IP: 10.1.0.2    | |
+        | |    Container Port: 80  | |
+        | | +--------------------+ | |
+        | +------------------------+ |
+        +----------------------------+
+    
+    
+    52.23.45.67:80 (ELB) -> 10.0.1.1:31457 or 10.0.1.2:31457 (NodePort) -> 10.0.85.137:80 (ClusterIP Service) -> 10.1.0.1:80 or 10.1.0.2:80 (Pods)
 
-```plaintext
-    +----------------------------+
-    |          Internet          |
-    +-------------+--------------+
-                  |
-                  v
-    +----------------------------+
-    |   AWS Load Balancer (ELB)  |  <------ External IP: 52.23.45.67 (Port 80)
-    +-------------+--------------+
-                  |
-                  v
-    +----------------------------+
-    |        EKS Cluster         |
-    | +------------------------+ |
-    | |                        | |
-    | |  Service (ELB)         | |
-    | |  Cluster IP: 10.0.85.137 |
-    | |  Ports: 80:31457/TCP   |  <------ Internal IP and Node Port within Kubernetes
-    | |                        | |
-    | +-----------+------------+ |
-                  |
-                  v
-    | +------------------------+ |
-    | |     Worker Node 1      | |
-    | |   Private IP: 10.0.1.1 | |
-    | | +--------------------+ | |
-    | |    Web Server Pod      | |
-    | |    Pod IP: 10.1.0.1    | |
-    | |    Container Port: 80  | |
-    | | +--------------------+ | |
-    | +------------------------+ |
-    | +------------------------+ |
-    | |     Worker Node 2      | |
-    | |   Private IP: 10.0.1.2 | |
-    | | +--------------------+ | |
-    | |    Web Server Pod      | |
-    | |    Pod IP: 10.1.0.2    | |
-    | |    Container Port: 80  | |
-    | | +--------------------+ | |
-    | +------------------------+ |
-    +----------------------------+
-
-
-52.23.45.67:80 (ELB) -> 10.0.1.1:31457 or 10.0.1.2:31457 (NodePort) -> 10.0.85.137:80 (ClusterIP Service) -> 10.1.0.1:80 or 10.1.0.2:80 (Pods)
 
 
 ### Types of Volumes:

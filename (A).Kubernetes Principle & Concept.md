@@ -386,7 +386,8 @@ The problem with this type of service is that it is only available on the Cloud 
 - **Example:** Used in cloud environments (AWS, GCP, Azure) for production services.
 
 
-     **AWS Kubernetes Load Balancer Setup**
+**Deploying a web server in AWS Kubernetes (EKS) with a simple load balancer (without ingress) and multiple worker nodes.**
+
     
     ```plaintext
         +----------------------------+
@@ -431,10 +432,8 @@ The problem with this type of service is that it is only available on the Cloud 
         +----------------------------+
     
     
-    52.23.45.67:80 (ELB) -> 192.168.1.2:31457 or 192.168.1.3:31457 (NodePort) -> 10.0.85.137:80 (ClusterIP Service) -> 10.1.0.1:80 or 10.1.0.2:80 (Pods)
+  **52.23.45.67:80 (ELB) -> 192.168.1.2:31457 or 192.168.1.3:31457 (NodePort) -> 10.0.85.137:80 (ClusterIP Service) -> 10.1.0.1:80 or 10.1.0.2:80 (Pods)**
 
-
-**Deployment and Service YAML**
 
  **web-server-deployment.yaml**
           

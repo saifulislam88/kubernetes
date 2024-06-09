@@ -388,7 +388,7 @@ The problem with this type of service is that it is only available on the Cloud 
                       |
                       v
         +----------------------------+
-        |   AWS Load Balancer (ELB)  |  <------ External IP: 52.23.45.67 (Port 80)
+        |   AWS Load Balancer (ELB)  |  <------ External Public IP: 52.23.45.67 (Port 80)
         +-------------+--------------+
                       |
                       v
@@ -405,7 +405,7 @@ The problem with this type of service is that it is only available on the Cloud 
                       v
         | +------------------------+ |
         | |     Worker Node 1      | |
-        | |   Private IP: 10.0.1.1 | |
+        | |  Private IP: 192.168.1.2 | 
         | | +--------------------+ | |
         | |    Web Server Pod      | |
         | |    Pod IP: 10.1.0.1    | |
@@ -414,7 +414,7 @@ The problem with this type of service is that it is only available on the Cloud 
         | +------------------------+ |
         | +------------------------+ |
         | |     Worker Node 2      | |
-        | |   Private IP: 10.0.1.2 | |
+        | |  Private IP: 192.168.1.3 |
         | | +--------------------+ | |
         | |    Web Server Pod      | |
         | |    Pod IP: 10.1.0.2    | |
@@ -424,7 +424,52 @@ The problem with this type of service is that it is only available on the Cloud 
         +----------------------------+
     
     
-    52.23.45.67:80 (ELB) -> 10.0.1.1:31457 or 10.0.1.2:31457 (NodePort) -> 10.0.85.137:80 (ClusterIP Service) -> 10.1.0.1:80 or 10.1.0.2:80 (Pods)
+    52.23.45.67:80 (ELB) -> 192.168.1.2:31457 or 192.168.1.3:31457 (NodePort) -> 10.0.85.137:80 (ClusterIP Service) -> 10.1.0.1:80 or 10.1.0.2:80 (Pods)
+
+
+
+
+**Deployment and Service YAML**
+
+ //web-server-deployment.yaml//
+          
+          apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: web-server
+      spec:
+        replicas: 3
+        selector:
+          matchLabels:
+            app: web-server
+        template:
+          metadata:
+            labels:
+              app: web-server
+          spec:
+            containers:
+            - name: web-server
+              image: nginx:latest
+              ports:
+              - containerPort: 80
+
+
+
+//web-server-service.yaml//
+
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: web-server
+        spec:
+          type: LoadBalancer
+          selector:
+            app: web-server
+          ports:
+          - protocol: TCP
+            port: 80
+            targetPort: 80
+
 
 
 

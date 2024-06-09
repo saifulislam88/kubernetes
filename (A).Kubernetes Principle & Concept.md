@@ -373,7 +373,7 @@ The following Service manifest has a selector that specifies two labels. The sel
 
 
 
-### [2. LoadBalancer]
+### [2. LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer)
 
 **A LoadBalancer(Network LoadBalancer) service is the standard way to expose a service to the internet. The LoadBalancer service is the simplest and the fastest way to expose a service inside a Kubernetes cluster to the external world/outside or Internet. This external load balancer is associated with a specific IP address and routes external traffic to a Kubernetes service in your cluster.**
 

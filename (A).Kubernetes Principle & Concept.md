@@ -282,7 +282,7 @@ A service is an abstract mechanism for exposing pods on a network. Kubernetes wo
  
 [**2.NodePort,**](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
 
-**3.LoadBalancer,**
+[**3.LoadBalancer,**](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer)
  
 **4.ExternalName,**
  
@@ -379,6 +379,9 @@ The problem with this type of service is that it is only available on the Cloud 
 - **Example:** Used in cloud environments (AWS, GCP, Azure) for production services.
 
 
+   ### AWS Kubernetes Load Balancer Setup
+
+```plaintext
     +----------------------------+
     |          Internet          |
     +-------------+--------------+
@@ -419,6 +422,7 @@ The problem with this type of service is that it is only available on the Cloud 
     | | +--------------------+ | |
     | +------------------------+ |
     +----------------------------+
+
 
 52.23.45.67:80 (ELB) -> 10.0.1.1:31457 or 10.0.1.2:31457 (NodePort) -> 10.0.85.137:80 (ClusterIP Service) -> 10.1.0.1:80 or 10.1.0.2:80 (Pods)
 

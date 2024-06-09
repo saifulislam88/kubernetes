@@ -377,7 +377,7 @@ The following Service manifest has a selector that specifies two labels. The sel
 
 **A LoadBalancer(Network LoadBalancer) service is the standard way to expose a service to the internet. The LoadBalancer service is the simplest and the fastest way to expose a service inside a Kubernetes cluster to the external world/outside or Internet. This external load balancer is associated with a specific IP address and routes external traffic to a Kubernetes service in your cluster.**
 
-The problem with this type of service is that it is only available on the Cloud platform(AWS, GCP, Azure,others ) of some vendors and you should pay for it. On Cloud (AWS, GCP, Azure) will create Cloud Load Balancer service in the backend and generate a public IP address. 
+**The problem with this type of service** is that it is only available on the Cloud platform(AWS, GCP, Azure,others ) of some vendors and you should pay for it. On Cloud (AWS, GCP, Azure) will create Cloud Load Balancer service in the backend and generate a public IP address. 
                   
 **But On Premises or So for local Kubernetes cluster NodePort is best option with external LoadBalancer (HaProxy, Nginx) that will give you a single public IP address that will forward all traffic to your NodePort service.**
 

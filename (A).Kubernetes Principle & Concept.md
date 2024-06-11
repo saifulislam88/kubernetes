@@ -71,6 +71,11 @@ kind of environments such as physical, virtual, and cloud infrastructure.
     ⮚	Containerized infrastructure
     ⮚	Application-centric management
     ⮚	Auto-scalable infrastructure
+
+
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/27c2d490-3410-42ce-8a46-28e8de6b661f)
+
+
 [Back to Top](#top)
 
 
@@ -382,7 +387,7 @@ The following Service manifest has a selector that specifies two labels. The sel
                   
 **But On Premises or So for local Kubernetes cluster NodePort is best option with external LoadBalancer (HaProxy, Nginx) that will give you a single public IP address that will forward all traffic to your NodePort service.**
 
-- **Usage:** Exposes the service externally using a cloud provider’s load balancer.
+- **Usage:** Exposes the service externally using a cloud provider’s load balancer and LoadBalancer type doesn’t support URL routing, SSL termination, etc.
 - **Access:** External traffic can access the service via the load balancer’s IP.
 - **Example:** Used in cloud environments (AWS, GCP, Azure) for production services.
 
@@ -474,6 +479,22 @@ The following Service manifest has a selector that specifies two labels. The sel
           - protocol: TCP
             port: 80
             targetPort: 80
+
+## Kubernetes Ingress
+
+Ingress is an API object in Kubernetes that manages external access to services within a cluster, typically HTTP and HTTPS. It provides a single point of entry for routing and load balancing requests to various services based on defined rules.
+
+- Key Features of Ingress:
+- Load Balancing: Distributes incoming traffic across multiple services.
+- Name-Based Virtual Hosting: Routes traffic based on the host header.
+- URL Routing: Directs traffic based on the request URL.
+- SSL Termination: Handles SSL/TLS encryption and decryption.
+
+**So Ingress means the traffic that enters the cluster and egress is the traffic that exits the cluster.**
+
+Example:
+Consider a scenario where you have multiple services (e.g., web app, API, admin interface) running in a Kubernetes cluster. Instead of creating a separate LoadBalancer for each service, you can define an Ingress resource to manage all incoming traffic. The Ingress rules will route requests to the appropriate service based on the request's URL path or host.
+
 
 
 

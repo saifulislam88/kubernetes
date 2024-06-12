@@ -14,9 +14,9 @@
   - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
   - [LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer) 
 
-- [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/edit/main/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-resources)
+- [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-resources)
   - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-Ingress)
-    - Ingress Controlller
+    - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controllersoftware)
     - MetalLB | BareMetal LB
 
 
@@ -499,7 +499,7 @@ The following Service manifest has a selector that specifies two labels. The sel
 **In Kubernetes, everything is accessed through APIs.** To create different types of objects like pods, namespaces, and configmaps, the Kubernetes API server provides API endpoints. These object-specific endpoints are called **API resources or simply resources**. For example, the API endpoint used to create a pod is referred to as a Pod resource. In simpler terms, a resource is a specific API URL used to access an object, and you can interact with these objects using HTTP methods like GET, POST, and DELETE.
 
 
-## Kubernetes Ingress((Resource)
+## Kubernetes Ingress(Resource)
 An Ingress is a Kubernetes resource that defines how external traffic should be routed to services within your cluster.
 Ingress is actually NOT a type of service. Instead, it sits in front of multiple services and act as a “smart router” or entrypoint into your cluster. So Ingress is an API object in Kubernetes that manages external access to services within a cluster, typically HTTP and HTTPS. It provides a single point of entry for routing and load balancing requests to various services based on defined rules.
 

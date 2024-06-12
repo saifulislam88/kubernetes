@@ -4,6 +4,8 @@
 - [Q4?. Kubernetes Objects Comparison](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q4-kubernetes-objects-comparison)
 - [Q5?. Kubernetes Oobjects vs Resources](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#q5-kubernetes-objects-vs-resources)
 
+- [Q6?.Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#kubernetes-ingress)
+
 
 
 
@@ -88,6 +90,25 @@ In short:
  | Analogy   | Blueprint or configuration file | URL or access point for managing objects |
  | Examples  | Deployment, Pod, Service | pods, deployments, services |
  | Focus     | Definition of application state | Interaction with objects |
+
+
+
+## Kubernetes Ingress
+
+ **Is Ingress a load balancer?**
+Ingress is not a load balancer. It contains all the routing rules, custom headers, and TLS configurations. The ingress controller acts as a load balancer.
+
+**Why do I need an ingress controller?**
+The ingress controller is responsible for the actual routing of external traffic to kubernetes service endpoints. Without an ingress controller, the routing rules added to the ingress will not work.
+
+**What is the difference between ingress and Nginx?**
+Ingress is a kubernetes object. Nginx is used as an ingress controller (Reverse proxy).
+
+**Can we route traffic to multiple paths using ingress?**
+Yes. With a single ingress definition, you can add multiple path-based routing configurations.
+
+**Does ingress support TLS configuration?**
+Yes. You can have TLS configurations in your ingress object definition. The TLS certification will be added as a Kubernetes secret and referred to in the ingress object.
 
 
 

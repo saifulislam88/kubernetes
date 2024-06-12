@@ -6,17 +6,30 @@
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
 - [Kubernetes Components](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
 - [Kubernetes Native Objects](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
-  - [Part 01](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
-  - [Part 02](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
+  - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
+  - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
   - [Objects organized in categories](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
 - [Kubernetes Services](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-object-services)
   - [ClusterIP](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
   - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
   - [LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer) 
- 
-- [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-Ingress)
-  - Ingress Controlller
-  - MetalLB | BareMetal LB
+
+- [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/edit/main/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-resources)
+  - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-Ingress)
+    - Ingress Controlller
+    - MetalLB | BareMetal LB
+
+
+
+
+
+
+
+
+
+
+
+
 
 - [Volume](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
 
@@ -479,6 +492,12 @@ The following Service manifest has a selector that specifies two labels. The sel
           - protocol: TCP
             port: 80
             targetPort: 80
+
+
+## Kubernetes Resources
+
+**In Kubernetes, everything is accessed through APIs.** To create different types of objects like pods, namespaces, and configmaps, the Kubernetes API server provides API endpoints. These object-specific endpoints are called **API resources or simply resources**. For example, the API endpoint used to create a pod is referred to as a Pod resource. In simpler terms, a resource is a specific API URL used to access an object, and you can interact with these objects using HTTP methods like GET, POST, and DELETE.
+
 
 ## Kubernetes Ingress((Resource)
 An Ingress is a Kubernetes resource that defines how external traffic should be routed to services within your cluster.

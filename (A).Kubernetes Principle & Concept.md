@@ -480,9 +480,15 @@ The following Service manifest has a selector that specifies two labels. The sel
             port: 80
             targetPort: 80
 
-## Kubernetes Ingress
+## Kubernetes Ingress((Resource)
+An Ingress is a Kubernetes resource that defines how external traffic should be routed to services within your cluster.
+Ingress is actually NOT a type of service. Instead, it sits in front of multiple services and act as a “smart router” or entrypoint into your cluster. So Ingress is an API object in Kubernetes that manages external access to services within a cluster, typically HTTP and HTTPS. It provides a single point of entry for routing and load balancing requests to various services based on defined rules.
 
-Ingress is an API object in Kubernetes that manages external access to services within a cluster, typically HTTP and HTTPS. It provides a single point of entry for routing and load balancing requests to various services based on defined rules.
+It acts like a traffic rule specifying:
+Hostnames: Which domain names or subdomains should trigger the rule.
+Paths: Which URL paths should be mapped to specific services.
+Backend Services: Which services within the cluster should handle the traffic for each path.
+
 
 - Key Features of Ingress:
 - Load Balancing: Distributes incoming traffic across multiple services.
@@ -495,6 +501,13 @@ Ingress is an API object in Kubernetes that manages external access to services 
 Example:
 Consider a scenario where you have multiple services (e.g., web app, API, admin interface) running in a Kubernetes cluster. Instead of creating a separate LoadBalancer for each service, you can define an Ingress resource to manage all incoming traffic. The Ingress rules will route requests to the appropriate service based on the request's URL path or host.
 
+### Ingress Controller(Software)
+
+An Ingress Controller is a software program that runs inside your Kubernetes cluster and implements the Ingress API. It acts as an interpreter for Ingress resources, translating the traffic rules defined in the Ingress objects into configurations for your load balancer or edge router.
+
+ - NGINX, Traefik, and HAProxy are common Ingress controllers.
+ - Ingress resources define the desired traffic routing. Ingress Controllers implement those desired routes by interacting with your load balancer or edge router.
+ - We create an Ingress resource and deploy an Ingress Controller to manage it.
 
 
 

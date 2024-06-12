@@ -494,6 +494,7 @@ The following Service manifest has a selector that specifies two labels. The sel
             targetPort: 80
 
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Kubernetes Resources
 
 **In Kubernetes, everything is accessed through APIs.** To create different types of objects like pods, namespaces, and configmaps, the Kubernetes API server provides API endpoints. These object-specific endpoints are called **API resources or simply resources**. For example, the API endpoint used to create a pod is referred to as a Pod resource. In simpler terms, a resource is a specific API URL used to access an object, and you can interact with these objects using HTTP methods like GET, POST, and DELETE.
@@ -503,17 +504,16 @@ The following Service manifest has a selector that specifies two labels. The sel
 An Ingress is a Kubernetes resource that defines how external traffic should be routed to services within your cluster.
 Ingress is actually NOT a type of service. Instead, it sits in front of multiple services and act as a “smart router” or entrypoint into your cluster. So Ingress is an API object in Kubernetes that manages external access to services within a cluster, typically HTTP and HTTPS. It provides a single point of entry for routing and load balancing requests to various services based on defined rules.
 
-It acts like a traffic rule specifying:
-Hostnames: Which domain names or subdomains should trigger the rule.
-Paths: Which URL paths should be mapped to specific services.
-Backend Services: Which services within the cluster should handle the traffic for each path.
+**It acts like a traffic rule specifying:**
+  - **Hostnames:** Which domain names or subdomains should trigger the rule.
+  - **Paths:** Which URL paths should be mapped to specific services.
+  - **Backend Services:** Which services within the cluster should handle the traffic for each path.
 
-
-- Key Features of Ingress:
-- Load Balancing: Distributes incoming traffic across multiple services.
-- Name-Based Virtual Hosting: Routes traffic based on the host header.
-- URL Routing: Directs traffic based on the request URL.
-- SSL Termination: Handles SSL/TLS encryption and decryption.
+**Key Features of Ingress:**
+  - Load Balancing: Distributes incoming traffic across multiple services.
+  - Name-Based Virtual Hosting: Routes traffic based on the host header.
+  - URL Routing: Directs traffic based on the request URL.
+  - SSL Termination: Handles SSL/TLS encryption and decryption.
 
 **So Ingress means the traffic that enters the cluster and egress is the traffic that exits the cluster.**
 

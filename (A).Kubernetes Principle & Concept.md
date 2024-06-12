@@ -523,6 +523,7 @@ Consider a scenario where you have multiple services (e.g., web app, API, admin 
     Configure Load Balancer/Proxy: Upon detecting changes, the Ingress Controller updates the configuration of the underlying load balancer or proxy (e.g., NGINX, HAProxy, Traefik) to reflect the   
     specified routing rules.
   - **Traffic Routing:** Incoming traffic is then routed according to the rules defined in the Ingress resources and enforced by the Ingress Controller.
+  - ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/02919b8b-624e-40fe-9bac-6e023441cfa9)
 
 
 

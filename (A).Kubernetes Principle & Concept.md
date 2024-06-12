@@ -520,8 +520,9 @@ Backend Services: Which services within the cluster should handle the traffic fo
 Example:
 Consider a scenario where you have multiple services (e.g., web app, API, admin interface) running in a Kubernetes cluster. Instead of creating a separate LoadBalancer for each service, you can define an Ingress resource to manage all incoming traffic. The Ingress rules will route requests to the appropriate service based on the request's URL path or host.
 
-### Ingress Controller(Software)
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### [Ingress Controller(Software)]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **An Ingress Controller is a software program that runs inside your Kubernetes cluster and implements the Ingress API. It reads Ingress objects and takes actions to properly route incoming requests.** Essentially, the Ingress Controller is responsible for making Ingress resources functional. So It acts as an interpreter for Ingress resources, translating the traffic rules defined in the Ingress objects into configurations for your load balancer or edge router.
 
   

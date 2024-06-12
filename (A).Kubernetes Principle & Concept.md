@@ -517,8 +517,21 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
 
 **So Ingress means the traffic that enters the cluster and egress is the traffic that exits the cluster.**
 
-Example:
-Consider a scenario where you have multiple services (e.g., web app, API, admin interface) running in a Kubernetes cluster. Instead of creating a separate LoadBalancer for each service, you can define an Ingress resource to manage all incoming traffic. The Ingress rules will route requests to the appropriate service based on the request's URL path or host.
+**Example:** Consider a scenario where you have multiple services (e.g., web app, API, admin interface) running in a Kubernetes cluster. Instead of creating a separate LoadBalancer for each service, you can define an Ingress resource to manage all incoming traffic. The Ingress rules will route requests to the appropriate service based on the request's URL path or host.
+
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: test-ingress
+      namespace: dev
+    spec:
+      rules:
+      - host: test.apps.example.com
+        http:
+          paths:
+          - backend:
+              serviceName: hello-service
+              servicePort: 80
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -548,6 +561,7 @@ Consider a scenario where you have multiple services (e.g., web app, API, admin 
   - ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/02919b8b-624e-40fe-9bac-6e023441cfa9)
 
 
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/87a65cc5-2dc6-4add-b8f6-cd7e5c28d967)
 
 
 

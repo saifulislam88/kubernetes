@@ -15,7 +15,7 @@
       - [LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer) 
     
     - [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-resources)
-      - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-ingressresource)
+      - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource)
         - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
         - MetalLB | BareMetal LB
     
@@ -500,7 +500,7 @@ The following Service manifest has a selector that specifies two labels. The sel
 **In Kubernetes, everything is accessed through APIs.** To create different types of objects like pods, namespaces, and configmaps, the Kubernetes API server provides API endpoints. These object-specific endpoints are called **API resources or simply resources**. For example, the API endpoint used to create a pod is referred to as a Pod resource. In simpler terms, a resource is a specific API URL used to access an object, and you can interact with these objects using HTTP methods like GET, POST, and DELETE.
 
 
-## Kubernetes Ingress(Resource)
+## Ingress(Resource)
 An Ingress is a Kubernetes resource that defines how external traffic should be routed to services within your cluster.
 Ingress is actually NOT a type of service. Instead, it sits in front of multiple services and act as a “smart router” or entrypoint into your cluster. So Ingress is an API object in Kubernetes that manages external access to services within a cluster, typically HTTP and HTTPS. It provides a single point of entry for routing and load balancing requests to various services based on defined rules.
 
@@ -522,10 +522,10 @@ Consider a scenario where you have multiple services (e.g., web app, API, admin 
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### [Ingress Controller](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-ingressresource)
+### [Ingress Controller](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource)
 
 
-**An Ingress Controller is a software program that runs inside your Kubernetes cluster and implements the Ingress API. It reads Ingress objects and takes actions to properly route incoming requests.** Essentially, the Ingress Controller is responsible for making Ingress resources functional. So It acts as an interpreter for Ingress resources, translating the traffic rules defined in the Ingress objects into configurations for your load balancer or edge router.
+**An Ingress Controller is a software program of Ingress that runs inside your Kubernetes cluster and implements the Ingress API. It reads Ingress objects and takes actions to properly route incoming requests.** Essentially, the Ingress Controller is responsible for making Ingress resources functional. So It acts as an interpreter for Ingress resources, translating the traffic rules defined in the Ingress objects into configurations for your load balancer or edge router.
 
   
    - **NGINX, Traefik, and HAProxy are common Ingress controllers.**

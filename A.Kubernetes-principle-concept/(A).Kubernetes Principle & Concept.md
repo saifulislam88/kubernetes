@@ -1,22 +1,22 @@
 # Kubernetes (K8s)
 <a name="top"></a>
 **Table of Contents**
-- [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20%26%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
-- [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
-- [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
-- [Kubernetes Components](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
-- [Kubernetes Native Objects](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
-  - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
-  - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
-  - [Objects organized in categories](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
-    - [Kubernetes Services](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-object-services)
-      - [ClusterIP](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
-      - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
-      - [LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer) 
+- [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
+- [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
+- [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
+- [Kubernetes Components](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
+- [Kubernetes Native Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
+  - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
+  - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
+  - [Objects organized in categories](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
+    - [Kubernetes Services](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-object-services)
+      - [ClusterIP](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
+      - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
+      - [LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer) 
     
-    - [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-resources)
-      - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource)
-        - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
+    - [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-resources)
+      - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource)
+        - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
         - MetalLB | BareMetal LB
     
 
@@ -31,7 +31,7 @@
 
 
 
-- [Volume](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
+- [Volume](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
 
 
 ----
@@ -304,11 +304,11 @@ Here is a short explanation with real-world examples 👇
 
 A service is an abstract mechanism for exposing pods on a network. Kubernetes workloads aren’t network-visible by default. You make containers available to the local or outside world by creating a service. Service resources route traffic into the containers within pods. Kubernetes supports several ways of getting external traffic into your cluster. 
 
-[**1.ClusterIP,**](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
+[**1.ClusterIP,**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
  
-[**2.NodePort,**](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
+[**2.NodePort,**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
 
-[**3.LoadBalancer,**](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer)
+[**3.LoadBalancer,**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer)
  
 **4.ExternalName,**
  
@@ -340,7 +340,7 @@ The following Service manifest has a selector that specifies two labels. The sel
     ...
 
 
-### [1. ClusterIP(Default)](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
+### [1. ClusterIP(Default)](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
 
 **ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: ClusterIP**
 
@@ -366,7 +366,7 @@ The following Service manifest has a selector that specifies two labels. The sel
 
 
 
-### [2. NodePort](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
+### [2. NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
 
 **The NodePort service serves as the external entry point for incoming requests for your app.**
 
@@ -392,7 +392,7 @@ The following Service manifest has a selector that specifies two labels. The sel
 
 
 
-### [2. LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer)
+### [2. LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer)
 
 **A LoadBalancer(Network LoadBalancer) service is the standard way to expose a service to the internet. The LoadBalancer service is the simplest and the fastest way to expose a service inside a Kubernetes cluster to the external world/outside or Internet. This external load balancer is associated with a specific IP address and routes external traffic to a Kubernetes service in your cluster.**
 
@@ -535,7 +535,7 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### [Ingress Controller](https://github.com/saifulislam88/kubernetes/blob/main/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource)
+### [Ingress Controller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource)
 
   - ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/87a65cc5-2dc6-4add-b8f6-cd7e5c28d967)
 

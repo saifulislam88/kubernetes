@@ -1,6 +1,9 @@
 
 ## Prerequisites - Knowledge Base
 
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/973c1256-1a85-4583-af80-f552fc93813b)
+
+
 - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource) — Covers all Ingress concepts
 - [Ingress controller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller) — Detailed guide on ingress controller
 - [SSL/TLS Certificates](https://www.hostinger.com/tutorials/what-is-ssl)
@@ -32,3 +35,19 @@
 
 
 ## SSL/TLS Setup with Self-Signed Certificate Using Ingress-NGINX Controller
+
+**Before proceeding, let's establish some baseline assumptions regarding the application setup:**
+
+- The application is deployed on a Kubernetes cluster.
+- The application can be accessed externally through an Ingress. (We'll need the load balancer IP address associated with the Ingress controller.)
+- [Creating Self-Signed SSL Certificates Using OpenSSL](https://tecadmin.net/step-by-step-guide-to-creating-self-signed-ssl-certificates/)
+
+  sudo apt update 
+  sudo apt install openssl 
+  openssl genrsa -out example.key 2048 
+  openssl req -new -key example.key -out example.csr
+  openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt
+
+
+- Create Kubernetes TLS Secret using above CA key & CA Certificate
+  

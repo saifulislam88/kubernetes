@@ -49,7 +49,7 @@
         openssl req -new -key example.key -out example.csr
         openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt
 
-        [More Details](https://tecadmin.net/step-by-step-guide-to-creating-self-signed-ssl-certificates/)
+[More Details](https://tecadmin.net/step-by-step-guide-to-creating-self-signed-ssl-certificates/)
 
 
 

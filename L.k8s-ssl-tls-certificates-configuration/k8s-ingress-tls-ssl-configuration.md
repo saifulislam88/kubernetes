@@ -42,6 +42,7 @@
 - The application can be accessed externally through an Ingress. (We'll need the load balancer IP address associated with the Ingress controller.)
 - [Creating Self-Signed SSL Certificates Using OpenSSL](https://tecadmin.net/step-by-step-guide-to-creating-self-signed-ssl-certificates/)
 
+```sh
      sudo apt update 
      sudo apt install openssl 
      openssl genrsa -out example.key 2048 

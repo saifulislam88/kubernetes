@@ -42,11 +42,11 @@
 - The application can be accessed externally through an Ingress. (We'll need the load balancer IP address associated with the Ingress controller.)
 - [Creating Self-Signed SSL Certificates Using OpenSSL](https://tecadmin.net/step-by-step-guide-to-creating-self-signed-ssl-certificates/)
 
-  sudo apt update 
-  sudo apt install openssl 
-  openssl genrsa -out example.key 2048 
-  openssl req -new -key example.key -out example.csr
-  openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt
+     sudo apt update 
+     sudo apt install openssl 
+     openssl genrsa -out example.key 2048 
+     openssl req -new -key example.key -out example.csr
+     openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt
 
 
 - Create Kubernetes TLS Secret using above CA key & CA Certificate

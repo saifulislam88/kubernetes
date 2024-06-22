@@ -49,9 +49,45 @@
         openssl req -new -key example.key -out example.csr
         openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt
 
-   [More Details](https://tecadmin.net/step-by-step-guide-to-creating-self-signed-ssl-certificates/)
-
 
 
 - Create Kubernetes TLS Secret using above CA key & CA Certificate
   
+kubectl --namespace ingress-nginx get services -o wide -w ingress-nginx-controller
+kubectl create -n dev
+
+```sh
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: hello-app
+     namespace: dev
+   spec:
+     selector:
+       matchLabels:
+         app: hello
+     replicas: 2
+     template:
+       metadata:
+         labels:
+           app: hello
+       spec:
+         containers:
+         - name: hello
+           image: "gcr.io/google-samples/hello-app:2.0"
+   ---
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: hello-service
+     namespace: dev
+     labels:
+       app: hello
+   spec:
+     type: ClusterIP
+     selector:
+       app: hello
+     ports:
+     - port: 80
+       targetPort: 8080
+       protocol: TCP

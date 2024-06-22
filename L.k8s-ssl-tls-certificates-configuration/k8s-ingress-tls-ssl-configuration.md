@@ -57,37 +57,37 @@ kubectl --namespace ingress-nginx get services -o wide -w ingress-nginx-controll
 kubectl create -n dev
 
 ```sh
-   apiVersion: apps/v1
-   kind: Deployment
-   metadata:
-     name: hello-app
-     namespace: dev
-   spec:
-     selector:
-       matchLabels:
-         app: hello
-     replicas: 2
-     template:
-       metadata:
-         labels:
-           app: hello
-       spec:
-         containers:
-         - name: hello
-           image: "gcr.io/google-samples/hello-app:2.0"
-   ---
-   apiVersion: v1
-   kind: Service
-   metadata:
-     name: hello-service
-     namespace: dev
-     labels:
-       app: hello
-   spec:
-     type: ClusterIP
-     selector:
-       app: hello
-     ports:
-     - port: 80
-       targetPort: 8080
-       protocol: TCP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: hello
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello
+        image: "gcr.io/google-samples/hello-app:2.0"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-service
+  namespace: dev
+  labels:
+    app: hello
+spec:
+  type: ClusterIP
+  selector:
+    app: hello
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP

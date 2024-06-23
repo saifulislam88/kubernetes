@@ -53,17 +53,19 @@ Create a Kubernetes secret of type `TLS` with the `saiful.com.crt` and `saiful.c
 
 You can also create the secret using a YAML file. Add the contents of the certificate and key files as follows:
 
-      apiVersion: v1
-      kind: Secret
-      metadata:
-        name: saiful-hello-app-tls
-        namespace: dev
-      type: kubernetes.io/tls
-      data:
-        server.crt: |
-          <crt contents here>
-        server.key: |
-          <private key contents here>
+```sh
+apiVersion: v1
+kind: Secret
+metadata:
+  name: saiful-hello-app-tls
+  namespace: dev
+type: kubernetes.io/tls
+data:
+  server.crt: |
+    <crt contents here>
+  server.key: |
+    <private key contents here>
+```
 
-
+# saiful
 

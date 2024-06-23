@@ -1,7 +1,7 @@
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/973c1256-1a85-4583-af80-f552fc93813b)
+
 
 ## Prerequisites - Knowledge Base
-
-![image](https://github.com/saifulislam88/kubernetes/assets/68442870/973c1256-1a85-4583-af80-f552fc93813b)
 
 
 - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource) — Covers all Ingress concepts
@@ -99,11 +99,11 @@ Save the following YAML as hello-app.yaml. It has a deployment and service objec
 
       kubectl apply -f hello-app.yaml
 
+
 - Create a Kubernetes TLS Secret
 
-You need the `server.crt` and `server.key` SSL files from a Certificate Authority, your organization, or self-signed. Where already we generated self-signed saiful.com.key & saiful.com.crt
+You need the `server.crt` and `server.key` SSL files from a Certificate Authority, your organization, or self-signed. Where already we generated self-signed saiful.com.key & saiful.com.crt. Create a Kubernetes secret of type `TLS` with the `saiful.com.crt` and `saiful.com.crt` files in the `dev` namespace where the `hello-app` deployment is located. Run the following `kubectl` command from the directory where you have the `saiful.com.key` and `saiful.com.crt` files, or provide the absolute path of the files. `saiful-hello-app-tls` is an arbitrary name for the secret.
 
-Create a Kubernetes secret of type `TLS` with the `saiful.com.crt` and `saiful.com.crt` files in the `dev` namespace where the `hello-app` deployment is located. Run the following `kubectl` command from the directory where you have the `saiful.com.key` and `saiful.com.crt` files, or provide the absolute path of the files. `saiful-hello-app-tls` is an arbitrary name for the secret.
 
       ```sh
       kubectl create secret tls saiful-hello-app-tls \
@@ -131,7 +131,6 @@ You can also create the secret using a YAML file. Add the contents of the certif
  - Add TLS Block to Ingress Object
 
 The Ingress resource with TLS must be created in the same namespace where your application is deployed. Here, we create an example Ingress TLS resource in the dev namespace. Save the following YAML as ingress.yaml. **Replace app.saiful.com with your hostname.**
-
 
 
       apiVersion: networking.k8s.io/v1

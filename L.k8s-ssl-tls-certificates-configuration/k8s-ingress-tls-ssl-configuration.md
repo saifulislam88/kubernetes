@@ -51,10 +51,13 @@
 
 
 
-- Create Kubernetes TLS Secret using above CA key & CA Certificate
+- **Create Kubernetes TLS Secret using above CA key & CA Certificate**
   
-kubectl --namespace ingress-nginx get services -o wide -w ingress-nginx-controller
-kubectl create -n dev
+   kubectl --namespace dev get services -o wide -w ingress-nginx-controller          ;
+   kubectl create -n dev        ;Create a dev namespace
+
+
+    - Save the following YAML as hello-app.yaml. It has a deployment and service object.
 
 ```sh
 apiVersion: apps/v1
@@ -91,3 +94,72 @@ spec:
   - port: 80
     targetPort: 8080
     protocol: TCP
+
+
+  - Deploy the test application.
+
+      kubectl apply -f hello-app.yaml
+
+  - Create a Kubernetes TLS Secret
+
+You need the `server.crt` and `server.key` SSL files from a Certificate Authority, your organization, or self-signed. Where already we generated self-signed saiful.com.key & saiful.com.crt
+
+Create a Kubernetes secret of type `TLS` with the `saiful.com.crt` and `saiful.com.crt` files in the `dev` namespace where the `hello-app` deployment is located. Run the following `kubectl` command from the directory where you have the `saiful.com.key` and `saiful.com.crt` files, or provide the absolute path of the files. `saiful-hello-app-tls` is an arbitrary name for the secret.
+
+   ```sh
+   kubectl create secret tls saiful-hello-app-tls \
+       --namespace dev \
+       --key saiful.com.key \
+       --cert saiful.com.crt
+
+
+
+You can also create the secret using a YAML file. Add the contents of the certificate and key files as follows:
+
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: saiful-hello-app-tls
+     namespace: dev
+   type: kubernetes.io/tls
+   data:
+     server.crt: |
+       saiful.com.crt
+     server.key: |
+       saiful.com.key
+
+
+
+ - Add TLS Block to Ingress Object
+
+The Ingress resource with TLS must be created in the same namespace where your application is deployed. Here, we create an example Ingress TLS resource in the dev namespace. Save the following YAML as ingress.yaml. **Replace app.saiful.com with your hostname.**
+
+
+
+   apiVersion: networking.k8s.io/v1
+   kind: Ingress
+   metadata:
+     name: hello-app-ingress
+     namespace: dev
+   spec:
+     ingressClassName: nginx
+     tls:
+     - hosts:
+       - app.saiful.com
+       secretName: hello-app-tls
+     rules:
+     - host: "app.saiful.com"
+       http:
+         paths:
+           - pathType: Prefix
+             path: "/"
+             backend:
+               service:
+                 name: hello-service
+                 port:
+                   number: 80
+
+
+
+
+

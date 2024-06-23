@@ -6,9 +6,9 @@
 - [**Ingress Controller**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller) — Detailed guide on ingress controller
 - [**SSL/TLS Certificates**](https://www.hostinger.com/tutorials/what-is-ssl) — Explanation of SSL/TLS certificates
 
-### Self-Signed Certificate
+   # - Self-Signed Certificate
 
-You create and sign the certificate yourself. A self-signed certificate is a public key certificate that is signed and validated by the same person. It means that the certificate is signed with its own private key and is not relevant to the organization or person identity that does sign process. Such certificates are ideal for testing servers.
+      You create and sign the certificate yourself. A self-signed certificate is a public key certificate that is signed and validated by the same person. It means that the certificate is signed with        its own private key and is not relevant to the organization or person identity that does sign process. Such certificates are ideal for testing servers.
 
 ### What is a CA-signed/Purchased/Commercial/Paid SSL Certificate?
 
@@ -34,11 +34,14 @@ Typically uses Domain Validation (DV) only. This verifies that you control the d
 
 ### Creating Self-Signed SSL Certificates Using OpenSSL
 
-   sudo apt update 
-   sudo apt install openssl 
-   openssl genrsa -out saiful.com.key 2048 
-   openssl req -new -key saiful.com.key -out saiful.com.csr
-   openssl x509 -req -days 365 -in saiful.com.csr -signkey saiful.com.key -out saiful.com.crt
+```sh
+sudo apt update 
+sudo apt install openssl 
+openssl genrsa -out saiful.com.key 2048 
+openssl req -new -key saiful.com.key -out saiful.com.csr
+openssl x509 -req -days 365 -in saiful.com.csr -signkey saiful.com.key -out saiful.com.crt
+
+```
 
 # Create Kubernetes TLS Secret
 
@@ -111,7 +114,7 @@ spec:
 
 **Deploy the application with the following command:**
 
-   kubectl apply -f hello-app.yaml
+      kubectl apply -f hello-app.yaml
 
 
 # Add/Setup TLS Block to Ingress Object

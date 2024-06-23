@@ -53,7 +53,7 @@ With the rise of cloud-native applications, microservices, and Software as a Ser
 - The application can be accessed externally through an Ingress. We will need the load balancer IP address associated with the Ingress controller
 
    
-   ### - Creating Self-Signed SSL Certificates Using OpenSSL
+   ###- Creating Self-Signed SSL Certificates Using OpenSSL
 
 ```sh
 sudo apt update 

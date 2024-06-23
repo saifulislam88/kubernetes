@@ -2,7 +2,7 @@
 
   ### - Pre-requisites
 
- - Standard
+ ### - Standard
 
 
 | Component             | VM Requirements         | RAM    | vCPU | Storage |
@@ -14,10 +14,10 @@
 | Pod Network Block     |                         | -      | -    | -       |
 
 
- - Minimal
+ ### - Minimal
 
-  - At least 2 nodes.
-  - 2 vCPUs.
-  - At least 4GB of RAM.
-  - At least 20GB of disk space.
-  - A reliable internet connection.
+      - At least 2 nodes.
+      - 2 vCPUs.
+      - At least 4GB of RAM.
+      - At least 20GB of disk space.
+      - A reliable internet connection.

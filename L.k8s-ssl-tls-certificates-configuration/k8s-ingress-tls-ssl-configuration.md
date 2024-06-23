@@ -44,14 +44,15 @@ Typically uses Domain Validation (DV) only. This verifies that you control the d
 
 Create a Kubernetes secret of type `TLS` with the `saiful.com.crt` and `saiful.com.key` files in the `dev` namespace where the `hello-app` deployment is located. Run the following `kubectl` command from the directory where you have the `saiful.com.key` and `saiful.com.crt` files, or provide the absolute path of the files. `saiful-hello-app-tls` is an arbitrary name for the secret.
 
+```sh
+kubectl create secret tls saiful-hello-app-tls \
+    --namespace dev \
+    --key saiful.com.key \
+    --cert saiful.com.crt
 
-      kubectl create secret tls saiful-hello-app-tls \
-          --namespace dev \
-          --key saiful.com.key \
-          --cert saiful.com.crt
+```
 
-
-You can also create the secret using a YAML file. Add the contents of the certificate and key files as follows:
+**You can also create the secret using a YAML file. Add the contents of the certificate and key files as follows:**
 
 ```sh
 apiVersion: v1
@@ -67,5 +68,78 @@ data:
     <private key contents here>
 ```
 
-# saiful
+# Deploy the Application
 
+Save the following YAML as **hello-app.yaml**. It contains a deployment and a `service` object.
+
+```sh
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: hello
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello
+        image: "gcr.io/google-samples/hello-app:2.0"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-service
+  namespace: dev
+  labels:
+    app: hello
+spec:
+  type: ClusterIP
+  selector:
+    app: hello
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+```
+
+**Deploy the application with the following command:**
+
+   kubectl apply -f hello-app.yaml
+
+
+# Add/Setup TLS Block to Ingress Object
+
+The Ingress resource with TLS must be created in the same namespace where your application is deployed. Save the following YAML as `ingress.yaml`. Replace `app.saiful.com` with your hostname.
+
+```sh
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-app-ingress
+  namespace: dev
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - app.saiful.com
+    secretName: saiful-hello-app-tls
+  rules:
+  - host: "app.saiful.com"
+    http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: hello-service
+              port:
+                number: 80
+
+```

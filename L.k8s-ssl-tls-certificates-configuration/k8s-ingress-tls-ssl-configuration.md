@@ -1,8 +1,5 @@
-![Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/assets/68442870/973c1256-1a85-4583-af80-f552fc93813b)
-
-
 ## SSL/TLS Setup in Kubernetes Applications with `Self-Signed Certificate` or `SSL files from a Certificate Authority` Using Ingress-NGINX Controller
-
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/35ea24bc-495b-4b02-a39f-ef78045c9863)
 
 - [Prerequisites - Knowledge Base](https://github.com/saifulislam88/kubernetes/blob/main/L.k8s-ssl-tls-certificates-configuration/k8s-ingress-tls-ssl-configuration.md#prerequisites---knowledge-base)
 - [SSL/TLS Setup with `Self-Signed Certificate` or `SSL files from a Certificate Authority` Using Ingress-NGINX Controller](https://github.com/saifulislam88/kubernetes/blob/main/L.k8s-ssl-tls-certificates-configuration/k8s-ingress-tls-ssl-configuration.md#ssltls-setup-using-ingress-nginx-controller)
@@ -37,6 +34,9 @@
       - Cloudflare
 
 ## SSL/TLS Setup Using Ingress-NGINX Controller
+
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/0e49e925-68b2-42d5-bc4b-d2a216d932cf)
+
 
 **Before proceeding, let's establish some baseline assumptions regarding the application setup:**
 - The application is deployed on a Kubernetes cluster.

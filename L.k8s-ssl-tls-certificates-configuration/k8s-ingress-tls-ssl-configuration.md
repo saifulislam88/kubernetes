@@ -19,6 +19,7 @@
 
    A reputable third-party certificate authority (CA) issues a certificate that requires verification of domain ownership, legal business documents, and other essential technical perspectives. To    
    establish a certificate chain, the certificate authority also issues a certificate called a trusted root certificate. There are many CAs in the SSL industry:
+
       - GeoTrust
       - RapidSSL
       - Digicert
@@ -29,6 +30,7 @@
 
    Typically uses Domain Validation (DV) only. This verifies that you control the domain name associated with the certificate, but not your organization's identity. Suitable for personal websites,    
    blogs, or non-critical applications. There are many providers offering free SSL certificates:
+
       - Let's Encrypt
       - ZeroSSL
       - Cloudflare

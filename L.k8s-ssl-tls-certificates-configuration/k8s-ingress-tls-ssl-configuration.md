@@ -5,7 +5,7 @@
 
 
 - [Prerequisites - Knowledge Base]
-- [SSL/TLS Setup with `Self-Signed Certificate` or `SSL files from a Certificate Authority` Using Ingress-NGINX Controller]
+- [SSL/TLS Setup with `Self-Signed Certificate` or `SSL files from a Certificate Authority` Using Ingress-NGINX Controller](https://github.com/saifulislam88/kubernetes/blob/main/L.k8s-ssl-tls-certificates-configuration/k8s-ingress-tls-ssl-configuration.md#ssltls-setup-using-ingress-nginx-controller)
 
 
 ## Prerequisites - Knowledge Base
@@ -20,19 +20,21 @@
 
    ### - What is a CA-signed/Purchased/Commercial/Paid SSL Certificate?
 
-A reputable third-party certificate authority (CA) issues a certificate that requires verification of domain ownership, legal business documents, and other essential technical perspectives. To establish a certificate chain, the certificate authority also issues a certificate called a trusted root certificate. There are many CAs in the SSL industry:
-   - GeoTrust
-   - RapidSSL
-   - Digicert
-   - Comodo
-   - GlobalSign, etc.
+   A reputable third-party certificate authority (CA) issues a certificate that requires verification of domain ownership, legal business documents, and other essential technical perspectives. To    
+   establish a certificate chain, the certificate authority also issues a certificate called a trusted root certificate. There are many CAs in the SSL industry:
+      - GeoTrust
+      - RapidSSL
+      - Digicert
+      - Comodo
+      - GlobalSign, etc.
 
    ### - Free SSL
 
-Typically uses Domain Validation (DV) only. This verifies that you control the domain name associated with the certificate, but not your organization's identity. Suitable for personal websites, blogs, or non-critical applications. There are many providers offering free SSL certificates:
-   - Let's Encrypt
-   - ZeroSSL
-   - Cloudflare
+   Typically uses Domain Validation (DV) only. This verifies that you control the domain name associated with the certificate, but not your organization's identity. Suitable for personal websites,    
+   blogs, or non-critical applications. There are many providers offering free SSL certificates:
+      - Let's Encrypt
+      - ZeroSSL
+      - Cloudflare
 
 ## SSL/TLS Setup Using Ingress-NGINX Controller
 

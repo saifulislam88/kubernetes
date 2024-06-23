@@ -4,7 +4,7 @@
 ## SSL/TLS Setup in Kubernetes Applications with `Self-Signed Certificate` or `SSL files from a Certificate Authority` Using Ingress-NGINX Controller
 
 
-- [Prerequisites - Knowledge Base]
+- [Prerequisites - Knowledge Base](https://github.com/saifulislam88/kubernetes/blob/main/L.k8s-ssl-tls-certificates-configuration/k8s-ingress-tls-ssl-configuration.md#prerequisites---knowledge-base)
 - [SSL/TLS Setup with `Self-Signed Certificate` or `SSL files from a Certificate Authority` Using Ingress-NGINX Controller](https://github.com/saifulislam88/kubernetes/blob/main/L.k8s-ssl-tls-certificates-configuration/k8s-ingress-tls-ssl-configuration.md#ssltls-setup-using-ingress-nginx-controller)
 
 
@@ -42,7 +42,7 @@
 - The application is deployed on a Kubernetes cluster.
 - The application can be accessed externally through an Ingress. (We'll need the load balancer IP address associated with the Ingress controller.)
 
-   ### - Creating Self-Signed SSL Certificates Using OpenSSL
+  ### - Creating Self-Signed SSL Certificates Using OpenSSL
 
 ```sh
 sudo apt update 

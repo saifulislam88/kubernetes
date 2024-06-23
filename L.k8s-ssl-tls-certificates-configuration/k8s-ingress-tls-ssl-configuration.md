@@ -52,7 +52,7 @@ With the rise of cloud-native applications, microservices, and Software as a Ser
 - The application is deployed on a Kubernetes cluster.
 - The application can be accessed externally through an Ingress. (We'll need the load balancer IP address associated with the Ingress controller.)
 
-
+   
    ### - Creating Self-Signed SSL Certificates Using OpenSSL
 
 ```sh

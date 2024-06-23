@@ -34,7 +34,7 @@ Typically uses Domain Validation (DV) only. This verifies that you control the d
    - ZeroSSL
    - Cloudflare
 
-## SSL/TLS Setup with `Self-Signed Certificate` or `SSL files from a Certificate Authority` Using Ingress-NGINX Controller
+## SSL/TLS Setup Using Ingress-NGINX Controller
 
 **Before proceeding, let's establish some baseline assumptions regarding the application setup:**
 - The application is deployed on a Kubernetes cluster.

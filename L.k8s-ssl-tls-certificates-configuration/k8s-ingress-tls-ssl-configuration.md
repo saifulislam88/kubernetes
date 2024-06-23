@@ -45,25 +45,25 @@ Typically uses Domain Validation (DV) only. This verifies that you control the d
 Create a Kubernetes secret of type `TLS` with the `saiful.com.crt` and `saiful.com.key` files in the `dev` namespace where the `hello-app` deployment is located. Run the following `kubectl` command from the directory where you have the `saiful.com.key` and `saiful.com.crt` files, or provide the absolute path of the files. `saiful-hello-app-tls` is an arbitrary name for the secret.
 
 
-   kubectl create secret tls saiful-hello-app-tls \
-       --namespace dev \
-       --key saiful.com.key \
-       --cert saiful.com.crt
+      kubectl create secret tls saiful-hello-app-tls \
+          --namespace dev \
+          --key saiful.com.key \
+          --cert saiful.com.crt
 
 
 You can also create the secret using a YAML file. Add the contents of the certificate and key files as follows:
 
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: saiful-hello-app-tls
-     namespace: dev
-   type: kubernetes.io/tls
-   data:
-     server.crt: |
-       <crt contents here>
-     server.key: |
-       <private key contents here>
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: saiful-hello-app-tls
+        namespace: dev
+      type: kubernetes.io/tls
+      data:
+        server.crt: |
+          <crt contents here>
+        server.key: |
+          <private key contents here>
 
 
 

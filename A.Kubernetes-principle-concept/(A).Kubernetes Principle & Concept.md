@@ -575,7 +575,7 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
     specified routing rules.
   - **Traffic Routing:** Incoming traffic is then routed according to the rules defined in the Ingress resources and enforced by the Ingress Controller.
 
-<img src="https://github.com/saifulislam88/kubernetes/assets/68442870/02919b8b-624e-40fe-9bac-6e023441cfa9" alt="Kubernetes Ingress" width="400"/>
+  - <img src="https://github.com/saifulislam88/kubernetes/assets/68442870/02919b8b-624e-40fe-9bac-6e023441cfa9" alt="Kubernetes Ingress" width="400"/>
 
 
 

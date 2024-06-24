@@ -1,4 +1,4 @@
-### How to Install, Deploy, and Test on-premises Multi Master Kubernetes (k8s) Cluster with HaProxy on Ubuntu 22.04
+### Deploy and Test on-premises Multi Master Kubernetes (k8s) Cluster with HaProxy on Ubuntu 22.04
 
 
 - What is Kubernetes Cluster

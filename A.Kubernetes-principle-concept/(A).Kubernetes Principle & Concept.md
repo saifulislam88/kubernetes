@@ -552,8 +552,6 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### [Ingress Controller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource)
 
-  - ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/87a65cc5-2dc6-4add-b8f6-cd7e5c28d967)
-
 <img src="https://github.com/saifulislam88/kubernetes/assets/68442870/87a65cc5-2dc6-4add-b8f6-cd7e5c28d967" alt="Kubernetes Ingress" width="500"/>
 
 

@@ -494,7 +494,7 @@ The following Service manifest has a selector that specifies two labels. The sel
             targetPort: 80
 
 
-### 4.ExternalName
+### [4. ExternalName](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#4-externalname)
 
 For any pod to access an application outside of the Kubernetes cluster like the external DB server, we use the ExternalName service type. Unlike in the previous examples, instead of an endpoint object, the service will simply redirect to a CNAME of the external server.
 

@@ -552,8 +552,6 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### [Ingress Controller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingressresource)
 
-<img src="https://github.com/saifulislam88/kubernetes/assets/68442870/87a65cc5-2dc6-4add-b8f6-cd7e5c28d967" alt="Kubernetes Ingress" width="400"/>
-
 
 **An Ingress Controller is a software program of Ingress that runs inside your Kubernetes cluster and implements the Ingress API. It reads Ingress objects and takes actions to properly route incoming requests.** Essentially, the Ingress Controller is responsible for making Ingress resources functional. So It acts as an interpreter for Ingress resources, translating the traffic rules defined in the Ingress objects into configurations for your load balancer or edge router.
 
@@ -562,20 +560,22 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
    - Ingress resources define the desired traffic routing. Ingress Controllers implement those desired routes by interacting with your load balancer or edge router.
    - We create an Ingress resource and deploy an Ingress Controller to manage it.
 
+<img src="https://github.com/saifulislam88/kubernetes/assets/68442870/87a65cc5-2dc6-4add-b8f6-cd7e5c28d967" alt="Kubernetes Ingress" width="400"/>
 
-**Relationship Between Ingress and Ingress Controller**
+- **Relationship Between Ingress and Ingress Controller**
   - **Ingress:** Defines the rules for routing external traffic to services within the cluster. It is a declarative specification of how traffic should be handled.
   - **Ingress Controller:** The operational component that watches for Ingress resources, interprets their rules, and configures the necessary infrastructure to enforce them. It acts on the   
       instructions provided by Ingress resources.
 
-**How They Work Together**
+- **How They Work Together**
 
   - **Define Ingress Resources:** You create Ingress resources to specify how incoming traffic should be routed to services within your Kubernetes cluster.
   - **Ingress Controller Watches for Ingress Resources:** The Ingress Controller constantly monitors the Kubernetes API server for changes to Ingress resources.
     Configure Load Balancer/Proxy: Upon detecting changes, the Ingress Controller updates the configuration of the underlying load balancer or proxy (e.g., NGINX, HAProxy, Traefik) to reflect the   
     specified routing rules.
   - **Traffic Routing:** Incoming traffic is then routed according to the rules defined in the Ingress resources and enforced by the Ingress Controller.
-  - ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/02919b8b-624e-40fe-9bac-6e023441cfa9)
+
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/02919b8b-624e-40fe-9bac-6e023441cfa9)
 
 
 

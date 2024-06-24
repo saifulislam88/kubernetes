@@ -554,6 +554,9 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
 
   - ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/87a65cc5-2dc6-4add-b8f6-cd7e5c28d967)
 
+<img src="https://github.com/saifulislam88/kubernetes/assets/68442870/87a65cc5-2dc6-4add-b8f6-cd7e5c28d967" alt="Kubernetes Ingress" width="500"/>
+
+
 **An Ingress Controller is a software program of Ingress that runs inside your Kubernetes cluster and implements the Ingress API. It reads Ingress objects and takes actions to properly route incoming requests.** Essentially, the Ingress Controller is responsible for making Ingress resources functional. So It acts as an interpreter for Ingress resources, translating the traffic rules defined in the Ingress objects into configurations for your load balancer or edge router.
 
   

@@ -1,5 +1,7 @@
 ### Setup MetalLB for Ingress Controller on an On-Premises Kubernetes Cluster for a Single IP Based Load Balancer | Layer-2 Mode
 
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/e4214f01-e365-484c-9a5a-ca5112c88314)
+
 **MetalLB uses standard address discovery and routing protocols to advertise the external IP of a service on rest of your network. MetalLB can be configured to operate in `Layer-2 Mode` or `BGP Mode`.**
 One of the toughest aspects of learning Kubernetes is wrapping your mind around how services and internal containers are exposed to the outside world. There are a number of ways to do this and each has pros and cons, but there are definitely ways that are recommended for production environments. Using a Kubernetes Loadbalancer is one of those. MetalLB is a very popular Kubernetes load balancer that many are using in their Kubernetes environments. Let’s take a look at the Kubernetes install MetalLB load balancer process and see what steps are involved to install the solution and test it out.
 
@@ -10,10 +12,10 @@ This tutorial guides you through the installation of the MetalLB load balancer o
 - [MetalLB: What Is It](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#metallb-what-is-it)
 - [MetalLB requirements](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#metallb-requirements)
 - [Configuration MetalLB Loadbalancer](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#configuration-metallb-loadbalancer)
-  - Step 1: [Enable strict ARP mode]()
-  - Step 2: [MetalLB installation]()
-  - Step 3: [Create ConfigMap for IPAddressPools]()
-  - Step 4: [Advertise the IP Address Pool]()
+  - Step 1: [Enable strict ARP mode](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-1-enable-strict-arp-mode)
+  - Step 2: [MetalLB installation](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-2-metallb-installation--metallb-crd--controller-using-the-official-manifest)
+  - Step 3: [Create ConfigMap for IPAddressPools](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-3-create-configmap-for-ipaddresspools)
+  - Step 4: [Advertise the IP Address Pool](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-4-advertise-the-ip-address-pool)
 
 ### What is a Kubernetes Loadbalancer?
 

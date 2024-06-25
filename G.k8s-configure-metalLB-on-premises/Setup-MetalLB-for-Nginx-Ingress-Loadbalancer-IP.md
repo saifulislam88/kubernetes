@@ -70,6 +70,7 @@ This will create a couple of resources in your cluster, in the metallb-system na
 
 You can verify the deployment of the components by executing the following command:
 
+`kubectl get pods -n metallb-system`
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/1bb8db7f-89b3-4d60-bd5c-e6efcfd6d762)
 
 #### - **Step 3: Create ConfigMap for IPAddressPools** 

@@ -42,7 +42,8 @@ mode: "ipvs"
 ipvs:
   strictARP: true
 ```
--**Step 2: MetalLB installation** | MetalLB CRD & Controller using the [official](https://metallb.universe.tf/installation/) manifest
+
+- **Step 2: MetalLB installation** | MetalLB CRD & Controller using the [official](https://metallb.universe.tf/installation/) manifest
 
 
 Now that you’re ready to install MetalLB, we’ll get right on it. Installing MetalLB is as easy as applying the `latest` manifest file.
@@ -62,9 +63,7 @@ You can verify the deployment of the components by executing the following comma
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/1bb8db7f-89b3-4d60-bd5c-e6efcfd6d762)
 
-
-
--**Step 3: Create ConfigMap for MetalLB** | IPAddressPools
+- **Step 3: Create ConfigMap for MetalLB** | IPAddressPools
 
 Next you need to create `ConfigMap`, which includes an IP address range for the load balancer. The pool of IPs must be dedicated to MetalLB's use. You can't reuse for example the Kubernetes node IPs or IPs controlled by other services. You can, however, use private IP addresses from `node(master/worker)` network, for example `192.168.1.180-192.168.1.199`, but then you need to take care of the routing from the external network if you need external access. In this example, we don't need it.
 
@@ -84,7 +83,7 @@ spec:
 ```
 `kubectl apply -f metallb-l2-ipadd-pool.yaml`
 
--**Steps 4: Advertise the IP Address Pool**
+- **Steps 4: Advertise the IP Address Pool**
 
 In the Kubernetes manifest below, I’ve configured an L2Advertisement for my `first-pool` pool which I created in the previous config manifest.
 
@@ -103,4 +102,4 @@ spec:
 `kubectl apply -f metallb-pool-advertise.yaml`
 
 
--**🎉🙌 It is Big Congratulations 🎉🙌**
+- **🎉🙌 It is Big Congratulations 🎉🙌**

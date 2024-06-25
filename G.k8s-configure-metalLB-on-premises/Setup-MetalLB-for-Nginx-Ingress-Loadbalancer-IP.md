@@ -13,7 +13,8 @@ A Kubernetes LoadBalancer directs traffic from an external load balancer to back
 
 MetalLB is an open-source solution that provides network load balancing for bare-metal Kubernetes clusters. **In short,it allows you to create Kubernetes services of type LoadBalancer.** It integrates seamlessly with standard networking environments and is widely used in production with great success. MetalLB offers a straightforward implementation designed to "just work."
 
-![342668049-b4013f92-13eb-4650-bf95-181782a4788b(1)](https://github.com/saifulislam88/kubernetes/assets/68442870/20244b25-cc90-49a4-8cc4-c07f1062a5a2)
+![Pi7_Tool_342668049-b4013f92-13eb-4650-bf95-181782a4788b](https://github.com/saifulislam88/kubernetes/assets/68442870/be85c5e3-0e95-4ab9-af65-9309f41a009b)
+
 
 
 

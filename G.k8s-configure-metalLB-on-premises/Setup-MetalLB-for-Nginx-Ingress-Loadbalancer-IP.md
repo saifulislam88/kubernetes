@@ -9,8 +9,14 @@ This tutorial guides you through the installation of the MetalLB load balancer o
 
 A Kubernetes LoadBalancer directs traffic from an external load balancer to backend pods. In cloud environments like AWS, Azure, and GCP, the cloud provider handles the load balancing. Kubernetes itself does not have a built-in network load balancer for bare-metal clusters. For bare-metal, options are limited to NodePort and ExternalIPs for exposing services.
 
-### MetalLB
-MetalLB is an open-source solution that provides network load balancing for bare-metal Kubernetes clusters. It integrates seamlessly with standard networking environments and is widely used in production with great success. MetalLB offers a straightforward implementation designed to "just work."
+### etalLB: What Is It?
+
+MetalLB is an open-source solution that provides network load balancing for bare-metal Kubernetes clusters. **In short,it allows you to create Kubernetes services of type LoadBalancer.** It integrates seamlessly with standard networking environments and is widely used in production with great success. MetalLB offers a straightforward implementation designed to "just work."
+
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/b4013f92-13eb-4650-bf95-181782a4788b)
+
+
+
 
 
 
@@ -27,7 +33,7 @@ MetalLB is an open-source solution that provides network load balancing for bare
 
 If you’re using kube-proxy in `IPVS` mode, since Kubernetes `v1.14.2` you have to enable strict ARP mode. You can achieve this by editing `kube-proxy` config in current cluster and Set `ARP mode true`. Find out this KubeProxyConfiguratuon block and change only `strictARP: true`
 
-  - **Steps 1: Enable strict ARP mode**
+- **Steps 1: Enable strict ARP mode**
 
 kubectl edit configmap -n kube-system kube-proxy
 ```sh

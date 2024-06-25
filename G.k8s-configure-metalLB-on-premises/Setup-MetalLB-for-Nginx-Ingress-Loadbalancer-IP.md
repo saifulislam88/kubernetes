@@ -9,14 +9,11 @@ This tutorial guides you through the installation of the MetalLB load balancer o
 
 A Kubernetes LoadBalancer directs traffic from an external load balancer to backend pods. In cloud environments like AWS, Azure, and GCP, the cloud provider handles the load balancing. Kubernetes itself does not have a built-in network load balancer for bare-metal clusters. For bare-metal, options are limited to NodePort and ExternalIPs for exposing services.
 
-### etalLB: What Is It?
+### MetalLB: What Is It?
 
 MetalLB is an open-source solution that provides network load balancing for bare-metal Kubernetes clusters. **In short,it allows you to create Kubernetes services of type LoadBalancer.** It integrates seamlessly with standard networking environments and is widely used in production with great success. MetalLB offers a straightforward implementation designed to "just work."
 
 ![Pi7_Tool_342668049-b4013f92-13eb-4650-bf95-181782a4788b](https://github.com/saifulislam88/kubernetes/assets/68442870/be85c5e3-0e95-4ab9-af65-9309f41a009b)
-
-
-
 
 
 
@@ -31,7 +28,7 @@ MetalLB is an open-source solution that provides network load balancing for bare
 - When using the BGP operating mode, you will need one or more routers capable of speaking BGP. When using the L2 operating mode, traffic on port 7946 (TCP & UDP, other ports can be configured) must be allowed between nodes, as required by members
 
 
-### Install MetalLB Loadbalancer
+### Configuration MetalLB Loadbalancer
 
 If you’re using kube-proxy in `IPVS` mode, since Kubernetes `v1.14.2` you have to enable strict ARP mode. You can achieve this by editing `kube-proxy` config in current cluster and Set `ARP mode true`. Find out this KubeProxyConfiguratuon block and change only `strictARP: true`
 
@@ -45,5 +42,10 @@ mode: "ipvs"
 ipvs:
   strictARP: true
 ```
+- **Steps 2: Install MetalLB**
 
+```sh
+export LATEST_VERSION=$(curl -s https://api.github.com/repos/metallb/metallb/releases/latest | grep \"tag_name\" | cut -d : -f 2,3 | tr -d \" | tr -d , | tr -d " ")
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/$LATEST_VERSION/config/manifests/metallb-native.yaml
+```
 

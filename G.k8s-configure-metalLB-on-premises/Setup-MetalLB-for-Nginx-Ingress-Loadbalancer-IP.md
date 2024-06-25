@@ -102,7 +102,7 @@ In the Kubernetes manifest below, I’ve configured an L2Advertisement for my `f
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: example
+  name: external
   namespace: metallb-system
 spec:
   ipAddressPools:

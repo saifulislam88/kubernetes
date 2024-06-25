@@ -32,7 +32,7 @@ MetalLB is an open-source solution that provides network load balancing for bare
 
 If you’re using kube-proxy in `IPVS` mode, since Kubernetes `v1.14.2` you have to enable strict ARP mode. You can achieve this by editing `kube-proxy` config in current cluster and Set `ARP mode true`. Find out this KubeProxyConfiguratuon block and change only `strictARP: true`
 
-- **Steps 1: Enable strict ARP mode**
+- **Step 1: Enable strict ARP mode**
 
 kubectl edit configmap -n kube-system kube-proxy
 ```sh
@@ -42,10 +42,66 @@ mode: "ipvs"
 ipvs:
   strictARP: true
 ```
-- **Steps 2: Install MetalLB**
+- **Step 2: MetalLB installation** | MetalLB CRD & Controller using the [official](https://metallb.universe.tf/installation/) manifest
+
+
+Now that you’re ready to install MetalLB, we’ll get right on it. Installing MetalLB is as easy as applying the `latest` manifest file.
 
 ```sh
 export LATEST_VERSION=$(curl -s https://api.github.com/repos/metallb/metallb/releases/latest | grep \"tag_name\" | cut -d : -f 2,3 | tr -d \" | tr -d , | tr -d " ")
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/$LATEST_VERSION/config/manifests/metallb-native.yaml
 ```
 
+This will create a couple of resources in your cluster, in the metallb-system namespace. Some of the most noteworthy resources created by the manifest are the following;
+  - A deployment called “controller”; this is the cluster-wide component that’s responsible for allocating IP addresses, configuring the load balancer, dynamically updating configurations and   
+    performing health checks.
+  - A daemonset called “speaker”; this component is deployed on each node and is responsible for ensuring that external traffic can reach the services within the Kubernetes cluster.
+  - A couple of service accounts along with RBAC permissions which are necessary for the components to function.
+
+You can verify the deployment of the components by executing the following command:
+
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/1bb8db7f-89b3-4d60-bd5c-e6efcfd6d762)
+
+
+
+
+- **Step 3: Create ConfigMap for MetalLB** | IPAddressPools
+
+Next you need to create `ConfigMap`, which includes an IP address range for the load balancer. The pool of IPs must be dedicated to MetalLB's use. You can't reuse for example the Kubernetes node IPs or IPs controlled by other services. You can, however, use private IP addresses from `node(master/worker)` network, for example `192.168.1.180-192.168.1.199`, but then you need to take care of the routing from the external network if you need external access. In this example, we don't need it.
+
+Create a YAML file accordingly, and deploy it: kubectl apply -f metallb-l2-ipadd-pool.yaml
+
+```sh
+`vim metallb-l2-ipadd-pool.yaml`
+
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: first-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.1.180-192.168.1.199
+```
+`kubectl apply -f metallb-l2-ipadd-pool.yaml`
+
+- **Steps 4: Advertise the IP Address Pool**
+
+In the Kubernetes manifest below, I’ve configured an L2Advertisement for my `first-pool` pool which I created in the previous config manifest.
+
+`vim metallb-pool-advertise.yaml`
+
+```sh
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: example
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - first-pool
+```
+`kubectl apply -f metallb-pool-advertise.yaml`
+
+
+**🎉🙌 It is Big Congratulations 🎉🙌**

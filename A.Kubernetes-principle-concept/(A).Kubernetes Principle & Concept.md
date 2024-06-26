@@ -582,6 +582,8 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
 
 
 
+
+
 ### Types of Volumes:
 
 In Kubernetes, volumes serve as directories accessible to all pod containers, facilitating data sharing and persistence beyond container lifetimes. Let's delve into the types and best practices.

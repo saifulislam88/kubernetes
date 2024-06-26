@@ -135,7 +135,7 @@ Within this demo application, we’ll include an index page that provides the po
 vim nginx-deployment.yaml
 ```
 
-- Add the following content to nginx-deployment.yaml:
+ Add the following content to nginx-deployment.yaml:
 
 ```sh
 apiVersion: v1

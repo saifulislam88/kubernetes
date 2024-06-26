@@ -7,7 +7,7 @@ One of the toughest aspects of learning Kubernetes is wrapping your mind around 
 
 This tutorial guides you through the installation of the MetalLB load balancer on- premises Kubernetes cluster. **MetalLB provides a robust solution for LoadBalancer-type services in Kubernetes, offering a single IP address to route external requests to your applications.**
 
-
+- [Prerequisite - MetalLB Concept](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#metallb--baremetal-lb)
 - [What is a Kubernetes Loadbalancer](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#what-is-a-kubernetes-loadbalancer)
 - [MetalLB: What Is It](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#metallb-what-is-it)
 - [MetalLB requirements](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#metallb-requirements)

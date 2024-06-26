@@ -121,8 +121,16 @@ spec:
 Let’s create a Kubernetes Deployment with a demo application that showcases the capabilities of MetalLB. For this purpose, we’ll use NGINX as an example application.
 
 Within this demo application, we’ll include an index page that provides the pod and node name on which the NGINX instance is running. By accessing this page, you’ll be able to gain visibility into the underlying infrastructure and get a further understanding how the distribution of workload across a Kubernetes cluster works.
+ 
+- Create the Nginx Deployment
 
-`vim nginx-deployment.yaml`
+Create a Kubernetes Deployment YAML file named `nginx-deployment.yaml`:
+
+```sh
+vim nginx-deployment.yaml
+```
+
+- Add the following content to nginx-deployment.yaml:
 
 ```sh
 apiVersion: v1
@@ -178,11 +186,19 @@ spec:
       - name: nginx-data
         emptyDir: {}
 ```
+- Apply the deployment:
+
 `kubectl apply -f nginx-deployment.yaml`
 
 
+- Create the Nginx Service
+
+Create a Kubernetes Service YAML file named nginx-service.yaml:
 
 `vim nginx-service.yaml`
+
+Add the following content to nginx-service.yaml:
+
 ```sh
 
 apiVersion: v1
@@ -200,19 +216,31 @@ spec:
   type: LoadBalancer
 
 ```
+- Apply the service:
 
 `kubectl apply -f nginx-service.yaml`
 
+- Check your LoadBalancer
+
+`kubectl get service -n web`
+
+- Access your example application
+
+Run the following script to access the example application and display the responses from each pod:
 
 ```sh
 
-LOADBALANCER_IP=$(kubectl get svc nginx-app -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-POD_NAMES=($(kubectl get pods -l app=my-cool-application -o jsonpath='{.items[*].metadata.name}'))
+LOADBALANCER_IP=$(kubectl get svc nginx-app -n web -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+POD_NAMES=($(kubectl get pods -n web -l app=my-cool-application -o jsonpath='{.items[*].metadata.name}'))
+
 for POD_NAME in "${POD_NAMES[@]}"; do
-    NODE_NAME=$(kubectl get pod $POD_NAME -o jsonpath='{.spec.nodeName}')
-    curl -s http://$LOADBALANCER_IP
-    echo "POD: $POD_NAME NODE: $NODE_NAME"
+    NODE_NAME=$(kubectl get pod $POD_NAME -n web -o jsonpath='{.spec.nodeName}')
+    RESPONSE=$(curl -s http://$LOADBALANCER_IP)
+    echo "Response from $LOADBALANCER_IP: POD: $POD_NAME NODE: $NODE_NAME"
+    echo "----------------------------------------"
+    sleep 1  # Optional sleep to ensure sequential processing
 done
+
 ```
 
 

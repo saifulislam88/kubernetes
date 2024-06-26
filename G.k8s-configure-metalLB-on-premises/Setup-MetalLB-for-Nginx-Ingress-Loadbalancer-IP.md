@@ -229,8 +229,8 @@ spec:
 
   `kubectl get service -n web`
 
-- **Access your example application**
-
+- **Access application**
+  `curl -D- http://172.16.4.154`
   Run the following script to access the example application and display the responses from each pod:
 
 ```sh

@@ -16,6 +16,8 @@ This tutorial guides you through the installation of the MetalLB load balancer o
   - Step 2: [MetalLB installation](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-2-metallb-installation--metallb-crd--controller-using-the-official-manifest)
   - Step 3: [Create ConfigMap for IPAddressPools](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-3-create-configmap-for-ipaddresspools)
   - Step 4: [Advertise the IP Address Pool](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-4-advertise-the-ip-address-pool)
+- [Testing the Metallb setup | Exposing the Nginx App deployment with type LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#testing-the-metallb-setup---exposing-the-nginx-app-deployment-with-type-loadbalancer)
+
 
 ### What is a Kubernetes Loadbalancer?
 
@@ -115,6 +117,9 @@ spec:
 - **🎉🙌 It is Big Congratulations 🎉🙌**
 
 
+
+
+
 ### Testing the Metallb setup  | Exposing the Nginx App deployment with type LoadBalancer
 
 
@@ -122,9 +127,9 @@ Let’s create a Kubernetes Deployment with a demo application that showcases th
 
 Within this demo application, we’ll include an index page that provides the pod and node name on which the NGINX instance is running. By accessing this page, you’ll be able to gain visibility into the underlying infrastructure and get a further understanding how the distribution of workload across a Kubernetes cluster works.
  
-- Create the Nginx Deployment
+- **Create the Nginx Deployment**
 
-Create a Kubernetes Deployment YAML file named `nginx-deployment.yaml`:
+  Create a Kubernetes Deployment YAML file named `nginx-deployment.yaml`:
 
 ```sh
 vim nginx-deployment.yaml
@@ -186,18 +191,18 @@ spec:
       - name: nginx-data
         emptyDir: {}
 ```
-- Apply the deployment:
+- **Apply the deployment:**
 
-`kubectl apply -f nginx-deployment.yaml`
+  `kubectl apply -f nginx-deployment.yaml`
 
 
-- Create the Nginx Service
+- **Create the Nginx Service**
 
-Create a Kubernetes Service YAML file named nginx-service.yaml:
+  Create a Kubernetes Service YAML file named nginx-service.yaml:
 
 `vim nginx-service.yaml`
 
-Add the following content to nginx-service.yaml:
+  Add the following content to nginx-service.yaml:
 
 ```sh
 
@@ -216,17 +221,17 @@ spec:
   type: LoadBalancer
 
 ```
-- Apply the service:
+- **Apply the service:**
 
 `kubectl apply -f nginx-service.yaml`
 
-- Check your LoadBalancer
+- **Check your LoadBalancer**
 
-`kubectl get service -n web`
+  `kubectl get service -n web`
 
-- Access your example application
+- **Access your example application**
 
-Run the following script to access the example application and display the responses from each pod:
+  Run the following script to access the example application and display the responses from each pod:
 
 ```sh
 

@@ -1,4 +1,4 @@
-#### Setup MetalLB for Ingress Controller on an On-Premises Kubernetes Cluster for a Single IP Based Load Balancer | Layer-2 Mode
+#### **Setup MetalLB for Ingress Controller on an On-Premises Kubernetes Cluster for a Single IP Based Load Balancer | Layer-2 Mode**
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/e4214f01-e365-484c-9a5a-ca5112c88314)
 

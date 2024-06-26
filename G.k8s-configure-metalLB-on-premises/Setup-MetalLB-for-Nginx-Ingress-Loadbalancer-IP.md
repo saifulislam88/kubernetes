@@ -113,3 +113,106 @@ spec:
 
 
 - **🎉🙌 It is Big Congratulations 🎉🙌**
+
+
+### Testing the Metallb setup  | Exposing the Nginx App deployment with type LoadBalancer
+
+
+Let’s create a Kubernetes Deployment with a demo application that showcases the capabilities of MetalLB. For this purpose, we’ll use NGINX as an example application.
+
+Within this demo application, we’ll include an index page that provides the pod and node name on which the NGINX instance is running. By accessing this page, you’ll be able to gain visibility into the underlying infrastructure and get a further understanding how the distribution of workload across a Kubernetes cluster works.
+
+`vim nginx-deployment.yaml`
+
+```sh
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app
+  namespace: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-cool-application
+  template:
+    metadata:
+      labels:
+        app: my-cool-application
+    spec:
+      initContainers:
+      - name: init-nginx
+        image: busybox:1.28
+        command:
+        - "sh"
+        - "-c"
+        - |
+          mkdir -p /opt/nginx
+          echo 'POD: ${POD_NAME}\t NODE: ${NODE_NAME}' > /opt/nginx/index.html
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        volumeMounts:
+        - name: nginx-data
+          mountPath: /opt/nginx
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-data
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: nginx-data
+        emptyDir: {}
+```
+`kubectl apply -f nginx-deployment.yaml`
+
+
+
+`vim nginx-service.yaml`
+```sh
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-app
+  namespace: web
+spec:
+  selector:
+    app: my-cool-application
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+
+```
+
+`kubectl apply -f nginx-service.yaml`
+
+
+```sh
+
+LOADBALANCER_IP=$(kubectl get svc nginx-app -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+POD_NAMES=($(kubectl get pods -l app=my-cool-application -o jsonpath='{.items[*].metadata.name}'))
+for POD_NAME in "${POD_NAMES[@]}"; do
+    NODE_NAME=$(kubectl get pod $POD_NAME -o jsonpath='{.spec.nodeName}')
+    curl -s http://$LOADBALANCER_IP
+    echo "POD: $POD_NAME NODE: $NODE_NAME"
+done
+```
+
+

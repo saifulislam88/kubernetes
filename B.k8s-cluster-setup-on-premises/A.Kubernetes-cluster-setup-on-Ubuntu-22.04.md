@@ -5,7 +5,7 @@
 <img width="636" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
 
 
-- [What is Kubernetes Cluster]()
+- [What is Kubernetes Cluster](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#what-is-kubernetes-cluster)
 - [Pre-requisites](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#--pre-requisites--environment)
 - [Configuration and Installation Steps](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#configuration-and-installation-steps)
   - Step 1: [Hardware/VM Rediness with OS](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-1-hardwarevm-rediness-with-os)
@@ -83,7 +83,6 @@ chmod +x hostconfig.sh
 172.16.16.121  kworker2.saiful.com   kb8wn2
 
 ```
- - 
 
 ### Step 3: Update & install ntp client(all nodes)
 

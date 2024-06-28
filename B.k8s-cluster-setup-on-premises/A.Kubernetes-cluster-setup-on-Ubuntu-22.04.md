@@ -5,7 +5,7 @@
 <img width="636" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
 
 
-- What is Kubernetes Cluster
+- [What is Kubernetes Cluster]()
 - [Pre-requisites](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#--pre-requisites--environment)
 - [Configuration and Installation Steps](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#configuration-and-installation-steps)
   - Step 1: [Hardware/VM Rediness with OS](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-1-hardwarevm-rediness-with-os)
@@ -27,8 +27,10 @@
   - Step 10: Print Join token for worker nodes joining to the Cluster (Primary Master Node).
      - 10.1:  Join worker Node to the Cluster (All Worker Nodes)
      - 10.2: Get Cluster Info (Master Node)
-  - 
+
 ### What is Kubernetes Cluster
+
+**A Kubernetes (K8s) cluster is a group of master nodes, or worker machines, that run containerized applications**. So a cluster contains a control plane and one or more compute machines, or nodes. The control plane is responsible for maintaining the desired state of the cluster, such as which applications are running and which container images they use. Nodes actually run the applications and workloads.
 
 ### Pre-requisites | Environment
 
@@ -229,8 +231,8 @@ backend kubernetes-backend
   mode tcp
   option check-ssl
   balance roundrobin
-  server kmaster1 172.16.4.120:6443 check fall 3 rise 2
-  server kmaster2 172.16.4.121:6443 check fall 3 rise 2
+  server kmaster1 172.16.4.101:6443 check fall 3 rise 2
+  server kmaster2 172.16.4.102:6443 check fall 3 rise 2
 
 ```
 ```sh

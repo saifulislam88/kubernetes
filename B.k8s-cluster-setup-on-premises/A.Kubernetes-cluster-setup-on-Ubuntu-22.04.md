@@ -204,9 +204,42 @@ systemctl restart keepalived
 systemctl status keepalived
 ```
 
+- Configure `/etc/haproxy/haproxy.cfg` Haproxy on both LB(LB1 & LB2)
 
+```sh
+global
+  maxconn 50000
+  log /dev/log local0
+  user haproxy
+  group haproxy
 
+defaults
+  log global
+  timeout connect 10s
+  timeout client 30s
+  timeout server 30s
 
+frontend kubernetes-frontend
+  bind *:6443
+  mode tcp
+  option tcplog
+  default_backend kubernetes-backend
+
+backend kubernetes-backend
+  option httpchk GET /healthz
+  http-check expect status 200
+  mode tcp
+  option check-ssl
+  balance roundrobin
+  server kmaster1 172.16.4.120:6443 check fall 3 rise 2
+  server kmaster2 172.16.4.121:6443 check fall 3 rise 2
+
+```
+```sh
+haproxy -c -f /etc/haproxy/haproxy.cfg
+systemctl restart haproxy
+systemctl enable haproxy
+```
 
 
 

@@ -15,21 +15,20 @@ https://github.com/justmeandopensource/kubernetes/tree/master/kubeadm-ha-keepali
   - Step 3: Update & install ntp client(all nodes)
   - Step 4: Disable UFW Firewall (all nodes)
   - Step 5: Set up loadbalancer & Keepalived Services (loadbalancer1 & loadbalancer2)
-  - Step 5: Disabling Swap and (All Master & Worker nodes)
-  - Step 1: Installing Kubernetes Components on (All Master & Worker nodes)
-    - A. Configure modules (Master & Worker Node)
-    - B. Configure Networking (Master & Worker Node)
-    - C. Install containerd (Master & Worker Node)
-    - D. Modify containerd configuration (Master & Worker Node)
-    - E. Install Kubernetes Management Tools (Master & Worker Node)
-    - F. Reboot all (Master & Worker Nodes)
-  - Step 10: Configure Kuberctl (Only All Master Nodes)
-  - Step 11: Configure Calico POD overlay networking(Only Primary Master Node)
-  - Step 12: Print Join token for other Master nodes joining to the Cluster (Primary Master Node).
-     - Join Other master node to the Cluster (Slave Master nodes)
-  - Step 12: Print Join token for worker nodes joining to the Cluster (Primary Master Node).
-     - Join worker Node to the Cluster (All Worker Nodes)
-     - Get Cluster Info (Master Node)
+  - Step 6: Installing Kubernetes Components on (All Master & Worker nodes)
+    - A. Disabling Swap and (All Master & Worker nodes)
+    - B. Enable and load kernel modules (All Master & Worker Node)
+    - C. Configure Kernel setting (All Master & Worker Node)
+    - D. Install containerd (All Master & Worker Node)
+    - E. Install Kubernetes Management Tools (All Master & Worker Node)
+    - F. Reboot all (All Master & Worker Nodes)
+  - Step 7: Configure Kuberctl (Only All Master Nodes)
+  - Step 8: Configure Calico POD overlay networking(Only Primary Master Node)
+  - Step 9: Print Join token for other Master nodes joining to the Cluster (Primary Master Node).
+     - 9.1: Join Other master node to the Cluster (Slave Master nodes)
+  - Step 10: Print Join token for worker nodes joining to the Cluster (Primary Master Node).
+     - 10.1:  Join worker Node to the Cluster (All Worker Nodes)
+     - 10.2: Get Cluster Info (Master Node)
   - 
 ### - What is Kubernetes Cluster
 
@@ -240,6 +239,76 @@ haproxy -c -f /etc/haproxy/haproxy.cfg
 systemctl restart haproxy
 systemctl enable haproxy
 ```
+
+### Step 6: Installing Kubernetes Components on (All Master & Worker nodes)
+
+#### - A. Disabling Swap and (All Master & Worker nodes)
+
+```sh
+swapoff -a; sed -i '/swap/d' /etc/fstab
+```
+#### - B. Enable and load kernel modules (All Master & Worker Node)
+
+```sh
+cat >> /etc/modules-load.d/containerd.conf <<EOF
+overlay
+br_netfilter
+EOF
+
+modprobe overlay
+modprobe br_netfilter
+```
+
+#### - C. Configure Kernel setting (All Master & Worker Node)
+
+Set up system `Kernel settings & parameters` these are related to `Networking(CNI)` and the `Container Runtime Interface (CRI)`.
+```sh
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward                 = 1
+EOF
+```
+`sysctl --system`
+
+#### - D. Install containerd (All Master & Worker Node)
+
+Install the container runtime (containerd) for managing containers.
+
+```sh
+sudo apt-get update
+apt install -y apt-transport-https
+sudo apt-get install -y containerd
+```
+```sh
+#Modify containerd configuration
+
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
+cat /etc/containerd/config.toml
+```
+```sh
+sudo systemctl restart containerd.service
+sudo systemctl enable containerd.service
+sudo systemctl status containerd
+```
+
+#### - E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
+
+
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+sudo apt-get install -y apt-transport-https ca-certificates curl
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+
+
+
+#### - F. Reboot all (All Master & Worker Nodes)
+
+
 
 
 

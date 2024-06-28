@@ -1,5 +1,5 @@
 ### Highly Available Kubernetes Cluster using kubeadm
-  #### - Deploy and Test on-premises Multi Master Kubernetes (k8s) Cluster with HaProxy on Ubuntu 22.04
+  - #### Deploy and Test on-premises Multi Master Kubernetes (k8s) Cluster with HaProxy on Ubuntu 22.04
 
 <img width="636" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
 
@@ -28,11 +28,11 @@
      - 10.1:  Join worker Node to the Cluster (All Worker Nodes)
      - 10.2: Get Cluster Info (Master Node)
   - 
-### - What is Kubernetes Cluster
+## - What is Kubernetes Cluster
 
-### - Pre-requisites | Environment
+## - Pre-requisites | Environment
 
-##### - Standard
+### - Standard
 
 |      Role       |         FQDN              |       IP       |     OS       |  RAM   | vCPU | Storage |
 |-----------------|---------------------------|----------------|--------------|--------|------|----------
@@ -43,13 +43,14 @@
 | Worker          | kworker1.saiful.com       | 172.16.16.120  | Ubuntu 22.04 |  4G    |  3   |  20G    |
 | Worker          | kworker2.saiful.com       | 172.16.16.121  | Ubuntu 22.04 |  4G    |  3   |  20G    |
 
-##### - Minimal
+### - Minimal
   - At least 2 nodes(master,worker)
   - 2 vCPUs.
   - At least 4GB of RAM.
   - At least 20GB of disk space.
   - A reliable internet connection.
 
+## Configuration and Installation Steps
 
 ### Step 1: Hardware/VM Rediness with OS
 

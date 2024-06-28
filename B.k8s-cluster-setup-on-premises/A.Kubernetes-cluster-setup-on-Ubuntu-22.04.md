@@ -4,24 +4,22 @@
 <img width="636" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
 
 
-https://github.com/justmeandopensource/kubernetes/tree/master/kubeadm-ha-keepalived-haproxy/external-keepalived-haproxy
-
 
 - What is Kubernetes Cluster
-- [Pre-requisites](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#--pre-requisites)
+- [Pre-requisites](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#--pre-requisites--environment)
 - Configuration and Installation Steps
-  - Step 1: Hardware/VM Rediness with OS
-  - Step 2: Update hostfile `/etc/hosts`and hostname (all nodes)
-  - Step 3: Update & install ntp client(all nodes)
-  - Step 4: Disable UFW Firewall (all nodes)
-  - Step 5: Set up loadbalancer & Keepalived Services (loadbalancer1 & loadbalancer2)
-  - Step 6: Installing Kubernetes Components on (All Master & Worker nodes)
-    - A. Disabling Swap and (All Master & Worker nodes)
-    - B. Enable and load kernel modules (All Master & Worker Node)
-    - C. Configure Kernel setting (All Master & Worker Node)
-    - D. Install containerd (All Master & Worker Node)
-    - E. Install Kubernetes Management Tools (All Master & Worker Node)
-    - F. Reboot all (All Master & Worker Nodes)
+  - Step 1: [Hardware/VM Rediness with OS](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-1-hardwarevm-rediness-with-os)
+  - Step 2: [Update hostfile `/etc/hosts`and hostname (all nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-2-update-hostfile-etchostsall-nodes)
+  - Step 3: [Update & install ntp client(all nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-3-update--install-ntp-clientall-nodes)
+  - Step 4: [Disable UFW Firewall (all nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-4-disable-ufw-firewall-all-nodes)
+  - Step 5: [Set up loadbalancer & Keepalived Services (loadbalancer1 & loadbalancer2)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-5-set-up-loadbalancer-loadbalancer1--loadbalancer2)
+  - Step 6: [Installing Kubernetes Components on (All Master & Worker nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-6-installing-kubernetes-components-on-all-master--worker-nodes)
+    - A. [Disabling Swap and (All Master & Worker nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#a-disabling-swap-and-all-master--worker-nodes)
+    - B. [Enable and load kernel modules (All Master & Worker Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#b-enable-and-load-kernel-modules-all-master--worker-node)
+    - C. [Configure Kernel setting (All Master & Worker Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#c-configure-kernel-setting-all-master--worker-node)
+    - D. [Install containerd (All Master & Worker Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#d-install-containerd-all-master--worker-node)
+    - E. [Install Kubernetes Management Tools (All Master & Worker Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#e-install-kubernetes-management-tools-all-master--worker-node)
+    - F. [Reboot all (All Master & Worker Nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#f-reboot-all-master--worker-nodes)
   - Step 7: Configure Kuberctl (Only All Master Nodes)
   - Step 8: Configure Calico POD overlay networking(Only Primary Master Node)
   - Step 9: Print Join token for other Master nodes joining to the Cluster (Primary Master Node).
@@ -242,12 +240,12 @@ systemctl enable haproxy
 
 ### Step 6: Installing Kubernetes Components on (All Master & Worker nodes)
 
-#### A. Disabling Swap and (All Master & Worker nodes)
+#### - A. Disabling Swap and (All Master & Worker nodes)
 
 ```sh
 swapoff -a; sed -i '/swap/d' /etc/fstab
 ```
-#### B. Enable and load kernel modules (All Master & Worker Node)
+#### - B. Enable and load kernel modules (All Master & Worker Node)
 
 ```sh
 cat >> /etc/modules-load.d/containerd.conf <<EOF
@@ -259,7 +257,7 @@ modprobe overlay
 modprobe br_netfilter
 ```
 
-#### C. Configure Kernel setting (All Master & Worker Node)
+#### - C. Configure Kernel setting (All Master & Worker Node)
 
 Set up system `Kernel settings & parameters` these are related to `Networking(CNI)` and the `Container Runtime Interface (CRI)`.
 ```sh
@@ -271,7 +269,7 @@ EOF
 ```
 `sysctl --system`
 
-#### D. Install containerd (All Master & Worker Node)
+#### - D. Install containerd (All Master & Worker Node)
 
 Install the container runtime (containerd) for managing containers.
 
@@ -294,7 +292,7 @@ sudo systemctl enable containerd.service
 sudo systemctl status containerd
 ```
 
-#### E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
+#### - E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
 
 ```sh
 sudo apt-get update
@@ -309,7 +307,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-#### F. Reboot (All Master & Worker Nodes)
+#### - F. Reboot (All Master & Worker Nodes)
 
 ```sh
 init 6

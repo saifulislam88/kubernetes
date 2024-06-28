@@ -242,12 +242,12 @@ systemctl enable haproxy
 
 ### Step 6: Installing Kubernetes Components on (All Master & Worker nodes)
 
-#### - A. Disabling Swap and (All Master & Worker nodes)
+#### A. Disabling Swap and (All Master & Worker nodes)
 
 ```sh
 swapoff -a; sed -i '/swap/d' /etc/fstab
 ```
-#### - B. Enable and load kernel modules (All Master & Worker Node)
+#### B. Enable and load kernel modules (All Master & Worker Node)
 
 ```sh
 cat >> /etc/modules-load.d/containerd.conf <<EOF
@@ -259,7 +259,7 @@ modprobe overlay
 modprobe br_netfilter
 ```
 
-#### - C. Configure Kernel setting (All Master & Worker Node)
+#### C. Configure Kernel setting (All Master & Worker Node)
 
 Set up system `Kernel settings & parameters` these are related to `Networking(CNI)` and the `Container Runtime Interface (CRI)`.
 ```sh
@@ -271,7 +271,7 @@ EOF
 ```
 `sysctl --system`
 
-#### - D. Install containerd (All Master & Worker Node)
+#### D. Install containerd (All Master & Worker Node)
 
 Install the container runtime (containerd) for managing containers.
 
@@ -294,7 +294,7 @@ sudo systemctl enable containerd.service
 sudo systemctl status containerd
 ```
 
-#### - E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
+#### E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
 
 ```sh
 sudo apt-get update
@@ -309,7 +309,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-####   - F. Reboot (All Master & Worker Nodes)
+#### F. Reboot (All Master & Worker Nodes)
 
 ```sh
 init 6

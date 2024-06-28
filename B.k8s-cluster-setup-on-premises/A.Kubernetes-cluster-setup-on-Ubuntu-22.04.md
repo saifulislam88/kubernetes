@@ -7,7 +7,7 @@
 
 - What is Kubernetes Cluster
 - [Pre-requisites](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#--pre-requisites--environment)
-- Configuration and Installation Steps
+- [Configuration and Installation Steps](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#configuration-and-installation-steps)
   - Step 1: [Hardware/VM Rediness with OS](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-1-hardwarevm-rediness-with-os)
   - Step 2: [Update hostfile `/etc/hosts`and hostname (all nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-2-update-hostfile-etchostsall-nodes)
   - Step 3: [Update & install ntp client(all nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-3-update--install-ntp-clientall-nodes)
@@ -28,11 +28,11 @@
      - 10.1:  Join worker Node to the Cluster (All Worker Nodes)
      - 10.2: Get Cluster Info (Master Node)
   - 
-## - What is Kubernetes Cluster
+### - What is Kubernetes Cluster
 
-## - Pre-requisites | Environment
+### - Pre-requisites | Environment
 
-### - Standard
+#### - Standard
 
 |      Role       |         FQDN              |       IP       |     OS       |  RAM   | vCPU | Storage |
 |-----------------|---------------------------|----------------|--------------|--------|------|----------
@@ -43,7 +43,7 @@
 | Worker          | kworker1.saiful.com       | 172.16.16.120  | Ubuntu 22.04 |  4G    |  3   |  20G    |
 | Worker          | kworker2.saiful.com       | 172.16.16.121  | Ubuntu 22.04 |  4G    |  3   |  20G    |
 
-### - Minimal
+#### - Minimal
   - At least 2 nodes(master,worker)
   - 2 vCPUs.
   - At least 4GB of RAM.

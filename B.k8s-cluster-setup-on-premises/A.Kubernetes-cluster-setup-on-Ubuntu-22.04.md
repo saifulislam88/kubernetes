@@ -332,7 +332,7 @@ Initialization the Kubernetes Cluster on any one of the Kubernetes master node w
 sudo kubeadm init --control-plane-endpoint="172.16.4.100:6443" --apiserver-advertise-address=172.16.4.101 --pod-network-cidr=172.16.0.0/16 --cri-socket /run/containerd/containerd.sock --ignore-preflight-errors Swap
 ```
 
-- ⚠️(`:warning:`) where the culster will be `single master` it will be applicable for that time.
+- ⚠️(`:warning:`) where the culster will be `single master` it will be applicable for that time ONLY.
 
 ```sh
 # `172.16.4.101` primary master ip
@@ -341,7 +341,7 @@ sudo kubeadm init --apiserver-advertise-address=172.16.4.101 --pod-network-cidr=
 
 - **Save the join command printed in the output after the above command and copy the commands to join other master nodes and worker nodes.**
 
-  - **For master nodes**
+  - For **For master nodes**
 
 ```sh
 kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
@@ -349,7 +349,7 @@ kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
         --control-plane
 ```
 
- - For **worker nodes**
+  - For **worker nodes**
 
 ```sh
 kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \

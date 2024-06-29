@@ -20,14 +20,11 @@
     - D. [Install containerd (All Master & Worker Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#d-install-containerd-all-master--worker-node)
     - E. [Install Kubernetes Management Tools (All Master & Worker Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#e-install-kubernetes-management-tools-all-master--worker-node)
     - F. [Reboot all (All Master & Worker Nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#f-reboot-all-master--worker-nodes)
-  - Step 7: Configure Kuberctl (Only All Master Nodes)
-  - Step 8: [Configure Calico POD overlay networking(Only Primary Master Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-8-configure-calico-pod-overlay-networkingonly-primary-master-node)
-  - Step 9: Print Join token for other Master nodes joining to the Cluster (Primary Master Node).
-     - 9.1: Join Other master node to the Cluster (Slave Master nodes)
-  - Step 10: Print Join token for worker nodes joining to the Cluster (Primary Master Node).
-     - 10.1:  Join worker Node to the Cluster (All Worker Nodes)
-     - 10.2: Get Cluster Info (Master Node)
-
+  - Step 7: [Initialise the machine as a master node](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-7-initialise-the-machine-as-a-master-node)
+  - Step 8: [Configure Kuberctl (Only All Master Nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-8-configure-kuberctl-only-all-master-nodes)
+  - Step 9: [Configure Calico POD overlay networking(Only Primary Master Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-9-configure-calico-pod-overlay-networkingonly-primary-master-node)
+  - Step 10: [Verifying the cluster (All command will execute from Master)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-10-verifying-the-cluster-all-command-will-execute-from-master)
+     
 ### What is Kubernetes Cluster
 
 **A Kubernetes (K8s) cluster is a group of master nodes, or worker machines, that run containerized applications**. So a cluster contains a control plane and one or more compute machines, or nodes. The control plane is responsible for maintaining the desired state of the cluster, such as which applications are running and which container images they use. Nodes actually run the applications and workloads.

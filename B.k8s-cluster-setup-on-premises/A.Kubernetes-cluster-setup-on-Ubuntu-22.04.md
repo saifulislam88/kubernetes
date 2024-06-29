@@ -318,6 +318,27 @@ init 6
 
 
 
-### Step 11: Configure Calico POD overlay networking(Only Primary Master Node)
+### Step 8: Configure Calico POD overlay networking(Only Primary Master Node)
 
 Calico is 𝗖𝗡𝗜 - 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗜𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲 plugin that is responsible for inserting a network interface into the container network namespace
+**In this step**, we'll install Calico, a powerful networking solution, to facilitate on-premises deployments in your Kubernetes cluster.
+
+- **Install the operator on your cluster networking.**
+`kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml`
+
+- **Download the custom resources necessary to configure Calico**
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml -O
+
+- **Customize the downloaded custom-resources.yaml manifest for adding your planning cidr networking block where my network is `cidr: 192.168.0.0/16`  and install**
+
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/c8af802d-b909-4935-a3c1-a0516c8bbf26)
+
+`vim custom-resources.yaml`
+`kubectl create -f custom-resources.yaml`
+
+
+
+7. Print Join token for worker Node to join Cl
+
+
+

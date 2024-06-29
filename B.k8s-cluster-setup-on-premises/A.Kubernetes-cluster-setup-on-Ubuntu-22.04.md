@@ -401,7 +401,7 @@ mkdir -p $HOME/.kube
 scp root@kmaster1.saiful.com:/etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-### Step 9: Configure Calico POD overlay networking(Only Primary Master Node)
+### Step 9: <span style="color:yellow;">Configure Calico POD overlay networking (Only Primary Master Node)</span>
 
 Calico is 𝗖𝗡𝗜 - 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗜𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲 plugin that is responsible for inserting a network interface into the container network namespace
 **In this step**, we'll install Calico, a powerful networking solution, to facilitate on-premises deployments in your Kubernetes cluster.

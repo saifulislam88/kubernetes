@@ -423,23 +423,33 @@ curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/cu
 `kubectl create -f custom-resources.yaml`
 
 ### Step 10: Verifying the cluster (All command will execute from Master)
+
 `kubectl get nodes`
+
 **Expected Output:**
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/19e0f3d5-3c1d-4f94-94f7-aa9d05f8397a)
 
 - **Get Cluster Info**
+
 `kubectl cluster-info`
 `kubectl get cs`
 
 - **Check that all the pods deployed correctly**
+
 `kubectl get pods -n kube-system`
 
 - **Get APi resources list and sort name**
-kubectl api-resources 
+
+`kubectl api-resources`
+
 - **Dump current cluster state to stdout**
+
 `kubectl cluster-info dump`
+
 - **Verify the etcd Cluster Members**
+
 `apt  install etcd-client -y`
+
 ```sh
 ETCDCTL_API=3 etcdctl member list --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/kubernetes/pki/etcd/ca.crt \

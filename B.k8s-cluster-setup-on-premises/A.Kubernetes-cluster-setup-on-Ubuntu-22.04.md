@@ -60,8 +60,7 @@ Kubernetes it’s a scalable orchestration technology, it can start from single 
   - A reliable internet connection.
 
 
-- ### Configuration and Installation Steps
-
+### Configuration and Installation Steps
 
 
 ### Step 1: Hardware/VM Rediness with OS
@@ -326,7 +325,7 @@ init 6
 ```
 
 
-Step 7: Initialise the machine as a master node:
+### Step 7: Initialise the machine as a master node:
 
 Initialization the Kubernetes Cluster on any one of the Kubernetes master node where `172.16.4.100` is master servers VIP and `192.168.0.0/16` is Pod CIDR.If want to change this cidr,you have to udpate [CNI network configuration operator file]()
 
@@ -379,28 +378,33 @@ kubeadm join <control-plane-endpoint>:6443 --token <token> \
 
 
 
-### Step 7: Configure Kuberctl (Only All Master Nodes)
+### Step 8: Configure Kuberctl (Only All Master Nodes)
 
-- Master Node (Primary)
+- **Master Node (Primary)**
 ```sh
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-**Alternatively, if you are the root user, you can run:**
+**⚠️ Alternatively, if you are the root user, you can also run the following command instead of the above:**
 
 ```sh
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
-
-- Master Node (others)
-
-mkdir ~/.kube
-scp root@172.16.16.101:/etc/kubernetes/admin.conf ~/.kube/config
+`kubectl get nodes`
+**Expected Output:**
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/d94b5f81-4eb8-42df-a60c-c52bca215270)
 
 
-### Step 8: Configure Calico POD overlay networking(Only Primary Master Node)
+
+- **Execute on the other Master Nodes (ssh root login first)**
+
+mkdir -p $HOME/.kube
+scp root@kmaster1.saiful.com:/etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+### Step 9: Configure Calico POD overlay networking(Only Primary Master Node)
 
 Calico is 𝗖𝗡𝗜 - 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗜𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲 plugin that is responsible for inserting a network interface into the container network namespace
 **In this step**, we'll install Calico, a powerful networking solution, to facilitate on-premises deployments in your Kubernetes cluster.
@@ -413,12 +417,32 @@ curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/cu
 
 - **Customize the downloaded custom-resources.yaml manifest for adding your planning cidr networking block where my network is `cidr: 192.168.0.0/16` and install**
 
-![image](https://github.com/saifulislam88/kubernetes/assets/68442870/c8af802d-b909-4935-a3c1-a0516c8bbf26)
-
 `vim custom-resources.yaml`
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/c8af802d-b909-4935-a3c1-a0516c8bbf26)
 
 `kubectl create -f custom-resources.yaml`
 
+### Step 10: Verifying the cluster (All command will execute from Master)
+`kubectl get nodes`
+**Expected Output:**
+![image](https://github.com/saifulislam88/kubernetes/assets/68442870/19e0f3d5-3c1d-4f94-94f7-aa9d05f8397a)
 
+- **Get Cluster Info**
+`kubectl cluster-info`
+`kubectl get cs`
 
+- **Check that all the pods deployed correctly**
+`kubectl get pods -n kube-system`
 
+- **Get APi resources list and sort name**
+kubectl api-resources 
+- **Dump current cluster state to stdout**
+`kubectl cluster-info dump`
+- **Verify the etcd Cluster Members**
+`apt  install etcd-client -y`
+```sh
+ETCDCTL_API=3 etcdctl member list --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/peer.crt \
+  --key=/etc/kubernetes/pki/etcd/peer.key
+```

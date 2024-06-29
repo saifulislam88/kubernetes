@@ -60,7 +60,7 @@ Kubernetes it’s a scalable orchestration technology, it can start from single 
   - A reliable internet connection.
 
 
-## Configuration and Installation Steps
+- ### Configuration and Installation Steps
 
 
 

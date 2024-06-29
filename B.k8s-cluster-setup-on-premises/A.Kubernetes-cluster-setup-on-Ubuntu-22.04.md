@@ -32,6 +32,13 @@
 
 **A Kubernetes (K8s) cluster is a group of master nodes, or worker machines, that run containerized applications**. So a cluster contains a control plane and one or more compute machines, or nodes. The control plane is responsible for maintaining the desired state of the cluster, such as which applications are running and which container images they use. Nodes actually run the applications and workloads.
 
+
+Kubernetes it’s a scalable orchestration technology, it can start from single node installation, up to the huge HA clusters, based on hundreds nodes inside. Most of the popular cloud providers, represent the different kind of Kubernetes implementations, so you can start using it very fast and easy in there. But there is a lot of situations and lot of companies that can’t use clouds for their needs, but they wanna get all benefits from the modern technologies of using containers also. And there bare metal Kubernetes installation comes on the scene.
+**In this example we’ll create a HA Kubernetes cluster with multi masters topology.**
+
+
+
+
 ### Pre-requisites | Environment
 
 - Standard
@@ -52,7 +59,10 @@
   - At least 20GB of disk space.
   - A reliable internet connection.
 
+
 ## Configuration and Installation Steps
+
+
 
 ### Step 1: Hardware/VM Rediness with OS
 
@@ -320,13 +330,13 @@ Step 7: Initialise the machine as a master node:
 
 Initialization the Kubernetes Cluster on any one of the Kubernetes master node where `172.16.4.100` is master servers VIP and `192.168.0.0/16` is Pod CIDR.If want to change this cidr,you have to udpate [CNI network configuration operator file]()
 
-- **Execute the following command When The culster will be `multi-master` with `Loadbalancers & VIP`**
+- **Execute the following command where the culster will be `multi-master` with `Loadbalancers & VIP`**
 
 ```sh
 sudo kubeadm init --control-plane-endpoint="172.16.4.100:6443" --apiserver-advertise-address=172.16.4.101 --pod-network-cidr=172.16.0.0/16 --cri-socket /run/containerd/containerd.sock --ignore-preflight-errors Swap
 ```
 
-- ⚠️(`:warning:`) When The culster will be `single master` it will be applicable that time.
+- ⚠️(`:warning:`) where the culster will be `single master` it will be applicable for that time.
 
 ```sh
 # `172.16.4.101` primary master ip
@@ -344,6 +354,7 @@ kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
 ```
 
  - For **worker nodes**
+
 ```sh
 kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
         --discovery-token-ca-cert-hash sha256:3ffe97a8644080a85efed10ac77ba4bcd2bcbf25a402bec8995ec5d458ff2374
@@ -351,9 +362,10 @@ kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
 
 - **You can print join token and construct manually**
 
-kubeadm token list
-kubeadm token create --print-join-command
-kubeadm token list
+`kubeadm token list`
+`kubeadm token create --print-join-command`
+`kubeadm token list`
+`openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'`
 
   - **Manual construct for joining for Worker**
 kubeadm join <control-plane-endpoint>:6443 --token <token> \
@@ -363,31 +375,13 @@ kubeadm join <control-plane-endpoint>:6443 --token <token> \
   - **Manual construct for joining for Master**
 kubeadm join <control-plane-endpoint>:6443 --token <token> \
         --discovery-token-ca-cert-hash sha256:<ca-cert-hash> \
-        --control-plane
-
-
-  - Construct the join command for `worker node` using scirpt
-
-```sh
-# Get the first token from the list
-TOKEN=$(kubeadm token list | awk 'NR>1 {print $1; exit}')
-
-# Get the CA certificate hash
-CA_CERT_HASH=$(openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //')
-
-# Construct the join command
-JOIN_COMMAND="kubeadm join <your-master-ip>:6443 --token $TOKEN --discovery-token-ca-cert-hash sha256:$CA_CERT_HASH"
-
-# Print the join command
-echo $JOIN_COMMAND
-```
-
-  - Construct the join command for `Master node` using scirpt
+        --control-plan
 
 
 
 ### Step 7: Configure Kuberctl (Only All Master Nodes)
 
+- Master Node (Primary)
 ```sh
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -399,6 +393,8 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```sh
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
+
+- Master Node (others)
 
 mkdir ~/.kube
 scp root@172.16.16.101:/etc/kubernetes/admin.conf ~/.kube/config

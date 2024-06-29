@@ -21,7 +21,7 @@
     - E. [Install Kubernetes Management Tools (All Master & Worker Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#e-install-kubernetes-management-tools-all-master--worker-node)
     - F. [Reboot all (All Master & Worker Nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#f-reboot-all-master--worker-nodes)
   - Step 7: Configure Kuberctl (Only All Master Nodes)
-  - Step 8: Configure Calico POD overlay networking(Only Primary Master Node)
+  - Step 8: [Configure Calico POD overlay networking(Only Primary Master Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-8-configure-calico-pod-overlay-networkingonly-primary-master-node)
   - Step 9: Print Join token for other Master nodes joining to the Cluster (Primary Master Node).
      - 9.1: Join Other master node to the Cluster (Slave Master nodes)
   - Step 10: Print Join token for worker nodes joining to the Cluster (Primary Master Node).
@@ -316,6 +316,92 @@ init 6
 ```
 
 
+Step 7: Initialise the machine as a master node:
+
+Initialization the Kubernetes Cluster on any one of the Kubernetes master node where `172.16.4.100` is master servers VIP and `192.168.0.0/16` is Pod CIDR.If want to change this cidr,you have to udpate [CNI network configuration operator file]()
+
+- **Execute the following command When The culster will be `multi-master` with `Loadbalancers & VIP`**
+
+```sh
+sudo kubeadm init --control-plane-endpoint="172.16.4.100:6443" --apiserver-advertise-address=172.16.4.101 --pod-network-cidr=172.16.0.0/16 --cri-socket /run/containerd/containerd.sock --ignore-preflight-errors Swap
+```
+
+- ⚠️(`:warning:`) When The culster will be `single master` it will be applicable that time.
+
+```sh
+# `172.16.4.101` primary master ip
+sudo kubeadm init --apiserver-advertise-address=172.16.4.101 --pod-network-cidr=192.168.0.0/16 --cri-socket /run/containerd/containerd.sock --ignore-preflight-errors Swap
+```
+
+- **Save the join command printed in the output after the above command and copy the commands to join other master nodes and worker nodes.**
+
+  - **For master nodes**
+
+```sh
+kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
+        --discovery-token-ca-cert-hash sha256:3ffe97a8644080a85efed10ac77ba4bcd2bcbf25a402bec8995ec5d458ff2374 \
+        --control-plane
+```
+
+ - For **worker nodes**
+```sh
+kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
+        --discovery-token-ca-cert-hash sha256:3ffe97a8644080a85efed10ac77ba4bcd2bcbf25a402bec8995ec5d458ff2374
+```
+
+- **You can print join token and construct manually**
+
+kubeadm token list
+kubeadm token create --print-join-command
+kubeadm token list
+
+  - **Manual construct for joining for Worker**
+kubeadm join <control-plane-endpoint>:6443 --token <token> \
+    --discovery-token-ca-cert-hash sha256:<ca-cert-hash>
+
+
+  - **Manual construct for joining for Master**
+kubeadm join <control-plane-endpoint>:6443 --token <token> \
+        --discovery-token-ca-cert-hash sha256:<ca-cert-hash> \
+        --control-plane
+
+
+  - Construct the join command for `worker node` using scirpt
+
+```sh
+# Get the first token from the list
+TOKEN=$(kubeadm token list | awk 'NR>1 {print $1; exit}')
+
+# Get the CA certificate hash
+CA_CERT_HASH=$(openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //')
+
+# Construct the join command
+JOIN_COMMAND="kubeadm join <your-master-ip>:6443 --token $TOKEN --discovery-token-ca-cert-hash sha256:$CA_CERT_HASH"
+
+# Print the join command
+echo $JOIN_COMMAND
+```
+
+  - Construct the join command for `Master node` using scirpt
+
+
+
+### Step 7: Configure Kuberctl (Only All Master Nodes)
+
+```sh
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+**Alternatively, if you are the root user, you can run:**
+
+```sh
+export KUBECONFIG=/etc/kubernetes/admin.conf
+```
+
+mkdir ~/.kube
+scp root@172.16.16.101:/etc/kubernetes/admin.conf ~/.kube/config
 
 
 ### Step 8: Configure Calico POD overlay networking(Only Primary Master Node)
@@ -329,16 +415,14 @@ Calico is 𝗖𝗡𝗜 - 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗡𝗲𝘁𝘄�
 - **Download the custom resources necessary to configure Calico**
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml -O
 
-- **Customize the downloaded custom-resources.yaml manifest for adding your planning cidr networking block where my network is `cidr: 192.168.0.0/16`  and install**
+- **Customize the downloaded custom-resources.yaml manifest for adding your planning cidr networking block where my network is `cidr: 192.168.0.0/16` and install**
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/c8af802d-b909-4935-a3c1-a0516c8bbf26)
 
 `vim custom-resources.yaml`
+
 `kubectl create -f custom-resources.yaml`
 
-
-
-7. Print Join token for worker Node to join Cl
 
 
 

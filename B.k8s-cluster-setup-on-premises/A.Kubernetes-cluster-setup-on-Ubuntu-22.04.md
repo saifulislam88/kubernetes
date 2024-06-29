@@ -22,7 +22,7 @@
     - F. [Reboot all (All Master & Worker Nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#--f-reboot-all-master--worker-nodes)
   - Step 7: [Initialise the machine as a master node](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-7-initialise-the-machine-as-a-master-node)
   - Step 8: [Configure Kuberctl (Only All Master Nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-8-configure-kuberctl-only-all-master-nodes)
-  - Step 9: [Configure Calico POD overlay networking(Only Primary Master Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-9-configure-calico-pod-overlay-networking-only-primary-master-node)
+  - Step 9: [Configure Calico POD overlay networking(Only Primary Master Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-9-configure-calico-pod-overlay-networkingonly-primary-master-node)
   - Step 10: [Verifying the cluster (All command will execute from Master)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-10-verifying-the-cluster-all-command-will-execute-from-master)
      
 ### What is Kubernetes Cluster

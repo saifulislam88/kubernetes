@@ -247,5 +247,5 @@ for POD_NAME in "${POD_NAMES[@]}"; do
 done
 
 ```
-
+We can follow this blog also for metal lb based nginx deployment https://blog.cloudnloud.com/kubernetes-loadbalancer
 

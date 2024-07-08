@@ -17,7 +17,7 @@
     - [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-resources)
       - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress)
         - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
-        - MetalLB | BareMetal LB
+        - [MetalLB | BareMetal LB](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
     
 
 
@@ -581,7 +581,7 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
 
 
 ### MetalLB | BareMetal LB
-
+https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 
 
 ### Types of Volumes:

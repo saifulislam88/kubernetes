@@ -5,14 +5,16 @@
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
    - [K8s Components Brief (Master & Worker)](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
-     - Kube API-Server(Master)
-     - ETCD(Master)
-     - Kube Controller Manager(Master)
-     - Kube Scheduler(Master)
-     - CoreDNS for Kubernetes services.
-     - Kubelet(Master&Worker)
-     - Kube Proxy(Master&Worker)
-     - Container Runtime(Master&Worker)
+     - Master Node
+       - Kube API-Server(Master)
+       - ETCD(Master)
+       - Kube Controller Manager(Master)
+       - Kube Scheduler(Master)
+       - CoreDNS for Kubernetes services
+     - Worker Node
+       - Kubelet(Master&Worker)
+       - Kube Proxy(Master&Worker)
+       - Container Runtime(Master&Worker)
 - [Concepts on Kubernetes Native Objects - Short Brief](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
   - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
   - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)

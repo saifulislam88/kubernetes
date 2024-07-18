@@ -134,42 +134,42 @@ like Docker, and an agent that communicates with the master (kubelet). Nodes (Wo
 
 ## K8s Components Brief (Master & Worker)
 
-  **1.Kube-APISERVER**
+  ### **1.Kube-APISERVER**
 
-         ⮚ Acts as the front-end for the Kubernetes control plane.
-         ⮚ Handles API requests and provides access to the cluster's state.
+  - Acts as the front-end for the Kubernetes control plane.
+  - Handles API requests and provides access to the cluster's state.
   
-  **2.ETCD**
+  ### **2.ETCD**
 
-         ⮚ A consistent and highly-available key-value store.
-         ⮚ Stores all cluster data and configuration information.
+   - A consistent and highly-available key-value store.
+   - Stores all cluster data and configuration information.
 
-  **3.Kube-Controller-Manager**
+  ### **3.Kube-Controller-Manager**
 
-         ⮚ Runs various controllers to regulate the state of the cluster.
-         ⮚ Ensures the cluster's current state matches the desired state.
+  - Runs various controllers to regulate the state of the cluster.
+  - Ensures the cluster's current state matches the desired state.
 
-  **4.Kube-Scheduler**
+  ### **4.Kube-Scheduler**
 
-         ⮚ Assigns tasks (pods) to worker nodes based on resource availability and constraints.
-         ⮚ Ensures efficient resource utilization.
+  - Assigns tasks (pods) to worker nodes based on resource availability and constraints.
+  - Ensures efficient resource utilization.
 
- **5.CoreDNS**
+  ### **5.CoreDNS**
 
-         ⮚ Provides DNS resolution for Kubernetes services.
-         ⮚ Allows pods to communicate with each other using service names.
+  - Provides DNS resolution for Kubernetes services.
+  - Allows pods to communicate with each other using service names.
 
- **6.Kubelet** (Both Master and Worker)
+  ### **6.Kubelet** (Both Master and Worker)
 
-         ⮚  An agent that runs on each node  & Ensures containers are running in pods as expected.
+  - An agent that runs on each node  & Ensures containers are running in pods as expected.
 
- **7.Kube-Proxy** (Both Master and Worker)
+  ### **7.Kube-Proxy** (Both Master and Worker)
 
-        ⮚ Maintains network rules on nodes & Enables communication between different Kubernetes services.
+  - Maintains network rules on nodes & Enables communication between different Kubernetes services.
 
- **8.Container Runtime (Docker,Podman,Containerd,CRI-O)** (Both Master and Worker).
+  ### **8.Container Runtime (Docker,Podman,Containerd,CRI-O)** (Both Master and Worker).
 
-        ⮚  Software responsible for running containers & Supports containerized application execution.
+  - Software responsible for running containers & Supports containerized application execution.
 
 [Back to Top](#top)
 
@@ -183,12 +183,14 @@ like Docker, and an agent that communicates with the master (kubelet). Nodes (Wo
 </div>
 
 
-#### - 𝗣𝗼𝗱
+- #### 𝗣𝗼𝗱
 Deployment Unit - Running a single-instance, e.g., Nginx web server
 
-#### - 𝗦𝗲𝗿𝘃𝗶𝗰𝗲: Networking - Exposing a set of pods to other pods within the cluster. e.g., Exposing a set of Redis server pods.
+- #### 𝗦𝗲𝗿𝘃𝗶𝗰𝗲
 
-#### - 𝗩𝗼𝗹𝘂𝗺𝗲: Storage - Storing database files for a MySQL server running in a pod.
+Networking - Exposing a set of pods to other pods within the cluster. e.g., Exposing a set of Redis server pods.
+
+- #### 𝗩𝗼𝗹𝘂𝗺𝗲: Storage - Storing database files for a MySQL server running in a pod.
 
 #### - 𝗡𝗮𝗺𝗲𝘀𝗽𝗮𝗰𝗲: Workload Isolation - Segregating apps/teams/projects in a dedicated/shared cluster. e.g., Different namespaces for apps or stages like development, testing, and production.
 

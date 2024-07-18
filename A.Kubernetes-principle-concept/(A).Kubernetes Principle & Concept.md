@@ -30,13 +30,13 @@
       - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress)
         - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
           - [MetalLB | BareMetal LB](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
-- [Kubernetes Configuration &CManagement Objects]
-- [Kubernetes Storage Management Objects]
-  - Persistent Volumes (PV) & Persistent Volume Claims (PVC)
-  - [Storage Classes/Type](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
-  - Access Modes for Volumes
-- [Kubernetes Security Objects]
-- [Kubernetes Metadata Objects]
+  - [Kubernetes Configuration &CManagement Objects]
+  - [Kubernetes Storage Management Objects]
+      - Persistent Volumes (PV) & Persistent Volume Claims (PVC)
+      - [Storage Classes/Type](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
+      - Access Modes for Volumes
+  - [Kubernetes Security Objects]
+  - [Kubernetes Metadata Objects]
 
 ----
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">

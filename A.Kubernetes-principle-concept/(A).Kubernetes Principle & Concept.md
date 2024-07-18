@@ -5,11 +5,12 @@
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
 - [Kubernetes Components](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
-- [Kubernetes Native Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
+- [Concepts on Kubernetes Native Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
   - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
   - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
-  - [Objects organized in categories](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
-    - [Kubernetes Services](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-services-type)
+- [All Objects Organized in Categories & Details](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
+  - [Kubernetes Workload Objects]
+  - [Kubernetes Service & Networking Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-services-type)
       - [ClusterIP](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
       - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
       - [LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#3-loadbalancer)
@@ -18,12 +19,14 @@
     - [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-resources)
       - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress)
         - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
-        - [MetalLB | BareMetal LB](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
-- [Kubernetes Storage Management]
+          - [MetalLB | BareMetal LB](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
+- [Kubernetes Configuration &CManagement Objects]
+- [Kubernetes Storage Management Objects]
   - Persistent Volumes (PV) & Persistent Volume Claims (PVC)
   - [Storage Classes/Type](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
   - Access Modes for Volumes
-
+- [Kubernetes Security Objects]
+- [Kubernetes Metadata Objects]
 
 ----
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">

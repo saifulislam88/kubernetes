@@ -5,6 +5,14 @@
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
    - [K8s Components Brief (Master & Worker)](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
+     - Kube API-Server(Master)
+     - ETCD(Master)
+     - Kube Controller Manager(Master)
+     - Kube Scheduler(Master)
+     - CoreDNS for Kubernetes services.
+     - Kubelet(Master&Worker)
+     - Kube Proxy(Master&Worker)
+     - Container Runtime(Master&Worker)
 - [Concepts on Kubernetes Native Objects - Short Brief](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
   - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
   - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
@@ -114,14 +122,15 @@ The **Master Node** consists of various components including
   - ETCD
   - Kube-controller-manager
   - Kube-scheduler
-  - DNS server for Kubernetes services.
+  - CoreDNS for Kubernetes services
   - Kubelet
   - Kube-proxy
   - Container Runtime(Docker,Podman)
 
-**Worker Node** components include
+**Worker Node** component includes
   - kubelet 
   - Kube-proxy
+  - CoreDNS for Kubernetes services
   - Each node runs a container runtime
  
 like Docker, and an agent that communicates with the master (kubelet). Nodes (Worker Nodes) expose compute, networking and storage resources to applications. They can be virtual machines (VMs) running in a cloud or bare metal servers running within a data center.
@@ -132,7 +141,7 @@ like Docker, and an agent that communicates with the master (kubelet). Nodes (Wo
 
 ## K8s Components Brief (Master & Worker)
 
-  ### **1.Kube-APISERVER**
+  ### **1.Kube-APIS ERVER**
 
   - Acts as the front-end for the Kubernetes control plane.
   - Handles API requests and provides access to the cluster's state.

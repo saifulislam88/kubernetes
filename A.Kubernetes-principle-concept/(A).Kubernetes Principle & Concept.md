@@ -20,15 +20,15 @@
   - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
 - [Concepts on Kubernetes Native Objects in Categories - Details Brief](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
   - [Kubernetes Workload Objects]
-      - 1. Pods
-      - 2. ReplicaSets
-      - 3. Deployments
-      - 4. StatefulSets
-      - 5. DaemonSets
-      - 6. Jobs
-      - 7. CronJobs
-      - 8. Horizontal Pod Autoscaler
-      - 9. Vertical Pod Autoscaler
+      - Pods
+      - ReplicaSets
+      - Deployments
+      - StatefulSets
+      - DaemonSets
+      - Jobs
+      - CronJobs
+      - Horizontal Pod Autoscaler
+      - Vertical Pod Autoscaler
   - [Kubernetes Service & Networking Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-services-type)
       - [ClusterIP](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
       - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
@@ -40,17 +40,23 @@
         - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
           - [MetalLB | BareMetal LB](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
   - [Kubernetes Configuration & Management Objects]
-      - 1. ConfigMaps
-      - 2. Namespaces
-      - 3. ResourceQuotas
-      - 4. LimitRanges
-      - 5. Pod Disruption Budgets (PDB)
-      - 6. Pod Priority and Preemption
+      - ConfigMaps
+      - Namespaces
+      - ResourceQuotas
+      - LimitRanges
+      - Pod Disruption Budgets (PDB)
+      - Pod Priority and Preemption
   - [Kubernetes Storage Management Objects]
       - Persistent Volumes (PV) & Persistent Volume Claims (PVC)
       - [Storage Classes/Type](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
       - Access Modes for Volumes
   - [Kubernetes Security Objects]
+      - Secrets
+      - ServiceAccounts (sa)
+      - Roles
+      - RoleBindings
+      - ClusterRoles
+      - ClusterRoleBindings
   - [Kubernetes Metadata Objects]
 
 ----

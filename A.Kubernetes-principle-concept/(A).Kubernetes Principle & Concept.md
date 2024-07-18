@@ -4,7 +4,7 @@
 - [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
-- [Kubernetes Components](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
+   - [K8s Components Brief (Master & Worker)](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
 - [Concepts on Kubernetes Native Objects - Short Brief](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
   - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
   - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
@@ -70,14 +70,12 @@ kind of environments such as physical, virtual, and cloud infrastructure.
   **Now, what are containers???**
 
 
-----
-
-    ❖ Features of Kubernetes
+  ❖ Features of Kubernetes
     
-    ⮚	Continues development, integration and deployment
-    ⮚	Containerized infrastructure
-    ⮚	Application-centric management
-    ⮚	Auto-scalable infrastructure
+- Continues development, integration and deployment
+- Containerized infrastructure
+- Application-centric management
+- Auto-scalable infrastructure
 
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/27c2d490-3410-42ce-8a46-28e8de6b661f)
@@ -105,27 +103,27 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 **There are two main components in K8s**. So a Kubernetes cluster consists of **two types of nodes (minions)**:
 
       1. A Master node that coordinates the cluster.
-      2. Nodes (called workers) where the application runs.
+      2. Nodes (Called Workers) where the application runs.
 
 **Kubernetes follows a client-server architecture**. A Kubernetes cluster consists of at least **one Master Node ** (multi-master for high availability) and multiple Worker nodes. 
 The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster. 
 
 The **Master Node** consists of various components including
  
-      ⮚ Kube-apiserver 
-      ⮚ ETCD 
-      ⮚ Kube-controller-manager
-      ⮚ Kube-scheduler
-      ⮚ DNS server for Kubernetes services.
-      ⮚ Kubelet
-      ⮚ Kube-proxy
-      ⮚ Container Runtime(Docker,Podman)
+  - Kube-apiserver
+  - ETCD
+  - Kube-controller-manager
+  - Kube-scheduler
+  - DNS server for Kubernetes services.
+  - Kubelet
+  - Kube-proxy
+  - Container Runtime(Docker,Podman)
 
 **Worker Node** components include
+  - kubelet 
+  - Kube-proxy
+  - Each node runs a container runtime
  
-      ⮚ kubelet 
-      ⮚ Kube-proxy
-      ⮚ Each node runs a container runtime, 
 like Docker, and an agent that communicates with the master (kubelet). Nodes (Worker Nodes) expose compute, networking and storage resources to applications. They can be virtual machines (VMs) running in a cloud or bare metal servers running within a data center.
 
 

@@ -4,21 +4,21 @@
 - [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
-   - [Nodes Overview & Component Roles in a Kubernetes Cluster](#Nodes-Overview--Component-Roles-in-a-Kubernetes-Cluster)
+   - [Nodes Component Overview & Roles in a Kubernetes Cluster](#Nodes-Component-Overview--Roles-in-a-Kubernetes-Cluster)
      - [Master Node](#master-nodecontrol-plane)
-       - kube-apiserver
-       - kube-scheduler
-       - kube-controller-manager
-       - etcd
-       - kubelet
-       - kube-proxy
-       - Container Runtime Interface(CRI)
-       - coredns
+       - [kube-apiserver](#kube-apiserver)
+       - [kube-scheduler](#kube-scheduler)
+       - [kube-controller-manager]()
+       - [etcd]()
+       - [kubelet]()
+       - [kube-proxy]()
+       - [Container Runtime Interface(CRI)]()
+       - [coredns]()
      - Worker Node
-       - kubelet
-       - kube-proxy
-       - Container Runtime Interface(CRI)
-       - coredns
+       - [kubelet]()
+       - [kube-proxy]()
+       - [Container Runtime Interface(CRI)]()
+       - [coredns]()
 - [Concepts on Kubernetes Native Objects - Short Brief](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
   - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
   - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
@@ -141,9 +141,6 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
       1. Master Node that coordinates the cluster.
       2. Worker Node where the application runs.
 
-
-## Nodes Overview & Component Roles in a Kubernetes Cluster
-
 ### Master Node(Control-Plane)
 
 **The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster.** The **Master Node** consists of various components including..
@@ -169,13 +166,29 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 [Back to Top](#top)
 
 
+## Nodes Component Overview & Roles in a Kubernetes Cluster
 
 We will talk about building a Kubernetes cluster in the following articles.
 
-  ### **1.Kube-APIS ERVER**
+### kube-apiserver
 
-  - Acts as the front-end for the Kubernetes control plane.
-  - Handles API requests and provides access to the cluster's state.
+   - The central control point for the entire cluster.
+   - Handles RESTful API requests to perform CRUD operations on resources (pods, services, etc.).
+   - The component that exposes the API server.
+
+### kube-scheduler
+
+   - Watches newly created Pods and assigns them to a worker node based on resource availability and constraints.
+   - Ensures efficient resource utilization.
+
+
+   ### - kube-controller-manager
+   ### - etcd
+   ### - kubelet
+   ### - kube-proxy
+   ### - Container Runtime Interface(CRI)
+   ### - coredns
+
   
   ### **2.ETCD**
 
@@ -186,11 +199,6 @@ We will talk about building a Kubernetes cluster in the following articles.
 
   - Runs various controllers to regulate the state of the cluster.
   - Ensures the cluster's current state matches the desired state.
-
-  ### **4.Kube-Scheduler**
-
-  - Assigns tasks (pods) to worker nodes based on resource availability and constraints.
-  - Ensures efficient resource utilization.
 
   ### **5.CoreDNS**
 

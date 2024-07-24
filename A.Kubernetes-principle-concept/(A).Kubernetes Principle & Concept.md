@@ -4,7 +4,7 @@
 - [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
-   - [K8s Components Brief (Master & Worker)](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
+   - [Component Roles in a Kubernetes Cluster](#component-Roles-in-a-Kubernetes-Cluster)
      - [Master Node](#master-nodecontrol-plane)
        - kube-apiserver
        - kube-scheduler
@@ -165,7 +165,9 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 
 [Back to Top](#top)
 
-## K8s Components Brief (Master & Worker)
+## Components Roles & Overview
+
+We will talk about building a Kubernetes cluster in the following articles.
 
   ### **1.Kube-APIS ERVER**
 

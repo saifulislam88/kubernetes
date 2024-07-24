@@ -8,17 +8,17 @@
      - [Master Node](#master-nodecontrol-plane)
        - [kube-apiserver](#kube-apiserver)
        - [kube-scheduler](#kube-scheduler)
-       - [kube-controller-manager]()
-       - [etcd]()
-       - [kubelet]()
-       - [kube-proxy]()
-       - [Container Runtime Interface(CRI)]()
-       - [coredns]()
+       - [kube-controller-manager](#kube-controller-manager)
+       - [etcd](#etcd)
+       - [kubelet](#kubelet)
+       - [kube-proxy](#kube-proxy)
+       - [Container Runtime Interface(CRI)](#Container-Runtime-Interface-CRI)
+       - [coredns](#coredns)
      - Worker Node
-       - [kubelet]()
-       - [kube-proxy]()
-       - [Container Runtime Interface(CRI)]()
-       - [coredns]()
+       - [kubelet](#kubelet)
+       - [kube-proxy](#kube-proxy)
+       - [Container Runtime Interface(CRI)](#Container-Runtime-Interface-CRI)
+       - [coredns](#coredns)
 - [Concepts on Kubernetes Native Objects - Short Brief](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
   - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
   - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
@@ -182,7 +182,16 @@ We will talk about building a Kubernetes cluster in the following articles.
    - Ensures efficient resource utilization.
 
 
-   ### - kube-controller-manager
+### kube-controller-manager
+
+  - The component that is responsible for controller processes. 
+  - Runs various controllers to regulate the state of the cluster.
+  - Ensures the cluster's current state matches the desired state.
+
+Kubernetes runs a group of controllers (`Node Controller`, `Replication Controller`, `Endpoints Controller`, `Namespace Controller`, and `Service Account Controller`) in the background that handle routine tasks in the cluster. Like node-controller which is controlling if nodes are down or like endpoint-controller that creates the endpoints objects.
+
+
+
    ### - etcd
    ### - kubelet
    ### - kube-proxy
@@ -197,8 +206,7 @@ We will talk about building a Kubernetes cluster in the following articles.
 
   ### **3.Kube-Controller-Manager**
 
-  - Runs various controllers to regulate the state of the cluster.
-  - Ensures the cluster's current state matches the desired state.
+
 
   ### **5.CoreDNS**
 

@@ -4,7 +4,7 @@
 - [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
-   - [Component Roles in a Kubernetes Cluster](#component-Roles-in-a-Kubernetes-Cluster)
+   - [Nodes Overview & Component Roles in a Kubernetes Cluster](#Nodes-Overview--Component-Roles-in-a-Kubernetes-Cluster)
      - [Master Node](#master-nodecontrol-plane)
        - kube-apiserver
        - kube-scheduler
@@ -141,6 +141,9 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
       1. Master Node that coordinates the cluster.
       2. Worker Node where the application runs.
 
+
+## Nodes Overview & Component Roles in a Kubernetes Cluster
+
 ### Master Node(Control-Plane)
 
 **The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster.** The **Master Node** consists of various components including..
@@ -154,7 +157,7 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
    - Container Runtime Interface(CRI)
    - coredns
 
-### Worker Node
+### Worker Node(Data-Plane)
 
 **The Worker Nodes where the application runs and expose compute, networking and storage resources to applications.** They can be **virtual machines (VMs)** running in a `Cloud`, `On-Premises VE` or `Bare Metal` servers running within a data center. The **Worker Node** consists of various components including..
 
@@ -165,7 +168,7 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 
 [Back to Top](#top)
 
-## Components Roles & Overview
+
 
 We will talk about building a Kubernetes cluster in the following articles.
 

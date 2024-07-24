@@ -12,7 +12,7 @@
        - [etcd](#etcd)
        - [kubelet](#kubelet)
        - [kube-proxy](#kube-proxy)
-       - [Container Runtime Interface(CRI)](#Container-Runtime-Interface-CRI)
+       - [container runtime interface(CRI)](#Container-Runtime-Interface-CRI)
        - [coredns](#coredns)
      - Worker Node
        - [kubelet](#kubelet)
@@ -151,7 +151,7 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
    - etcd
    - kubelet
    - kube-proxy
-   - Container Runtime Interface(CRI)
+   - container runtime interface(CRI)
    - coredns
 
 ### Worker Node(Data-Plane)
@@ -160,7 +160,7 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 
    - kubelet
    - kube-proxy
-   - Container Runtime Interface(CRI)
+   - container runtime interface(CRI)
    - coredns
 
 [Back to Top](#top)
@@ -172,11 +172,15 @@ We will talk about building a Kubernetes cluster in the following articles.
 
 ### kube-apiserver
 
+API server is the central management component of the Kubernetes control plane that receives all REST requests for modifications (to pods, services, replication sets/controllers and others), serving as frontend to the cluster. Also, this is the only component that communicates with the etcd cluster, making sure data is stored in etcd and is in agreement with the service details of the deployed pods.
+
    - The central control point for the entire cluster.
    - Handles RESTful API requests to perform CRUD operations on resources (pods, services, etc.).
    - The component that exposes the API server.
 
 ### kube-scheduler
+
+Scheduler is responsible for tracking utilization of working load on cluster nodes. Scheduler watches when a new Pod is created, this component assigns it to a node for execution based on resource requirements, policies, and ‘affinity’ specifications regarding geolocation and interference with other workloads.
 
    - Watches newly created Pods and assigns them to a worker node based on resource availability and constraints.
    - Ensures efficient resource utilization.
@@ -191,39 +195,44 @@ We will talk about building a Kubernetes cluster in the following articles.
 Kubernetes runs a group of controllers (`Node Controller`, `Replication Controller`, `Endpoints Controller`, `Namespace Controller`, and `Service Account Controller`) in the background that handle routine tasks in the cluster. Like node-controller which is controlling if nodes are down or like endpoint-controller that creates the endpoints objects.
 
 
+### etcd
 
-   ### - etcd
-   ### - kubelet
-   ### - kube-proxy
-   ### - Container Runtime Interface(CRI)
-   ### - coredns
+A simple, high availability and distributed key value storage which is used to store the Kubernetes cluster data (such as number of pods, their state, namespace, etc), API objects and service discovery details. 
+**It is only accessible from the API server for security reasons.** etcd enables notifications to the cluster about configuration changes with the help of watchers. Notifications are API requests on each etcd cluster node to trigger the update of information in the node’s storage.
 
-  
-  ### **2.ETCD**
+ - Key-value store used as Kubernetes' backing store for all cluster data.
+ - Stores configuration data, state, and metadata.
 
-   - A consistent and highly-available key-value store.
-   - Stores all cluster data and configuration information.
+   
+### kubelet
 
-  ### **3.Kube-Controller-Manager**
+This component communicates with the control plane. **So Kubelet is an agent application that runs on each node in the cluster.** It takes a set of specifications, PodSpecs, and ensures containers are working as well as listening to new commands from the kube-apiserver(master node).
 
+ - Primary "node agent" that runs on each node.
+ - Ensures that containers are running in a pod as expected.
+ - Takes a set of PodSpecs and ensures that the described containers are running and healthy.
 
+### kube-proxy
 
-  ### **5.CoreDNS**
+ - The kube-proxy handles network communications inside or outside of your cluster.
+ - Maintains network rules on nodes & Enables communication between different Kubernetes services like pods, services, and the external network.
+ - Network proxy that runs on each node.
+
+### container runtime interface(CRI)
+
+- Software responsible for running containers & Supports containerized application execution.
+
+Software responsible for running containers.
+Examples include Docker, containerd, and CRI-O.
+Interacts with kubelet to manage container lifecycle.
+
+### coredns
 
   - Provides DNS resolution for Kubernetes services.
   - Allows pods to communicate with each other using service names.
-
-  ### **6.Kubelet** (Both Master and Worker)
-
-  - An agent that runs on each node  & Ensures containers are running in pods as expected.
-
-  ### **7.Kube-Proxy** (Both Master and Worker)
-
-  - Maintains network rules on nodes & Enables communication between different Kubernetes services.
-
-  ### **8.Container Runtime (Docker,Podman,Containerd,CRI-O)** (Both Master and Worker).
-
-  - Software responsible for running containers & Supports containerized application execution.
+  
+  Provides DNS-based service discovery.
+Helps internal communication within the cluster by resolving service names to IP addresses.
 
 [Back to Top](#top)
 

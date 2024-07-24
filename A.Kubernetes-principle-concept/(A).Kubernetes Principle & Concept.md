@@ -168,7 +168,7 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 
 ## Nodes Component Overview & Roles in a Kubernetes Cluster
 
-We will talk about building a Kubernetes cluster in the following articles.
+We will talk about building a Kubernetes cluster in the following articles. **In Kubernetes, a master node is identified primarily by the presence of the following components**: `kube-apiserver`, `kube-scheduler` `kube-controller-manager`, `etcd` and **Conversely, a worker node is primarily characterized by the presence of**: `kubelet`, `kube-proxy`, `Container Runtime Interface (CRI)`. **However**, master nodes also include components traditionally associated with worker nodes, such as `kubelet`, `kube-proxy`, and `CRI`. This is because control plane components (`kube-apiserver`, `kube-scheduler`, `kube-controller-manager`, `etcd`) run as Pods not daemon on the master node. To manage and maintain these Pods, the master node requires `kubelet`, `kube-proxy`, and `CRI`. **Thus, in practice, a master node performs functions similar to a worker node** by handling containerized workloads and maintaining Pod health, effectively blurring the distinction between master and worker nodes.
 
 ### kube-apiserver
 

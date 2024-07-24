@@ -5,7 +5,7 @@
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
    - [K8s Components Brief (Master & Worker)](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
-     - [Master Node](#master-node-control--plane)
+     - [Master Node](#master-nodecontrol-plane)
        - kube-apiserver
        - kube-scheduler
        - kube-controller-manager
@@ -145,23 +145,23 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 
 **The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster.** The **Master Node** consists of various components including..
  
-       - kube-apiserver
-       - kube-scheduler
-       - kube-controller-manager
-       - etcd
-       - kubelet
-       - kube-proxy
-       - Container Runtime Interface(CRI)
-       - coredns
+   - kube-apiserver
+   - kube-scheduler
+   - kube-controller-manager
+   - etcd
+   - kubelet
+   - kube-proxy
+   - Container Runtime Interface(CRI)
+   - coredns
 
 ### Worker Node
 
 **The Worker Nodes where the application runs and expose compute, networking and storage resources to applications.** They can be **virtual machines (VMs)** running in a `Cloud`, `On-Premises VE` or `Bare Metal` servers running within a data center. The **Worker Node** consists of various components including..
 
-       - kubelet
-       - kube-proxy
-       - Container Runtime Interface(CRI)
-       - coredns
+   - kubelet
+   - kube-proxy
+   - Container Runtime Interface(CRI)
+   - coredns
 
 [Back to Top](#top)
 

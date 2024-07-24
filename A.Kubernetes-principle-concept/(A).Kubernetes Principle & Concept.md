@@ -5,7 +5,7 @@
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
    - [K8s Components Brief (Master & Worker)](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#k8s-components-brief-master--worker)
-     - Master Node
+     - [Master Node](#master-node-control--plane)
        - kube-apiserver
        - kube-scheduler
        - kube-controller-manager
@@ -134,35 +134,34 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 
 ![kubernestes-arch](https://github.com/saifulislam88/kubernetes/assets/68442870/e47edbad-e743-493b-a0d8-a9a1f4561b3a)
 
+**Kubernetes follows a client-server architecture**. A Kubernetes cluster consists of at least **one Master Node** & **one Worker Node**(Multi-Master & Worker for high availability)
 
 **There are two main components in K8s**. So a Kubernetes cluster consists of **two types of nodes (minions)**:
 
-      1. A Master node that coordinates the cluster.
-      2. Nodes (Called Workers) where the application runs.
+      1. Master Node that coordinates the cluster.
+      2. Worker Node where the application runs.
 
-**Kubernetes follows a client-server architecture**. A Kubernetes cluster consists of at least **one Master Node ** (multi-master for high availability) and multiple Worker nodes. 
-The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster. 
+### Master Node(Control-Plane)
 
-The **Master Node** consists of various components including
+**The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster.** The **Master Node** consists of various components including..
  
-  - Kube-apiserver
-  - ETCD
-  - Kube-controller-manager
-  - Kube-scheduler
-  - CoreDNS for Kubernetes services
-  - Kubelet
-  - Kube-proxy
-  - Container Runtime(Docker,Podman)
+       - kube-apiserver
+       - kube-scheduler
+       - kube-controller-manager
+       - etcd
+       - kubelet
+       - kube-proxy
+       - Container Runtime Interface(CRI)
+       - coredns
 
-**Worker Node** component includes
-  - kubelet 
-  - Kube-proxy
-  - CoreDNS for Kubernetes services
-  - Each node runs a container runtime
- 
-like Docker, and an agent that communicates with the master (kubelet). Nodes (Worker Nodes) expose compute, networking and storage resources to applications. They can be virtual machines (VMs) running in a cloud or bare metal servers running within a data center.
+### Worker Node
 
+**The Worker Nodes where the application runs and expose compute, networking and storage resources to applications.** They can be **virtual machines (VMs)** running in a `Cloud`, `On-Premises VE` or `Bare Metal` servers running within a data center. The **Worker Node** consists of various components including..
 
+       - kubelet
+       - kube-proxy
+       - Container Runtime Interface(CRI)
+       - coredns
 
 [Back to Top](#top)
 

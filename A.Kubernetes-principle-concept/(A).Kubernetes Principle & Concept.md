@@ -19,11 +19,8 @@
        - [kube-proxy](#kube-proxy)
        - [Container Runtime Interface(CRI)](#Container-Runtime-Interface-CRI)
        - [coredns](#coredns)
-- [Concepts on Kubernetes Native Objects - Short Brief](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-native-objects)
-  - [Part-01-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-01)
-  - [Part-02-Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#part-02)
-- [Concepts on Kubernetes Native Objects in Categories - Details Brief](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#the-following-table-shows-the-important-native-kubernetes-object-types-organized-in-categories)
-  - [Kubernetes Workload Objects]
+- [Kubernetes Native Objects]()
+  - [Kubernetes Workload Objects]()
       - Pods
       - ReplicaSets
       - Deployments

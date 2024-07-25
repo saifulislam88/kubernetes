@@ -10,6 +10,10 @@
 https://www.linkedin.com/posts/gunaseela_kubernetes-containerization-kuberenetsnetworking-activity-7209717060682072064-UJO9?utm_source=share&utm_medium=member_desktop
 
 
+- Question 9: Describe the process of a blue-green deployment and its advantages...?
+
+Answer: Blue-green deployment involves maintaining two identical environments; one (Blue) hosts the current production application, while the other (Green) holds the new version. Once the Green environment is tested and ready, traffic is switched from Blue to Green, minimizing downtime and allowing easy rollback. This method significantly reduces risk by providing a rapid rollback strategy if something goes wrong.
+
 
 
 ### **Q1?. Containers, and Kubernetes: Six Strategies for Application Deployment**

@@ -12,9 +12,9 @@
        - [etcd](#etcd)
        - [kubelet](#kubelet)
        - [kube-proxy](#kube-proxy)
-       - [container runtime interface(CRI)](#Container-Runtime-Interface-CRI)
+       - [container runtime interface(CRI)](#Container-Runtime-InterfaceCRI)
        - [coredns](#coredns)
-     - Worker Node
+     - [Worker Node](#worker-nodedata-plane)
        - [kubelet](#kubelet)
        - [kube-proxy](#kube-proxy)
        - [Container Runtime Interface(CRI)](#Container-Runtime-Interface-CRI)
@@ -145,23 +145,23 @@ And that's where Kubernetes steps in. It helps manage these containers, making s
 
 **The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster.** The **Master Node** consists of various components including..
  
-   - kube-apiserver
-   - kube-scheduler
-   - kube-controller-manager
-   - etcd
-   - kubelet
-   - kube-proxy
-   - container runtime interface(CRI)
-   - coredns
+   - [kube-apiserver](#kube-apiserver)
+   - [kube-scheduler](#kube-scheduler)
+   - [kube-controller-manager](#kube-controller-manager)
+   - [etcd](#etcd)
+   - [kubelet](#kubelet)
+   - [kube-proxy](#kube-proxy)
+   - [container runtime interface(CRI)](#container-runtime-interfaceCRI)
+   - [coredns](#coredns)
 
 ### Worker Node(Data-Plane)
 
 **The Worker Nodes where the application runs and expose compute, networking and storage resources to applications.** They can be **virtual machines (VMs)** running in a `Cloud`, `On-Premises VE` or `Bare Metal` servers running within a data center. The **Worker Node** consists of various components including..
 
-   - kubelet
-   - kube-proxy
-   - container runtime interface(CRI)
-   - coredns
+   - [kubelet](#kubelet)
+   - [kube-proxy](#kube-proxy)
+   - [container runtime interface(CRI)](#container-runtime-interfaceCRI)
+   - [coredns](#coredns)
 
 [Back to Top](#top)
 
@@ -220,19 +220,13 @@ This component communicates with the control plane. **So Kubelet is an agent app
 
 ### container runtime interface(CRI)
 
-- Software responsible for running containers & Supports containerized application execution.
-
-Software responsible for running containers.
-Examples include Docker, containerd, and CRI-O.
-Interacts with kubelet to manage container lifecycle.
+- Software responsible for running containers & Supports containerized application execution. Examples include Docker, containerd, and CRI-O.
+- Interacts with kubelet to manage container lifecycle.
 
 ### coredns
 
-  - Provides DNS resolution for Kubernetes services.
-  - Allows pods to communicate with each other using service names.
-  
-  Provides DNS-based service discovery.
-Helps internal communication within the cluster by resolving service names to IP addresses.
+- Provides DNS resolution for Kubernetes services.
+- Helps internal communication within the cluster by resolving service names to IP addresses.
 
 [Back to Top](#top)
 

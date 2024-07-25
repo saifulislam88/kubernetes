@@ -233,10 +233,35 @@ This component communicates with the control plane. **So Kubelet is an agent app
 
 In this article, we will explore Kubernetes objects together. Assuming you have created your Kubernetes cluster using one of the provided methods such as [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download), [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation), or [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md), we can now dive into the world of Kubernetes objects.
 
+
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/saifulislam88/kubernetes/assets/68442870/334db1f0-3240-4e5e-b058-a2d908a1cb9e" alt="Image 1" style="width: 48%; height: 600px;">
   <img src="https://github.com/saifulislam88/kubernetes/assets/68442870/42b7edd0-dd4c-4356-b1f6-50ec946d9107" alt="Image 2" style="width: 48%; height: 600px;">
 </div>
+
+
+Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster. Some of the Kubernetes Objects are Pods, Depoyments, Namespaces, StatefulSets, Services, etc.
+
+**There are two ways to create a Kubernetes object via `kubectl`: `Imperative` or `declarative`.**
+
+
+
+### [Kubernetes Workload Objects]()
+
+A workload is an application running on Kubernetes.
+
+  ### - Pods
+  ### - ReplicaSets
+  ### - Deployments
+  ### - StatefulSets
+  ### - DaemonSets
+  ### - Jobs
+  ### - CronJobs
+  ### - Horizontal Pod Autoscaler
+  ### - Vertical Pod Autoscaler
+
+
+
 
 
 - #### 𝗣𝗼𝗱
@@ -301,48 +326,6 @@ Networking - Exposing a set of pods to other pods within the cluster. e.g., Expo
 #### - 𝗥𝘂𝗻𝘁𝗶𝗺𝗲𝗖𝗹𝗮𝘀𝘀: Contianer Runtime-specification: Eg: A Pod specification that requires a gVisor as the container runtime.
 
 #### - 𝗖𝘂𝘀𝘁𝗼𝗺𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝗗𝗲𝗳𝗶𝗻𝗶𝘁𝗶𝗼𝗻𝘀: Extendability. E.g., a CRD to manage a new type of resource, such as a MongoDB instance, managed by a MongoDB Operator.
-
-
-[Back to Top](#top)
-
-### **The following table shows the important native Kubernetes object types organized in categories.**
-
-
-| Category                     | Kubernetes Objects                                                                                   |
-|------------------------------|------------------------------------------------------------------------------------------------------|
-| **Workload**                 | 1. Pods                                                                                              |
-|                              | 2. ReplicaSets                                                                                       |
-|                              | 3. Deployments                                                                                       |
-|                              | 4. StatefulSets                                                                                      |
-|                              | 5. DaemonSets                                                                                        |
-|                              | 6. Jobs                                                                                              |
-|                              | 7. CronJobs                                                                                          |
-|                              | 8. Horizontal Pod Autoscaler                                                                         |
-|                              | 9. Vertical Pod Autoscaler                                                                           |
-| **Service & Networking**     | 1. Services                                                                                          |
-|                              | 2. Ingress                                                                                           |
-|                              | 3. IngressClasses                                                                                    |
-|                              | 4. Network Policies                                                                                  |
-|                              | 5. Endpoints                                                                                         |
-|                              | 6. EndpointSlices                                                                                    |
-| **Storage**                  | 1. PersistentVolumes                                                                                 |
-|                              | 2. PersistentVolumeClaims                                                                            |
-|                              | 3. StorageClasses                                                                                    |
-|**Configuration & Management**| 1. ConfigMaps                                                                                       |
-|                              | 2. Namespaces                                                                                        |
-|                              | 3. ResourceQuotas                                                                                    |
-|                              | 4. LimitRanges                                                                                       |
-|                              | 5. Pod Disruption Budgets (PDB)                                                                      |
-|                              | 6. Pod Priority and Preemption                                                                       |
-| **Security**                 | 1. Secrets                                                                                           |
-|                              | 2. ServiceAccounts (sa)                                                                              |
-|                              | 3. Roles                                                                                            |
-|                              | 4. RoleBindings                                                                                      |
-|                              | 5. ClusterRoles                                                                                      |
-|                              | 6. ClusterRoleBindings                                                                               |
-| **Metadata**                 | 1. Labels and Selectors                                                                              |
-|                              | 2. Annotations                                                                                       |
-|                              | 3. Finalizers                                                                                        |
 
 
 [Back to Top](#top)

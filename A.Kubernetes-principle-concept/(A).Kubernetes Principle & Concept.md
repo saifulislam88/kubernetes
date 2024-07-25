@@ -244,6 +244,26 @@ Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes 
 
 **There are two ways to create a Kubernetes object via `kubectl`: `Imperative` or `declarative`.**
 
+Let’s see both of them in action by creating a simple nginx pod.
+
+**Imperative Way**
+
+To run a single pod with nginx image which is called nginx:
+`kubectl run nginx --image=nginx`
+
+This will start a pod called “nginx” which uses the image “nginx” again. Let’s check if it has been created by using:
+
+kubectl get pods
+kubectl get pods
+
+Let’s delete this pod and re-create it using the declarative way.
+
+kubectl delete pod nginx
+kubectl delete pod ngnix
+
+
+
+
 
 
 ### [Kubernetes Workload Objects]()

@@ -275,7 +275,8 @@ spec:
   - name: nginx          
     image: nginx
 ```
-Pod uses apiVersion v1 ( which is the correct API version for creating a pod), kind is Pod, in the metadata section we define the name of the `pod`, `namespace`, `labels`, etc. And under `spec`, we define the containers inside the pod.\
+Pod uses apiVersion v1 ( which is the correct API version for creating a pod), kind is Pod, in the metadata section we define the name of the `pod`, `namespace`, `labels`, etc. And under `spec`, we define the containers inside the pod.
+
 To create this object we can use the **`apply` or `create`** command:\
 **`kubectl apply -f nginx-02.yaml`** or **`kubectl create -f nginx-02.yaml`**
 

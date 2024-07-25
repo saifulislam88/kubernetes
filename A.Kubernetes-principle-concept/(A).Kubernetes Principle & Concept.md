@@ -246,17 +246,41 @@ Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes 
 
 Let’s see both of them in action by creating a simple nginx pod.
 
-<h1**Imperative Way**/>
+### **Imperative Way**
 
 To run a single pod with nginx image which is called nginx:\
-**`kubectl run nginx --image=nginx`** This command will start a pod called `nginx` which uses the image `nginx`. Let’s check if it has been created by using:\
+**`kubectl run nginx-01 --image=nginx`** This command will start a pod called `nginx` which uses the image `nginx`.\
+Let’s check if it has been created by using:\
 **`kubectl get pods`**
 
 
-Let’s delete this pod and re-create it using the declarative way.
+### **Declarative Way**
 
-kubectl delete pod nginx
-kubectl delete pod ngnix
+To create the same pod in a declarative way, we need to create a `YAML` file.**The YAML file in Kubernetes for any resource must have 3 key values**: **`apiVersion`, `kind`, `metadata`.** And depending on the resource you might have a **`spec`, `data`,** etc.
+
+**`apiVersion`:** Which version of the Kubernetes API you’re using to create this object\
+**`kind:`** What kind of object that you want to create\
+**`metadata`:** Data that helps uniquely identify the object, including a name string, UID, and an optional namespace\
+**`spec`:** What state that you desire for the object
+
+So the YAML file ( let’s call nginx-02.yaml) for creating the same pod would be like this:
+
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-02
+spec:
+  containers:
+  - name: nginx          
+    image: nginx
+```
+Pod uses apiVersion v1 ( which is the correct API version for creating a pod), kind is Pod, in the metadata section we define the name of the `pod`, `namespace`, `labels`, etc. And under `spec`, we define the containers inside the pod.\
+To create this object we can use the **`apply` or `create`** command:\
+**`kubectl apply -f nginx-02.yaml`** or **`kubectl create -f nginx-02.yaml`**
+
+Note the difference between **`create`** and **`apply`** commands. **`create`** can only be used for creating a resource from scratch while **`apply`** can be used to create an object from scratch and also update a change to it. The **`-f`** basically means file.
+
 
 
 

@@ -322,19 +322,18 @@ metadata:
 
 A workload is an application running on Kubernetes.
 
-- #### Pods
-
+- #### Pods\
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
-  - **Pods in a Kubernetes cluster are used in two main ways:**\
-    - Pods that run a single container.
-    - Pods that run multiple containers that need to work together.
+ - **Pods in a Kubernetes cluster are used in two main ways:**\
+  - Pods that run a single container.
+  - Pods that run multiple containers that need to work together.
 
-  - **Creating a pod:**\
+ - **Creating a pod:**\
 
-    - Imperative way\
+  - **Imperative way**\
 **`kubectl run nginx-01 --image=nginx`**
 
-    - Declarative way\
+  - **Declarative way**\
 **`kubectl run nginx-01 --image=nginx -o yaml --dry-run=client > nginx-01.yaml`**\
 `vim nginx-01.yaml`\
 ```sh

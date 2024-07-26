@@ -320,42 +320,62 @@ metadata:
 
 ### [Kubernetes Workload Objects]()
 
-A workload is an application running on Kubernetes.
+**A workload is an application running on Kubernetes.**
 
 - #### Pods
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
   - **Pods in a Kubernetes cluster are used in two main ways:**\
-    **1**.Pods that run a single container.
+    **1**.Pods that run a single container.\
     **2**.Pods that run multiple containers that need to work together.
 
   - **Creating a pod using `Imperative way`**\
 **`kubectl run nginx-01 --image=nginx`**
 
   - **Creating a pod using `Declarative way`**\
-**`kubectl run nginx-01 --image=nginx -o yaml --dry-run=client > nginx-01.yaml`**\
-`vim nginx-01.yaml`\
+**`kubectl create ns ops`**\
+**`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml --dry-run=client > nginx-01.yaml`**\
+**`vim nginx-01.yaml`**
 ```sh
 apiVersion: v1
 kind: Pod
 metadata:
   name: nginx-01
+  namespace: dev
 spec:
   containers:
   - name: nginx
     image: nginx
 ```
-**`kubectl apply -f nginx-01.yaml`**
-
-
-
-
-`kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`       [Get List of Containers in a Pod]
+**`kubectl apply -f nginx-01.yaml`**\
+**`kubectl get pods -n ops`**
+`kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  [**Get List of Containers in a Pod**]     
   
-  #### - ReplicaSets
+- #### ReplicaSets
+
+**A ReplicaSet is used for making sure that the designated number of pods is up and running.** It is convenient to use when we are supposed to run multiple pods at a given time. ReplicaSet requires labels to understand which pods to run, a number of replicas that are supposed to run at a given time, and a template of the pod that it needs to create.
+
+**`kubectl create rs nginx --image=nginx --replicas=3 --dry-run=client -o yaml > nginx-replicaset.yaml`**
+
+
+
+
   #### - Deployments
   #### - StatefulSets
   #### - DaemonSets
+
+#### Key Differences Between Pod, ReplicaSet, Deployment, StatefulSet, and DaemonSet
+
+| **Aspect**     | **Pod** | **ReplicaSet** | **Deployment** | **StatefulSet** | **DaemonSet** |
+|----------------|---------|----------------|----------------|-----------------|---------------|
+| **Definition** | The smallest and most basic deployable object in Kubernetes. Represents a single instance of a running process in a cluster. | A controller that ensures a specified number of Pod replicas are running at any given time. | A higher-level controller that provides declarative updates to applications and manages ReplicaSets. | A controller that manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods. | A controller that ensures a copy of a Pod is running on all (or some) nodes in the cluster. |
+| **Components** | - Can contain one or more containers.<br>- All containers in a Pod share the same network namespace, IP address, and storage. | - Contains a Pod template that defines the Pods to be created.<br>- Manages the lifecycle of these Pods. | - Contains a Pod template and a ReplicaSet template.<br>- Manages the lifecycle of ReplicaSets and their Pods. | - Contains a Pod template.<br>- Provides unique identities to Pods and ensures ordered deployment and scaling. | - Contains a Pod template.<br>- Ensures a copy of the Pod runs on all (or selected) nodes. |
+| **Use Case**   | Suitable for running a single instance of an application or a single container. Rarely used directly in production. | Ensures the desired number of Pod replicas are running to provide high availability and load balancing. | Facilitates rolling updates, rollbacks, and versioning of applications. Ideal for managing stateless applications. | Suitable for stateful applications that require stable network identities and persistent storage. | Suitable for running system-level or cluster-wide services such as monitoring or logging agents on every node. |
+| **Management** | - Pods are ephemeral; once a Pod is deleted, it cannot be restored.<br>- Pods are managed by higher-level controllers such as ReplicaSets or Deployments. | - Automatically replaces Pods if they are deleted or fail.<br>- Not commonly used directly; typically managed by Deployments. | - Allows for declarative updates to Pods and ReplicaSets.<br>- Automatically manages rollouts and rollbacks, ensuring zero downtime. | - Provides guarantees about the ordering and uniqueness of Pods.<br>- Manages the lifecycle of Pods with persistent identifiers and storage. | - Ensures that a Pod is running on all (or selected) nodes.<br>- Automatically adds Pods to new nodes when they are added to the cluster. |
+| **Summary**    | Basic units of work in Kubernetes, representing a single instance of a running process. | Ensures a specified number of Pod replicas are running for high availability and fault tolerance. | Provides declarative updates and lifecycle management for applications, making it easier to handle updates, rollbacks, and scaling. | Manages stateful applications that require unique Pod identities and stable storage. | Ensures a Pod is running on all nodes, typically used for system-level services. |
+
+
+  
   #### - Jobs
   #### - CronJobs
   #### - Horizontal Pod Autoscaler

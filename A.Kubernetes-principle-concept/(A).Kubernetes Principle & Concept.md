@@ -322,23 +322,19 @@ metadata:
 
 A workload is an application running on Kubernetes.
 
-#### - Pods
+- #### Pods
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
+  - **Pods in a Kubernetes cluster are used in two main ways:**\
+    - Pods that run a single container.
+    - Pods that run multiple containers that need to work together.
 
-**- Pods in a Kubernetes cluster are used in two main ways:**
- - Pods that run a single container.
- - Pods that run multiple containers that need to work together.
+  - **Creating a pod:**\
 
-
-**- Creating a pod:**
-
-   - Imperative way
-
+    - Imperative way\
 **`kubectl run nginx-01 --image=nginx`**
 
-   - Declarative way
-
+    - Declarative way\
 **`kubectl run nginx-01 --image=nginx -o yaml --dry-run=client > nginx-01.yaml`**\
 `vim nginx-01.yaml`\
 ```sh
@@ -369,28 +365,21 @@ spec:
 
 
 
-
-
-- #### 𝗣𝗼𝗱
-
-
-- #### 𝗦𝗲𝗿𝘃𝗶𝗰𝗲
+𝗦𝗲𝗿𝘃𝗶𝗰𝗲
 
 Networking - Exposing a set of pods to other pods within the cluster. e.g., Exposing a set of Redis server pods.
 
 - #### 𝗩𝗼𝗹𝘂𝗺𝗲: Storage - Storing database files for a MySQL server running in a pod.
 
-#### - 𝗡𝗮𝗺𝗲𝘀𝗽𝗮𝗰𝗲: Workload Isolation - Segregating apps/teams/projects in a dedicated/shared cluster. e.g., Different namespaces for apps or stages like development, testing, and production.
+𝗥𝗲𝗽𝗹𝗶𝗰𝗮𝗦𝗲𝘁: Replication - Running five replicas of a web server application. e.g. Nginx server with multiple replicas for load balancing.
 
-#### - 𝗥𝗲𝗽𝗹𝗶𝗰𝗮𝗦𝗲𝘁: Replication - Running five replicas of a web server application. e.g. Nginx server with multiple replicas for load balancing.
+𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁: Management - Uses Replicaset + Rolling out a new version of a web server application. e.g. Upgrading from Nginx version 1.19 to 1.20.
 
-#### - 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁: Management - Uses Replicaset + Rolling out a new version of a web server application. e.g. Upgrading from Nginx version 1.19 to 1.20.
+𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹𝗦𝗲𝘁: State Management - Scaling a distributed database like Cassandra. e.g. Cassandra cluster with multiple nodes.
 
-#### - 𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹𝗦𝗲𝘁: State Management - Scaling a distributed database like Cassandra. e.g. Cassandra cluster with multiple nodes.
+𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁: Node Operation - Running a log collection daemon on every node. e.g. Fluentd or Filebeat for log collection.
 
-#### - 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁: Node Operation - Running a log collection daemon on every node. e.g. Fluentd or Filebeat for log collection.
-
-#### - 𝗝𝗼𝗯: Task Execution - Processing a large compute job using several workers. e.g. A data processing job using Apache Spark.
+𝗝𝗼𝗯: Task Execution - Processing a large compute job using several workers. e.g. A data processing job using Apache Spark.
 
 #### - 𝗖𝗿𝗼𝗻𝗝𝗼𝗯: Scheduled Tasks - Running a batch job at specific times. e.g. A nightly backup job.
 

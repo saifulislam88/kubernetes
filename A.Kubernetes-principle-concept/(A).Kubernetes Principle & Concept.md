@@ -322,7 +322,7 @@ metadata:
 
 **A workload is an application running on Kubernetes.**
 
-- ## 🚀Pods
+## 🚀Pods
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
    - **Pods in a Kubernetes cluster are used in two main ways:**\

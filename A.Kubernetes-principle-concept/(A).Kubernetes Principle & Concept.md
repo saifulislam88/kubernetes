@@ -283,8 +283,38 @@ To create this object we can use the **`apply` or `create`** command:\
 Note the difference between **`create`** and **`apply`** commands. **`create`** can only be used for creating a resource from scratch while **`apply`** can be used to create an object from scratch and also update a change to it. The **`-f`** basically means file.
 
 
+### **Namespaces**
+
+Kubernetes supports multiple virtual clusters backed by the same physical cluster. These virtual clusters are called **`namespaces`**. It is mainly used for Workload Isolation - Segregating apps/teams/projects in a dedicated/shared cluster. e.g., Different namespaces for apps or stages like development, testing, and production.
 
 
+For checking the existing namespaces:\
+**`kubectl get namespaces`** or **`kubectl get ns`**
+
+Let’s start by creating namespaces.\
+**`kubectl create namespace namespace1`**   **[Imperative Way]**
+
+Or **[Declarative Way]**
+
+```sh
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: namespace2
+```
+**`kubectl apply -f namespace2.yaml`**
+
+**Here's some suitable command for managing `namesapce` object**\
+
+**`kubectl run nginx --image --namespace=namespace1`**\
+**`kubectl get pods`**\
+**`kubectl get namespaces`**\
+**`kubectl get pods -n namespace1`  or `kubectl get pods --namespace=namespace1`**\
+**`kubectl get pods --all-namespaces`**\
+**`kubectl get pods --all-namespaces -o wide`**\
+**`kubectl get namespace --no-headers | wc -l`**\
+**`kubectl config set-context --current --namespace=namespace1`**\
+**`kubectl delete namespace namespace1`**\
 
 
 
@@ -292,15 +322,15 @@ Note the difference between **`create`** and **`apply`** commands. **`create`** 
 
 A workload is an application running on Kubernetes.
 
-  ### - Pods
-  ### - ReplicaSets
-  ### - Deployments
-  ### - StatefulSets
-  ### - DaemonSets
-  ### - Jobs
-  ### - CronJobs
-  ### - Horizontal Pod Autoscaler
-  ### - Vertical Pod Autoscaler
+  #### - Pods
+  #### - ReplicaSets
+  #### - Deployments
+  #### - StatefulSets
+  #### - DaemonSets
+  #### - Jobs
+  #### - CronJobs
+  #### - Horizontal Pod Autoscaler
+  #### - Vertical Pod Autoscaler
 
 
 

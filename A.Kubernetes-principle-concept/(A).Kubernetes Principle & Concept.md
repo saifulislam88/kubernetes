@@ -322,7 +322,7 @@ metadata:
 
 **A workload is an application running on Kubernetes.**
 
-- ### Pods
+- ## 🚀Pods
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
    - **Pods in a Kubernetes cluster are used in two main ways:**\
@@ -351,7 +351,7 @@ spec:
 **`kubectl get pods -n ops`**
 `kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  [**Get List of Containers in a Pod**]     
   
-- ### ReplicaSets
+- ## ReplicaSets
 
 **A ReplicaSet is used for making sure that the designated number of pods is up and running.** It is convenient to use when we are supposed to run multiple pods at a given time. ReplicaSet requires labels to understand which pods to run, a number of replicas that are supposed to run at a given time, and a template of the pod that it needs to create.
 
@@ -360,9 +360,9 @@ spec:
 
 
 
-  ### - Deployments
-  ### - StatefulSets
-  ### - DaemonSets
+  ## - Deployments
+  ## - StatefulSets
+  ## - DaemonSets
 
 #### Key Differences Between Pod, ReplicaSet, Deployment, StatefulSet, and DaemonSet
 

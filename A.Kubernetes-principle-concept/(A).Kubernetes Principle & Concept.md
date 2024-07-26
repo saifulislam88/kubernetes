@@ -21,7 +21,7 @@
        - [coredns](#coredns)
 - [Kubernetes Native Objects]()
   - [Kubernetes Workload Objects]()
-      - Pods
+      - [Pods](#pods)
       - ReplicaSets
       - Deployments
       - StatefulSets

@@ -22,14 +22,14 @@
 - [Kubernetes Native Objects]()
   - [Kubernetes Workload Objects]()
       - [Pods](#pods)
-      - ReplicaSets
-      - Deployments
-      - StatefulSets
-      - DaemonSets
-      - Jobs
-      - CronJobs
-      - Horizontal Pod Autoscaler
-      - Vertical Pod Autoscaler
+      - [ReplicaSets](#ReplicaSets)
+      - [Deployments](Deployments)
+      - [StatefulSets](StatefulSets)
+      - [DaemonSets](DaemonSets)
+      - [Jobs]()
+      - [CronJobs]()
+      - [Horizontal Pod Autoscaler[
+      - [Vertical Pod Autoscaler[
   - [Kubernetes Service & Networking Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-services-type)
       - [ClusterIP](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
       - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
@@ -304,9 +304,9 @@ metadata:
 ```
 **`kubectl apply -f namespace2.yaml`**
 
-**Here's some suitable command for managing `namesapce` object**\
+**Here's some suitable command for managing `namesapce` object**
 
-**`kubectl run nginx --image --namespace=namespace1`**\
+**`kubectl run nginx --image=nginx --namespace=namespace1`**\
 **`kubectl get pods`**\
 **`kubectl get namespaces`**\
 **`kubectl get pods -n namespace1`  or `kubectl get pods --namespace=namespace1`**\
@@ -314,7 +314,7 @@ metadata:
 **`kubectl get pods --all-namespaces -o wide`**\
 **`kubectl get namespace --no-headers | wc -l`**\
 **`kubectl config set-context --current --namespace=namespace1`**\
-**`kubectl delete namespace namespace1`**\
+**`kubectl delete namespace namespace1`**
 
 
 
@@ -325,14 +325,14 @@ metadata:
 ## 🚀Pods
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
-   - **Pods in a Kubernetes cluster are used in two main ways:**\
-    **1**.Pods that run a single container.\
-    **2**.Pods that run multiple containers that need to work together.
+   - ### **Pods in a Kubernetes cluster are used in two main ways:**\
+    **1**. Pods that run a single container.\
+    **2**. Pods that run multiple containers that need to work together.
 
-   - **Creating a pod using `Imperative way`**\
+   - ### **Creating a pod using `Imperative way`**\
 **`kubectl run nginx-01 --image=nginx`**
 
-   - **Creating a pod using `Declarative way`**\
+   - ### **Creating a pod using `Declarative way`**\
 **`kubectl create ns ops`**\
 **`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml --dry-run=client > nginx-01.yaml`**\
 **`vim nginx-01.yaml`**
@@ -351,13 +351,44 @@ spec:
 **`kubectl get pods -n ops`**
 `kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  [**Get List of Containers in a Pod**]     
   
-- ## ReplicaSets
+- ## 🚀ReplicaSets
 
 **A ReplicaSet is used for making sure that the designated number of pods is up and running.** It is convenient to use when we are supposed to run multiple pods at a given time. ReplicaSet requires labels to understand which pods to run, a number of replicas that are supposed to run at a given time, and a template of the pod that it needs to create.
 
 **`kubectl create rs nginx --image=nginx --replicas=3 --dry-run=client -o yaml > nginx-replicaset.yaml`**
 
+```sh
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-08
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+```
 
+Please note that it is not using **apiVersion “v1”** but “**apps/v1**”. We define a label in replica set metadata and use it as a selector under spec. With Replicas ( spec.replicas) we defined the number of replicas that should be up and running. And on the template ( spec.template), we put the information about the pod that we want to be created.
+
+**`kubectl apply -f nginx-replicaset.yaml`**
+**`kubectl get pods`**
+
+Please observe that it takes the name of the replica set and attaches a random value next to it as a pod name ( i.e nginx-cn5wq). Let’s see the replica set in action by forcefully deleting a pod.
+
+**`kubectl delete pod <pod-name>`**
+**`kubectl get pods`**
+**`kubectl get replicasets`**
 
 
   ## - Deployments

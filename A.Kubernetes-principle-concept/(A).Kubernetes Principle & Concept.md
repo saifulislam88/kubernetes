@@ -381,13 +381,13 @@ spec:
 
 Please note that it is not using **apiVersion “v1”** but “**apps/v1**”. We define a label in replica set metadata and use it as a selector under spec. With Replicas ( spec.replicas) we defined the number of replicas that should be up and running. And on the template ( spec.template), we put the information about the pod that we want to be created.
 
-**`kubectl apply -f nginx-replicaset.yaml`**
+**`kubectl apply -f nginx-replicaset.yaml`**\
 **`kubectl get pods`**
 
 Please observe that it takes the name of the replica set and attaches a random value next to it as a pod name ( i.e nginx-cn5wq). Let’s see the replica set in action by forcefully deleting a pod.
 
-**`kubectl delete pod <pod-name>`**
-**`kubectl get pods`**
+**`kubectl delete pod <pod-name>`**\
+**`kubectl get pods`**\
 **`kubectl get replicasets`**
 
 

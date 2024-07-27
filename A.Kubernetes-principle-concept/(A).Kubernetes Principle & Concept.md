@@ -325,14 +325,14 @@ metadata:
 ## 🚀Pods
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
-   - ### **Pods in a Kubernetes cluster are used in two main ways:**\
-    **1**. Pods that run a single container.\
-    **2**. Pods that run multiple containers that need to work together.
+   - ### **Pods in a Kubernetes cluster are used in two main ways:**
+   **1**. Pods that run a single container.\
+   **2**. Pods that run multiple containers that need to work together.
 
-   - ### **Creating a pod using `Imperative way`**\
+   - ### **Creating a pod using `Imperative way`**
 **`kubectl run nginx-01 --image=nginx`**
 
-   - ### **Creating a pod using `Declarative way`**\
+   - ### **Creating a pod using `Declarative way`**
 **`kubectl create ns ops`**\
 **`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml --dry-run=client > nginx-01.yaml`**\
 **`vim nginx-01.yaml`**
@@ -351,7 +351,7 @@ spec:
 **`kubectl get pods -n ops`**
 `kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  [**Get List of Containers in a Pod**]     
   
-- ## 🚀ReplicaSets
+## 🚀ReplicaSets
 
 **A ReplicaSet is used for making sure that the designated number of pods is up and running.** It is convenient to use when we are supposed to run multiple pods at a given time. ReplicaSet requires labels to understand which pods to run, a number of replicas that are supposed to run at a given time, and a template of the pod that it needs to create.
 
@@ -391,9 +391,9 @@ Please observe that it takes the name of the replica set and attaches a random v
 **`kubectl get replicasets`**
 
 
-  ## - Deployments
-  ## - StatefulSets
-  ## - DaemonSets
+## 🚀Deployments
+## 🚀StatefulSets
+## 🚀DaemonSets
 
 #### Key Differences Between Pod, ReplicaSet, Deployment, StatefulSet, and DaemonSet
 

@@ -40,6 +40,14 @@
       - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress)
         - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
           - [MetalLB | BareMetal LB](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
+  - [Kubernetes Scheduling]()
+       - Manual Scheduling
+       - Labeling and Node Selector
+       - Node Affinity | Anti-Affinity
+       - Taints and Tolerations
+       - Resource Management
+    
+    
   - [Kubernetes Configuration & Management Objects]
       - ConfigMaps
       - Namespaces

@@ -185,7 +185,7 @@ API server is the central management component of the Kubernetes control plane t
 
 Scheduler is responsible for tracking utilization of working load on cluster nodes. Scheduler watches when a new Pod is created, this component assigns it to a node for execution based on resource requirements, policies, and ‘affinity’ specifications regarding geolocation and interference with other workloads.
 
-   - Watches newly created Pods and assigns them to a worker node based on resource availability and constraints.
+   - Watches newly created Pods and assigns them to a worker node based on resource availability and constraints(like taints, tolerations, labels, and node affinity)
    - Ensures efficient resource utilization.
 
 

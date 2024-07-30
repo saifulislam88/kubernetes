@@ -46,8 +46,6 @@
        - Node Affinity | Anti-Affinity
        - Taints and Tolerations
        - Resource Management
-    
-    
   - [Kubernetes Configuration & Management Objects]
       - ConfigMaps
       - Namespaces

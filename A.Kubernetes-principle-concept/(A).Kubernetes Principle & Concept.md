@@ -777,16 +777,7 @@ NGINX/Traefik, and HAProxy Ingress Controller is a Kubernetes-native load balanc
 ### MetalLB | BareMetal LB
 https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 
-
 ## Kubernetes Scheduling
-
-
-Kubernetes scheduling is the process and responsible for assigning pods to the matched nodes in a cluster.It also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. The scheduler evaluates the resource requirements of each pod (such as CPU and memory) and considers constraints rules like taints, tolerations, labels, and node affinity to determine the best node for the pod.So Scheduling in Kubernetes is a core component as it aims to schedule the pod to a correct and available node. While the scheduler decides which node a pod should run on(Only decides, does not put the pod on that node), kubelet assigns pods to a  node that retrieves the pod definition from the API and starts the pod by creating the necessary resources and containers.
-
-It chooses the optimal node based on Kubernetes’ scheduling principles and rules
-
-
-# Kubernetes Scheduling
 
 **Kubernetes scheduling is the process and key responsible for deciding pods to the matched nodes in a cluster. This feature is also used to prevent pods from being scheduled on the master node, ensuring the master node remains free from taking on workloads.** So it aims to schedule the pod to a correct and available node. While the scheduler decides which node a pod should run on (it only decides and does not put the pod on that node), **the kubelet on the assigned node retrieves the pod definition from the API and starts the pod by creating the necessary resources and containers.** The scheduler evaluates the resource requirements of each pod (such as CPU and memory) and **considers constraint rules like** **`taints`, `tolerations`, `labels`, and `node affinity`** to determine the best node for the pod. 
 **It chooses the optimal node based on Kubernetes’ scheduling principles and rules.**

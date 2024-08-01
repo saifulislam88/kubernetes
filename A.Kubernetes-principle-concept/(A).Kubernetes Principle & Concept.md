@@ -783,12 +783,20 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 **It chooses the optimal node based on Kubernetes’ scheduling principles and rules.**
 
 - [Manual Scheduling](#Manual-Scheduling)
-- Labeling
-- Node Selector
-- Node Affinity | Anti-Affinity
-- Taints and Tolerations
+   - [NodeName](#nodename)
+   - [Node Selector](#Node-Selector)
+
+- [Automatic Scheduling](#Automatic-Scheduling)
+   - [Taints and Tolerations](#Taints-and-Tolerations)
+   - [Node Affinity](#Node-Affinity)
 
 ### Manual Scheduling
+
+If a node has a **taint** and you try to manually schedule a pod on that node without adding the corresponding **toleration** to the pod, the pod will not be scheduled successfully.
+Manual scheduling does not override taints. You still need to ensure the pod has the necessary tolerations if the node has taints. **Node affinity** rules are not strictly enforced during manual scheduling. If you manually schedule a pod to a node, Kubernetes will place the pod on that node even if it does not meet the node affinity rules specified in the pod spec.
+
+
+- #### nodeName
 
 We can manually schedule our pods on the whichever node we want. Let us have a look at all how it really happens. Every POD has a field called **`nodeName`** that by default is not set and kube-scheduler sets it on its own. So if one needs to manually schedule a pod, then they just need to set the **`nodeName**` **property in the pod definition file under the spec section.**
 
@@ -796,27 +804,62 @@ We can manually schedule our pods on the whichever node we want. Let us have a l
 
 
 For instance, let’s create our beloved nginx pod once again by assigning a node name this time.\
-**`kubectl run manual-schedule-pod --image=nginx -o yaml --dry-run=client > manual-schedule-pod.yaml`**\
-**`vim manual-schedule-pod.yaml`**\
+**`kubectl run manual-scheduling-nodeName-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeName-pod.yaml`**\
+**`vim manual-schedule-pod.yaml`**
 ```sh
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: manual-scheduling-nodeName-pod
 spec:      
   containers:
   - name: nginx          
     image: nginx
-  nodeName: node-02
+  nodeName: node-02    # Specify the exact node name here
 ```
-**`kubectl apply -f manual-schedule-pod.yaml`**\
+**`kubectl apply -f manual-scheduling-nodeName-pod.yaml`**\
 **`kubectl get pods -o wide`**
 
-### Labeling
-### Node Selector
-### Node Affinity | Anti-Affinity
-### Taints and Tolerations
-### Taints/Toleration and Node Affinity
+- #### Node Selector | label
+
+nodeSelector is that the simplest recommendation for scheduling a pod on a specific node. If you want to run your pods on a specific set of nodes, use nodeSelector to ensure that happens. You can define the nodeSelector field as a set of key-value pairs in `PodSpec`:
+
+**`kubectl label nodes node-01 disktype=ssd`**       # Label a Node - kubectl label nodes <node-name> <key>=<value>\
+**`kubectl get nodes -l disktype=ssd`**              # Get Nodes with Specific Labels - kubectl get nodes -l <key>=<value>\
+**`kubectl describe node kb8-worker-1`**
+
+**A Pod config file with a nodeSelector section:**
+
+**`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**\
+**`vim manual-scheduling-nodeSelector-pod`**
+
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: manual-scheduling-nodeSelector-pod
+  labels:
+    env: prod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+  nodeSelector:
+    disktype: ssd  # Specify the exact node label here for nodeSelector
+```
+
+**`kubectl apply -f manual-scheduling-nodeSelector-pod.yaml`**
+
+**`kubectl get pods -o wide`**
+**`kubectl label nodes node-01 disktype=ssd-`**      # Remove a Label from a Node - kubectl label nodes <node-name> <key>-
+
+
+### Automatic Scheduling
+
+- #### Node Affinity
+- #### Taints and Tolerations
+- #### Taints/Toleration and Node Affinity
 
 
 

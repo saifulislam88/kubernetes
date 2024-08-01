@@ -41,11 +41,12 @@
         - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
           - [MetalLB | BareMetal LB](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
   - [Kubernetes Scheduling](#Kubernetes-Scheduling)
-       - Manual Scheduling
-       - Labeling and Node Selector
-       - Node Affinity | Anti-Affinity
-       - Taints and Tolerations
-       - Resource Management
+      - [Manual Scheduling](#Manual-Scheduling)
+        - [NodeName](#nodename)
+        - [Node Selector](#Node-Selector)
+      - [Automatic Scheduling](#Automatic-Scheduling)
+        - [Taints and Tolerations](#Taints-and-Tolerations)
+        - [Node Affinity](#Node-Affinity)
   - [Kubernetes Configuration & Management Objects]
       - ConfigMaps
       - Namespaces
@@ -785,7 +786,6 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 - [Manual Scheduling](#Manual-Scheduling)
    - [NodeName](#nodename)
    - [Node Selector](#Node-Selector)
-
 - [Automatic Scheduling](#Automatic-Scheduling)
    - [Taints and Tolerations](#Taints-and-Tolerations)
    - [Node Affinity](#Node-Affinity)

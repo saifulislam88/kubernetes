@@ -782,13 +782,36 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 **Kubernetes scheduling is the process and key responsible for deciding which pods are assigned to the matched nodes in a cluster. This feature is also used to prevent pods from being scheduled on the master node, ensuring the master node remains free from taking on workloads.** So it aims to schedule the pod to a correct and available node. While the scheduler decides which node a pod should run on (it only decides and does not put the pod on that node), **the kubelet on the assigned node retrieves the pod definition from the API and starts the pod by creating the necessary resources and containers.** The scheduler evaluates the resource requirements of each pod (such as CPU and memory) and **considers constraint rules like** **`taints`, `tolerations`, `labels`, and `node affinity`** to determine the best node for the pod. 
 **It chooses the optimal node based on Kubernetes’ scheduling principles and rules.**
 
-- Manual Scheduling
+- [Manual Scheduling](#Manual-Scheduling)
 - Labeling
 - Node Selector
 - Node Affinity | Anti-Affinity
 - Taints and Tolerations
 
 ### Manual Scheduling
+
+We can manually schedule our pods on the whichever node we want. Let us have a look at all how it really happens. Every POD has a field called **`nodeName`** that by default is not set and kube-scheduler sets it on its own. So if one needs to manually schedule a pod, then they just need to set the **`nodeName**` **property in the pod definition file under the spec section.**
+
+**Note:** Above method only works when pod is still not created. If the pod is created and already running, then this method won’t work.
+
+
+For instance, let’s create our beloved nginx pod once again by assigning a node name this time.\
+**`kubectl run manual-schedule-pod --image=nginx -o yaml --dry-run=client > manual-schedule-pod.yaml`**\
+**`vim manual-schedule-pod.yaml`**\
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:      
+  containers:
+  - name: nginx          
+    image: nginx
+  nodeName: node-02
+```
+**`kubectl apply -f manual-schedule-pod.yaml`**\
+**`kubectl get pods -o wide`**
+
 ### Labeling
 ### Node Selector
 ### Node Affinity | Anti-Affinity

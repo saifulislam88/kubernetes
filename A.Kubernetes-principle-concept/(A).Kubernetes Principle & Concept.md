@@ -361,7 +361,7 @@ metadata:
 
 
 ## [Kubernetes Native Objects]()
-- [Kubernetes Workload Objects]()
+- [Kubernetes Workload Objects](#kubernetes-workload-objects)
 - [Kubernetes Service & Networking Objects]()
 - [Kubernetes Scheduling]()
 - [Kubernetes Configuration & Management Objects]()
@@ -532,8 +532,8 @@ Networking - Exposing a set of pods to other pods within the cluster. e.g., Expo
 
 [Back to Top](#top)
 
-
-## [Kubernetes Services Type]((https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-services-type))
+## [Kubernetes Service & Networking Objects]()
+## [Kubernetes Services Type](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-services-type)
 
 A service is an abstract mechanism for exposing pods on a network. Kubernetes workloads aren’t network-visible by default. You make containers available to the local or outside world by creating a service. Service resources route traffic into the containers within pods. Kubernetes supports several ways of getting external traffic into your cluster. 
 
@@ -547,6 +547,7 @@ A Service identifies its member Pods with a selector. For a Pod to be a member o
 
 The following Service manifest has a selector that specifies two labels. The selector field says any Pod that has both the app: metrics label and the department: engineering label is a member of this
  
+```sh
   Service.
   apiVersion: v1
   kind: Service
@@ -557,21 +558,22 @@ The following Service manifest has a selector that specifies two labels. The sel
       app: metrics
       department: engineering
     ports:
-    ...
+```
 
+**[Kubernetes Services Type]()**
 
-[**1.ClusterIP,**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
+[**1.ClusterIP,**](#1-clusteripdefault)
  
-[**2.NodePort,**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
+[**2.NodePort,**](#2-nodeport)
 
-[**3.LoadBalancer,**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-loadbalancer)
+[**3.LoadBalancer,**](#2-loadbalancer)
  
-[**4.ExternalName,**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#4-externalname)
+[**4.ExternalName,**](#4-externalname)
  
-**5.Headless**
+[**5.Headless**]()
 
 
-### [1. ClusterIP(Default)](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
+### [1. ClusterIP(Default)]()
 
 **ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: ClusterIP**
 

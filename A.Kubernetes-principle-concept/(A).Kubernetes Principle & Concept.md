@@ -360,6 +360,14 @@ metadata:
 **`kubectl delete namespace namespace1`**
 
 
+## [Kubernetes Native Objects]()
+- [Kubernetes Workload Objects]()
+- [Kubernetes Service & Networking Objects]()
+- [Kubernetes Scheduling]()
+- [Kubernetes Configuration & Management Objects]()
+- [Kubernetes Storage Management Objects]()
+- [Kubernetes Security Objects]()
+- [Kubernetes Metadata Objects]()
 
 ### [Kubernetes Workload Objects]()
 

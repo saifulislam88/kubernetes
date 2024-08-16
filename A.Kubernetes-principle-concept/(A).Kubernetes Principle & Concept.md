@@ -368,19 +368,21 @@ metadata:
 ## 🚀Pods
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
-**Pods in a Kubernetes cluster are used in two main ways:**\
+**Pods in a Kubernetes cluster are used in two main ways:**
+
    **1**. Pods that run a single container.\
    **2**. Pods that run multiple containers that need to work together.
 
 We can create pods in Kubernetes Cluster in two method which already know.
   
-**Creating a pod using `Imperative way`**\
+**1. Creating a pod using `Imperative way`**\
 **`kubectl run nginx-01 --image=nginx`**
 
-**Creating a pod using `Declarative way`**
+**2. Creating a pod using `Declarative way`**\
 **`kubectl create ns ops`**\
 **`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml --dry-run=client > nginx-01.yaml`**\
 **`vim nginx-01.yaml`**
+
 ```sh
 apiVersion: v1
 kind: Pod

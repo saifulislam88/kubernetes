@@ -396,8 +396,10 @@ spec:
 ```
 **`kubectl apply -f nginx-01.yaml`**\
 **`kubectl get pods -n ops`**
-`kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  [**Get List of Containers in a Pod**]     
-  
+
+**Get List of Containers in a specific Pod**\     
+`kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  
+<br>
 ## 🚀ReplicaSets
 
 **A ReplicaSet is used for making sure that the designated number of pods is up and running.** It is convenient to use when we are supposed to run multiple pods at a given time. ReplicaSet requires labels to understand which pods to run, a number of replicas that are supposed to run at a given time, and a template of the pod that it needs to create.

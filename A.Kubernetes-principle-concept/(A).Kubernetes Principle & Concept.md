@@ -361,14 +361,21 @@ metadata:
 **`kubectl delete namespace namespace1`**
 
 
-## [Kubernetes Native Objects]()
+## [Kubernetes Native Objects](#Kubernetes-Native-Objects)
+
+Kubernetes objects are persistent entities in the Kubernetes system that represent the state of your cluster. These objects are the fundamental components that describe what resources are present, what applications are running, and how they behave. They are essential because they allow you to define the desired state of your applications and infrastructure in a declarative manner. By managing Kubernetes objects, you can control everything from workloads to networking, storage, and security within your cluster.
+
+Kubernetes objects are the core building blocks that define and control the state of your Kubernetes cluster. Here are crucial Kubernetes Native Head Objects:
+
+
 - [Kubernetes Workload Objects](#kubernetes-workload-objects)
-- [Kubernetes Service & Networking Objects]()
-- [Kubernetes Scheduling]()
-- [Kubernetes Configuration & Management Objects]()
-- [Kubernetes Storage Management Objects]()
-- [Kubernetes Security Objects]()
-- [Kubernetes Metadata Objects]()
+- [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
+- [Kubernetes Scheduling](#Kubernetes-Scheduling)
+- [Kubernetes Configuration & Management Objects](#Kubernetes-Configuration--Management-Objects)
+- [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
+- [Kubernetes Security Objects](#Kubernetes-Security-Objects)
+- [Kubernetes Metadata Objects](#Kubernetes-Metadata-Objects)
+
 
 ### [Kubernetes Workload Objects]()
 
@@ -533,7 +540,7 @@ Networking - Exposing a set of pods to other pods within the cluster. e.g., Expo
 
 [Back to Top](#top)
 
-## [Kubernetes Service & Networking Objects]()
+## [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
 
 
 A service is an abstract mechanism for exposing pods on a network. Kubernetes workloads aren’t network-visible by default. You make containers available to the local or outside world by creating a service. Service resources route traffic into the containers within pods. Kubernetes supports several ways of getting external traffic into your cluster. 
@@ -562,10 +569,10 @@ The following Service manifest has a selector that specifies two labels. The sel
 ```
 ## [Kubernetes Services Type](#kubernetes-services-type)
 
-[**1.ClusterIP,**](#1-clusteripdefault)\
-[**2.NodePort,**](#2-nodeport)\
-[**3.LoadBalancer,**](#2-loadbalancer)\
-[**4.ExternalName,**](#4-externalname)\
+[**1.ClusterIP**](#1-clusteripdefault)\
+[**2.NodePort**](#2-nodeport)\
+[**3.LoadBalancer**](#2-loadbalancer)\
+[**4.ExternalName**](#4-externalname)\
 [**5.Headless**]()
 
 

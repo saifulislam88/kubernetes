@@ -367,9 +367,9 @@ metadata:
 
 ## 🚀Pods
 
-Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.\
-**Pods in a Kubernetes cluster are used in two main ways:**
+Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.
 
+**Pods in a Kubernetes cluster are used in two main ways:**\
    **1**. Pods that run a single container.\
    **2**. Pods that run multiple containers that need to work together.
 
@@ -397,7 +397,7 @@ spec:
 **`kubectl apply -f nginx-01.yaml`**\
 **`kubectl get pods -n ops`**
 
-**Get List of Containers in a specific Pod**\     
+**Get List of Containers in a specific Pod**     
 `kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  
 <br>
 ## 🚀ReplicaSets

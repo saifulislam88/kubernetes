@@ -30,7 +30,8 @@
       - [CronJobs]()
       - [Horizontal Pod Autoscaler[
       - [Vertical Pod Autoscaler[
-  - [Kubernetes Service & Networking Objects](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-services-type)
+  - [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
+    - [Kubernetes Services Type](#kubernetes-services-type)
       - [ClusterIP](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
       - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
       - [LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#3-loadbalancer)
@@ -533,7 +534,7 @@ Networking - Exposing a set of pods to other pods within the cluster. e.g., Expo
 [Back to Top](#top)
 
 ## [Kubernetes Service & Networking Objects]()
-## [Kubernetes Services Type](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-services-type)
+
 
 A service is an abstract mechanism for exposing pods on a network. Kubernetes workloads aren’t network-visible by default. You make containers available to the local or outside world by creating a service. Service resources route traffic into the containers within pods. Kubernetes supports several ways of getting external traffic into your cluster. 
 
@@ -559,17 +560,12 @@ The following Service manifest has a selector that specifies two labels. The sel
       department: engineering
     ports:
 ```
+## [Kubernetes Services Type](#kubernetes-services-type)
 
-**[Kubernetes Services Type]()**
-
-[**1.ClusterIP,**](#1-clusteripdefault)
- 
-[**2.NodePort,**](#2-nodeport)
-
-[**3.LoadBalancer,**](#2-loadbalancer)
- 
-[**4.ExternalName,**](#4-externalname)
- 
+[**1.ClusterIP,**](#1-clusteripdefault)\
+[**2.NodePort,**](#2-nodeport)\
+[**3.LoadBalancer,**](#2-loadbalancer)\
+[**4.ExternalName,**](#4-externalname)\
 [**5.Headless**]()
 
 

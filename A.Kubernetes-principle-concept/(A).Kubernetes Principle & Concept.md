@@ -70,6 +70,35 @@
 ----
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 
+## Kubernetes Learning Path
+
+#### 1. Kubernetes Basics
+- The foundation of Kubernetes knowledge.
+
+#### 2. Hosting Applications on Kubernetes
+- Moving to practical application hosting.
+
+#### 3. Focus on One Type of Application
+- Concentrating on specific types of applications.
+
+#### 4. Application Types:
+- **Stateless Apps:** Simple applications without state.
+- **Stateful Apps:** Applications that maintain state, such as databases.
+- **Caching Services:** Memory-based caching systems.
+- **Queuing Services:** Message queuing systems.
+- **Database Clusters:** Stateful systems with specific needs.
+- **Storage Solutions:** External storage like NFS.
+
+#### 5. Understand Specific Requirements & Design Patterns
+- Delving into the nuances of each application type.
+
+#### 6. Incremental Learning Approach
+- Gradually learning each type without feeling overwhelmed.
+
+#### 7. Master Observability
+- Focus on monitoring, logging, and tracing to gain deep insights into your applications and infrastructure.
+
+
 ## Before we beginning Kubernetes, let's cover some basic ideas
 
    **1.Local Deployment (Own Computer/Laptop)**

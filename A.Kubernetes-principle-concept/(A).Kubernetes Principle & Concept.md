@@ -19,7 +19,7 @@
        - [kube-proxy](#kube-proxy)
        - [Container Runtime Interface(CRI)](#Container-Runtime-Interface-CRI)
        - [coredns](#coredns)
-- [Kubernetes Native Objects](#kubernetes-native-objects-1)
+- [Kubernetes Native Objects](#kubernetes-native-objects)
   - [Kubernetes Workload Objects](#Kubernetes-Workload-Objects)
       - [Pods](#pods)
       - [ReplicaSets](#ReplicaSets)
@@ -272,8 +272,26 @@ This component communicates with the control plane. **So Kubelet is an agent app
 [Back to Top](#top)
 
 
+## [Kubernetes Native Objects](#Kubernetes-Native-Objects)
 
-## Kubernetes Native Objects
+Kubernetes objects are persistent entities in the Kubernetes system that represent the state of your cluster. These objects are the fundamental components that describe what resources are present, what applications are running, and how they behave. They are essential because they allow you to define the desired state of your applications and infrastructure in a declarative manner. By managing Kubernetes objects, you can control everything from workloads to networking, storage, and security within your cluster.
+
+Kubernetes objects are the core building blocks that define and control the state of your Kubernetes cluster. Here are crucial Kubernetes Native Head Objects:
+
+
+- [Kubernetes Workload Objects](#kubernetes-workload-objects)
+- [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
+- [Kubernetes Scheduling](#Kubernetes-Scheduling)
+- [Kubernetes Configuration & Management Objects](#Kubernetes-Configuration--Management-Objects)
+- [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
+- [Kubernetes Security Objects](#Kubernetes-Security-Objects)
+- [Kubernetes Metadata Objects](#Kubernetes-Metadata-Objects)
+
+
+
+
+
+
 
 In this article, we will explore Kubernetes objects together. Assuming you have created your Kubernetes cluster using one of the provided methods such as [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download), [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation), or [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md), we can now dive into the world of Kubernetes objects.
 
@@ -361,21 +379,6 @@ metadata:
 **`kubectl delete namespace namespace1`**
 
 
-## [Kubernetes Native Objects](#Kubernetes-Native-Objects)
-
-Kubernetes objects are persistent entities in the Kubernetes system that represent the state of your cluster. These objects are the fundamental components that describe what resources are present, what applications are running, and how they behave. They are essential because they allow you to define the desired state of your applications and infrastructure in a declarative manner. By managing Kubernetes objects, you can control everything from workloads to networking, storage, and security within your cluster.
-
-Kubernetes objects are the core building blocks that define and control the state of your Kubernetes cluster. Here are crucial Kubernetes Native Head Objects:
-
-
-- [Kubernetes Workload Objects](#kubernetes-workload-objects)
-- [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
-- [Kubernetes Scheduling](#Kubernetes-Scheduling)
-- [Kubernetes Configuration & Management Objects](#Kubernetes-Configuration--Management-Objects)
-- [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
-- [Kubernetes Security Objects](#Kubernetes-Security-Objects)
-- [Kubernetes Metadata Objects](#Kubernetes-Metadata-Objects)
-
 
 ### [Kubernetes Workload Objects]()
 
@@ -396,7 +399,8 @@ So We can create pods in Kubernetes Cluster in two method which already we know.
 
 **2.📌Creating a pod using `Declarative way`**\
 **`kubectl create ns ops`**\
-**`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml --dry-run=client > nginx-01.yaml`**\
+**`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml --dry-run=client > nginx-01.yaml`**
+
 **`vim nginx-01.yaml`**
 
 ```sh
@@ -416,11 +420,17 @@ spec:
 **Get List of Containers in a specific Pod**     
 `kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  
 <br>
+
+
 ## 🚀ReplicaSets
 
 **A ReplicaSet is used for making sure that the designated number of pods is up and running.** It is convenient to use when we are supposed to run multiple pods at a given time. ReplicaSet requires labels to understand which pods to run, a number of replicas that are supposed to run at a given time, and a template of the pod that it needs to create.
 
 **`kubectl create rs nginx --image=nginx --replicas=3 --dry-run=client -o yaml > nginx-replicaset.yaml`**
+
+
+vim nginx-replicaset.yaml`
+
 
 ```sh
 apiVersion: apps/v1

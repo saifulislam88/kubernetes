@@ -37,13 +37,13 @@ We know that there are different methods for deploying Kubernetes clusters. From
 
 [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md)\
 [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download)\
-[Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+[Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)\
 **K3s**\
 **Managed Kubernetes Services - GKE | EKS | AKS**\
 **Kops**\
 **MicroK8s**\
 **RKE (Rancher Kubernetes Engine)**\
-**OpenShift**\
+**OpenShift**
 
 
 ### Pre-requisites | Environment

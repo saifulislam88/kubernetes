@@ -30,10 +30,20 @@
 **A Kubernetes (K8s) cluster is a group of master nodes, or worker machines, that run containerized applications**. So a cluster contains a control plane and one or more compute machines, or nodes. The control plane is responsible for maintaining the desired state of the cluster, such as which applications are running and which container images they use. Nodes actually run the applications and workloads.
 
 
-Kubernetes it’s a scalable orchestration technology, it can start from single node installation, up to the huge HA clusters, based on hundreds nodes inside. Most of the popular cloud providers, represent the different kind of Kubernetes implementations, so you can start using it very fast and easy in there. But there is a lot of situations and lot of companies that can’t use clouds for their needs, but they wanna get all benefits from the modern technologies of using containers also. And there bare metal Kubernetes installation comes on the scene.
-**In this example we’ll create a HA Kubernetes cluster with multi masters topology.**
+Kubernetes it’s a scalable orchestration technology, it can start from single node installation, up to the huge HA clusters, based on hundreds nodes inside. Most of the popular cloud providers, represent the different kind of Kubernetes implementations, so you can start using it very fast and easy in there. But there is a lot of situations and lot of companies that can’t use clouds for their needs, but they wanna get all benefits from the modern technologies of using containers also. And there bare metal Kubernetes installation comes on the scene. **In this example, we’ll create a highly available (HA) Kubernetes cluster with a multi-master topology.**
+We know that there are different methods for deploying Kubernetes clusters. From the methods listed below, we have deployed a Kubernetes cluster using the [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md) method.
 
+**The methods are:**
 
+[Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md)\
+[Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download)\
+[Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+**K3s**\
+**Managed Kubernetes Services - GKE | EKS | AKS**\
+**Kops**\
+**MicroK8s**\
+**RKE (Rancher Kubernetes Engine)**\
+**OpenShift**\
 
 
 ### Pre-requisites | Environment

@@ -7,16 +7,16 @@ One of the toughest aspects of learning Kubernetes is wrapping your mind around 
 
 This tutorial guides you through the installation of the MetalLB load balancer on- premises Kubernetes cluster. **MetalLB provides a robust solution for LoadBalancer-type services in Kubernetes, offering a single IP address to route external requests to your applications.**
 
-- [Prerequisite - MetalLB Concept](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
-- [What is a Kubernetes Loadbalancer](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#what-is-a-kubernetes-loadbalancer)
-- [MetalLB: What Is It](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#metallb-what-is-it)
-- [MetalLB requirements](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#metallb-requirements)
-- [Configuration MetalLB Loadbalancer](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#configuration-metallb-loadbalancer)
-  - Step 1: [Enable strict ARP mode](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-1-enable-strict-arp-mode)
-  - Step 2: [MetalLB installation](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-2-metallb-installation--metallb-crd--controller-using-the-official-manifest)
-  - Step 3: [Create ConfigMap for IPAddressPools](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-3-create-configmap-for-ipaddresspools)
-  - Step 4: [Advertise the IP Address Pool](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#--step-4-advertise-the-ip-address-pool)
-- [Testing the Metallb setup | Exposing the Nginx App deployment with type LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/G.k8s-configure-metalLB-on-premises/Setup-MetalLB-for-Nginx-Ingress-Loadbalancer-IP.md#testing-the-metallb-setup---exposing-the-nginx-app-deployment-with-type-loadbalancer)
+- [Prerequisite - MetalLB Concept](#metallb--baremetal-lb)
+- [What is a Kubernetes Loadbalancer](#what-is-a-kubernetes-loadbalancer)
+- [MetalLB: What Is It](#metallb-what-is-it)
+- [MetalLB requirements](#metallb-requirements)
+- [Configuration MetalLB Loadbalancer](#configuration-metallb-loadbalancer)
+  - Step 1: [Enable strict ARP mode](#--step-1-enable-strict-arp-mode)
+  - Step 2: [MetalLB installation](#--step-2-metallb-installation--metallb-crd--controller-using-the-official-manifest)
+  - Step 3: [Create ConfigMap for IPAddressPools](#--step-3-create-configmap-for-ipaddresspools)
+  - Step 4: [Advertise the IP Address Pool](#--step-4-advertise-the-ip-address-pool)
+- [Testing the Metallb setup | Exposing the Nginx App deployment with type LoadBalancer](#testing-the-metallb-setup---exposing-the-nginx-app-deployment-with-type-loadbalancer)
 
 
 ### What is a Kubernetes Loadbalancer?
@@ -40,6 +40,8 @@ MetalLB is an open-source solution that provides network load balancing for bare
 
 
 ### Configuration MetalLB Loadbalancer
+
+![image](https://github.com/user-attachments/assets/8cc9a124-4a52-4ce5-a125-0d7daa7b8add)
 
 If you’re using kube-proxy in `IPVS` mode, since Kubernetes `v1.14.2` you have to enable strict ARP mode. You can achieve this by editing `kube-proxy` config in current cluster and Set `ARP mode true`. Find out this KubeProxyConfiguratuon block and change only `strictARP: true`
 
@@ -91,7 +93,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 192.168.1.180-192.168.1.199
+  - 192.168.100.244-192.168.100.250
 ```
 `kubectl apply -f metallb-l2-ipadd-pool.yaml`
 
@@ -230,7 +232,7 @@ spec:
   `kubectl get service -n web`
 
 - **Access application**
-  `curl -D- http://172.16.4.154`
+  `curl -D- http://192.168.100.244`
   Run the following script to access the example application and display the responses from each pod:
 
 ```sh

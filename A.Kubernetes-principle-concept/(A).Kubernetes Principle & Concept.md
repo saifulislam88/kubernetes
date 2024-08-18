@@ -293,8 +293,12 @@ Kubernetes objects are the core building blocks that define and control the stat
 
 
 
-In this article, we will explore Kubernetes objects together. Assuming you have created your Kubernetes cluster using one of the provided methods such as [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download), [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation), or [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md), we can now dive into the world of Kubernetes objects.
+In this article, we will explore Kubernetes objects together. Assuming you have created your Kubernetes cluster using one of the provided methods such as\ 
+[Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download),\
+[Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation), or\
+[Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md)
 
+**So now we will dive into the world of Kubernetes objects.**
 
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/saifulislam88/kubernetes/assets/68442870/334db1f0-3240-4e5e-b058-a2d908a1cb9e" alt="Image 1" style="width: 48%; height: 600px;">

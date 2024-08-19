@@ -329,6 +329,11 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
+⚠️(`:warning:`) When you check the **`kubelet`** service status using **`systemctl status kubelet`** on both the master and worker nodes, you may see that it is in an **"activating"** state like below screenshot. This is not an issue. When the **kubeadm** service is initiated on the **master node**, it will automatically start the **kubelet** service. After all **worker nodes** have joined the **master**, the **kubelet** service on those nodes will also become **active automatically.**
+
+![image](https://github.com/user-attachments/assets/d05c14eb-6d0d-4a9c-833b-9674a240bccb)
+
+
 #### - F. Reboot (All Master & Worker Nodes)
 
 ```sh
@@ -352,6 +357,7 @@ sudo kubeadm init --control-plane-endpoint="172.16.4.100:6443" --apiserver-adver
 # `172.16.4.101` primary master ip
 sudo kubeadm init --apiserver-advertise-address=172.16.4.101 --pod-network-cidr=192.168.0.0/16 --cri-socket /run/containerd/containerd.sock --ignore-preflight-errors Swap
 ```
+**`systemctl status kubelet`** 
 
 - **Save the join command printed in the output after the above command and copy the commands to join other master nodes and worker nodes.**
 
@@ -369,6 +375,8 @@ kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
 kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
         --discovery-token-ca-cert-hash sha256:3ffe97a8644080a85efed10ac77ba4bcd2bcbf25a402bec8995ec5d458ff2374
 ```
+**`systemctl status kubelet`** 
+
 
 - **You can print join token and construct manually**
 
@@ -404,6 +412,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
 `kubectl get nodes`
+
 **Expected Output:**
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/d94b5f81-4eb8-42df-a60c-c52bca215270)
 

@@ -318,9 +318,11 @@ sudo systemctl status containerd
 sudo apt-get update
 sudo apt-get install -y ca-certificates curl
 sudo apt-get install -y apt-transport-https ca-certificates curl
+sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
+
 ```sh
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
@@ -419,14 +421,17 @@ Calico is 𝗖𝗡𝗜 - 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗡𝗲𝘁𝘄�
 **In this step**, we'll install Calico, a powerful networking solution, to facilitate on-premises deployments in your Kubernetes cluster.
 
 - **Install the operator on your cluster networking.**
+
 `kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml`
 
 - **Download the custom resources necessary to configure Calico**
+
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml -O
 
 - **Customize the downloaded custom-resources.yaml manifest for adding your planning cidr networking block where my network is `cidr: 192.168.0.0/16` and install**
 
 `vim custom-resources.yaml`
+
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/c8af802d-b909-4935-a3c1-a0516c8bbf26)
 
 `kubectl create -f custom-resources.yaml`
@@ -436,6 +441,7 @@ curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/cu
 `kubectl get nodes`
 
 **Expected Output:**
+
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/19e0f3d5-3c1d-4f94-94f7-aa9d05f8397a)
 
 - **Get Cluster Info**

@@ -5,13 +5,13 @@
    - [Containers](#Containers)
    - [Container Orchestration](#Container-Orchestration)
    - [List of Container Orchestration Tools](#list-of-container-orchestration-tools)
-- [Kubernetes](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
-   - [Definition](#kubernetes-definition)
+- [Kubernetes](#kubernetes)
+   - [Definition](#Definition)
    - [Features of Kubernetes | Why Use Kubernetes Among These Options](#features-of-kubernetes--why-use-kubernetes-among-these-options-)
    - [Kubernetes Deployment Platform](#kubernetes-deployment-platform)
    - [Key steps in working with Kubernetes | Cluster Creation to App Management](#key-steps-in-working-with-kubernetes--cluster-creation-to-app-management)
    - [Kubernetes Learning Path](#kubernetes-learning-path)
-- [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
+- [Kubernetes Cluster Architecture](#kubernetes-cluster-architecture)
    - [Nodes Component Overview & Roles in a Kubernetes Cluster](#Nodes-Component-Overview--Roles-in-a-Kubernetes-Cluster)
      - [Master Node](#master-nodecontrol-plane)
        - [kube-apiserver](#kube-apiserver)
@@ -41,15 +41,15 @@
       - [Vertical Pod Autoscaler[
   - [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
     - [Kubernetes Services Type](#kubernetes-services-type)
-      - [ClusterIP](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#1-clusteripdefault)
-      - [NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
-      - [LoadBalancer](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#3-loadbalancer)
+      - [ClusterIP](#1-clusteripdefault)
+      - [NodePort](#2-nodeport)
+      - [LoadBalancer](#3-loadbalancer)
       - [Headless]
-      - [ExternalName](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#4-externalname)
-    - [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-resources)
-      - [Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress)
-        - [Ingress Controlller](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller)
-          - [MetalLB | BareMetal LB](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#metallb--baremetal-lb)
+      - [ExternalName](#4-externalname)
+    - [Kubernetes Resources](#kubernetes-resources)
+      - [Kubernetes Ingress](#ingress)
+        - [Ingress Controlller](#ingress-controller)
+          - [MetalLB | BareMetal LB](#metallb--baremetal-lb)
   - [Kubernetes Scheduling](#Kubernetes-Scheduling)
       - [Manual Scheduling](#Manual-Scheduling)
         - [NodeName](#nodename)
@@ -66,7 +66,7 @@
       - Pod Priority and Preemption
   - [Kubernetes Storage Management Objects]
       - Persistent Volumes (PV) & Persistent Volume Claims (PVC)
-      - [Storage Classes/Type](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#types-of-volumes)
+      - [Storage Classes/Type](#types-of-volumes)
       - Access Modes for Volumes
   - [Kubernetes Security Objects]
       - Secrets
@@ -107,7 +107,7 @@ There are several alternatives to Kubernetes for container orchestration, each w
 
 # Kubernetes
 
-## Kubernetes Definition
+## Definition
 
 Kubernetes, which translates from **Grek** to **"pilot"** or **"helmsman"**, is an open-source system for automating deployment, scaling, 
 and managing containerized applications that which developed in Google lab to manage containerized applications in different 

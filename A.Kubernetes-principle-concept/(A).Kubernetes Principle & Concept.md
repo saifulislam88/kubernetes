@@ -1,8 +1,13 @@
 # Kubernetes (K8s)
 <a name="top"></a>
 **Table of Contents**
-- [Prerequisite Concepts](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
+- [Prerequisite Concepts](#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
+   - [Containers](#Containers)
+   - [Container Orchestration](#Container-Orchestration)
+   - [List of Container Orchestration Tools](#list-of-container-orchestration-tools)
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
+- [Kubernetes Learning Path]
+- [Features of Kubernetes | Why Use Kubernetes Among These Options]
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
    - [Nodes Component Overview & Roles in a Kubernetes Cluster](#Nodes-Component-Overview--Roles-in-a-Kubernetes-Cluster)
      - [Master Node](#master-nodecontrol-plane)
@@ -72,7 +77,7 @@
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 
 
-**Containers**
+## **Containers**
 
 Let's visit the different ways of deploying applications we talked below about—[**locally, On-prem, and in the cloud.**](#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)\
 Imagine a friend, like another developer, wants to work with your code. They'd need to get their own "copy" of it.They'd go to a platform like GitHub and download your project files. Then, they'd install any extra tools needed to run your code smoothly. But sometimes, their computer might have different settings that make it hard for your code to work right. That's where containers come in handy. They wrap up your code with all the settings and tools it needs to run, no matter where it's put.\
@@ -120,6 +125,34 @@ kind of environments such as physical, virtual, and cloud infrastructure.
 - Multi-Cloud and Hybrid Cloud Support
 
 
+## Kubernetes Deployment Platform
+
+**1.Local Deployment (Own Computer/Laptop)**
+
+If you're new to web development, you've likely used a local server, such as **'localhost' or '127.0.0.1'**, to view your website or handle requests like GET HTTP. In simple terms, you've worked on your own computer. Setting up your app locally means you can view it on your own computer using a web address like **http://localhost:3000/**. Your app's files are only on your computer. Nobody else can see them.
+
+**2.On-prem (VM or Phisycal Server)**
+
+When you use on-prem (short for on-premises), you're putting your application on a physical server. This means people from outside your company can access your app. But if lots of people try to use it at once, your server might struggle. To handle more users, you might need to add extra servers. This is called "horizontal scaling."Or" you might need to upgrade your server's power, like adding more memory. That's called "vertical scaling."
+
+**3.Cloud Deployment**
+  
+In the last two scenarios, when you needed to handle more requests, you had to manually increase your server's capacity or add more servers. However, there's a simpler option called cloud deployment.
+With cloud deployment, you place your application on servers owned by another company, such as Amazon Web Services (AWS). These companies handle tasks like making your servers bigger or adding more 
+if necessary. Similar to using your own servers, your application is accessible to anyone, not just individuals within your organization.
+  
+Companies like AWS are commonly referred to as "public cloud vendors." Think of it as renting an apartment in a large building. You have your own space, but there are other tenants sharing the building with you, each with their own separate apartments. In addition to public cloud offerings, these vendors also provide private servers known as VPCs (virtual private clouds). Within a VPC, certain resources are reserved exclusively for your use, 
+ensuring they remain readily available whenever you require them. Therefore, you have two primary deployment options: public cloud deployments and private cloud deployments. With this understanding of deployment methods, let's now explore Kubernetes.
+
+## Key steps in working with Kubernetes | Cluster Creation to App Management
+
+- Initialize Your Kubernetes Cluster
+- Deploy Your First Application
+- Inspect and Interact with Your App
+- Expose Your Application to the World
+- Scale Your Application
+- Update and Manage Application Versions
+
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/27c2d490-3410-42ce-8a46-28e8de6b661f)
 
 ## Kubernetes Learning Path
@@ -139,31 +172,8 @@ kind of environments such as physical, virtual, and cloud infrastructure.
 - Incremental Learning Approach
 - Gradually learning each type without feeling overwhelmed.
 
-## Before we beginning Kubernetes, let's cover some basic ideas
-
-**1.Local Deployment (Own Computer/Laptop)**
-
-If you're new to web development, you've likely used a local server, such as **'localhost' or '127.0.0.1'**, to view your website or handle requests like GET HTTP. In simple terms, you've worked on your own computer. Setting up your app locally means you can view it on your own computer using a web address like **http://localhost:3000/**. Your app's files are only on your computer. Nobody else can see them.
-
-**2.On-prem (VM or Phisycal Server)**
-
-When you use on-prem (short for on-premises), you're putting your application on a physical server. This means people from outside your company can access your app. But if lots of people try to use it at once, your server might struggle. To handle more users, you might need to add extra servers. This is called "horizontal scaling."Or" you might need to upgrade your server's power, like adding more memory. That's called "vertical scaling."
-
-**3.Cloud Deployment**
-  
-In the last two scenarios, when you needed to handle more requests, you had to manually increase your server's capacity or add more servers. However, there's a simpler option called cloud deployment.
-With cloud deployment, you place your application on servers owned by another company, such as Amazon Web Services (AWS). These companies handle tasks like making your servers bigger or adding more 
-if necessary. Similar to using your own servers, your application is accessible to anyone, not just individuals within your organization.
-  
-Companies like AWS are commonly referred to as "public cloud vendors." Think of it as renting an apartment in a large building. You have your own space, but there are other tenants sharing the building with you, each with their own separate apartments. In addition to public cloud offerings, these vendors also provide private servers known as VPCs (virtual private clouds). Within a VPC, certain resources are reserved exclusively for your use, 
-ensuring they remain readily available whenever you require them. Therefore, you have two primary deployment options: public cloud deployments and private cloud deployments. With this understanding of deployment methods, let's now explore Kubernetes.
-
-
 
 [Back to Top](#top)
-
-
-
 
 
 ## Kubernetes Cluster Architecture

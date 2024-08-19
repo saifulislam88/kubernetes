@@ -1,13 +1,15 @@
 # Kubernetes (K8s)
 <a name="top"></a>
 **Table of Contents**
-- [Prerequisite Concepts](#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)
+- [Prerequisite Concepts](#Containers)
    - [Containers](#Containers)
    - [Container Orchestration](#Container-Orchestration)
    - [List of Container Orchestration Tools](#list-of-container-orchestration-tools)
 - [Kubernetes Definition](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20%26%20Concept.md#kubernetes-definition)
-- [Kubernetes Learning Path]
-- [Features of Kubernetes | Why Use Kubernetes Among These Options]
+   - [Features of Kubernetes | Why Use Kubernetes Among These Options](#features-of-kubernetes--why-use-kubernetes-among-these-options-)
+   - [Kubernetes Deployment Platform](#kubernetes-deployment-platform)
+   - [Key steps in working with Kubernetes | Cluster Creation to App Management](#key-steps-in-working-with-kubernetes--cluster-creation-to-app-management)
+   - [Kubernetes Learning Path](#kubernetes-learning-path)
 - [Kubernetes Cluster Architecture](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-cluster-architecture)
    - [Nodes Component Overview & Roles in a Kubernetes Cluster](#Nodes-Component-Overview--Roles-in-a-Kubernetes-Cluster)
      - [Master Node](#master-nodecontrol-plane)

@@ -134,17 +134,22 @@ Kubernetes, which translates from **Grek** to **"pilot"** or **"helmsman"**, is 
 and managing containerized applications that which developed in Google lab to manage containerized applications in different 
 kind of environments such as physical, virtual, and cloud infrastructure. 
 
-**Kubernetes (K8s) is usually defined as a container orchestration service. Kubernetes is an open source orchestration 
- tool for managing clusters of containers. So Kubernetes is simply a tool to manage containers.**
-  **Now, what are containers???**
+**Kubernetes (K8s) is usually defined as a container orchestration service. Kubernetes is an open source orchestration tool for managing clusters of containers. So Kubernetes is simply a tool to manage containers.**\
+**`Now, what are containers`???**
 
 
-  ❖ Features of Kubernetes
+  ❖ **Features of Kubernetes**
     
-- Continues development, integration and deployment
-- Containerized infrastructure
-- Application-centric management
+- Scalability and Flexibility
+- High Availibilty(HA)
 - Auto-scalable infrastructure
+- Self-HealingService Discovery and Load Balancing
+- Declarative Configuration and Automation
+- Rolling Updates and Rollbacks
+- Application-centric management
+- Extensibility and Ecosystem
+- Continues development, integration and deployment
+- Multi-Cloud and Hybrid Cloud Support
 
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/27c2d490-3410-42ce-8a46-28e8de6b661f)

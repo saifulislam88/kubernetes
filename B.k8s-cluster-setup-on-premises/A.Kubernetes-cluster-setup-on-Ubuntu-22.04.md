@@ -106,7 +106,7 @@ chmod +x hostconfig.sh
 
 ```sh
 sudo apt-get update -y
-curl -O https://github.com/saifulislam88/ubuntu-essentials-package-installing-manager/blob/main/install-chrony-server-OR-client-acting.sh
+wget https://raw.githubusercontent.com/saifulislam88/ubuntu-essentials-package-installing-manager/main/install-chrony-server-OR-client-acting.sh
 chmod +x install-chrony-server-OR-client-acting.sh
 ./install-chrony-server-OR-client-acting.sh
 

@@ -71,62 +71,30 @@
 ----
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 
-## Kubernetes Learning Path
 
-#### 1. Kubernetes Basics
-- The foundation of Kubernetes knowledge.
+**Containers**
 
-#### 2. Hosting Applications on Kubernetes
-- Moving to practical application hosting.
-
-#### 3. Focus on One Type of Application
-- Concentrating on specific types of applications.
-
-#### 4. Application Types:
-- **Stateless Apps:** Simple applications without state.
-- **Stateful Apps:** Applications that maintain state, such as databases.
-- **Caching Services:** Memory-based caching systems.
-- **Queuing Services:** Message queuing systems.
-- **Database Clusters:** Stateful systems with specific needs.
-- **Storage Solutions:** External storage like NFS.
-
-#### 5. Understand Specific Requirements & Design Patterns
-- Delving into the nuances of each application type.
-
-#### 6. Incremental Learning Approach
-- Gradually learning each type without feeling overwhelmed.
-
-#### 7. Master Observability
-- Focus on monitoring, logging, and tracing to gain deep insights into your applications and infrastructure.
+Let's visit the different ways of deploying applications we talked below about—[**locally, On-prem, and in the cloud.**](#before-we-beginning-kubernetes-lets-cover-some-basic-ideas)\
+Imagine a friend, like another developer, wants to work with your code. They'd need to get their own "copy" of it.They'd go to a platform like GitHub and download your project files. Then, they'd install any extra tools needed to run your code smoothly. But sometimes, their computer might have different settings that make it hard for your code to work right. That's where containers come in handy. They wrap up your code with all the settings and tools it needs to run, no matter where it's put.\
+**Containers are like pre-packaged sets of tools and code. You just plug them in, and they start working without any fuss. |OR| Containers are predefined configurations and dependencies, along with the code files that make it possible for the code to run seamlessly.**
 
 
-## Before we beginning Kubernetes, let's cover some basic ideas
+## Container Orchestration
 
-   **1.Local Deployment (Own Computer/Laptop)**
+Container orchestration is the automated process of managing, scheduling, scaling, and maintaining containers in a clustered environment.This helps in efficiently managing complex applications with multiple components and microservices.
 
-   If you're new to web development, you've likely used a local server, such as **'localhost' or '127.0.0.1'**, to view your website or handle requests like GET HTTP.
-   In simple terms, you've worked on your own computer.
-   Setting up your app locally means you can view it on your own computer using a web address like **http://localhost:3000/**.
-   Your app's files are only on your computer. Nobody else can see them.
+### **List of Container Orchestration Tools**
+There are several alternatives to Kubernetes for container orchestration, each with its own unique features and use cases.
 
-  **2.On-prem (VM or Phisycal Server)**
-
-  When you use on-prem (short for on-premises), you're putting your application on a physical server.
-  This means people from outside your company can access your app. But if lots of people try to use it at once, your server might struggle.
-  To handle more users, you might need to add extra servers. This is called "horizontal scaling."
-  Or you might need to upgrade your server's power, like adding more memory. That's called "vertical scaling."
-
-  **3.Cloud Deployment**
-  
-  In the last two scenarios, when you needed to handle more requests, you had to manually increase your server's capacity or add more servers. However, there's a simpler option called cloud deployment.
-  With cloud deployment, you place your application on servers owned by another company, such as Amazon Web Services (AWS). These companies handle tasks like making your servers bigger or adding more 
-  if necessary. Similar to using your own servers, your application is accessible to anyone, not just individuals within your organization.
-  
-  Companies like AWS are commonly referred to as "public cloud vendors." Think of it as renting an apartment in a large building. You have your own space, but there are other tenants sharing the building with you, each with their own separate apartments. In addition to public cloud offerings, these vendors also provide private servers known as VPCs (virtual private clouds). Within a VPC, 
-  certain resources are reserved exclusively for your use, 
-  ensuring they remain readily available whenever you require them. Therefore, you have two primary deployment options: public cloud deployments and private cloud deployments. With this understanding 
-  of deployment methods, let's now explore Kubernetes.
-
+**1.Kubernetes**\
+**2.Docker Swarm**\
+**3.Apache Mesos**\
+**4.Nomad**\
+**5.OpenShift**\
+**6.Rancher**\
+**7.Amazon EKS (Elastic Kubernetes Service)**\
+**8.Google Kubernetes Engine (GKE)**\
+**9.Azure Kubernetes Service (AKS)**
 
 ## Kubernetes Definition
 
@@ -138,7 +106,7 @@ kind of environments such as physical, virtual, and cloud infrastructure.
 **`Now, what are containers`???**
 
 
-  ❖ **Features of Kubernetes**
+### **Features of Kubernetes** | Why Use Kubernetes Among These Options ?
     
 - Scalability and Flexibility
 - High Availibilty(HA)
@@ -154,19 +122,53 @@ kind of environments such as physical, virtual, and cloud infrastructure.
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/27c2d490-3410-42ce-8a46-28e8de6b661f)
 
+## Kubernetes Learning Path
+
+#### 1. Kubernetes Basics
+- The foundation of Kubernetes knowledge.
+#### 2. Hosting Applications on Kubernetes
+- Moving to practical application hosting.
+#### 3. Focus on One Type of Application
+- Concentrating on specific types of applications.
+#### 4. Application Types:
+- **Stateless Apps:** Simple applications without state.
+- **Stateful Apps:** Applications that maintain state, such as databases.
+- **Caching Services:** Memory-based caching systems.
+- **Queuing Services:** Message queuing systems.
+- **Database Clusters:** Stateful systems with specific needs.
+- **Storage Solutions:** External storage like NFS.
+#### 5. Understand Specific Requirements & Design Patterns
+- Delving into the nuances of each application type.
+#### 6. Incremental Learning Approach
+- Gradually learning each type without feeling overwhelmed.
+#### 7. Master Observability
+- Focus on monitoring, logging, and tracing to gain deep insights into your applications and infrastructure.
+
+## Before we beginning Kubernetes, let's cover some basic ideas
+
+**1.Local Deployment (Own Computer/Laptop)**
+
+If you're new to web development, you've likely used a local server, such as **'localhost' or '127.0.0.1'**, to view your website or handle requests like GET HTTP. In simple terms, you've worked on your own computer. Setting up your app locally means you can view it on your own computer using a web address like **http://localhost:3000/**. Your app's files are only on your computer. Nobody else can see them.
+
+**2.On-prem (VM or Phisycal Server)**
+
+When you use on-prem (short for on-premises), you're putting your application on a physical server. This means people from outside your company can access your app. But if lots of people try to use it at once, your server might struggle. To handle more users, you might need to add extra servers. This is called "horizontal scaling."Or" you might need to upgrade your server's power, like adding more memory. That's called "vertical scaling."
+
+**3.Cloud Deployment**
+  
+In the last two scenarios, when you needed to handle more requests, you had to manually increase your server's capacity or add more servers. However, there's a simpler option called cloud deployment.
+With cloud deployment, you place your application on servers owned by another company, such as Amazon Web Services (AWS). These companies handle tasks like making your servers bigger or adding more 
+if necessary. Similar to using your own servers, your application is accessible to anyone, not just individuals within your organization.
+  
+Companies like AWS are commonly referred to as "public cloud vendors." Think of it as renting an apartment in a large building. You have your own space, but there are other tenants sharing the building with you, each with their own separate apartments. In addition to public cloud offerings, these vendors also provide private servers known as VPCs (virtual private clouds). Within a VPC, certain resources are reserved exclusively for your use, 
+ensuring they remain readily available whenever you require them. Therefore, you have two primary deployment options: public cloud deployments and private cloud deployments. With this understanding of deployment methods, let's now explore Kubernetes.
+
+
 
 [Back to Top](#top)
 
 
-**Containers**
 
-Let's revisit the different ways of deploying applications we talked about—**locally, On-prem, and in the cloud.**
-Imagine a friend, like another developer, wants to work with your code. They'd need to get their own "copy" of it.
-They'd go to a platform like GitHub and download your project files. Then, they'd install any extra tools needed to run your code smoothly.
-But sometimes, their computer might have different settings that make it hard for your code to work right.
-That's where containers come in handy. They wrap up your code with all the settings and tools it needs to run, no matter where it's put.
-**Containers are like pre-packaged sets of tools and code. You just plug them in, and they start working without any fuss. |OR| Containers are predefined configurations and dependencies, along with the code files that make it possible for the code to run seamlessly.**
-And that's where Kubernetes steps in. It helps manage these containers, making sure they have enough resources and spreading out the work evenly.
 
 
 ## Kubernetes Cluster Architecture

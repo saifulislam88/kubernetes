@@ -26,7 +26,7 @@
        - [kube-proxy](#kube-proxy)
        - [Container Runtime Interface(CRI)](#Container-Runtime-Interface-CRI)
        - [coredns](#coredns)
-- [Highly Available Kubernetes Cluster using Kubeadm](#highly-available-kubernetes-cluster-using-kubeadm) 
+- [Deploy Highly Available Kubernetes Cluster using Kubeadm](#deploy-highly-available-kubernetes-cluster-using-kubeadm) 
 - [Kubernetes Native Objects](#kubernetes-native-objects)
   - [Kubernetes Workload Objects](#Kubernetes-Workload-Objects)
       - [Pods](#pods)
@@ -286,7 +286,7 @@ This component communicates with the control plane. **So Kubelet is an agent app
 
 [Back to Top](#top)
 
-## Highly Available Kubernetes Cluster using [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md)
+## Deploy Highly Available Kubernetes Cluster using [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md)
 
 ## [Kubernetes Native Objects](#Kubernetes-Native-Objects)
 

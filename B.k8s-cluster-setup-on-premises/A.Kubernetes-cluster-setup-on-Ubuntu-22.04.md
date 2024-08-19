@@ -304,8 +304,10 @@ sudo apt-get install -y containerd
 sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
-cat /etc/containerd/config.toml
+
 ```
+`cat /etc/containerd/config.toml`
+
 ```sh
 sudo systemctl restart containerd.service
 sudo systemctl enable containerd.service
@@ -328,6 +330,7 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
+**`systemctl status kubelet`**
 
 ⚠️(`:warning:`) When you check the **`kubelet`** service status using **`systemctl status kubelet`** on both the master and worker nodes, you may see that it is in an **"activating"** state like below screenshot. This is not an issue. When the **kubeadm** service is initiated on the **master node**, it will automatically start the **kubelet** service. After all **worker nodes** have joined the **master**, the **kubelet** service on those nodes will also become **active automatically.**
 
@@ -380,9 +383,9 @@ kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
 
 - **You can print join token and construct manually**
 
-`kubeadm token list`
-`kubeadm token create --print-join-command`
-`kubeadm token list`
+`kubeadm token list`\
+`kubeadm token create --print-join-command`\
+`kubeadm token list`\
 `openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'`
 
   - **Manual construct for joining for Worker**

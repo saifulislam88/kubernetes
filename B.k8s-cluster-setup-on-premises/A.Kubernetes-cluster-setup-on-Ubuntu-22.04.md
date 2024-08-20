@@ -22,7 +22,7 @@
 
 <img width="800" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
 
-![Untitsdfaled](https://github.com/user-attachments/assets/419c0682-2787-4fe8-9556-afd79b878d8b)
+<img width="600" alt="stacketcd" src="https://github.com/user-attachments/assets/419c0682-2787-4fe8-9556-afd79b878d8b">
 
      
 ### What is Kubernetes Cluster

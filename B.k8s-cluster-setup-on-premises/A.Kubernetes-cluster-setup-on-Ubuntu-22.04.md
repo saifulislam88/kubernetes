@@ -314,7 +314,8 @@ sudo systemctl enable containerd.service
 sudo systemctl status containerd
 ```
 
-#### - E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
+#### - E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)\
+**Add Software Repositories**: Kubernetes is not included in the default Ubuntu repositories. To add the Kubernetes repository to your list, enter this command on each node:
 
 ```sh
 sudo apt-get update

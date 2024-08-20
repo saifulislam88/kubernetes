@@ -20,8 +20,7 @@
   - Step 9: [Configure Calico POD overlay networking(Only Primary Master Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-9-configure-calico-pod-overlay-networkingonly-primary-master-node)
   - Step 10: [Verifying the cluster (All command will execute from Master)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-10-verifying-the-cluster-all-command-will-execute-from-master)
 
-
-<img width="1000" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
+<img width="600" height="800" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
      
 ### What is Kubernetes Cluster
 

@@ -255,26 +255,25 @@ systemctl restart haproxy
 systemctl enable haproxy
 ```
 
-### Step 6: Installing Kubernetes Components on (All Master & Worker nodes)
+### 🌟 Step 6: Installing Kubernetes Components on (All Master & Worker nodes)
 
-#### - A. Disabling Swap and (All Master & Worker nodes)
+#### 🚀A. Disabling Swap and (All Master & Worker nodes)
 
 ```sh
 swapoff -a; sed -i '/swap/d' /etc/fstab
 ```
-#### - B. Enable and load kernel modules (All Master & Worker Node)
+#### 🚀B. Enable and load kernel modules (All Master & Worker Node)
 
 ```sh
 cat >> /etc/modules-load.d/containerd.conf <<EOF
 overlay
 br_netfilter
 EOF
-
 modprobe overlay
 modprobe br_netfilter
 ```
 
-#### - C. Configure Kernel setting (All Master & Worker Node)
+#### 🚀C. Configure Kernel setting (All Master & Worker Node)
 
 Set up system `Kernel settings & parameters` these are related to `Networking(CNI)` and the `Container Runtime Interface (CRI)`.
 ```sh
@@ -286,7 +285,7 @@ EOF
 ```
 `sysctl --system`
 
-#### - D. Install containerd (All Master & Worker Node)
+#### 🚀D. Install containerd (All Master & Worker Node)
 
 Install the container runtime (containerd) for managing containers.
 
@@ -296,8 +295,8 @@ apt install -y apt-transport-https
 sudo apt-get install -y containerd
 ```
 ```sh
-#Modify containerd configuration
 
+# Modify containerd configuration
 sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
@@ -313,7 +312,7 @@ sudo systemctl status containerd
 
 #### 🚀E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
 
-📌 **Secure Communication** `ca-certificates`  & **Secure Package Management** `apt-transport-https`
+📌**Secure Communication** `ca-certificates`  & **Secure Package Management** `apt-transport-https`
 
 ```sh
 sudo apt-get update
@@ -321,7 +320,7 @@ sudo apt-get install -y apt-transport-https ca-certificates curl
 ```
 
 
-📌 **Add Software Repositories** -Kubernetes is not included in the default Ubuntu repositories. To add the Kubernetes repository to your list, enter this command on each node. Here we will install [Kubernetes version v1.29](https://kubernetes.io/releases/) & **Add Kubernetes Signing Key** - Since Kubernetes comes from a `non-standard repository`, download the signing key to ensure the software is authentic.
+📌**Add Software Repositories** -Kubernetes is not included in the default Ubuntu repositories. To add the Kubernetes repository to your list, enter this command on each node. Here we will install [Kubernetes version v1.29](https://kubernetes.io/releases/) & **Add Kubernetes Signing Key** - Since Kubernetes comes from a `non-standard repository`, download the signing key to ensure the software is authentic.
 
 
 ```sh
@@ -330,10 +329,10 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
-📌 **Ensure all packages are up to date:**\
+📌**Ensure all packages are up to date:**\
 `sudo apt-get update`
 
-📌 **Each Kubernetes deployment consists of three separate tools:**\
+📌**Each Kubernetes deployment consists of three separate tools:**\
 Execute the following commands on each server node to install the Kubernetes tools(Kubeadm,Kubelet,Kubectl). The command `sudo apt-mark hold kubelet kubeadm kubectl` is used to prevent the specified packages (`kubelet`, `kubeadm`, and `kubectl`) from being automatically updated or upgraded by the package manager.
 
 ```sh
@@ -345,7 +344,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 **Kubelet:** The work package that runs on every node and starts containers. The tool gives you command-line access to clusters.\
 **Kubectl:** The command-line interface for interacting with clusters.
 
-📌 **Check kubectl Status**
+📌**Check kubectl Status**
 
 **`systemctl status kubelet`**
 
@@ -354,7 +353,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ![image](https://github.com/user-attachments/assets/d05c14eb-6d0d-4a9c-833b-9674a240bccb)
 
 
-#### - F. Reboot (All Master & Worker Nodes)
+#### 🚀F. Reboot (All Master & Worker Nodes)
 
 ```sh
 init 6

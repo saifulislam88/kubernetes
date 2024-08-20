@@ -315,15 +315,16 @@ sudo systemctl status containerd
 ```
 
 #### - E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
-**Add Software Repositories**: Kubernetes is not included in the default Ubuntu repositories. To add the Kubernetes repository to your list, enter this command on each node. Here we will install [Kubernetes version 1.29](https://kubernetes.io/releases/)
+**Add Software Repositories**: Kubernetes is not included in the default Ubuntu repositories. To add the Kubernetes repository to your list, enter this command on each node. Here we will install [Kubernetes version v1.29](https://kubernetes.io/releases/)
+
+**Secure Communication** `ca-certificates`  & **Secure Package Management** `apt-transport-https`
 
 ```sh
 sudo apt-get update
-sudo apt-get install -y ca-certificates curl
 sudo apt-get install -y apt-transport-https ca-certificates curl
 ```
 
-**Add Kubernetes Signing Key** - Since Kubernetes comes from a non-standard repository, download the signing key to ensure the software is authentic.
+**Add Kubernetes Signing Key** - Since Kubernetes comes from a `non-standard repository`, download the signing key to ensure the software is authentic.
 
 ```sh
 sudo mkdir -p /etc/apt/keyrings
@@ -334,7 +335,9 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 **Ensure all packages are up to date:**\
 `sudo apt-get update`
 
-**Each Kubernetes deployment consists of three separate tools:** Execute the following commands on each server node to install the Kubernetes tools(Kubeadm,Kubelet,Kubectl). The command `sudo apt-mark hold kubelet kubeadm kubectl` is used to prevent the specified packages (`kubelet`, `kubeadm`, and `kubectl`) from being automatically updated or upgraded by the package manager.
+**Each Kubernetes deployment consists of three separate tools:**\
+Execute the following commands on each server node to install the Kubernetes tools(Kubeadm,Kubelet,Kubectl). The command `sudo apt-mark hold kubelet kubeadm kubectl` is used to prevent the specified packages (`kubelet`, `kubeadm`, and `kubectl`) from being automatically updated or upgraded by the package manager.
+
 ```sh
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
@@ -345,7 +348,8 @@ sudo apt-mark hold kubelet kubeadm kubectl
 **Kubectl:** The command-line interface for interacting with clusters.
 
 
-**`systemctl status kubelet`**\
+**`systemctl status kubelet`**
+
 ⚠️(`:warning:`) When you check the **`kubelet`** service status using **`systemctl status kubelet`** on both the master and worker nodes, you may see that it is in an **"activating"** state like below screenshot. This is not an issue. When the **kubeadm** service is initiated on the **master node**, it will automatically start the **kubelet** service. After all **worker nodes** have joined the **master**, the **kubelet** service on those nodes will also become **active automatically.**
 
 ![image](https://github.com/user-attachments/assets/d05c14eb-6d0d-4a9c-833b-9674a240bccb)

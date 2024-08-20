@@ -1,10 +1,6 @@
 ### Highly Available Kubernetes Cluster using [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md)
 **Deploy and Test on-premises Multi Master Kubernetes (k8s) Cluster with HaProxy on Ubuntu 22.04**
 
-
-<img width="636" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
-
-
 - [What is Kubernetes Cluster](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#what-is-kubernetes-cluster)
 - [Pre-requisites](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#--pre-requisites--environment)
 - [Configuration and Installation Steps](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#configuration-and-installation-steps)
@@ -24,6 +20,9 @@
   - Step 8: [Configure Kuberctl (Only All Master Nodes)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-8-configure-kuberctl-only-all-master-nodes)
   - Step 9: [Configure Calico POD overlay networking(Only Primary Master Node)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-9-configure-calico-pod-overlay-networkingonly-primary-master-node)
   - Step 10: [Verifying the cluster (All command will execute from Master)](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md#step-10-verifying-the-cluster-all-command-will-execute-from-master)
+
+
+<img width="636" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
      
 ### What is Kubernetes Cluster
 
@@ -314,17 +313,18 @@ sudo systemctl enable containerd.service
 sudo systemctl status containerd
 ```
 
-#### - E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
-**Add Software Repositories**: Kubernetes is not included in the default Ubuntu repositories. To add the Kubernetes repository to your list, enter this command on each node. Here we will install [Kubernetes version v1.29](https://kubernetes.io/releases/)
+#### 🚀E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
 
-**Secure Communication** `ca-certificates`  & **Secure Package Management** `apt-transport-https`
+📌 **Secure Communication** `ca-certificates`  & **Secure Package Management** `apt-transport-https`
 
 ```sh
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl
 ```
 
-**Add Kubernetes Signing Key** - Since Kubernetes comes from a `non-standard repository`, download the signing key to ensure the software is authentic.
+
+📌 **Add Software Repositories** -Kubernetes is not included in the default Ubuntu repositories. To add the Kubernetes repository to your list, enter this command on each node. Here we will install [Kubernetes version v1.29](https://kubernetes.io/releases/) & **Add Kubernetes Signing Key** - Since Kubernetes comes from a `non-standard repository`, download the signing key to ensure the software is authentic.
+
 
 ```sh
 sudo mkdir -p /etc/apt/keyrings
@@ -332,10 +332,10 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
-**Ensure all packages are up to date:**\
+📌 **Ensure all packages are up to date:**\
 `sudo apt-get update`
 
-**Each Kubernetes deployment consists of three separate tools:**\
+📌 **Each Kubernetes deployment consists of three separate tools:**\
 Execute the following commands on each server node to install the Kubernetes tools(Kubeadm,Kubelet,Kubectl). The command `sudo apt-mark hold kubelet kubeadm kubectl` is used to prevent the specified packages (`kubelet`, `kubeadm`, and `kubectl`) from being automatically updated or upgraded by the package manager.
 
 ```sh
@@ -347,6 +347,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 **Kubelet:** The work package that runs on every node and starts containers. The tool gives you command-line access to clusters.\
 **Kubectl:** The command-line interface for interacting with clusters.
 
+📌 **Check kubectl Status**
 
 **`systemctl status kubelet`**
 

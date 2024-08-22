@@ -37,9 +37,9 @@
   - [Kubernetes Workload Objects](#Kubernetes-Workload-Objects)
       - [Pods](#pods)
       - [ReplicaSets](#ReplicaSets)
-      - [Deployments](Deployments)
-      - [StatefulSets](StatefulSets)
-      - [DaemonSets](DaemonSets)
+      - [Deployments](#Deployments)
+      - [StatefulSets](#StatefulSets)
+      - [DaemonSets](#DaemonSets)
       - [Jobs]()
       - [CronJobs]()
       - [Horizontal Pod Autoscaler[

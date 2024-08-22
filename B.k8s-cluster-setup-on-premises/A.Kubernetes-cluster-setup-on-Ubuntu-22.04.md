@@ -24,6 +24,8 @@
 
 <img width="600" alt="stacketcd" src="https://github.com/saifulislam88/kubernetes/assets/68442870/89d9f8c5-0ef6-4680-90ce-cf72551e44e2">
 
+![architecture-ha-k8s-cluster](https://github.com/user-attachments/assets/ee2de613-c636-45ba-9f31-6469e3cd5d19)
+
 ### What is Kubernetes Cluster
 
 **A Kubernetes (K8s) cluster is a group of master nodes, or worker machines, that run containerized applications**. So a cluster contains a control plane and one or more compute machines, or nodes. The control plane is responsible for maintaining the desired state of the cluster, such as which applications are running and which container images they use. Nodes actually run the applications and workloads.

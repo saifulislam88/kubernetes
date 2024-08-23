@@ -6,6 +6,7 @@
 
 - [Q6?.Kubernetes Ingress](https://github.com/saifulislam88/kubernetes/blob/main/kb8s-interview-questions.md#kubernetes-ingress)
 - [Q7?.Docker Vs Podman Vs Containerd Vs CRI-O👇](https://www.linkedin.com/posts/mmumshad_kodekloud-devops-kubernetes-activity-7153377989160751105-viax?utm_source=share&utm_medium=member_desktop)
+- Understanding Kubernetes Workload controllers: Deployment vs Statefulset vs Daemonset vs (Cron)Jobs
 - 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴: 𝗛𝗼𝘄 𝗱𝗼𝗲𝘀 𝗮 𝗣𝗼𝗱 𝗴𝗲𝘁 𝗶𝘁𝘀 𝗜𝗣 𝗔𝗱𝗱𝗿𝗲𝘀𝘀?
 https://www.linkedin.com/posts/gunaseela_kubernetes-containerization-kuberenetsnetworking-activity-7209717060682072064-UJO9?utm_source=share&utm_medium=member_desktop
 

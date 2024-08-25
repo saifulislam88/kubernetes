@@ -390,6 +390,17 @@ kubeadm join 172.16.4.100:6443 --token mamz03.e9q8n66cuoui8ua6 \
         --control-plane
 ```
 
+**OR with Certificate**
+
+`kubeadm init phase upload-certs --upload-certs`
+
+```sh
+kubeadm join <API_SERVER_IP>:6443 --token <TOKEN> \
+    --discovery-token-ca-cert-hash sha256:<HASH> \
+    --control-plane --certificate-key <CERTIFICATE_KEY>
+```
+
+
   - For **worker nodes**
 
 ```sh

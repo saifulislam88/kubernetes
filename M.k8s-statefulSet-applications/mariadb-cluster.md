@@ -1,17 +1,14 @@
-https://github.com/shakhawat-devops/mariadb-statefulset?tab=readme-ov-file
-
-
-# Deploying a MariaDB Cluster on Kubernetes using StatefulSet
+## Deploying a MariaDB Cluster on Kubernetes using StatefulSet
 
 ## Introduction
-The objective of this project was to deploy a highly available MariaDB cluster on Kubernetes using StatefulSets. The deployment ensures data synchronization across multiple database instances and provides automatic failover to maintain availability. The project also incorporated an NFS storage class for persistent data storage. Here is the project diagram. 
+The objective of this project was to deploy a highly available MariaDB cluster on Kubernetes using StatefulSets. The deployment ensures data synchronization across multiple database instances and provides automatic failover to maintain availability. The project also incorporated an **NFS** storage class for persistent data storage. Here is the project diagram. 
 
-<img title="Project Diagram" alt="Project Diagram" src="/image.png">
+![image](https://github.com/user-attachments/assets/8c5a5bda-34e7-4899-bf51-2ff0e12527f3)
 
 ## Project Scope
-1. **Set Up Kubernetes Cluster**: Ensure a running Kubernetes cluster. In my case I have used an on-premise 3 node kubernetes cluster with kubernetes version 1.30. This project assumes you already have a running kubernetes cluster. To setup an EKS cluster using terraform you can refer to [this repository](https://github.com/shakhawat-devops/eks-terraform-with-addons)
-2. **MariaDB Configuration**: Use ConfigMap for MariaDB settings.
-3. **Persistent Storage**: Use NFS for persistent volume claims. Here I have used an NFS server for persistent storage and used an ``Storage Class`` named ```nfs-client``` to automate the pv provisioning. To configure an NFS server in ubuntu go to this [link](https://www.tecmint.com/install-nfs-server-on-ubuntu/). Just make sure you add this in your NFS exports file ```insecure,no_root_squash,rw,sync,no_subtree_check```.
+1. **Set Up Kubernetes Cluster**: Ensure a running Kubernetes cluster. In my case I have used an on-premise 3 node kubernetes cluster with kubernetes version 1.30. This project assumes you already have a running kubernetes cluster.\
+2. **MariaDB Configuration**: Use ConfigMap for MariaDB settings.\
+3. **Persistent Storage**: Use NFS for persistent volume claims. Here I have used an **NFS** server for persistent storage and used an `Storage Class` named `nfs-client` to automate the pv provisioning. To configure an NFS server in ubuntu go to this [link](https://www.tecmint.com/install-nfs-server-on-ubuntu/). Just make sure you add this in your NFS exports file ```insecure,no_root_squash,rw,sync,no_subtree_check```.
 To use NFS as your storage class in kubernetes follow this [link](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner).
 
 4. **Service Configuration**: Set up headless service and load balancer for client access and failover.

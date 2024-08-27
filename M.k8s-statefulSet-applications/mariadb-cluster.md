@@ -6,13 +6,20 @@ The objective of this project was to deploy a highly available MariaDB cluster o
 ![image](https://github.com/user-attachments/assets/8c5a5bda-34e7-4899-bf51-2ff0e12527f3)
 
 ## Project Scope
-1. **Set Up Kubernetes Cluster**: Ensure a running Kubernetes cluster. In my case I have used an on-premise 3 node kubernetes cluster with kubernetes version 1.30. This project assumes you already have a running kubernetes cluster.\
-2. **MariaDB Configuration**: Use ConfigMap for MariaDB settings.\
-3. **Persistent Storage**: Use NFS for persistent volume claims. Here I have used an **NFS** server for persistent storage and used an `Storage Class` named `nfs-client` to automate the pv provisioning. To configure an NFS server in ubuntu go to this [nfs-server install](https://github.com/saifulislam88/nfs-server). Just make sure you add this in your NFS exports file ```insecure,no_root_squash,rw,sync,no_subtree_check```.\
+1. **Set Up Kubernetes Cluster**: Ensure a running Kubernetes cluster. In my case I have used an on-premise 3 node kubernetes cluster with kubernetes version 1.30. This project assumes you already have a running kubernetes cluster.
+
+2. **MariaDB Configuration**: Use ConfigMap for MariaDB settings.
+
+3. **Persistent Storage**: Use NFS for persistent volume claims. Here I have used an **NFS** server for persistent storage and used an `Storage Class` named `nfs-client` to automate the pv provisioning. To configure an NFS server in ubuntu go to this [nfs-server install](https://github.com/saifulislam88/nfs-server). Just make sure you add this in your NFS exports file ```insecure,no_root_squash,rw,sync,no_subtree_check```.
+
 4. Install `nfs-client` to **`worker node`** where **nfs mounted** via kubernetes using this command `sudo apt-get install nfs-common -y`
-5.To use NFS as your storage class in kubernetes follow this [nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner).\
-6. **Service Configuration**: Set up headless service and load balancer for client access and failover.\
+
+5.To use NFS as your storage class in kubernetes follow this [nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner).
+
+6. **Service Configuration**: Set up headless service and load balancer for client access and failover.
+
 7. **StatefulSet Deployment**: Deploy MariaDB using StatefulSet to ensure ordered and unique pod management.
+
 
 ## Project Implementation
 

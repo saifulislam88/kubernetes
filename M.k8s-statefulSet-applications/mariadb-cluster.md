@@ -27,15 +27,21 @@ The objective of this project was to deploy a highly available MariaDB cluster o
 A Kubernetes cluster was set up using kubeadm on ubuntu 20.04. For production, cloud providers like GKE, EKS, or AKS can be used.
 
 ### Step 2: Create a ConfigMap and secret for MariaDB Configuration
-A ConfigMap and secret were created to configure the MariaDB instances with necessary settings for the Cluster.
+A ConfigMap and secret were created to configure the MariaDB instances with necessary settings for the Cluster. We need to generate base64 `secrect` uinsg below Linux command.
+
+`echo -n 'sami##123' | base64`
+# Output: c2FtaSMjMTIz
+
+`echo -n 'sami' | base64`
+# Output: c2FtaQ==
 
 Modify the these values in the ``mariadb-sercret.yaml`` file with your custome values
 
 ```yaml
-  MYSQL_DATABASE:
-  MYSQL_PASSWORD:
-  MYSQL_ROOT_PASSWORD:
-  MYSQL_USER:
+  MYSQL_DATABASE: c2FtaSMjMTIz
+  MYSQL_PASSWORD: c2FtaSMjMTIz
+  MYSQL_ROOT_PASSWORD: c2FtaSMjMTIz
+  MYSQL_USER: c2FtaQ==
 ```
 This ConfigMap and Secret were applied to the Kubernetes cluster:
 

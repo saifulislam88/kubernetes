@@ -249,7 +249,5 @@ for POD_NAME in "${POD_NAMES[@]}"; do
 done
 
 ```
-We can follow this blog also for metal lb based nginx deployment https://blog.cloudnloud.com/kubernetes-loadbalancer
-
-
-[Reference](https://medium.com/@DhaneshMalviya/ingress-with-metallb-loadbalancer-on-local-4-node-kubernetes-cluster-a0445357048)
+[We can follow this blog also for metal lb based nginx deployment](https://blog.cloudnloud.com/kubernetes-loadbalancer)
+[Metallb](https://medium.com/@DhaneshMalviya/ingress-with-metallb-loadbalancer-on-local-4-node-kubernetes-cluster-a0445357048)

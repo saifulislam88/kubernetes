@@ -29,11 +29,11 @@ A Kubernetes cluster was set up using kubeadm on ubuntu 20.04. For production, c
 ### Step 2: Create a ConfigMap and secret for MariaDB Configuration
 A ConfigMap and secret were created to configure the MariaDB instances with necessary settings for the Cluster. We need to generate base64 `secrect` uinsg below Linux command.
 
-`echo -n 'sami##123' | base64`
-# Output: c2FtaSMjMTIz
+`echo -n 'sami##123' | base64`\
+Output: c2FtaSMjMTIz
 
-`echo -n 'sami' | base64`
-# Output: c2FtaQ==
+`echo -n 'sami' | base64`\
+Output: c2FtaQ==
 
 Modify the these values in the ``mariadb-sercret.yaml`` file with your custome values
 

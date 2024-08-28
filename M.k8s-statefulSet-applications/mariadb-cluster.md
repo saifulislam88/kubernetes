@@ -6,7 +6,7 @@ The objective of this project was to deploy a highly available MariaDB cluster o
 ![image](https://github.com/user-attachments/assets/8c5a5bda-34e7-4899-bf51-2ff0e12527f3)
 
 ## Project Scope
-1. **Set Up Kubernetes Cluster**: Ensure a running Kubernetes cluster. In my case I have used an on-premise 3 node kubernetes cluster with kubernetes version 1.30. This project assumes you already have a running kubernetes cluster.
+1. **Set Up Kubernetes Cluster**: Ensure a running Kubernetes cluster. In my case I have used an on-premise 3 node kubernetes cluster with kubernetes version **1.30.** This project assumes you already have a running kubernetes cluster.
 
 2. **MariaDB Configuration**: Use ConfigMap for MariaDB settings.
 

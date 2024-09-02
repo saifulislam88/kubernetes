@@ -27,6 +27,7 @@ The objective of this project was to deploy a highly available MariaDB cluster o
 A Kubernetes cluster was set up using kubeadm on ubuntu 20.04. For production, cloud providers like GKE, EKS, or AKS can be used.
 
 ### Step 2 : Git clone the projects manifests
+[kubernetes-statefulset-mariadb](https://github.com/saifulislam88/kubernetes-statefulset-mariadb)
 
 ```sh
 git clone https://github.com/saifulislam88/kubernetes-statefulset-mariadb.git

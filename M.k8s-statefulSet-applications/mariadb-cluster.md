@@ -81,7 +81,8 @@ kubectl apply -f mariadb-statefulset.yaml
 
 To access the MariaDB cluster, a LoadBalancer service was created and applied: 
 
-```shkubectl apply -f mariadb-loadbalancer.yaml
+```sh
+kubectl apply -f mariadb-loadbalancer.yaml
 ```
 
 ### Step 8: Verify the Deployment

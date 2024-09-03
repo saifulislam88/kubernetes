@@ -21,12 +21,11 @@ With the rise of cloud-native applications, microservices, and Software as a Ser
 
    ### - Self-Signed Certificate
 
-  You create and sign the certificate yourself. A self-signed certificate is a public key certificate that is signed and validated by the same person. It means that the certificate is signed with        its own private key and is not relevant to the organization or person identity that does sign process. Such certificates are ideal for testing servers.
+You create and sign the certificate yourself. A self-signed certificate is a public key certificate that is signed and validated by the same person. It means that the certificate is signed with its own private key and is not relevant to the organization or person identity that does sign process. Such certificates are ideal for testing servers.
 
    ### - What is a CA-signed/Purchased/Commercial/Paid SSL Certificate?
 
-   A reputable third-party certificate authority (CA) issues a certificate that requires verification of domain ownership, legal business documents, and other essential technical perspectives. To    
-   establish a certificate chain, the certificate authority also issues a certificate called a trusted root certificate. There are many CAs in the SSL industry:
+A reputable third-party certificate authority (CA) issues a certificate that requires verification of domain ownership, legal business documents, and other essential technical perspectives. To establish a certificate chain, the certificate authority also issues a certificate called a trusted root certificate. There are many CAs in the SSL industry:
 
       - GeoTrust
       - RapidSSL
@@ -46,7 +45,6 @@ With the rise of cloud-native applications, microservices, and Software as a Ser
 ## SSL/TLS Setup Using Ingress-NGINX Controller
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/0e49e925-68b2-42d5-bc4b-d2a216d932cf)
-
 
 **Before proceeding, let's establish some baseline assumptions regarding the application setup:**
 - The application is deployed on a Kubernetes cluster.

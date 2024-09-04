@@ -733,10 +733,10 @@ A ClusterIP is a virtual IP address assigned to a Kubernetes service, which is u
 
 If we deploy Kubernetes Cluster uisng `kubeadm`, ClusterIP default IP is **`10.96.0.0/12`**. If needed to change ClusterIP IP Block, this could be in a file such as `/etc/kubernetes/manifests/kube-apiserver.yaml` (if using kubeadm) or in a systemd service file.
 
-- Internal communication within the cluster.\
-- Only accessible within the cluster (internal).\
-- It provides a stable, internal IP address for accessing the service within the cluster.\
-- Other services and pods within the same cluster can access this service.\
+- Internal communication within the cluster.
+- Only accessible within the cluster (internal).
+- It provides a stable, internal IP address for accessing the service within the cluster.
+- Other services and pods within the same cluster can access this service.
 - A backend service accessed only by other services within the cluster.
 
 

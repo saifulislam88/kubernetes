@@ -313,10 +313,6 @@ Kubernetes objects are the core building blocks that define and control the stat
 
 
 
-
-
-
-
 In this article, we will explore Kubernetes objects together. Assuming you have created your Kubernetes cluster using one of the provided methods such as
  
 [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download),\
@@ -793,7 +789,13 @@ spec:
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/d5c7a15c-ba8a-4705-a5c2-425fa9b392ea)
 
+We also can deploy pods & service using impertative command
 
+`kubectl create deployment test --image=nginx`\
+`kubectl expose deployment test --port=80 --target-port=80`
+`kubectl get svc test`
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### [2. NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
 

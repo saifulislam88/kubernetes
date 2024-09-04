@@ -728,13 +728,21 @@ The following Service manifest has a selector that specifies two labels. The sel
 
 ### [1. ClusterIP(Default)]()
 
-**ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: ClusterIP**
+A ClusterIP is a virtual IP address assigned to a Kubernetes service, which is used for internal cluster communication.\
+**ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: `ClusterIP`**. **ClusterIP services are managed by the `Kubernetes API` Server and `kube-proxy`.**\
+If we deploy Kubernetes Cluster uisng `kubeadm`, ClusterIP default IP is **`10.96.0.0/12`**. If needed to change ClusterIP IP Block, this could be in a file such as `/etc/kubernetes/manifests/kube-apiserver.yaml` (if using kubeadm) or in a systemd service file.
 
-- **Usage:** Internal communication within the cluster.
-- **Access:** Other services and pods within the same cluster can access this service.
-- **Example:** A backend service accessed only by other services within the cluster.
+- Internal communication within the cluster.\
+- Only accessible within the cluster (internal).\
+- It provides a stable, internal IP address for accessing the service within the cluster.\
+- Other services and pods within the same cluster can access this service.\
+- A backend service accessed only by other services within the cluster.
 
-  
+
+**Now create a service for pod to pod communication then we will deploy pod using `pod` | `deployment` | `statefulset` | `daemonset` objects.**
+
+`vim my-app-svc.yaml`
+  ```sh
       apiVersion: v1
       kind: Service
       metadata:
@@ -744,9 +752,11 @@ The following Service manifest has a selector that specifies two labels. The sel
           app: my-app
         ports:
           - protocol: TCP
-            port: 80                     [Internal ClusterIP Port]
-            targetPort: 80               [Apps listen port on Pod/Container]
-      
+            port: 80                     # Internal ClusterIP Port
+            targetPort: 80               # Apps listen port on Pod/Container
+   ```
+`kubectl apply -f my-app-svc.yaml`\
+`kubectl get svc` or `kubectl get service` | `kubectl get svc -n workshop`
 
 ![image](https://github.com/saifulislam88/kubernetes/assets/68442870/d5c7a15c-ba8a-4705-a5c2-425fa9b392ea)
 

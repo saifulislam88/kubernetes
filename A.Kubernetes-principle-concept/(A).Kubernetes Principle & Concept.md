@@ -792,7 +792,7 @@ spec:
 We also can deploy pods & service using impertative command
 
 `kubectl create deployment test --image=nginx`\
-`kubectl expose deployment test --port=80 --target-port=80`
+`kubectl expose deployment test --port=80 --target-port=80`\
 `kubectl get svc test`
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------

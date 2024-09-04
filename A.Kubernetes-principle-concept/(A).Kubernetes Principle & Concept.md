@@ -49,8 +49,10 @@
       - [ClusterIP](#1-clusteripdefault)
       - [NodePort](#2-nodeport)
       - [LoadBalancer](#3-loadbalancer)
-      - [Headless]
+      - [Headless]()
       - [ExternalName](#4-externalname)
+      - [Endpoint(ep) | Pod IP - is not a service ]()
+      - [Ingress - is not a service]()
     - [Kubernetes Resources](#kubernetes-resources)
       - [Kubernetes Ingress](#ingress)
         - [Ingress Controlller](#ingress-controller)
@@ -939,9 +941,36 @@ apiVersion: v1
     externalName: my.redis-service.example.com
 ```
 
+### Endpoint(ep) | Pod IP - is not a service
+
+**Endpoints are not services;** they are objects that store the actual IP addresses of the pods that match a service selector, used internally by services to direct traffic to the correct pods.
+
+`kubectl get endpoints`\
+`kubectl get pods -o wide`\
+`kubectl describe endpoints <endpoint-name>`\
+`kubectl get endpoints <service-name>`\
+`kubectl get endpoints <service-name> -o wide`\
+`kubectl get endpoints <service-name> -o yaml`\
+`kubectl get endpoints <service-name> -o json`
+
+### Ingress - is not a service
+
+**Ingress is not a service;** it is a resource that manages external access to services, typically HTTP, and can provide `Load balancing`, `SSL termination`, and `Name-based virtual hosting`,`Path-based`,`URL Routing`.
+
+`kubectl apply -f ingress.yaml`\
+`kubectl get ingress`\
+`kubectl describe ingress <ingress-name>`\
+`kubectl delete ingress <ingress-name>`\
+`kubectl get pods -n <ingress-namespace> -l app.kubernetes.io/name=ingress-nginx`\
+`kubectl logs <ingress-controller-pod> -n <ingress-namespace>`\
+`kubectl get svc -n <ingress-namespace>`\
+`curl -H "Host: <your-hostname>" http://<ingress-ip>`
+
+[Here is details](#kubernetes-resources)
+
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## [Kubernetes Resources](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#kubernetes-resources)
+## [Kubernetes Resources](#kubernetes-resources)
 
 Services are five widely used resources that all have a role in routing traffic. Each one lets you expose services with a unique set of features and trade-offs.
 

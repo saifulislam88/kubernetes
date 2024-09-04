@@ -51,8 +51,8 @@
       - [LoadBalancer](#3-loadbalancer)
       - [Headless]()
       - [ExternalName](#4-externalname)
-      - [Endpoint(ep) | Pod IP - is not a service ]()
-      - [Ingress - is not a service]()
+      - [Endpoint(ep) | Pod IP - is not a service ](#endpointep--pod-ip---is-not-a-service)
+      - [Ingress - is not a service](#ingress---is-not-a-service)
     - [Kubernetes Resources](#kubernetes-resources)
       - [Kubernetes Ingress](#ingress)
         - [Ingress Controlller](#ingress-controller)
@@ -941,7 +941,7 @@ apiVersion: v1
     externalName: my.redis-service.example.com
 ```
 
-### Endpoint(ep) | Pod IP - is not a service
+### [Endpoint(ep) | Pod IP - is not a service](#endpointep--pod-ip---is-not-a-service)
 
 **Endpoints are not services;** they are objects that store the actual IP addresses of the pods that match a service selector, used internally by services to direct traffic to the correct pods.
 
@@ -953,7 +953,7 @@ apiVersion: v1
 `kubectl get endpoints <service-name> -o yaml`\
 `kubectl get endpoints <service-name> -o json`
 
-### Ingress - is not a service
+### [Ingress - is not a service](#ingress---is-not-a-service)
 
 **Ingress is not a service;** it is a resource that manages external access to services, typically HTTP, and can provide `Load balancing`, `SSL termination`, and `Name-based virtual hosting`,`Path-based`,`URL Routing`.
 

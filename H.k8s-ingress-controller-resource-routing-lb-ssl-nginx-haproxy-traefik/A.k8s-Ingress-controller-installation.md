@@ -30,7 +30,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
 kubectl get pods -n ingress-nginx
 ```
-- Update the service type to LoadBalancer if necessary
+- Update the service type to LoadBalancer if necessary\
 `kubectl edit svc ingress-nginx-controller -n ingress-nginx`
 
 

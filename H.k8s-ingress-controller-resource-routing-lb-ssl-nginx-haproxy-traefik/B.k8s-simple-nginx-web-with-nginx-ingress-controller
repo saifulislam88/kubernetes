@@ -1,4 +1,7 @@
 B.k8s-simple-nginx-web-with-nginx-ingress-controller
 
+MetalLB: Provides LoadBalancer services in a bare-metal cluster by assigning IPs from a specified range.
+NGINX Ingress Controller: Manages external access to services in a Kubernetes cluster, typically via HTTP/HTTPS.
+
 
 

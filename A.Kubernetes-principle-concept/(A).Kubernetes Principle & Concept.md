@@ -1045,7 +1045,7 @@ NGINX/Traefik, and HAProxy Ingress Controller is a Kubernetes-native load balanc
   - <img src="https://github.com/saifulislam88/kubernetes/assets/68442870/02919b8b-624e-40fe-9bac-6e023441cfa9" alt="Kubernetes Ingress" width="400"/>
 
 
-
+https://nidhiashtikar.medium.com/kubernetes-ingress-d71127920357
 
 ### MetalLB | BareMetal LB
 https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/

@@ -5,9 +5,11 @@
 
 **Automatic with `Helm`**, using the project repository chart;\
 **Manually with `kubectl apply`**, using YAML manifests;
+<br>
+<br>
+<br>
 
-
-**Install NGINX Ingress Controller**
+### **Install NGINX Ingress Controller**
 
 - Installing NGINX Ingress Controller Using `Helm`
 
@@ -21,10 +23,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
 `kubectl get svc -n ingress-nginx`
 
 
-
-**Installing NGINX Ingress Controller Manually**
-
-- Deploy NGINX Ingress Controller `manifests`
+- Installing NGINX Ingress Controller Manually using `manifests`
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml

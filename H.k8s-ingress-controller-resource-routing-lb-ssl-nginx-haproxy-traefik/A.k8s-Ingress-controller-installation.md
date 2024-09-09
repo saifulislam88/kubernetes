@@ -32,4 +32,15 @@ kubectl get pods -n ingress-nginx
 - Update the service type to LoadBalancer if necessary\
 `kubectl edit svc ingress-nginx-controller -n ingress-nginx`
 
+- **Checking ingress controller version**
+
+```sh
+kubectl -n ingress-nginx get pods
+kubectl -n ingress-nginx logs ingress-nginx-controller-5bdc4f464b-q6mgv | grep "NGINX Ingress controller"
+```
+```sh
+POD_NAMESPACE=ingress-nginx
+POD_NAME=$(kubectl get pods -n $POD_NAMESPACE -l app.kubernetes.io/name=ingress-nginx --field-selector=status.phase=Running -o name)
+kubectl exec $POD_NAME -n $POD_NAMESPACE -- /nginx-ingress-controller --version
+```
 

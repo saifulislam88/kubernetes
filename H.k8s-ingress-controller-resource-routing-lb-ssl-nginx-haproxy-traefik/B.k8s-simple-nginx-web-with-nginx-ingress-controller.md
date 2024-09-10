@@ -249,7 +249,7 @@ spec:
               number: 80
 ```
 
-**8.B. 🎯Ingress Resource Configuration for `443/https` port | `multiple hostname` | `80/http redirect to https`**\
+🎯**8.B. Ingress Resource Configuration for `443/https` port | `multiple hostname` | `80/http redirect to https`**\
 
 
 - [Creating Self-Signed SSL Certificates Using OpenSSL or Purchase CA-signed](https://github.com/saifulislam88/kubernetes/blob/main/H.k8s-ingress-controller-resource-routing-lb-ssl-nginx-haproxy-traefik/k8s-ingress-tls-ssl-configuration.md#--creating-self-signed-ssl-certificates-using-openssl)

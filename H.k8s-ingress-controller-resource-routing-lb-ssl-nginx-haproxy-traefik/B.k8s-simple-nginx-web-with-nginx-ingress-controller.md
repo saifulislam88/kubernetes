@@ -11,7 +11,7 @@ B.k8s-simple-nginx-web-with-nginx-ingress-controller
 - Follow the below setup steps for better understanding and [download manifests](https://github.com/msidka/k8s-simple-nginx-web-with-nginx-ingress-controller-manifests)
 
 
-### 🚀make a project directory\
+### 🚀make a project directory
 git clone https://github.com/msidka/k8s-simple-nginx-web-with-nginx-ingress-controller-manifests.git
 
 

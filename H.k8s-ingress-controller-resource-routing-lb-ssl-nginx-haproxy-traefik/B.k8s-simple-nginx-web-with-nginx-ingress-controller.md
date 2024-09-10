@@ -30,7 +30,7 @@ git clone https://github.com/msidka/k8s-simple-nginx-web-with-nginx-ingress-cont
 
 ### 🚀Deployment, Service, and ConfigMap for `nginx1`
 
-**1. 🎯Deployment for Nginx-1**
+🎯**1. Deployment for Nginx-1**
 
 `vim nginx1-deployment.yaml`
 
@@ -66,7 +66,7 @@ spec:
 
 ```
 
-**2. 🎯Service for Nginx-1**
+🎯**2. Service for Nginx-1**
 
 `vim nginx1-service.yaml`
 
@@ -87,7 +87,7 @@ spec:
   type: ClusterIP
 ```
 
-**3. 🎯ConfigMap for nginx1 Content**
+🎯**3. ConfigMap for nginx1 Content**
 
 `vim nginx1-configmap.yaml`
 
@@ -110,7 +110,7 @@ data:
 
 ### 🚀Deployment, Service, and ConfigMap for `nginx2`
 
-**4. 🎯Deployment for Nginx-2**
+🎯**4. Deployment for Nginx-2**
 
 `vim nginx2-deployment.yaml`
 
@@ -146,7 +146,7 @@ spec:
 
 ```
 
-**5. 🎯Service for Nginx-2**
+🎯**5. Service for Nginx-2**
 
 `vim nginx2-service.yaml`
 
@@ -167,7 +167,7 @@ spec:
   type: ClusterIP
 ```
 
-**6. 🎯ConfigMap for nginx2 Content**
+🎯**6. ConfigMap for nginx2 Content**
 
 `vim nginx2-configmap.yaml`
 
@@ -190,7 +190,7 @@ data:
 
 ### 🚀Create an IngressClass for NGINX
 
-**7. 🎯If an IngressClass does not exist for the NGINX Ingress Controller, create one:**
+🎯**7. If an IngressClass does not exist for the NGINX Ingress Controller, create one:**
 
 `kubectl get ingress -n ingress-nginx`\
 `kubectl get ingressclass`
@@ -213,7 +213,7 @@ spec:
 
 ### 🚀Ingress Resource to Route Traffic
 
-**8.A. 🎯Ingress Resource Configuration for `80/http` port | single hostname**\
+🎯**8.A. Ingress Resource Configuration for `80/http` port | single hostname**\
 This Ingress resource will route traffic based on paths `/nginx1` and `/nginx2`:
 
 vim `nginx-ingress_http.yaml`
@@ -302,7 +302,7 @@ spec:
               number: 80
 ```
 
-**9. 🎯Apply Configurations**
+🎯**9. Apply Configurations**
 
 ```sh
 kubectl apply -f nginx1-configmap.yaml
@@ -325,7 +325,7 @@ kubectl apply -f saiful-hello-app-tls.yaml
 `kubectl apply -f nginx-ingress_https.yaml`
 
 
-**9. 🎯Testing the Setup**
+🎯**9. Testing the Setup**
 
 **`http`**\
 `Access http://app.saiful.com/nginx1 to reach the nginx1 server.`\
@@ -342,7 +342,7 @@ kubectl apply -f saiful-hello-app-tls.yaml
 `curl -H "Host: app2.saiful.com" https://<external-ip>2`
 
 
-**10. 🎯Explanation**
+🎯**10. Explanation**
 
 **Deployment:** Manages the NGINX pods in a replicated fashion.\
 **Service:** Exposes the NGINX pods internally within the cluster on port 80.\
@@ -356,7 +356,7 @@ kubectl apply -f saiful-hello-app-tls.yaml
 **Service Endpoints Missing:** Ensure the NGINX pods are running and ready. Use kubectl describe on the service and deployment to debug readiness issues.
 
 
-**11. 🎯Troubleshooting**
+🎯**11. Troubleshooting**
 
 **Check ingress**\
 `kubectl get ingress -n ingress-nginx`\

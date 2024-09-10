@@ -13,7 +13,7 @@ B.k8s-simple-nginx-web-with-nginx-ingress-controller
 
 ### Deployment, Service, and ConfigMap for `nginx1`
 
-- **1. Deployment for Nginx-1**
+**1. 🎯Deployment for Nginx-1**
 
 `vim nginx1-deployment.yaml`
 
@@ -49,7 +49,7 @@ spec:
 
 ```
 
-- **2. Service for Nginx-1**
+**2. 🎯Service for Nginx-1**
 
 `vim nginx1-service.yaml`
 
@@ -70,7 +70,7 @@ spec:
   type: ClusterIP
 ```
 
-- **3. ConfigMap for nginx1 Content**
+**3. 🎯ConfigMap for nginx1 Content**
 
 `vim nginx1-configmap.yaml`
 
@@ -93,7 +93,7 @@ data:
 
 ### Deployment, Service, and ConfigMap for `nginx2`
 
-- **4. Deployment for Nginx-2**
+**4. 🎯Deployment for Nginx-2**
 
 `vim nginx2-deployment.yaml`
 
@@ -129,7 +129,7 @@ spec:
 
 ```
 
-- **5. Service for Nginx-2**
+**5. 🎯Service for Nginx-2**
 
 `vim nginx2-service.yaml`
 
@@ -150,7 +150,7 @@ spec:
   type: ClusterIP
 ```
 
-- **6. ConfigMap for nginx2 Content**
+**6. 🎯ConfigMap for nginx2 Content**
 
 `vim nginx2-configmap.yaml`
 
@@ -173,7 +173,7 @@ data:
 
 ### Create an IngressClass for NGINX
 
-- **7. If an IngressClass does not exist for the NGINX Ingress Controller, create one:**
+**7. 🎯If an IngressClass does not exist for the NGINX Ingress Controller, create one:**
 
 `kubectl get ingress -n ingress-nginx`\
 `kubectl get ingressclass`
@@ -196,7 +196,7 @@ spec:
 
 ### Ingress Resource to Route Traffic
 
-- **8. Ingress Resource Configuration**
+**8. 🎯Ingress Resource Configuration**
 This Ingress resource will route traffic based on paths `/nginx1` and `/nginx2`:
 
 vim `nginx-ingress.yaml`
@@ -232,3 +232,62 @@ spec:
               number: 80
 ```
 
+**9. 🎯Apply Configurations**
+
+```sh
+kubectl apply -f nginx1-configmap.yaml
+kubectl apply -f nginx1-deployment.yaml
+kubectl apply -f nginx1-service.yaml
+```
+
+```sh
+kubectl apply -f nginx2-configmap.yaml
+kubectl apply -f nginx2-deployment.yaml
+kubectl apply -f nginx2-service.yaml
+```
+
+```sh
+kubectl apply -f nginx-ingress-class.yaml
+kubectl apply -f nginx-ingress.yaml
+```
+
+**9. 🎯Testing the Setup**
+
+`Access http://example.com/nginx1 to reach the nginx1 server.`\
+`Access http://example.com/nginx2 to reach the nginx2 server.`
+
+`curl -H "Host: example.com" http://<external-ip>/nginx1`\
+`curl -H "Host: example.com" http://<external-ip>/nginx2`
+
+**10. 🎯Explanation**
+
+**Deployment:** Manages the NGINX pods in a replicated fashion.\
+**Service:** Exposes the NGINX pods internally within the cluster on port 80.\
+**Ingress:** Routes external traffic from http://example.com to the NGINX service. The Ingress controller (NGINX Ingress) handles this routing and load balances traffic to the NGINX pods.
+
+
+### Ingress Common Issues and Solutions
+
+**404 Errors:** Ensure the paths in the Ingress resource are correct and match the backend services.\
+**IngressClass Issues:** If you encounter validation errors for the IngressClass, ensure it exists and matches the Ingress resource's specification.\
+**Service Endpoints Missing:** Ensure the NGINX pods are running and ready. Use kubectl describe on the service and deployment to debug readiness issues.
+
+
+**11. 🎯Troubleshooting**
+
+**Check NGINX Pods and Services**\
+`kubectl get pods -n ingress-nginx`\
+`kubectl get svc -n ingress-nginx`
+
+**Inspect the Ingress Resource**\
+`kubectl describe ingress nginx-ingress -n ingress-nginx`
+
+**Check Ingress Controller Logs**\
+`kubectl logs -l app.kubernetes.io/name=ingress-nginx -n ingress-nginx`
+
+**Verify Ingress Rules**\
+kubectl get ingress nginx-ingress -n ingress-nginx -o yaml
+
+**Debugging Services and Pods**\
+`kubectl get endpoints -n ingress-nginx`\
+`kubectl describe svc nginx1-service -n ingress-nginx`

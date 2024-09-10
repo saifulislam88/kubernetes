@@ -19,11 +19,11 @@ With the rise of cloud-native applications, microservices, and Software as a Ser
 - [**Ingress Controller**](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#ingress-controller) — Detailed guide on ingress controller
 - [**SSL/TLS Certificates**](https://www.hostinger.com/tutorials/what-is-ssl) — Explanation of SSL/TLS certificates
 
-   ### - Self-Signed Certificate
+### - Self-Signed Certificate
 
 You create and sign the certificate yourself. A self-signed certificate is a public key certificate that is signed and validated by the same person. It means that the certificate is signed with its own private key and is not relevant to the organization or person identity that does sign process. Such certificates are ideal for testing servers.
 
-   ### - What is a CA-signed/Purchased/Commercial/Paid SSL Certificate?
+### - What is a CA-signed/Purchased/Commercial/Paid SSL Certificate?
 
 A reputable third-party certificate authority (CA) issues a certificate that requires verification of domain ownership, legal business documents, and other essential technical perspectives. To establish a certificate chain, the certificate authority also issues a certificate called a trusted root certificate. There are many CAs in the SSL industry:
 

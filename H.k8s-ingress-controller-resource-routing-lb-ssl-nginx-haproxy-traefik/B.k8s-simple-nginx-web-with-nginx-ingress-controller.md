@@ -230,7 +230,7 @@ metadata:
 spec:
   ingressClassName: nginx  # Reference the correct IngressClass here
   rules:
-  - host: example.com      # Replace with your domain, or use without host to match all
+  - host: app.saiful.com      # Replace with your domain, or use without host to match all
     http:
       paths:
       - path: /nginx1
@@ -327,11 +327,20 @@ kubectl apply -f saiful-hello-app-tls.yaml
 
 **9. 🎯Testing the Setup**
 
-`Access http://example.com/nginx1 to reach the nginx1 server.`\
-`Access http://example.com/nginx2 to reach the nginx2 server.`
+**`http`**\
+`Access http://app.saiful.com/nginx1 to reach the nginx1 server.`\
+`Access http://app.saiful.com/nginx2 to reach the nginx2 server.`
 
-`curl -H "Host: example.com" http://<external-ip>/nginx1`\
-`curl -H "Host: example.com" http://<external-ip>/nginx2`
+`curl -H "Host: app.saiful.com" http://<external-ip>/nginx1`\
+`curl -H "Host: app.saiful.com" http://<external-ip>/nginx2`
+
+**`https`**\
+`Access https://app1.saiful.com to reach the nginx1 server.`\
+`Access https://app2.saiful.com to reach the nginx2 server.`
+
+`curl -H "Host: app1.saiful.com" https://<external-ip>`\
+`curl -H "Host: app2.saiful.com" https://<external-ip>2`
+
 
 **10. 🎯Explanation**
 
@@ -369,3 +378,15 @@ kubectl get ingress nginx-ingress -n ingress-nginx -o yaml
 **Debugging Services and Pods**\
 `kubectl get endpoints -n ingress-nginx`\
 `kubectl describe svc nginx1-service -n ingress-nginx`
+
+**Verify the TLS Secret**\
+`kubectl get secret -n ingress-nginx`\
+`kubectl get secret saiful-hello-app-tls -o yaml`\
+`kubectl get secret saiful-hello-app-tls -o jsonpath='{.data.tls\.crt}' | base64 --decode`\
+`kubectl get secret saiful-hello-app-tls -o jsonpath='{.data.tls\.key}' | base64 --decode`
+
+**Recreate the TLS Secret (If Necessary)**\
+`kubectl delete secret saiful-hello-app-tls`
+
+curl -v https://nginx1.example.com\
+curl -v https://nginx2.example.com\

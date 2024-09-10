@@ -213,7 +213,7 @@ spec:
 
 ### 🚀Ingress Resource to Route Traffic
 
-**8. 🎯Ingress Resource Configuration**
+**8.A. 🎯Ingress Resource Configuration for 80/http port | single hostname**\
 This Ingress resource will route traffic based on paths `/nginx1` and `/nginx2`:
 
 vim `nginx-ingress.yaml`
@@ -248,6 +248,11 @@ spec:
             port:
               number: 80
 ```
+
+**8.B. 🎯Ingress Resource Configuration for 443/https port | multiple hostname**\
+
+
+
 
 **9. 🎯Apply Configurations**
 

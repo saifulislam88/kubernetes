@@ -1,4 +1,4 @@
-B.k8s-simple-nginx-web-with-nginx-ingress-controller
+## Simple two nginx web servers deploy with nginx-ingress-controller
 
 ### **🚀Prerequisites:**
 

@@ -213,10 +213,10 @@ spec:
 
 ### 🚀Ingress Resource to Route Traffic
 
-**8.A. 🎯Ingress Resource Configuration for 80/http port | single hostname**\
+**8.A. 🎯Ingress Resource Configuration for `80/http` port | single hostname**\
 This Ingress resource will route traffic based on paths `/nginx1` and `/nginx2`:
 
-vim `nginx-ingress.yaml`
+vim `nginx-ingress_http.yaml`
 
 ```sh
 # nginx-ingress.yaml
@@ -249,10 +249,58 @@ spec:
               number: 80
 ```
 
-**8.B. 🎯Ingress Resource Configuration for 443/https port | multiple hostname**\
+**8.B. 🎯Ingress Resource Configuration for `443/https` port | `multiple hostname` | `80/http redirect to https`**\
 
 
+- [Creating Self-Signed SSL Certificates Using OpenSSL or Purchase CA-signed](https://github.com/saifulislam88/kubernetes/blob/main/H.k8s-ingress-controller-resource-routing-lb-ssl-nginx-haproxy-traefik/k8s-ingress-tls-ssl-configuration.md#--creating-self-signed-ssl-certificates-using-openssl)
 
+- [Create Kubernetes TLS Secret](https://github.com/saifulislam88/kubernetes/blob/main/H.k8s-ingress-controller-resource-routing-lb-ssl-nginx-haproxy-traefik/k8s-ingress-tls-ssl-configuration.md#--create-kubernetes-tls-secret)
+
+**`kubectl apply -f saiful-hello-app-tls.yaml`**
+
+
+**Update the nginx-ingress.yaml manifest for `https/tls`**\
+`vim  nginx-ingress_https.yaml`
+
+```sh
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: ingress-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"       # Redirect HTTP to HTTPS
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true" # Force SSL redirect
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - app1.saiful.com
+    - app2.saiful.com
+    secretName: saiful-hello-app-tls  # Kubernetes Secret containing the SSL certificate and key
+  rules:
+  - host: app1.saiful.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx1-service
+            port:
+              number: 80
+  - host: app2.saiful.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx2-service
+            port:
+              number: 80
+```
 
 **9. 🎯Apply Configurations**
 
@@ -270,8 +318,12 @@ kubectl apply -f nginx2-service.yaml
 
 ```sh
 kubectl apply -f nginx-ingress-class.yaml
-kubectl apply -f nginx-ingress.yaml
+kubectl apply -f saiful-hello-app-tls.yaml
 ```
+`kubectl apply -f nginx-ingress_http.yaml`\
+**|OR|**\
+`kubectl apply -f nginx-ingress_https.yaml`
+
 
 **9. 🎯Testing the Setup**
 

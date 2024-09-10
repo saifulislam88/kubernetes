@@ -1,6 +1,6 @@
 B.k8s-simple-nginx-web-with-nginx-ingress-controller
 
-### **Prerequisites:**
+### **🚀Prerequisites:**
 
 
 - **Kubernetes Cluster:** Ensure you have a running [Kubernetes cluster]
@@ -11,7 +11,7 @@ B.k8s-simple-nginx-web-with-nginx-ingress-controller
 
 
 
-### Deployment, Service, and ConfigMap for `nginx1`
+### 🚀Deployment, Service, and ConfigMap for `nginx1`
 
 **1. 🎯Deployment for Nginx-1**
 
@@ -91,7 +91,7 @@ data:
     </html>
 ```
 
-### Deployment, Service, and ConfigMap for `nginx2`
+### 🚀Deployment, Service, and ConfigMap for `nginx2`
 
 **4. 🎯Deployment for Nginx-2**
 
@@ -171,7 +171,7 @@ data:
     </html>
 ```
 
-### Create an IngressClass for NGINX
+### 🚀Create an IngressClass for NGINX
 
 **7. 🎯If an IngressClass does not exist for the NGINX Ingress Controller, create one:**
 
@@ -194,7 +194,7 @@ spec:
   controller: k8s.io/ingress-nginx
 ```
 
-### Ingress Resource to Route Traffic
+### 🚀Ingress Resource to Route Traffic
 
 **8. 🎯Ingress Resource Configuration**
 This Ingress resource will route traffic based on paths `/nginx1` and `/nginx2`:
@@ -266,7 +266,7 @@ kubectl apply -f nginx-ingress.yaml
 **Ingress:** Routes external traffic from http://example.com to the NGINX service. The Ingress controller (NGINX Ingress) handles this routing and load balances traffic to the NGINX pods.
 
 
-### Ingress Common Issues and Solutions
+### 🚀Ingress Common Issues and Solutions
 
 **404 Errors:** Ensure the paths in the Ingress resource are correct and match the backend services.\
 **IngressClass Issues:** If you encounter validation errors for the IngressClass, ensure it exists and matches the Ingress resource's specification.\

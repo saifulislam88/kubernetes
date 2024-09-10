@@ -5,13 +5,13 @@
 &nbsp;&nbsp;**Copyright** © 2024 Md. Saiful Islam(**mSI**). All Rights Reserved | **Internet & ChatBot**<br>
 <br>
 
-- [Prerequisites]()
-- [Make a project directory]()
-- [Deployment, Service, and ConfigMap for `nginx1`]()
-- [Deployment, Service, and ConfigMap for `nginx2`]()
-- [Create an IngressClass for NGINX]()
-- [Ingress Resource to Route Traffic]()
-- [Ingress Common Issues and Solutions]()
+- [Prerequisites](#Prerequisites)
+- [Make a project directory](#make-a-project-directory)
+- [Deployment, Service, and ConfigMap for `nginx1`](#deployment-service-and-configmap-for-nginx1)
+- [Deployment, Service, and ConfigMap for `nginx2`](#deployment-service-and-configmap-for-nginx2)
+- [Create an IngressClass for NGINX](#create-an-ingressclass-for-nginx)
+- [Ingress Resource to Route Traffic](#ingress-resource-to-route-traffic)
+- [Ingress Common Issues and Solutions](#ingress-common-issues-and-solutions)
 
 ### **🚀Prerequisites**
 

@@ -19,6 +19,23 @@ helm repo update
 kubectl create namespace ingress-nginx
 helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
 ```
+
+`kubectl get pods -n ingress-nginx`\
+`kubectl get svc -n ingress-nginx`
+
+![image](https://github.com/user-attachments/assets/a09a9e82-f787-4e9f-ad63-a183cf6929ed)
+
+
+**If unable to create ingress service, follow below to configure Ingress Controller to expose port 443**
+
+```sh
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --set controller.service.type=LoadBalancer \
+  --set controller.service.ports.http=80 \
+  --set controller.service.ports.https=443
+```
+
 `kubectl get pods -n ingress-nginx`\
 `kubectl get svc -n ingress-nginx`
 

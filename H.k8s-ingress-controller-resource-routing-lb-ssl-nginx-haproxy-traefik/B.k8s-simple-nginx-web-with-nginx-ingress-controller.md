@@ -388,5 +388,5 @@ kubectl get ingress nginx-ingress -n ingress-nginx -o yaml
 **Recreate the TLS Secret (If Necessary)**\
 `kubectl delete secret saiful-hello-app-tls`
 
-curl -v https://nginx1.example.com\
-curl -v https://nginx2.example.com\
+`curl -v https://nginx1.example.com`\
+`curl -v https://nginx2.example.com`

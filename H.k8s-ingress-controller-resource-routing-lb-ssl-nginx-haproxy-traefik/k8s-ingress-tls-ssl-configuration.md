@@ -84,10 +84,10 @@ metadata:
   namespace: dev
 type: kubernetes.io/tls
 data:
-  server.crt: |
-    <crt contents here>
-  server.key: |
-    <private key contents here>
+  tls.crt: |
+   <crt contents here>
+  tls.key: |
+   <private key contents here>
 ```
 
 ### - Deploy the Application

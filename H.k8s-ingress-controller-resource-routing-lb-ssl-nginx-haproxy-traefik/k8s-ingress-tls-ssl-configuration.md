@@ -62,21 +62,23 @@ openssl x509 -req -days 365 -in saiful.com.csr -signkey saiful.com.key -out saif
 
 ```
 
-   ### - Create Kubernetes TLS Secret
+### - Create Kubernetes TLS Secret
 
-   Create a Kubernetes secret of type `TLS` with the `saiful.com.crt` and `saiful.com.key` files in the `dev` namespace where the `hello-app` deployment is located. Run the following `kubectl` command    from the directory where you have the `saiful.com.key` and `saiful.com.crt` files, or provide the absolute path of the files. `saiful-hello-app-tls` is an arbitrary name for the secret.
+Create a Kubernetes secret of type `TLS` with the `saiful.com.crt` and `saiful.com.key` files in the `dev` namespace where the `hello-app` deployment is located. Run the following `kubectl` command    from the directory where you have the `saiful.com.key` and `saiful.com.crt` files, or provide the absolute path of the files. `saiful-hello-app-tls` is an arbitrary name for the secret.
+
+**Base64 Encode the Certificate and Key:** YAML does not support binary data directly. Base64 encoding allows binary data (like certificates and keys) to be represented as plain text within the YAML format.\
+`base64 -w 0 saiful.com.crt`\
+`base64 -w 0 saiful.com.key`
+
+**Verify Base64 Encoding of the Certificate and Key**\
+`echo "<base64-encoded-certificate>" | base64 --decode`\
+`echo "<base64-encoded-key>" | base64 --decode`
+
+
+`vim saiful-hello-app-tls.yaml`
 
 ```sh
-kubectl create secret tls saiful-hello-app-tls \
-    --namespace dev \
-    --key saiful.com.key \
-    --cert saiful.com.crt
-
-```
-
-**You can also create the secret using a YAML file. Add the contents of the certificate and key files as follows:**
-
-```sh
+##namespace will be changed on based project
 apiVersion: v1
 kind: Secret
 metadata:
@@ -84,11 +86,34 @@ metadata:
   namespace: dev
 type: kubernetes.io/tls
 data:
-  tls.crt: |
-   <crt contents here>
-  tls.key: |
-   <private key contents here>
+  tls.crt: <base64-encoded-certificate>
+  tls.key: <base64-encoded-key>
 ```
+
+`kubectl apply -f saiful-hello-app-tls.yaml`
+
+
+**You can also create the secret Directly without `Base64 Encode`**
+
+```sh
+kubectl create secret tls saiful-hello-app-tls \
+    --namespace dev \
+    --key saiful.com.key \
+    --cert saiful.com.crt
+```
+
+**Verify the TLS Secret**\
+`kubectl get secret -n ingress-nginx`\
+`kubectl get secret saiful-hello-app-tls -o yaml`\
+`kubectl get secret saiful-hello-app-tls -o jsonpath='{.data.tls\.crt}' | base64 --decode`\
+`kubectl get secret saiful-hello-app-tls -o jsonpath='{.data.tls\.key}' | base64 --decode`
+
+**Recreate the TLS Secret (If Necessary)**\
+`kubectl delete secret saiful-hello-app-tls`
+
+`curl -v https://nginx1.example.com`\
+`curl -v https://nginx2.example.com`
+
 
 ### - Deploy the Application
 

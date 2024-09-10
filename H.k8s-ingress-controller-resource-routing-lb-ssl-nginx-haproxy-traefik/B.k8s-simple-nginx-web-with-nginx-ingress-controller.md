@@ -275,6 +275,10 @@ kubectl apply -f nginx-ingress.yaml
 
 **11. 🎯Troubleshooting**
 
+**Check ingress**\
+`kubectl get ingress -n ingress-nginx`\
+`kubectl get ingressclass`
+
 **Check NGINX Pods and Services**\
 `kubectl get pods -n ingress-nginx`\
 `kubectl get svc -n ingress-nginx`

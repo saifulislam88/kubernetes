@@ -26,7 +26,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
 ![image](https://github.com/user-attachments/assets/a09a9e82-f787-4e9f-ad63-a183cf6929ed)
 
 
-**If unable to create ingress service, follow below to configure Ingress Controller to expose port 443**
+**If unable to create ingress service with also 443, follow below to configure Ingress Controller to expose port 443**
 
 ```sh
 helm install nginx-ingress ingress-nginx/ingress-nginx \

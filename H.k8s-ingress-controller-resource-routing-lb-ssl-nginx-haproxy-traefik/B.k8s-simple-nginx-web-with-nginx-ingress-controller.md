@@ -5,8 +5,15 @@
 &nbsp;&nbsp;**Copyright** © 2024 Md. Saiful Islam(**mSI**). All Rights Reserved | **Internet & ChatBot**<br>
 <br>
 
+- [Prerequisites]()
+- [Make a project directory]()
+- [Deployment, Service, and ConfigMap for `nginx1`]()
+- [Deployment, Service, and ConfigMap for `nginx2`]()
+- [Create an IngressClass for NGINX]()
+- [Ingress Resource to Route Traffic]()
+- [Ingress Common Issues and Solutions]()
 
-### **🚀Prerequisites:**
+### **🚀Prerequisites**
 
 
 - **Kubernetes Cluster:** Ensure you have a running [Kubernetes cluster]
@@ -17,7 +24,7 @@
 - Follow the below setup steps for better understanding and [download manifests](https://github.com/msidka/k8s-simple-nginx-web-with-nginx-ingress-controller-manifests)
 
 
-### 🚀make a project directory
+### 🚀Make a project directory
 git clone https://github.com/msidka/k8s-simple-nginx-web-with-nginx-ingress-controller-manifests.git
 
 

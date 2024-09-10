@@ -11,11 +11,224 @@ B.k8s-simple-nginx-web-with-nginx-ingress-controller
 
 
 
+### Deployment, Service, and ConfigMap for `nginx1`
+
+- **1. Deployment for Nginx-1**
+
+`vim nginx1-deployment.yaml`
+
+```sh
+# nginx1-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx1-deployment
+  namespace: ingress-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx1
+  template:
+    metadata:
+      labels:
+        app: nginx1
+    spec:
+      containers:
+      - name: nginx1
+        image: nginx:1.21.6
+        volumeMounts:
+        - name: nginx1-html
+          mountPath: /usr/share/nginx/html
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: nginx1-html
+        configMap:
+          name: nginx1-html-config
+
+```
+
+- **2. Service for Nginx-1**
+
+`vim nginx1-service.yaml`
+
+```sh
+# nginx1-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx1-service
+  namespace: ingress-nginx
+spec:
+  selector:
+    app: nginx1
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+```
+
+- **3. ConfigMap for nginx1 Content**
+
+`vim nginx1-configmap.yaml`
+
+```sh
+# nginx1-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx1-html-config
+  namespace: ingress-nginx
+data:
+  index.html: |
+    <html>
+    <body>
+    <h1>Welcome to NGINX 1 Server</h1>
+    <p>This is the content served by nginx1.</p>
+    </body>
+    </html>
+```
+
+### Deployment, Service, and ConfigMap for `nginx2`
+
+- **4. Deployment for Nginx-2**
+
+`vim nginx2-deployment.yaml`
+
+```sh
+# nginx2-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx2-deployment
+  namespace: ingress-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx2
+  template:
+    metadata:
+      labels:
+        app: nginx2
+    spec:
+      containers:
+      - name: nginx2
+        image: nginx:1.21.6
+        volumeMounts:
+        - name: nginx2-html
+          mountPath: /usr/share/nginx/html
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: nginx2-html
+        configMap:
+          name: nginx2-html-config
+
+```
+
+- **5. Service for Nginx-2**
+
+`vim nginx2-service.yaml`
+
+```sh
+# nginx2-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx2-service
+  namespace: ingress-nginx
+spec:
+  selector:
+    app: nginx2
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+```
+
+- **6. ConfigMap for nginx2 Content**
+
+`vim nginx2-configmap.yaml`
+
+```sh
+# nginx2-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx2-html-config
+  namespace: ingress-nginx
+data:
+  index.html: |
+    <html>
+    <body>
+    <h1>Welcome to NGINX 2 Server</h1>
+    <p>This is the content served by nginx2.</p>
+    </body>
+    </html>
+```
+
+### Create an IngressClass for NGINX
+
+- **7. If an IngressClass does not exist for the NGINX Ingress Controller, create one:**
+
+`kubectl get ingress -n ingress-nginx`\
+`kubectl get ingressclass`
+![image](https://github.com/user-attachments/assets/1d08278e-1e81-47af-b803-b8e8c169593b)
 
 
+`vim nginx-ingress-class.yaml`
 
+```sh
+# nginx-ingress-class.yaml
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+  annotations:
+    ingressclass.kubernetes.io/is-default-class: "true"  # Set as default, optional
+spec:
+  controller: k8s.io/ingress-nginx
+```
 
+### Ingress Resource to Route Traffic
 
+- **8. Ingress Resource Configuration**
+This Ingress resource will route traffic based on paths `/nginx1` and `/nginx2`:
 
+vim `nginx-ingress.yaml`
 
+```sh
+# nginx-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: ingress-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx  # Reference the correct IngressClass here
+  rules:
+  - host: example.com      # Replace with your domain, or use without host to match all
+    http:
+      paths:
+      - path: /nginx1
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx1-service
+            port:
+              number: 80
+      - path: /nginx2
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx2-service
+            port:
+              number: 80
+```
 

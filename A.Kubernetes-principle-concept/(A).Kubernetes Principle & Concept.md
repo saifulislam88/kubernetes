@@ -62,7 +62,8 @@
         - [NodeName](#nodename)
         - [Node Selector](#Node-Selector)
       - [Automatic Scheduling](#Automatic-Scheduling)
-        - [Taints and Tolerations](#Taints-and-Tolerations)
+        - [Taints](#Taints)
+        - [Tolerations](#Tolerations)
         - [Node Affinity](#Node-Affinity)
   - [Kubernetes Configuration & Management Objects]
       - ConfigMaps
@@ -1071,7 +1072,8 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
    - [NodeName](#nodename)
    - [Node Selector](#Node-Selector)
 - [Automatic Scheduling](#Automatic-Scheduling)
-   - [Taints and Tolerations](#Taints-and-Tolerations)
+   - [Taints](#Taints)
+   - Tolerations](#Tolerations)
    - [Node Affinity](#Node-Affinity)
 
 ### Manual Scheduling
@@ -1139,11 +1141,120 @@ spec:
 **`kubectl label nodes node-01 disktype=ssd-`**      # Remove a Label from a Node - kubectl label nodes <node-name> <key>-
 
 
-### Automatic Scheduling
+### 🚀Automatic Scheduling
 
+#### 🔥Taints
+
+**Taints** are applied to nodes to indicate that certain pods should avoid or be evicted from those nodes unless the pods have the matching **tolerations.**
+
+**Tolerations**
+
+#### 🔥K8s taints and tolerations use cases
+
+- **Specifying nodes with special hardware :** Often, pod workloads must run on nodes with specialized hardware such as non-x86 processors, optimized memory/storage, or resources like GPUs.
+- **Creating dedicated nodes**
+- Reserving Nodes for System Daemons
+- Isolating Faulty Nodes
+- Node Decommissioning or Maintenance
+- Ensuring High Availability
+- Preventing Resource Starvation
+
+**How to add Kubernetes taints**
+
+The kubectl taint command with the required taint allows us to add taints to nodes. The general syntax for the command is:\
+`kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>`
+
+A taint consists of a `key`,` value`, and an `effect`
+
+Key: A label that identifies the taint (e.g., special-node).\
+Value: Additional information or context (e.g., true).\
+Effect: Specifies the action (e.g., NoSchedule, PreferNoSchedule, or NoExecute).
+
+**`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that you assign, **while the effect determines what happens to pods that do not tolerate the taint:**
+
+
+**A taint can produce three possible effects -details**
+
+**NoSchedule** — The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
+
+**Adding a Taint to a Node**\
+**kubectl taint nodes <node-name> <key>=<value>:<effect>**
+
+`kubectl taint nodes node1 dedicated=backend:NoSchedule`\
+`kubectl taint nodes node2 env=prod:NoSchedule`
+
+**Viewing Taints on Nodes**\
+`kubectl describe node <node-name>`
+
+**Removing a Taint from a Node**\
+`kubectl taint nodes <node-name> <key>:<effect>-`
+`kubectl taint nodes node1 dedicated=database:NoSchedule-`
+
+**To remove all taints**\
+`kubectl patch node <node-name> -p '{"spec":{"taints":[]}}'`
+
+**To see which nodes have taints:**\
+`kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'`
+
+
+**Defining Tolerations in a Pod Spec**
+
+
+**Equal**
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toleration-pod1
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "key"
+    operator: "Equal"
+    value: "value"
+    effect: "NoSchedule"
+```
+`kubectl apply -f toleration-pod1.yaml`
+
+**Exists**
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toleration-pod2
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+tolerations:
+- key: "env"
+  operator: "Exists"
+  effect: "NoSchedule"
+```
+`kubectl apply -f toleration-pod2.yaml`
+
+
+
+
+
+
+PreferNoSchedule — This softer version of NoSchedule attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.
+
+NoExecute — This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
+
+`kubectl taint nodes node1 dedicated=database:NoExecute`\
+`kubectl taint nodes node2 maintenance=true:NoExecute`
+
+
+**Find already tainted by the Kubernetes default installation**\
+`kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect`
+
+  
+- #### Tolerations
 - #### Node Affinity
-- #### Taints and Tolerations
-- #### Taints/Toleration and Node Affinity
+- #### Taints | Tolerations | Node Affinity
 
 
 

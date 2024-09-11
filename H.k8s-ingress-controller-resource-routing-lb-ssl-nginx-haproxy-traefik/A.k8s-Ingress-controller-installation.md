@@ -20,7 +20,14 @@ kubectl create namespace ingress-nginx
 helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
 ```
 
+```sh
+helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
+```
+
+
 `kubectl get pods -n ingress-nginx`\
+
+**Check the NGINX Ingress controller has been assigned a IP address from MetalLB or Cloud**\
 `kubectl get svc -n ingress-nginx`
 
 ![image](https://github.com/user-attachments/assets/a09a9e82-f787-4e9f-ad63-a183cf6929ed)

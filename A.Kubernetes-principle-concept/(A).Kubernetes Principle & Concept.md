@@ -1168,6 +1168,23 @@ A toleration is essentially the counter to a taint, allowing a pod to “ignore�
 **Effect:** Specifies the taint effect to tolerate (**`NoSchedule`**, **`PreferNoSchedule`**, **`NoExecute`**).
 
 
+**Tolerations are specified in PodSpec in the following formats depending on the operator.**\
+**🧩Equal Operator**
+```sh
+tolerations:
+- key: "<taint key>"
+  operator: "Equal"
+  value: "<taint value>"
+  effect: "<taint effect>"
+```
+**🧩Exists Operator**
+```sh
+tolerations:
+- key: "<taint key>"
+  operator: "Exists"
+  effect: "<taint effect>"
+```
+
 ### 🔥Taints and Tolerations Use Cases
 
 - **Specifying nodes with special hardware :** Often, pod workloads must run on nodes with specialized hardware such as non-x86 processors, optimized memory/storage, or resources like GPUs.
@@ -1195,17 +1212,18 @@ A toleration is essentially the counter to a taint, allowing a pod to “ignore�
 `kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'`
 
 
-#### 🔥NoSchedule | 
+#### 🔥NoSchedule
 The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
 
 - 📌**Adding a Taint to a Node**\
 `kubectl taint nodes worker-node1 dedicated=backend:NoSchedule`\
 `kubectl taint nodes worker-node2 env=prod:NoSchedule`
 
+gpu=true:NoSchedule
+
 - 📌**Adding Tolerations to Pods**| `NoSchedule` Effect ** 
 
-🧩**1. Equal**
-
+🧩**1. Equal Operator**\
 `vim toleration-NoSchedule-equal-pod`
 ```sh
 apiVersion: v1
@@ -1225,8 +1243,7 @@ spec:
 `kubectl apply -f toleration-NoSchedule-equal-pod.yaml`
 
 
-🧩**2. Exists**
-
+🧩**2. Exists Operator**\
 `vim toleration-NoSchedule-exists-pod`
 ```sh
 apiVersion: v1
@@ -1243,10 +1260,21 @@ tolerations:
   effect: "NoSchedule"
 ```
 `kubectl apply -f toleration-NoSchedule-exists-pod.yaml`
+`kubectl get pod -o wide`
 
-#### 🔥PreferNoSchedule | Adding a Taint to a Node
+![image](https://github.com/user-attachments/assets/f8c0cf5e-ab0d-4f58-904b-fff0e998dc70)
+
+
+
+
+#### 🔥PreferNoSchedule
 This softer version of NoSchedule attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.
 
+- 📌**Adding a Taint to a Node**\
+`kubectl taint nodes worker-node1 dedicated=backend:NoSchedule`\
+`kubectl taint nodes worker-node2 env=prod:NoSchedule`
+
+- 📌**Adding Tolerations to Pods**| `NoSchedule` Effect ** 
 
 
 

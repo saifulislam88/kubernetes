@@ -1141,23 +1141,23 @@ spec:
 **`kubectl label nodes node-01 disktype=ssd-`**      # Remove a Label from a Node - kubectl label nodes <node-name> <key>-
 
 
-### 🚀Automatic Scheduling
+## 🚀Automatic Scheduling
 
-#### 🔥Taints
+### 🔥Taints
 
 **Taints** are applied to nodes to indicate that certain pods should avoid or be evicted from those nodes unless the pods have the matching **tolerations.**
 
 **Tolerations**
 
-#### 🔥K8s taints and tolerations use cases
+### 🔥K8s taints and tolerations use cases
 
 - **Specifying nodes with special hardware :** Often, pod workloads must run on nodes with specialized hardware such as non-x86 processors, optimized memory/storage, or resources like GPUs.
 - **Creating dedicated nodes**
-- Reserving Nodes for System Daemons
-- Isolating Faulty Nodes
-- Node Decommissioning or Maintenance
-- Ensuring High Availability
-- Preventing Resource Starvation
+- **Reserving Nodes for System Daemons**
+- **Isolating Faulty Nodes**
+- **Node Decommissioning or Maintenance**
+- **Ensuring High Availability**
+- **Preventing Resource Starvation**
 
 **How to add Kubernetes taints**
 
@@ -1250,6 +1250,59 @@ NoExecute — This will immediately evict all(running,stop,others) if the pods d
 
 **Find already tainted by the Kubernetes default installation**\
 `kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect`
+
+
+
+### 🔥Kubernetes Built-in Taints
+
+Kubernetes comes with several built-in taints that are automatically applied to nodes based on certain conditions or roles to help manage pod scheduling and node health. These taints play a critical role in maintaining the stability, performance, and availability of the cluster by guiding the scheduler on where pods should or shouldn't run. Here are some key built-in taints and their roles:
+
+#### 🧩1. Node Role Taints
+
+- 📌**Taint:** `node-role.kubernetes.io/control-plane:NoSchedule` or `node-role.kubernetes.io/master:NoSchedule`\
+  **Role:** Applied to control plane nodes (formerly known as master nodes) to prevent user workloads from being scheduled on them. This ensures that control plane components have dedicated resources and aren't disrupted by other workloads.
+
+- 📌**Taint:** `node-role.kubernetes.io/control-plane:NoExecute` or `node-role.kubernetes.io/master:NoExecute`\
+  **Role:** Similar to `NoSchedule`, but also evicts any non-tolerant pods already running on the control plane nodes.
+
+#### 🧩2. Node Condition Taints
+
+These taints are automatically added by the kubelet or node controller based on the health of the node:
+
+- 📌**Taint:** `node.kubernetes.io/not-ready:NoExecute`\
+**Role:** Indicates that the node is not ready (e.g., due to network partition, disk pressure). Pods without a matching toleration will be evicted from the node.
+
+- 📌**Taint:** `node.kubernetes.io/unreachable:NoExecute`\
+**Role:** Indicates that the node is unreachable from the API server (e.g., network failure). Similar to `not-ready`, it evicts non-tolerant pods.
+
+- 📌**Taint:** `node.kubernetes.io/memory-pressure:NoSchedule`\
+**Role:** Applied when a node is under memory pressure. Prevents scheduling new pods that do not have a toleration for this condition.
+
+- 📌**Taint:** `node.kubernetes.io/disk-pressure:NoSchedule`\
+- **Role:** Applied when a node is experiencing disk pressure (e.g., low disk space). Prevents new non-tolerant pods from being scheduled on the node.
+
+- 📌**Taint:** `node.kubernetes.io/unschedulable:NoSchedule`\
+**Role:** Applied to nodes marked as unschedulable (e.g., through `kubectl cordon`). This taint prevents any new pods from being scheduled on the node until it is marked as schedulable again.
+
+- 📌**Taint:** `node.kubernetes.io/network-unavailable:NoSchedule`\
+  **Role:** Applied when a node's network is unavailable. Prevents pods that do not tolerate this taint from being scheduled on the node.
+
+- 📌**Taint:** `node.kubernetes.io/pid-pressure:NoSchedule`\
+**Role:** Applied when the node is under PID pressure, which means the system is running low on process IDs. This prevents new pods from being scheduled if they do not have a matching toleration.
+
+#### 🧩3. Node Lifecycle Taints
+
+- **Taint:** `node.kubernetes.io/taint-effect:NoSchedule`\
+**Role:** These are used to influence the scheduling based on specific effects or operational considerations, such as retiring a node from the cluster or handling certain lifecycle states.
+
+#### 🧩Importance of Built-In Taints - These built-in taints ensure:
+
+- **Node Health Management:** Nodes in poor health (e.g., unreachable, under memory pressure) do not accept new workloads, and existing non-tolerant workloads are evicted to maintain application stability.
+- **Role Separation:** Ensures that control plane nodes are not burdened with user workloads, preserving their capacity for critical cluster management functions.
+- **Operational Stability:** Automatically reacts to infrastructure changes (e.g., maintenance, scaling) by controlling where pods are placed or removed based on node conditions.
+
+
+
 
   
 - #### Tolerations

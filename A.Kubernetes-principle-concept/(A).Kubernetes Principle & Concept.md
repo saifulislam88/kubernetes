@@ -1147,9 +1147,7 @@ spec:
 
 **Taints** are applied to nodes to indicate that certain pods should avoid or be evicted from those nodes unless the pods have the matching **tolerations.**
 
-**Tolerations**
-
-### 🔥K8s taints and tolerations use cases
+### 🔥Taints and Tolerations Use Cases
 
 - **Specifying nodes with special hardware :** Often, pod workloads must run on nodes with specialized hardware such as non-x86 processors, optimized memory/storage, or resources like GPUs.
 - **Creating dedicated nodes**
@@ -1159,45 +1157,42 @@ spec:
 - **Ensuring High Availability**
 - **Preventing Resource Starvation**
 
-**How to add Kubernetes taints**
 
 The kubectl taint command with the required taint allows us to add taints to nodes. The general syntax for the command is:\
-`kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>`
+**`kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>`**
 
-A taint consists of a `key`,` value`, and an `effect`
+So when a taint to be applied, it consists of a **`key`**,**`value`**, and an **`effect`**
 
-Key: A label that identifies the taint (e.g., special-node).\
-Value: Additional information or context (e.g., true).\
-Effect: Specifies the action (e.g., NoSchedule, PreferNoSchedule, or NoExecute).
+**Key:** A label that identifies the taint (e.g., **special-node**).\
+**Value:** Additional information or context (e.g., **backend**).\
+**Effect:** Specifies the action (e.g., **`NoSchedule`**, **`PreferNoSchedule`**, or **`NoExecute`**).
 
 **`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that you assign, **while the effect determines what happens to pods that do not tolerate the taint:**
 
 
-**A taint can produce three possible effects -details**
+### 🚀The three taints effects implementation and managing
 
-**NoSchedule** — The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
+#### 🔥NoSchedule
+The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
 
-**Adding a Taint to a Node**\
-**kubectl taint nodes <node-name> <key>=<value>:<effect>**
-
+- 🌟**`Adding a Taint to a Node`**\
 `kubectl taint nodes node1 dedicated=backend:NoSchedule`\
 `kubectl taint nodes node2 env=prod:NoSchedule`
 
-**Viewing Taints on Nodes**\
-`kubectl describe node <node-name>`
+- 🌟**Viewing Taints on Nodes**\
+`kubectl describe node worker-ndoe1`
 
-**Removing a Taint from a Node**\
-`kubectl taint nodes <node-name> <key>:<effect>-`
+- 🌟**Removing a Taint from a Node**\
+**`kubectl taint nodes <node-name> <key>:<effect>-`**
 `kubectl taint nodes node1 dedicated=database:NoSchedule-`
 
-**To remove all taints**\
+- 🌟**To remove all taints**\
 `kubectl patch node <node-name> -p '{"spec":{"taints":[]}}'`
 
-**To see which nodes have taints:**\
+- 🌟**To see which nodes have taints:**\
 `kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'`
 
-
-**Defining Tolerations in a Pod Spec**
+#### 🔥Tolerations in a Pod on NoSchedule effect **
 
 
 **Equal**

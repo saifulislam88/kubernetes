@@ -1196,9 +1196,9 @@ A toleration is essentially the counter to a taint, allowing a pod to “ignore�
 
 
 #### 🔥NoSchedule | 
-The pod will not get scheduled to the node without a matching toleration for the tainted nodes.\
+The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
 
-- 📌**Adding a Taint to a Node**
+- 📌**Adding a Taint to a Node**\
 `kubectl taint nodes worker-node1 dedicated=backend:NoSchedule`\
 `kubectl taint nodes worker-node2 env=prod:NoSchedule`
 

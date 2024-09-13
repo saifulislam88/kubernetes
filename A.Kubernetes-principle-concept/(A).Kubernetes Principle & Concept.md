@@ -1072,8 +1072,14 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
    - [NodeName](#nodename)
    - [Node Selector](#Node-Selector)
 - [Automatic Scheduling](#Automatic-Scheduling)
-   - [Taints](#Taints)
-   - Tolerations](#Tolerations)
+   - [Taints and Tolerations](#taints-and-tolerations)
+      - [Taints](#Taints)
+      - [Tolerations](#Tolerations)
+      - [Taints and Tolerations Use Cases](#taints-and-tolerations-use-cases)
+      - [The Three Taints Effects Implementation and Tolerations Managing](#the-three-taints-effects-implementation-and-tolerations-managing)
+         - [1.NoSchedule](#1noschedule)
+         - [2.PreferNoSchedule](#2prefernoschedule)
+         - [3.NoExecute](#3noexecute)
    - [Node Affinity](#Node-Affinity)
 
 ### 🚀Manual Scheduling
@@ -1166,7 +1172,8 @@ A toleration is essentially the counter to a taint, allowing a pod to “ignore�
 - **Effect:** Specifies the taint effect to tolerate (**`NoSchedule`**, **`PreferNoSchedule`**, **`NoExecute`**).
 
 
-**🎯Tolerations are specified in PodSpec in the following formats depending on the operator.**\
+**🎯Tolerations are specified in PodSpec in the following formats depending on the operator.**
+
 **🧩Equal Operator**
 ```sh
 tolerations:
@@ -1216,9 +1223,9 @@ tolerations:
 `kubectl drain worker-node-2 --ignore-daemonsets --delete-emptydir-data`
 
 - 🌟**Marks worker-node-2 as unschedulable to prevent new pods from being assigned, useful for maintenance, updates, or troubleshooting while keeping existing pods running.**\
-`kubectl cordon worker-node-2
+`kubectl cordon worker-node-2`
 
-- 🌟**This will make worker-node-2 schedulable again, ready to accept new pods.**
+- 🌟**This will make worker-node-2 schedulable again, ready to accept new pods.**\
 `kubectl uncordon worker-node-2`
 
 
@@ -1281,13 +1288,12 @@ This softer version of `NoSchedule` attempts to avoid placing non-tolerant pods 
 
 The `PreferNoSchedule` taint is a soft rule, meaning it prefers not to schedule general workloads on these nodes but does not strictly prevent it. The scheduler uses this flexibility to make the best use of available resources based on current demand, availability, and overall cluster health.
 
-In real-world scenarios, general workloads will be scheduled on nodes tainted with PreferNoSchedule when there are specific conditions within the cluster, typically when:
-
-- **Resource Exhaustion on Other Nodes**\
-- **High Availability and Redundancy**\
-- **Node Maintenance or Downtime**\
-- **Cluster Autoscaling Delays**\
-- **Soft Reservation for Specific Workloads**
+In real-world scenarios, general workloads will be scheduled on nodes tainted with PreferNoSchedule when there are specific conditions within the cluster, typically when:\
+**1.Resource Exhaustion on Other Nodes**\
+**2.High Availability and Redundancy**\
+**3.Node Maintenance or Downtime**\
+**4.Cluster Autoscaling Delays**\
+**4.Soft Reservation for Specific Workloads**
 
 
 - 📌**Adding a `Taint` to a Node**\

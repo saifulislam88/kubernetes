@@ -1214,6 +1214,13 @@ tolerations:
 - 🌟**Find already tainted by the Kubernetes default installation**\
 `kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect`
 
+- 🌟**Drain the Node: To safely evict pods from the node (e.g., for node shutdown), you might follow up with**\
+`kubectl drain worker-node-2 --ignore-daemonsets --delete-emptydir-data`
+
+- 🌟**Marks worker-node-2 as unschedulable to prevent new pods from being assigned, useful for maintenance, updates, or troubleshooting while keeping existing pods running.**\
+`kubectl cordon worker-node-2`\
+`kubectl uncordon worker-node-2`
+
 
 ### 🔥1.NoSchedule
 The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
@@ -1277,16 +1284,24 @@ The `PreferNoSchedule` taint is a soft rule, meaning it prefers not to schedule 
 
 In real-world scenarios, general workloads will be scheduled on nodes tainted with PreferNoSchedule when there are specific conditions within the cluster, typically when:
 
-- Resource Exhaustion on Other Nodes
-- High Availability and Redundancy
-- Node Maintenance or Downtime
-- Cluster Autoscaling Delays
+- Resource Exhaustion on Other Nodes\
+- High Availability and Redundancy\
+- Node Maintenance or Downtime\
+- Cluster Autoscaling Delays\
 - Soft Reservation for Specific Workloads
 
 
 - 📌**Adding a Taint to a Node**\
 `kubectl taint nodes worker-node1 dedicated=backend:NoSchedule`\
 `kubectl taint nodes worker-node2 env=prod:NoSchedule`
+
+
+kubectl taint nodes worker-node-1 special-purpose=true:PreferNoSchedule
+kubectl taint nodes worker-node-1 redundant=true:PreferNoSchedule
+kubectl taint nodes worker-node-3 temporary-use=true:PreferNoSchedule
+kubectl taint nodes worker-node-4 reserved-for-special=true:PreferNoSchedule
+
+
 
 - 📌**Adding Tolerations to Pods**| `NoSchedule` Effect ** 
 

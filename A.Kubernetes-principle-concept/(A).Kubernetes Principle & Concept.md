@@ -1211,8 +1211,11 @@ tolerations:
 - 🌟**To see which nodes have taints:**\
 `kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'`
 
+- 🌟**Find already tainted by the Kubernetes default installation**\
+`kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect`
 
-#### 🔥NoSchedule
+
+### 🔥1.NoSchedule
 The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
 
 - 📌**Adding a Taint to a Node**\
@@ -1223,7 +1226,7 @@ gpu=true:NoSchedule
 
 - 📌**Adding Tolerations to Pods**| `NoSchedule` Effect ** 
 
-🧩**1. Equal Operator**\
+🧩**A. Equal Operator**\
 `vim toleration-NoSchedule-equal-pod`
 ```sh
 apiVersion: v1
@@ -1243,7 +1246,7 @@ spec:
 `kubectl apply -f toleration-NoSchedule-equal-pod.yaml`
 
 
-🧩**2. Exists Operator**\
+🧩**B. Exists Operator**\
 `vim toleration-NoSchedule-exists-pod`
 ```sh
 apiVersion: v1
@@ -1267,8 +1270,19 @@ tolerations:
 
 
 
-#### 🔥PreferNoSchedule
-This softer version of NoSchedule attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.
+### 🔥2.PreferNoSchedule
+This softer version of `NoSchedule` attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.
+
+The `PreferNoSchedule` taint is a soft rule, meaning it prefers not to schedule general workloads on these nodes but does not strictly prevent it. The scheduler uses this flexibility to make the best use of available resources based on current demand, availability, and overall cluster health.
+
+In real-world scenarios, general workloads will be scheduled on nodes tainted with PreferNoSchedule when there are specific conditions within the cluster, typically when:
+
+- Resource Exhaustion on Other Nodes
+- High Availability and Redundancy
+- Node Maintenance or Downtime
+- Cluster Autoscaling Delays
+- Soft Reservation for Specific Workloads
+
 
 - 📌**Adding a Taint to a Node**\
 `kubectl taint nodes worker-node1 dedicated=backend:NoSchedule`\
@@ -1279,14 +1293,11 @@ This softer version of NoSchedule attempts to avoid placing non-tolerant pods on
 
 
 
-NoExecute — This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
+### 🔥3.NoExecute
+This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
 
 `kubectl taint nodes node1 dedicated=database:NoExecute`\
 `kubectl taint nodes node2 maintenance=true:NoExecute`
-
-
-**Find already tainted by the Kubernetes default installation**\
-`kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect`
 
 
 

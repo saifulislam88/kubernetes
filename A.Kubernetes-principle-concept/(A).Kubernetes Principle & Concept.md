@@ -1119,7 +1119,8 @@ nodeSelector is that the simplest recommendation for scheduling a pod on a speci
 **`kubectl label nodes node-01 disktype=ssd`**       # Label a Node - kubectl label nodes <node-name> <key>=<value>\
 **`kubectl get nodes -l disktype=ssd`**              # Get Nodes with Specific Labels - kubectl get nodes -l <key>=<value>\
 **`kubectl describe node kb8-worker-1`**\
-**`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**  # A Pod config file with a nodeSelector section
+**`kubectl label nodes node-01 disktype=ssd-`**\
+**`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**
 
 **`vim manual-scheduling-nodeSelector-pod`**
 ```sh

@@ -1167,9 +1167,9 @@ A toleration is essentially the counter to a taint, allowing a pod to “ignore�
 
 **🎯A toleration has three main components:**
 
-- **Key:** Identifies the taint the toleration refers to.\
-- **Operator:** Defines the relationship between the key and value; common operators are ✅**`Equal`** and ✅**`Exists`**.\
-- **Value:** The value associated with the key (used with Equal operator).\
+- **Key:** Identifies the taint the toleration refers to.
+- **Operator:** Defines the relationship between the key and value; common operators are ✅**`Equal`** and ✅**`Exists`**.
+- **Value:** The value associated with the key (used with Equal operator).
 - **Effect:** Specifies the taint effect to tolerate (**`NoSchedule`**, **`PreferNoSchedule`**, **`NoExecute`**).
 
 
@@ -1467,17 +1467,17 @@ You must apply node labels first on the node (e.g.,`disktype=ssd`, `region=us-we
 
 #### **📌noSelector Commands** | Before Affinity applying have to need adding labels
 `kubectl get nodes -l disktype=ssd`              # Get Nodes with Specific Labels - kubectl get nodes -l <key>=<value>\
-`kubectl describe node kb8-worker-1`             # Details\ 
+`kubectl describe node kb8-worker-1`\            
 `kubectl label nodes node-01 disktype=ssd`       # Label a Node - kubectl label nodes <node-name> <key>=<value>\
 `kubectl label nodes node-02 zone=bd-west`       # Label a Node - kubectl label nodes <node-name> <key>=<value>\
 `kubectl label nodes node-01 disktype=ssd-`      # Remove a Label from a Node - kubectl label nodes -\
 `kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`  # A Pod config file with a nodeSelector section
 
 
-### **📌Why Use Node Affinity if nodeSelector Exists?**
+#### **🔥Why Use Node Affinity if nodeSelector Exists?**
 `nodeSelector` provides basic scheduling capabilities, but **`Node Affinity`** offers more **flexibility** and **advanced control** over where pods are scheduled. Here's why `nodeAffinity` is needed despite having `nodeSelector`:
 
-#### **🧩1.Soft Constraints (Preferred Scheduling)**
+- #### **📌1.Soft Constraints (Preferred Scheduling)**
 With nodeSelector, scheduling is a hard constraint—pods will only run on nodes that match the label, otherwise, they won’t run. nodeAffinity allows for soft constraints using preferredDuringSchedulingIgnoredDuringExecution
 
 ```sh
@@ -1503,7 +1503,7 @@ spec:
 
 ```
 
-#### **🧩2.Advanced Operators and Expressions:**
+- #### **📌2.Advanced Operators and Expressions:**
 
 `nodeSelector` can only perform exact matches with a key-value pair. `nodeAffinity` supports advanced operators like `In`, `NotIn`, `Exists`, and `DoesNotExist` for more complex matching logic.
 
@@ -1534,7 +1534,7 @@ spec:
             - hdd
 ```
 
-#### **🧩3.Hard and Soft Constraints Together:**
+- #### **📌3.Hard and Soft Constraints Together:**
 With **Node Affinity**, you can combine both **hard** and **soft** constraints in a single policy. This allows you to define strict rules that must be followed, along with preferences that can guide Kubernetes to choose certain nodes if available.
 
 **Use Case:** You want to force the pod to run on nodes with `disktype=ssd`, but if possible, prefer nodes in the `us-west` zone.

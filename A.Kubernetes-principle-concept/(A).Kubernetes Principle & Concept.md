@@ -79,7 +79,6 @@
          - [Node Anti-Affinity](#node-anti-affinity)
          - [POD Affinity](#pod-affinity)
          - [POD Anti-Affinity](#pod-anti-affinity)
-
   - [Kubernetes Configuration & Management Objects]
       - ConfigMaps
       - Namespaces

@@ -1208,10 +1208,14 @@ spec:
 
 ## 🚀Automatic Scheduling
 ```                                                                                                                                     ```
+**Automatic scheduling** refers to Kubernetes' ability to place pods on nodes based on available `resources` and `scheduling policies` without manual intervention. Kubernetes uses its built-in scheduler to decide where to place pods based on factors such as resource requests, constraints, and other scheduling rules.
+
+
 ### 🔥Taints and Tolerations
 "Taints and Tolerations", the main goal of this feature was to prevent unwanted pods from being scheduled on some particular nodes. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
 
 ### 🔥Taints
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Taints** are applied to nodes to indicate that certain pods should avoid or be evicted from those nodes unless the pods have the matching **tolerations.**
 
 The kubectl taint command with the required taint allows us to add taints to nodes. The general syntax for the command is:\
@@ -1226,6 +1230,7 @@ So when a taint to be applied, it consists of a **`key`**,**`value`**, and an **
 **`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that you assign, **while the effect determines what happens to pods that do not tolerate the taint:**
 
 ### 🔥Tolerations
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 A toleration is essentially the counter to a taint, allowing a pod to “ignore” taints applied to a node. A toleration is defined in the pod specification and must match the key, value, and effect of the taint it intends to tolerate.
 
 **🎯A toleration has three main components:**
@@ -1253,9 +1258,9 @@ tolerations:
   operator: "Exists"
   effect: "<taint effect>"
 ```
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### 🔥Taints and Tolerations Use Cases
 
+### 🔥Taints and Tolerations Use Cases
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - **Specifying nodes with special hardware :** Often, pod workloads must run on nodes with specialized hardware such as non-x86 processors, optimized memory/storage, or resources like GPUs.
 - **Creating dedicated nodes**
 - **Reserving Nodes for System Daemons**
@@ -1264,9 +1269,8 @@ tolerations:
 - **Ensuring High Availability**
 - **Preventing Resource Starvation**
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥The three taints effects implementation and tolerations managing
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - 🌟**Viewing Taints on Nodes**\
 `kubectl describe node worker-ndoe1`
 
@@ -1292,8 +1296,9 @@ tolerations:
 - 🌟**This will make worker-node-2 schedulable again, ready to accept new pods.**\
 `kubectl uncordon worker-node-2`
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### 🔥1. NoSchedule
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
 
 - 📌**Adding a Taint to a Node**\
@@ -1346,8 +1351,8 @@ tolerations:
 ![image](https://github.com/user-attachments/assets/f8c0cf5e-ab0d-4f58-904b-fff0e998dc70)
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥2. PreferNoSchedule
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This softer version of `NoSchedule` attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.
 
 The `PreferNoSchedule` taint is a soft rule, meaning it prefers not to schedule general workloads on these nodes but does not strictly prevent it. The scheduler uses this flexibility to make the best use of available resources based on current demand, availability, and overall cluster health.
@@ -1409,8 +1414,9 @@ spec:
 ```
 `kubectl apply -f high-availability-app.yaml`
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### 🔥3. NoExecute
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
 
 📌**Adding `Tolerations` to Pods**| `NoExecute` Effect ** 
@@ -1459,9 +1465,8 @@ tolerations:
 `kubectl apply -f toleration-NoExecute-exists-pod.yaml`
 `kubectl get pod -o wide`
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Some important Built-in Taints based on three effects
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kubernetes comes with several built-in taints that are automatically applied to nodes based on certain conditions or roles to help manage pod scheduling and node health. These taints play a critical role in maintaining the stability, performance, and availability of the cluster by guiding the scheduler on where pods should or shouldn't run. Here are some key built-in taints and their roles:
 
 #### 🧩1. Node Role Taints
@@ -1508,9 +1513,8 @@ These taints are automatically added by the kubelet or node controller based on 
 - **Role Separation:** Ensures that control plane nodes are not burdened with user workloads, preserving their capacity for critical cluster management functions.
 - **Operational Stability:** Automatically reacts to infrastructure changes (e.g., maintenance, scaling) by controlling where pods are placed or removed based on node conditions.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🚀Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 In Kubernetes, `Node Affinity`, `Anti-Affinity`, `Pod Affinity`, and `Anti-Affinity` are **scheduling constraints** that dictate where pods should or shouldn’t be placed in relation to nodes and other pods. These mechanisms help in optimizing resource usage, increasing availability, reducing failure risks, and ensuring proper workload isolation.
 
 #### **📌Key Scheduling Concepts(Re-BrainStroming)**
@@ -1522,8 +1526,9 @@ In Kubernetes, `Node Affinity`, `Anti-Affinity`, `Pod Affinity`, and `Anti-Affin
 - **Hard Affinity** (`requiredDuringSchedulingIgnoredDuringExecution`):the pod will only be scheduled on nodes that meet the affinity rule.
 - **Soft Affinity** (`preferredDuringSchedulingIgnoredDuringExecution`): the scheduler prefers to schedule the pod on matching nodes but can still place it on other nodes if necessary.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### 🔥Node Affinity
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **`Node Affinity` is a more flexible and expressive version of** **`nodeSelector`**. It allows pods to be scheduled onto specific nodes based on **`labels`** and the conditions defined by the administrator. It is used when workloads require specific types of nodes or hardware.
 
 You must apply node labels first on the node (e.g.,`disktype=ssd`, `region=us-west`, etc.). Then, you can use either nodeSelector or Node Affinity to schedule the pod on the node(s) with the matching label.
@@ -1536,11 +1541,12 @@ You must apply node labels first on the node (e.g.,`disktype=ssd`, `region=us-we
 `kubectl label nodes node-01 disktype=ssd-`      # Remove a Label from a Node - kubectl label nodes -\
 `kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`  # A Pod config file with a nodeSelector section
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #### **🔥Why Use Node Affinity if nodeSelector Exists?**
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `nodeSelector` provides basic scheduling capabilities, but **`Node Affinity`** offers more **flexibility** and **advanced control** over where pods are scheduled. Here's why `nodeAffinity` is needed despite having `nodeSelector`:
 
 - #### **📌1.Soft Constraints (Preferred Scheduling)**
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 With nodeSelector, scheduling is a hard constraint—pods will only run on nodes that match the label, otherwise, they won’t run. nodeAffinity allows for soft constraints using preferredDuringSchedulingIgnoredDuringExecution
 
 ```sh
@@ -1567,7 +1573,7 @@ spec:
 ```
 
 - #### **📌2.Advanced Operators and Expressions:**
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `nodeSelector` can only perform exact matches with a key-value pair. `nodeAffinity` supports advanced operators like `In`, `NotIn`, `Exists`, and `DoesNotExist` for more complex matching logic.
 
 **Use Case:** You want a pod to be scheduled on nodes that have a disktype that’s either `ssd` or `nvme`, but **Avoid** any node labeled with `disktype=hdd`.
@@ -1598,6 +1604,7 @@ spec:
 ```
 
 - #### **📌3.Hard and Soft Constraints Together:**
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 With **Node Affinity**, you can combine both **hard** and **soft** constraints in a single policy. This allows you to define strict rules that must be followed, along with preferences that can guide Kubernetes to choose certain nodes if available.
 
 **Use Case:** You want to force the pod to run on nodes with `disktype=ssd`, but if possible, prefer nodes in the `us-west` zone.

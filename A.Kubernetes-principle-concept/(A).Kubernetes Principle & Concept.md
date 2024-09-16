@@ -1114,8 +1114,8 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 **Node Selection:** Chooses the best node for each pod based on resources and constraints.\
 **Resource Management:** Ensures nodes have enough CPU and memory for pods.\
 **Constraint Handling:** Considers rules like taints and labels for scheduling.\
-**Master Node Management:** Keeps master nodes free from pods.\ 
-**Optimal Scheduling:** Aims to place pods efficiently and effectively.\
+**Master Node Management:** Keeps master nodes free from pods.\
+**Optimal Scheduling:** Aims to place pods efficiently and effectively.
 
 - [Manual Scheduling](#Manual-Scheduling)
    - [nodeName](#nodename)

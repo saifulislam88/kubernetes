@@ -1069,8 +1069,8 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 **It chooses the optimal node based on Kubernetes’ scheduling principles and rules.**
 
 - [Manual Scheduling](#Manual-Scheduling)
-   - [NodeName](#nodename)
-   - [Node Selector](#Node-Selector)
+   - [nodeName](#nodename)
+   - [nodeSelector](#nodeSelector--label)
 - [Automatic Scheduling](#Automatic-Scheduling)
    - [Taints and Tolerations](#taints-and-tolerations)
       - [Taints](#Taints)
@@ -1112,9 +1112,9 @@ spec:
 **`kubectl apply -f manual-scheduling-nodeName-pod.yaml`**\
 **`kubectl get pods -o wide`**
 
-### 🔥Node Selector | label
+### 🔥nodeSelector | label
 
-nodeSelector is that the simplest recommendation for scheduling a pod on a specific node. If you want to run your pods on a specific set of nodes, use nodeSelector to ensure that happens. You can define the nodeSelector field as a set of key-value pairs in `PodSpec`:
+`nodeSelector` is that the simplest recommendation for hard scheduling a pod on a specific `node using node label`. If you want to run your pods on a specific set of nodes, use `nodeSelector` to ensure that happens. You can define the `nodeSelector` field as a set of key-value pairs in `PodSpec`
 
 - **🌟Display Labels of a Node**\
 `kubectl get node kb8-worker-1 --show-labels | awk '{print $NF}' | sed 's/,/\n/g' | sed 's/^/Labels:         /'`
@@ -1235,7 +1235,7 @@ tolerations:
 `kubectl uncordon worker-node-2`
 
 
-### 🔥1.NoSchedule
+### 🔥1. NoSchedule
 The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
 
 - 📌**Adding a Taint to a Node**\
@@ -1289,7 +1289,7 @@ tolerations:
 
 
 
-### 🔥2.PreferNoSchedule
+### 🔥2. PreferNoSchedule
 This softer version of `NoSchedule` attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.
 
 The `PreferNoSchedule` taint is a soft rule, meaning it prefers not to schedule general workloads on these nodes but does not strictly prevent it. The scheduler uses this flexibility to make the best use of available resources based on current demand, availability, and overall cluster health.
@@ -1353,7 +1353,7 @@ spec:
 `kubectl apply -f high-availability-app.yaml`
 
 
-### 🔥3.NoExecute
+### 🔥3. NoExecute
 This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
 
 `kubectl taint nodes node1 dedicated=database:NoExecute`\

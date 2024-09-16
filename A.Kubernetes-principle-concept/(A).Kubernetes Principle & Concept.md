@@ -1077,7 +1077,7 @@ https://nidhiashtikar.medium.com/kubernetes-ingress-d71127920357
 
 ### MetalLB | BareMetal LB
 https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
-
+----------------------------------------------------------------------------------------------------------------------------------
 ## 🚀Kubernetes Scheduling
 **The Kubernetes scheduler is responsible for selecting the best node for a pod based on available resources, constraints, and preferences.** This feature is also used to prevent pods from being scheduled on the master node, ensuring the master node remains free from taking on workloads.** So it aims to schedule the pod to a correct and available node. While the scheduler decides which node a pod should run on (it only decides and does not put the pod on that node), **the kubelet on the assigned node retrieves the pod definition from the API and starts the pod by creating the necessary resources and containers.** The scheduler evaluates the resource requirements of each pod (such as CPU and memory) and **considers constraint rules like** **`taints`, `tolerations`, `labels`, and `node affinity`** to determine the best node for the pod. 
 **It chooses the optimal node based on Kubernetes’ scheduling principles and rules.**

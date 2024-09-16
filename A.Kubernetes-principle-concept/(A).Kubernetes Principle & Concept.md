@@ -813,7 +813,7 @@ We also can deploy pods & service using impertative command
 `kubectl expose deployment test --port=80 --target-port=80`\
 `kubectl get svc test`
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### [2. NodePort](https://github.com/saifulislam88/kubernetes/blob/main/A.Kubernetes-principle-concept/(A).Kubernetes%20Principle%20&%20Concept.md#2-nodeport)
 

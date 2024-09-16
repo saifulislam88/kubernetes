@@ -1110,14 +1110,15 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### 🚀Manual Scheduling
 ```                                                                                                                                     ```
 If a node has a **taint** and you try to manually schedule a pod on that node without adding the corresponding **toleration** to the pod, the pod will not be scheduled successfully.
 Manual scheduling does not override taints. You still need to ensure the pod has the necessary tolerations if the node has taints. **Node affinity** rules are not strictly enforced during manual scheduling. If you manually schedule a pod to a node, Kubernetes will place the pod on that node even if it does not meet the node affinity rules specified in the pod spec.
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### 🔥nodeName
 
+### 🔥nodeName
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 We can manually schedule our pods on the whichever node we want. Let us have a look at all how it really happens. Every POD has a field called **`nodeName`** that by default is not set and kube-scheduler sets it on its own. So if one needs to manually schedule a pod, then they just need to set the **`nodeName**` **property in the pod definition file under the spec section.**
 
 **Note:** Above method only works when pod is still not created. If the pod is created and already running, then this method won’t work.
@@ -1140,9 +1141,9 @@ spec:
 **`kubectl apply -f manual-scheduling-nodeName-pod.yaml`**\
 **`kubectl get pods -o wide`**
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### 🔥nodeSelector | label
 
+### 🔥nodeSelector | label
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `nodeSelector` is that the simplest recommendation for hard scheduling a pod on a specific `node using node label`. If you want to run your pods on a specific set of nodes, use `nodeSelector` to ensure that happens. You can define the `nodeSelector` field as a set of key-value pairs in `PodSpec`
 
 - **🌟Display Labels of a Node**\
@@ -1177,10 +1178,10 @@ spec:
 **`kubectl apply -f manual-scheduling-nodeSelector-pod.yaml`**\
 **`kubectl get pods -o wide`**
 
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-## 🚀Automatic Scheduling
 
+## 🚀Automatic Scheduling
+```                                                                                                                                     ```
 ### 🔥Taints and Tolerations
 "Taints and Tolerations", the main goal of this feature was to prevent unwanted pods from being scheduled on some particular nodes. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
 

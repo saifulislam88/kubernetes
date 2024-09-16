@@ -1110,7 +1110,7 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-### 🚀Manual Scheduling ```sh                                                                                                                                                ```
+### 🚀Manual Scheduling```                                                                                                                               ```
 
 If a node has a **taint** and you try to manually schedule a pod on that node without adding the corresponding **toleration** to the pod, the pod will not be scheduled successfully.
 Manual scheduling does not override taints. You still need to ensure the pod has the necessary tolerations if the node has taints. **Node affinity** rules are not strictly enforced during manual scheduling. If you manually schedule a pod to a node, Kubernetes will place the pod on that node even if it does not meet the node affinity rules specified in the pod spec.

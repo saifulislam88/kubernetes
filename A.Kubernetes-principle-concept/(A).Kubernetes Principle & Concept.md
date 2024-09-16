@@ -1187,7 +1187,7 @@ spec:
 - **🌟Get Detailed Information about a Node**\
 `kubectl describe node kb8-worker-1`
 - **🌟Remove a Label from a Node**\
-`kubectl label nodes node-01 disktype=ssd-`
+`kubectl label nodes node-01 disktype-`
 - **🌟Pod scheduling using `nodeSelector`**\
 **`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**
 
@@ -1196,7 +1196,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: manual-scheduling-nodeSelector-pod
+  name: manualScheduling
   labels:
     env: prod
 spec:
@@ -1540,12 +1540,18 @@ In Kubernetes, `Node Affinity`, `Anti-Affinity`, `Pod Affinity`, and `Anti-Affin
 You must apply node labels first on the node (e.g.,`disktype=ssd`, `region=us-west`, etc.). Then, you can use either nodeSelector or Node Affinity to schedule the pod on the node(s) with the matching label.
 
 #### **📌noSelector Commands** | Before Affinity applying have to need adding labels
-`kubectl get nodes -l disktype=ssd`              # Get Nodes with Specific Labels - kubectl get nodes -l <key>=<value>\
-`kubectl describe node kb8-worker-1`\            
-`kubectl label nodes node-01 disktype=ssd`       # Label a Node - kubectl label nodes <node-name> <key>=<value>\
-`kubectl label nodes node-02 zone=bd-west`       # Label a Node - kubectl label nodes <node-name> <key>=<value>\
-`kubectl label nodes node-01 disktype=ssd-`      # Remove a Label from a Node - kubectl label nodes -\
-`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`  # A Pod config file with a nodeSelector section
+- **🌟Display Labels of a Node**\
+`kubectl get node kb8-worker-1 --show-labels | awk '{print $NF}' | sed 's/,/\n/g' | sed 's/^/Labels:         /'`
+- **🌟Label a Node** | `kubectl label nodes <node-name> <key>=<value>`\
+`kubectl label nodes node-01 disktype=ssd`
+- **🌟Get Nodes with Specific Labels** | `kubectl get nodes -l <key>=<value>`\
+`kubectl get nodes -l disktype=ssd`   
+- **🌟Get Detailed Information about a Node**\
+`kubectl describe node kb8-worker-1`
+- **🌟Remove a Label from a Node**\
+`kubectl label nodes node-01 disktype-`
+- **🌟Pod scheduling using `nodeSelector`**\
+**`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**
 
 #### **🔥Why Use Node Affinity if nodeSelector Exists?**
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

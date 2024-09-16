@@ -1116,10 +1116,17 @@ spec:
 
 nodeSelector is that the simplest recommendation for scheduling a pod on a specific node. If you want to run your pods on a specific set of nodes, use nodeSelector to ensure that happens. You can define the nodeSelector field as a set of key-value pairs in `PodSpec`:
 
-**`kubectl label nodes node-01 disktype=ssd`**       # Label a Node - kubectl label nodes <node-name> <key>=<value>\
-**`kubectl get nodes -l disktype=ssd`**              # Get Nodes with Specific Labels - kubectl get nodes -l <key>=<value>\
-**`kubectl describe node kb8-worker-1`**\
-**`kubectl label nodes node-01 disktype=ssd-`**\
+- **Display Labels of a Node**
+`kubectl get node kb8-worker-1 --show-labels | awk '{print $NF}' | sed 's/,/\n/g' | sed 's/^/Labels:         /'`
+- **Label a Node** | `kubectl label nodes <node-name> <key>=<value>`
+`kubectl label nodes node-01 disktype=ssd`
+- **Get Nodes with Specific Labels** | `kubectl get nodes -l <key>=<value>`
+`kubectl get nodes -l disktype=ssd`   
+- **Get Detailed Information about a Node**
+`kubectl describe node kb8-worker-1`
+- **Remove a Label from a Node**
+`kubectl label nodes node-01 disktype=ssd-`
+- **Pod scheduling using `nodeSelector`**
 **`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**
 
 **`vim manual-scheduling-nodeSelector-pod`**
@@ -1140,8 +1147,6 @@ spec:
 ```
 **`kubectl apply -f manual-scheduling-nodeSelector-pod.yaml`**\
 **`kubectl get pods -o wide`**\
-**`kubectl label nodes node-01 disktype=ssd-`**      # Remove a Label from a Node - kubectl label nodes <node-name> <key>-
-
 
 ## 🚀Automatic Scheduling
 

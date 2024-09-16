@@ -57,6 +57,7 @@
       - [Kubernetes Ingress](#ingress)
         - [Ingress Controlller](#ingress-controller)
           - [MetalLB | BareMetal LB](#metallb--baremetal-lb)
+- [Kubernetes Scheduling](#Kubernetes-Scheduling)
   - [Manual Scheduling](#Manual-Scheduling)
     - [nodeName](#nodename)
     - [nodeSelector](#nodeSelector--label)

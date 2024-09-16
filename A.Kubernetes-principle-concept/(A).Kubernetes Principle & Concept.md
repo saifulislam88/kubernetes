@@ -57,14 +57,29 @@
       - [Kubernetes Ingress](#ingress)
         - [Ingress Controlller](#ingress-controller)
           - [MetalLB | BareMetal LB](#metallb--baremetal-lb)
-  - [Kubernetes Scheduling](#Kubernetes-Scheduling)
-      - [Manual Scheduling](#Manual-Scheduling)
-        - [NodeName](#nodename)
-        - [Node Selector](#Node-Selector)
-      - [Automatic Scheduling](#Automatic-Scheduling)
-        - [Taints](#Taints)
-        - [Tolerations](#Tolerations)
-        - [Node Affinity](#Node-Affinity)
+  - [Manual Scheduling](#Manual-Scheduling)
+   - [nodeName](#nodename)
+   - [nodeSelector](#nodeSelector--label)
+  - [Automatic Scheduling](#Automatic-Scheduling)
+   - [Taints and Tolerations](#taints-and-tolerations)
+      - [Taints](#Taints)
+      - [Tolerations](#Tolerations)
+      - [Taints and Tolerations Use Cases](#taints-and-tolerations-use-cases)
+      - [The Three Taints Effects Implementation and Tolerations Managing](#the-three-taints-effects-implementation-and-tolerations-managing)
+         - [1.NoSchedule](#1-noschedule)
+         - [2.PreferNoSchedule](#2-prefernoschedule)
+         - [3.NoExecute](#3-noexecute)
+      - [Some important built in taints-based-on-three-effects](#some-important-built-in-taints-based-on-three-effects)
+         - [Node Role Taints](#1-node-role-taints)
+         - [Node Condition Taints](#2-node-condition-taints)
+         - [Node Lifecycle Taints](#3-node-lifecycle-taints)
+         - [Importance-of-built-in-taints](#importance-of-built-in-taints---these-built-in-taints-ensure)
+      - [Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity](#node-affinityanti-affinity-and-pod-affinityanti-affinity)
+         - [Node Affinity](#Node-Affinity)
+         - [Node Anti-Affinity](#node-anti-affinity)
+         - [POD Affinity](#pod-affinity)
+         - [POD Anti-Affinity](#pod-anti-affinity)
+
   - [Kubernetes Configuration & Management Objects]
       - ConfigMaps
       - Namespaces
@@ -1077,10 +1092,19 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
       - [Tolerations](#Tolerations)
       - [Taints and Tolerations Use Cases](#taints-and-tolerations-use-cases)
       - [The Three Taints Effects Implementation and Tolerations Managing](#the-three-taints-effects-implementation-and-tolerations-managing)
-         - [1.NoSchedule](#1noschedule)
-         - [2.PreferNoSchedule](#2prefernoschedule)
-         - [3.NoExecute](#3noexecute)
-   - [Node Affinity](#Node-Affinity)
+         - [1.NoSchedule](#1-noschedule)
+         - [2.PreferNoSchedule](#2-prefernoschedule)
+         - [3.NoExecute](#3-noexecute)
+      - [Some important built in taints-based-on-three-effects](#some-important-built-in-taints-based-on-three-effects)
+         - [Node Role Taints](#1-node-role-taints)
+         - [Node Condition Taints](#2-node-condition-taints)
+         - [Node Lifecycle Taints](#3-node-lifecycle-taints)
+         - [Importance-of-built-in-taints](#importance-of-built-in-taints---these-built-in-taints-ensure)
+      - [Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity](#node-affinityanti-affinity-and-pod-affinityanti-affinity)
+         - [Node Affinity](#Node-Affinity)
+         - [Node Anti-Affinity](#node-anti-affinity)
+         - [POD Affinity](#pod-affinity)
+         - [POD Anti-Affinity](#pod-anti-affinity)
 
 ### 🚀Manual Scheduling
 
@@ -1244,7 +1268,7 @@ The pod will not get scheduled to the node without a matching toleration for the
 `kubectl taint nodes worker-node3 gpu=true:NoSchedule`
 
 
-- 📌**Adding Tolerations to Pods**| `NoSchedule` Effect ** 
+📌**Adding Tolerations to Pods**| `NoSchedule` Effect ** 
 
 🧩**A. Equal Operator**\
 `vim toleration-NoSchedule-equal-pod`
@@ -1301,16 +1325,15 @@ In real-world scenarios, general workloads will be scheduled on nodes tainted wi
 **4.Cluster Autoscaling Delays**\
 **4.Soft Reservation for Specific Workloads**
 
-
 - 📌**Adding a `Taint` to a Node**\
 `kubectl taint nodes worker-node-1 special-purpose=true:NoSchedule`\
 `kubectl taint nodes worker-node-1 redundant=true:PreferNoSchedule`\
 `kubectl taint nodes worker-node-3 temporary-use=true:PreferNoSchedule`\
 `kubectl taint nodes worker-node-4 reserved-for-special=true:PreferNoSchedule`
 
-- 📌**Adding `Tolerations` to Pods**| `PreferNoSchedule` Effect ** 
+📌**Adding `Tolerations` to Pods**| `PreferNoSchedule` Effect ** 
 
-**Resource Exhaustion on Other Nodes**
+**🧩Resource Exhaustion on Other Nodes**
 ```sh
 apiVersion: v1
 kind: Pod
@@ -1328,7 +1351,7 @@ spec:
 `kubectl apply -f general-workload-pod.yaml`
 
 
-**High Availability and Redundancy**
+**🧩High Availability and Redundancy**
 ```sh
 apiVersion: apps/v1
 kind: Deployment
@@ -1356,11 +1379,12 @@ spec:
 ### 🔥3. NoExecute
 This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
 
+📌**Adding `Tolerations` to Pods**| `NoExecute` Effect ** 
 `kubectl taint nodes node1 dedicated=database:NoExecute`\
 `kubectl taint nodes node2 maintenance=true:NoExecute`
 
 
-- 📌**Adding Tolerations to Pods**| `NoExecute` Effect ** 
+📌**Adding Tolerations to Pods**| `NoExecute` Effect ** 
 
 🧩**A. Equal Operator**\
 `vim toleration-NoExecute-equal-pod`

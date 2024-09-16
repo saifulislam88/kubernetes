@@ -1146,7 +1146,7 @@ spec:
     disktype: ssd  # Specify the exact node label here for nodeSelector
 ```
 **`kubectl apply -f manual-scheduling-nodeSelector-pod.yaml`**\
-**`kubectl get pods -o wide`**\
+**`kubectl get pods -o wide`**
 
 ## 🚀Automatic Scheduling
 

@@ -1115,9 +1115,9 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
 If a node has a **taint** and you try to manually schedule a pod on that node without adding the corresponding **toleration** to the pod, the pod will not be scheduled successfully.
 Manual scheduling does not override taints. You still need to ensure the pod has the necessary tolerations if the node has taints. **Node affinity** rules are not strictly enforced during manual scheduling. If you manually schedule a pod to a node, Kubernetes will place the pod on that node even if it does not meet the node affinity rules specified in the pod spec.
 
-________________________________________________________________________________________________________________________________________________________________________________
-### 🔥nodeName
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### 🔥nodeName
+
 We can manually schedule our pods on the whichever node we want. Let us have a look at all how it really happens. Every POD has a field called **`nodeName`** that by default is not set and kube-scheduler sets it on its own. So if one needs to manually schedule a pod, then they just need to set the **`nodeName**` **property in the pod definition file under the spec section.**
 
 **Note:** Above method only works when pod is still not created. If the pod is created and already running, then this method won’t work.
@@ -1142,7 +1142,7 @@ spec:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥nodeSelector | label
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 `nodeSelector` is that the simplest recommendation for hard scheduling a pod on a specific `node using node label`. If you want to run your pods on a specific set of nodes, use `nodeSelector` to ensure that happens. You can define the `nodeSelector` field as a set of key-value pairs in `PodSpec`
 
 - **🌟Display Labels of a Node**\
@@ -1176,8 +1176,6 @@ spec:
 ```
 **`kubectl apply -f manual-scheduling-nodeSelector-pod.yaml`**\
 **`kubectl get pods -o wide`**
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1228,7 +1226,7 @@ tolerations:
   operator: "Exists"
   effect: "<taint effect>"
 ```
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Taints and Tolerations Use Cases
 
 - **Specifying nodes with special hardware :** Often, pod workloads must run on nodes with specialized hardware such as non-x86 processors, optimized memory/storage, or resources like GPUs.
@@ -1239,7 +1237,7 @@ tolerations:
 - **Ensuring High Availability**
 - **Preventing Resource Starvation**
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥The three taints effects implementation and tolerations managing
 
 - 🌟**Viewing Taints on Nodes**\
@@ -1267,7 +1265,7 @@ tolerations:
 - 🌟**This will make worker-node-2 schedulable again, ready to accept new pods.**\
 `kubectl uncordon worker-node-2`
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥1. NoSchedule
 The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
 
@@ -1321,7 +1319,7 @@ tolerations:
 ![image](https://github.com/user-attachments/assets/f8c0cf5e-ab0d-4f58-904b-fff0e998dc70)
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥2. PreferNoSchedule
 This softer version of `NoSchedule` attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.
 
@@ -1384,7 +1382,7 @@ spec:
 ```
 `kubectl apply -f high-availability-app.yaml`
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥3. NoExecute
 This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
 
@@ -1434,7 +1432,7 @@ tolerations:
 `kubectl apply -f toleration-NoExecute-exists-pod.yaml`
 `kubectl get pod -o wide`
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Some important Built-in Taints based on three effects
 
 Kubernetes comes with several built-in taints that are automatically applied to nodes based on certain conditions or roles to help manage pod scheduling and node health. These taints play a critical role in maintaining the stability, performance, and availability of the cluster by guiding the scheduler on where pods should or shouldn't run. Here are some key built-in taints and their roles:
@@ -1483,7 +1481,7 @@ These taints are automatically added by the kubelet or node controller based on 
 - **Role Separation:** Ensures that control plane nodes are not burdened with user workloads, preserving their capacity for critical cluster management functions.
 - **Operational Stability:** Automatically reacts to infrastructure changes (e.g., maintenance, scaling) by controlling where pods are placed or removed based on node conditions.
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🚀Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity
 
 In Kubernetes, `Node Affinity`, `Anti-Affinity`, `Pod Affinity`, and `Anti-Affinity` are **scheduling constraints** that dictate where pods should or shouldn’t be placed in relation to nodes and other pods. These mechanisms help in optimizing resource usage, increasing availability, reducing failure risks, and ensuring proper workload isolation.
@@ -1497,7 +1495,7 @@ In Kubernetes, `Node Affinity`, `Anti-Affinity`, `Pod Affinity`, and `Anti-Affin
 - **Hard Affinity** (`requiredDuringSchedulingIgnoredDuringExecution`):the pod will only be scheduled on nodes that meet the affinity rule.
 - **Soft Affinity** (`preferredDuringSchedulingIgnoredDuringExecution`): the scheduler prefers to schedule the pod on matching nodes but can still place it on other nodes if necessary.
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Node Affinity
 **`Node Affinity` is a more flexible and expressive version of** **`nodeSelector`**. It allows pods to be scheduled onto specific nodes based on **`labels`** and the conditions defined by the administrator. It is used when workloads require specific types of nodes or hardware.
 
@@ -1511,7 +1509,7 @@ You must apply node labels first on the node (e.g.,`disktype=ssd`, `region=us-we
 `kubectl label nodes node-01 disktype=ssd-`      # Remove a Label from a Node - kubectl label nodes -\
 `kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`  # A Pod config file with a nodeSelector section
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #### **🔥Why Use Node Affinity if nodeSelector Exists?**
 `nodeSelector` provides basic scheduling capabilities, but **`Node Affinity`** offers more **flexibility** and **advanced control** over where pods are scheduled. Here's why `nodeAffinity` is needed despite having `nodeSelector`:
 
@@ -1607,9 +1605,11 @@ spec:
                 - us-west
 ```
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Node Anti-Affinity
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Pod Affinity
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Pod Anti-Affinity
 
 

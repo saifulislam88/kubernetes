@@ -219,11 +219,13 @@ ensuring they remain readily available whenever you require them. Therefore, you
 ### Master Node(Control-Plane)
 
 **The master is responsible  for exposing the application program interface (API), scheduling the deployments and managing the overall cluster.** The **Master Node** consists of various components including..
- 
+
+ - Master four Core Components — that's why these are called master/control plane node in Kubernetes
    - [kube-apiserver](#kube-apiserver)
    - [kube-scheduler](#kube-scheduler)
    - [kube-controller-manager](#kube-controller-manager)
    - [etcd](#etcd)
+ - Master Pods managing Components — that's why these are called worker/master nodes components in Kubernetes
    - [kubelet](#kubelet)
    - [kube-proxy](#kube-proxy)
    - [container runtime interface(CRI)](#container-runtime-interfaceCRI)
@@ -240,10 +242,9 @@ ensuring they remain readily available whenever you require them. Therefore, you
 
 [Back to Top](#top)
 
-
 ## Nodes Component Overview & Roles in a Kubernetes Cluster
 
-We will talk about building a Kubernetes cluster in the following articles. **In Kubernetes, a master node is identified primarily by the presence of the following components**: `kube-apiserver`, `kube-scheduler` `kube-controller-manager`, `etcd` and **Conversely, a worker node is primarily characterized by the presence of**: `kubelet`, `kube-proxy`, `Container Runtime Interface (CRI)`. **However**, master nodes also include components traditionally associated with worker nodes, such as `kubelet`, `kube-proxy`, and `CRI`. This is because control plane components (`kube-apiserver`, `kube-scheduler`, `kube-controller-manager`, `etcd`) run as Pods not daemon on the master node. To manage and maintain these Pods, the master node requires `kubelet`, `kube-proxy`, and `CRI`. **Thus, in practice, a master node performs functions similar to a worker node** by handling containerized workloads and maintaining Pod health, effectively blurring the distinction between master and worker nodes.
+We will talk about building a Kubernetes cluster in the following articles. **In Kubernetes, a master node is identified primarily by the presence of the following components**: `kube-apiserver`, `kube-scheduler` `kube-controller-manager`, `etcd` and **Conversely, a worker node is primarily characterized by the presence of**: `kubelet`, `kube-proxy`, `Container Runtime Interface (CRI)`. **However**, master nodes also include components traditionally associated with worker nodes, such as `kubelet`, `kube-proxy`, and `CRI`. This is because control plane components (`kube-apiserver`, `kube-scheduler`, `kube-controller-manager`, `etcd`) run as [Static Pods]()not daemon on the master node. To manage and maintain these Pods, the master node requires `kubelet`, `kube-proxy`, and `CRI`. **Thus, in practice, a master node performs functions similar to a worker node** by handling containerized workloads and maintaining Pod health, effectively blurring the distinction between master and worker nodes.
 
 ### kube-apiserver
 
@@ -290,9 +291,6 @@ This component communicates with the control plane. **So Kubelet is an agent app
  - Monitoring the health of the pod and its containers.
  - Takes a set of PodSpecs and ensures that the described containers are running and healthy.
  - Reporting the status back to the control plane.
-
-
-
 
 ### kube-proxy
 
@@ -463,6 +461,8 @@ spec:
 **Get List of Containers in a specific Pod**     
 `kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'; echo`  
 <br>
+
+- ### 📌Static Pods
 
 
 ## 🚀ReplicaSets

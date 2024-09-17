@@ -466,8 +466,7 @@ spec:
 
 **Static Pods** are managed directly by the `Kubelet` on a specific node, without the **intervention** of the Kubernetes API Server. These pods are defined by YAML files placed in a directory on the node (typically `/etc/kubernetes/manifests`), and the `Kubelet` continuously watches and manages them.
 
-**Static Pods on Master Nodes:**\
-Used for critical control plane components, such as:
+**Static Pods on Master Nodes:** Used for critical control plane components, such as:\
 **kube-apiserver:** Handles cluster communication.\
 **kube-controller-manager:** Runs controller processes.\
 **kube-scheduler:** Schedules pods on nodes.\

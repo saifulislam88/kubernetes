@@ -88,8 +88,9 @@
       - LimitRanges
       - Pod Disruption Budgets (PDB)
       - Pod Priority and Preemption
-  - [Kubernetes Storage Management Objects]
-      - Persistent Volumes (PV) & Persistent Volume Claims (PVC)
+  - [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
+      - Persistent Volumes (PV)
+      - Persistent Volume Claims (PVC)
       - [Storage Classes/Type](#types-of-volumes)
       - Access Modes for Volumes
   - [Kubernetes Security Objects](#Kubernetes-Security-Objects)
@@ -1659,9 +1660,16 @@ spec:
 
 
 
+## 🚀Kubernetes Storage Management Objects
 
+Storage has always been a challenge for IT practitioners, with issues like integrity, retention, replication and migration of large data sets. These challenges are not new, and with modern, decentralized systems based on containers, they haven't gone away.
 
+- Persistent Volumes (PV)
+- Persistent Volume Claims (PVC)
+- [Storage Classes/Type](#types-of-volumes)
+- Access Modes for Volumes
 
+https://medium.com/@seifeddinerajhi/understanding-storage-in-kubernetes-ee2c19001aae
 
 
 

@@ -286,7 +286,10 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward                 = 1
 EOF
 ```
-`sysctl --system`
+
+```sh
+sysctl --system
+```
 
 #### 🚀D. Install containerd (All Master & Worker Node)
 
@@ -304,8 +307,9 @@ sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 
+```sh
+cat /etc/containerd/config.toml
 ```
-`cat /etc/containerd/config.toml`
 
 ```sh
 sudo systemctl restart containerd.service
@@ -334,9 +338,9 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 
 📌**Ensure all packages are up to date:**\
 
-`bash
+```sh
 sudo apt-get update
-`
+```
 
 📌**Each Kubernetes deployment consists of three separate tools:**\
 Execute the following commands on each server node to install the Kubernetes tools(Kubeadm,Kubelet,Kubectl). The command `sudo apt-mark hold kubelet kubeadm kubectl` is used to prevent the specified packages (`kubelet`, `kubeadm`, and `kubectl`) from being automatically updated or upgraded by the package manager.

@@ -310,7 +310,7 @@ sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/c
 ```sh
 sudo systemctl restart containerd.service
 sudo systemctl enable containerd.service
-sudo systemctl status containerd
+sudo systemctl status containerd --no-pager
 ```
 
 #### 🚀E. [Install Kubernetes Management Tools](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) (All Master & Worker Node)
@@ -349,7 +349,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 📌**Check kubectl Status**
 
-**`systemctl status kubelet`**
+**`systemctl status kubelet --no-pager`**
 
 ⚠️(`:warning:`) When you check the **`kubelet`** service status using **`systemctl status kubelet`** on both the master and worker nodes, you may see that it is in an **"activating"** state like below screenshot. This is not an issue. When the **kubeadm** service is initiated on the **master node**, it will automatically start the **kubelet** service. After all **worker nodes** have joined the **master**, the **kubelet** service on those nodes will also become **active automatically.**
 

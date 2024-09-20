@@ -333,7 +333,10 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 ```
 
 📌**Ensure all packages are up to date:**\
-`sudo apt-get update`
+
+`bash
+sudo apt-get update
+`
 
 📌**Each Kubernetes deployment consists of three separate tools:**\
 Execute the following commands on each server node to install the Kubernetes tools(Kubeadm,Kubelet,Kubectl). The command `sudo apt-mark hold kubelet kubeadm kubectl` is used to prevent the specified packages (`kubelet`, `kubeadm`, and `kubectl`) from being automatically updated or upgraded by the package manager.
@@ -349,7 +352,9 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 📌**Check kubectl Status**
 
-**`systemctl status kubelet --no-pager`**
+```sh
+systemctl status kubelet --no-pager
+```
 
 ⚠️(`:warning:`) When you check the **`kubelet`** service status using **`systemctl status kubelet`** on both the master and worker nodes, you may see that it is in an **"activating"** state like below screenshot. This is not an issue. When the **kubeadm** service is initiated on the **master node**, it will automatically start the **kubelet** service. After all **worker nodes** have joined the **master**, the **kubelet** service on those nodes will also become **active automatically.**
 
@@ -363,14 +368,17 @@ init 6
 ```
 
 
-### Step 7: Initialise the machine as a master node:
+### Step 7: Initialise as a master (1st master node primary) :
 
-Initialization the Kubernetes Cluster on any one of the Kubernetes master node where `172.16.4.100` is master servers VIP and `192.168.0.0/16` is Pod CIDR.If want to change this cidr,you have to udpate [CNI network configuration operator file]()
+- **Please ensure that the K8s Cluster IP block and the POD CIDR are different blocks**
+
+Initialization the Kubernetes Cluster on any one of the Kubernetes master node where `172.16.4.100` this `IP` is master servers `VIP`, `1st master node IP` is `172.16.4.101`(apiserver-advertise-address) and `192.168.0.0/16` is `Pod CIDR`.If want to change this cidr,you have to udpate [CNI network configuration operator file]()
+
 
 - **Execute the following command where the culster will be `multi-master` with `Loadbalancers & VIP`**
 
 ```sh
-sudo kubeadm init --control-plane-endpoint="172.16.4.100:6443" --apiserver-advertise-address=172.16.4.101 --pod-network-cidr=172.16.0.0/16 --cri-socket /run/containerd/containerd.sock --ignore-preflight-errors Swap
+sudo kubeadm init --control-plane-endpoint="172.16.4.100:6443" --apiserver-advertise-address=172.16.4.101 --pod-network-cidr=192.168.0.0/16 --cri-socket /run/containerd/containerd.sock --ignore-preflight-errors Swap
 ```
 
 - ⚠️(`:warning:`) where the culster will be `single master` it will be applicable for that time ONLY.

@@ -1553,19 +1553,26 @@ Before we start, we need to `label` your nodes to use `Node Affinity` or `nodeSe
 
 - **🌟Display Exiting Labels of a Node**\
 ```sh
-kubectl get node <node_name> --show-labels | awk '{print $NF}' | sed 's/,/\n/g' | sed 's/^/Labels:         /'
+kubectl get node <🔥node_name> --show-labels | awk '{print $NF}' | sed 's/,/\n/g' | sed 's/^/Labels:         /'
 ```
-- **🌟Label a Node** | `kubectl label nodes <node-name> <key>=<value>`\
+- **🌟🟢Label a Node** | `kubectl label nodes <node-name> <key>=<value>`
 ```sh
-kubectl label nodes <node-name> disktype=ssd
+kubectl label nodes <🔥node_name> disktype=ssd
+```
+- **🌟🔴Remove a Label from a Node**
+```sh
+kubectl label nodes <🔥node_name> disktype-
+```
+- **🌟Find Nodes Name using Label** | `kubectl get nodes -l <key>=<value>`
+```sh
+kubectl get nodes -l disktype=ssd
+```
+- **🌟Get Detailed Information about a Node**
+```sh
+kubectl describe node <🔥node_name>
 ```
 
-- **🌟Get Nodes with Specific Labels** | `kubectl get nodes -l <key>=<value>`\
-`kubectl get nodes -l disktype=ssd`   
-- **🌟Get Detailed Information about a Node**\
-`kubectl describe node kb8-worker-1`
-- **🌟Remove a Label from a Node**\
-`kubectl label nodes node-01 disktype-`
+
 - **🌟Pod scheduling using `nodeSelector`**\
 **`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**
 

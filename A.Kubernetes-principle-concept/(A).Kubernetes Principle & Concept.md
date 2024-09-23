@@ -1544,22 +1544,26 @@ You must apply node `labels` first on the node (e.g.,`disktype=ssd`, `region=hdd
 
 
 #### **Q❓Why use Node Affinity if `nodeSelector` already exists?**
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 `nodeSelector` provides basic scheduling capabilities, but **`Node Affinity`** offers more **flexibility** and **advanced control** over where pods are scheduled. Here's why `nodeAffinity` is needed despite having `nodeSelector`:
 
 
-#### 📌Node Affinity Examples
-Before we start, we need to `label` your nodes to use `Node Affinity` or `nodeSelector`
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### 📌Node Affinity | Prerequisite
+Before we start, we must need to `labeling` your nodes to use `Node Affinity` or `nodeSelector`
 
 - **🌟Display Exiting Labels of a Node**\
 ```sh
 kubectl get node <🔥node_name> --show-labels | awk '{print $NF}' | sed 's/,/\n/g' | sed 's/^/Labels:         /'
 ```
-- **🌟🟢Label a Node** | `kubectl label nodes <node-name> <key>=<value>`
+- **🟢Labeling Nodes ** | `kubectl label nodes <node-name> <key>=<value>`
 ```sh
-kubectl label nodes <🔥node_name> disktype=ssd
+kubectl label nodes <🔥node_name_1> disktype=ssd
 ```
-- **🌟🔴Remove a Label from a Node**
+```sh
+kubectl label nodes <🔥node_name_2> disktype=hdd
+```
+- **🔴Remove a Label from a Node**
 ```sh
 kubectl label nodes <🔥node_name> disktype-
 ```
@@ -1572,12 +1576,86 @@ kubectl get nodes -l disktype=ssd
 kubectl describe node <🔥node_name>
 ```
 
+ #### 📌Example:`1` | `Hard` Node-Affinity | In and NotIn Operators
 
-- **🌟Pod scheduling using `nodeSelector`**\
-**`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**
+This is an example of`required node affinity` (**hard constraint**) where the pod must be scheduled on nodes that match the given labels:
+```sh
+vim hard-affinity-pod-in-notin.yaml
+```
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hard-affinity-pod-in-notin
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:  # Hard affinity (required)
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            operator: In
+            values:
+            - ssd  # Only schedule on nodes with label disktype=ssd
+          - key: region
+            operator: NotIn
+            values:
+            - hdd  # Do not schedule on nodes in hdd
+```
+```sh
+kubectl apply -f hard-affinity-pod-in-notin.yaml
+```
 
- 
-using the operators In, NotIn, Exists, and DoesNotExist
+**In this example:**\
+Pods will only be scheduled on nodes with the label **disktype=ssd**.\
+Pods will **not** be scheduled on nodes labeled **region=hdd**.\
+
+
+
+
+
+
+- #### **📌3.Hard and Soft Constraints Together:** | In and In
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+With **Node Affinity**, you can combine both **hard** and **soft** constraints in a single policy. This allows you to define strict rules that must be followed, along with preferences that can guide Kubernetes to choose certain nodes if available.
+
+**Use Case:** You want to force the pod to run on nodes with `disktype=ssd`, but if possible, prefer nodes in the `hdd` disktype.
+
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: storage-preferred-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: disktype
+            operator: In
+            values:
+            - ssd   # Prefer SSD nodes
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            operator: In
+            values:
+            - ssd
+            - hdd  # If SSD is not available, allow scheduling on HDD
+```
+
+
+
+
 
 
 - #### **📌2.Soft Affinity (Preferred Scheduling)** - 
@@ -1637,41 +1715,7 @@ spec:
             - hdd
 ```
 
-- #### **📌3.Hard and Soft Constraints Together:**
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-With **Node Affinity**, you can combine both **hard** and **soft** constraints in a single policy. This allows you to define strict rules that must be followed, along with preferences that can guide Kubernetes to choose certain nodes if available.
 
-**Use Case:** You want to force the pod to run on nodes with `disktype=ssd`, but if possible, prefer nodes in the `us-west` zone.
-
-```sh
-apiVersion: v1
-kind: Pod
-metadata:
-  name: affinity-pod-required-
-spec:
-  containers:
-    - name: nginx
-      image: nginx
-  affinity:
-    nodeAffinity:
-      # Hard constraint: Only schedule on nodes with label disktype=ssd
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-            - key: disktype
-              operator: In
-              values:
-                - ssd
-      # Soft constraint: Prefer nodes with label zone=us-west
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
-        preference:
-          matchExpressions:
-            - key: zone
-              operator: In
-              values:
-                - us-west
-```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Node Anti-Affinity

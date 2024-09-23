@@ -1654,9 +1654,150 @@ spec:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 🔥Node Anti-Affinity
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Node Anti-Affinity ensures that pods are not scheduled on certain nodes based on labels. Let’s set this up so that a pod is not scheduled on nodes labeled `disktype=hdd`.
+
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ssd-only-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            operator: NotIn
+            values:
+            - hdd  # Do not schedule on HDD nodes
+```
+```sh
+kubectl apply -f ssd-only-pod.yaml
+```
+```sh
+kubectl get pods -o wide
+```
+
+
+
+
+
+
 ### 🔥Pod Affinity
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**PodAffinity** allows you to schedule a pod **closer** to other pods (in the same topology or zone) based on labels.
+
+**Pod Affinity Example:**
+Let’s assume you have a group of front-end pods labeled `app=frontend` on certain nodes, and you want to ensure a new `backend` pod is scheduled **on the same node** as a `front-end` pod for low-latency communication.
+
+**Label a Frontend Pod:**
+
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-pod
+  labels:
+    app: frontend
+spec:
+  containers:
+  - name: frontend-container
+    image: nginx
+```
+```sh
+kubectl apply -f frontend-pod.yaml
+```
+```sh
+kubectl get pods -o wide
+```
+
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-pod
+spec:
+  containers:
+  - name: backend-container
+    image: my-backend-image
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - frontend  # Ensure backend is placed where frontend pods are running
+        topologyKey: kubernetes.io/hostname  # Ensure it is on the same node as frontend pods
+```
+
+
+
+
+
+
 ### 🔥Pod Anti-Affinity
+
+
+```sh
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+spec:
+  replicas: 3  # Number of replicas
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp-container
+        image: nginx
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - myapp  # Avoid placing on the same node as other "myapp" pods
+            topologyKey: kubernetes.io/hostname  # Ensure they don't run on the same node
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You have a Kubernetes cluster with 2 worker nodes and deploy a 3 replica pod using a Pod Anti-Affinity rule. What will happen to the third pod?
+
+A. All 3 pods will be scheduled.\
+B. The third pod will be scheduled but on the same node as the first one.\
+C. The third pod will remain in Pending state.\
+D. The cluster will auto-scale to accommodate the third pod.
 
 
 

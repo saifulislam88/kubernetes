@@ -1519,31 +1519,47 @@ These taints are automatically added by the kubelet or node controller based on 
 - **Role Separation:** Ensures that control plane nodes are not burdened with user workloads, preserving their capacity for critical cluster management functions.
 - **Operational Stability:** Automatically reacts to infrastructure changes (e.g., maintenance, scaling) by controlling where pods are placed or removed based on node conditions.
 
+
+
 ### 🚀Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-In Kubernetes, `Node Affinity`, `Anti-Affinity`, `Pod Affinity`, and `Anti-Affinity` are **scheduling constraints** that dictate where pods should or shouldn’t be placed in relation to nodes and other pods. These mechanisms help in optimizing resource usage, increasing availability, reducing failure risks, and ensuring proper workload isolation.
+In Kubernetes, `Node Affinity`, `Node Anti-Affinity`, `Pod Affinity`, and `pod Anti-Affinity` are **scheduling constraints** that dictate where pods should or shouldn’t be placed in relation to nodes and other pods. These mechanisms help in **optimizing** `resource usage`, `increasing availability`, `reducing failure risks`, and `ensuring proper workload isolation`.
 
-#### **📌Key Scheduling Concepts(Re-BrainStroming)**
+#### **📌K8s Scheduling key Concepts(Re-BrainStroming)**
 - **NodeName:** A simple, direct way to schedule a pod onto a specific node by specifying the node’s name.
 - **Node Selector:** Used to assign pods to nodes with specific labels. It's a basic form of node selection.
 - **Taints and Tolerations:** Taints applied to nodes prevent pods from being scheduled on them unless the pods have a matching toleration.
 
-#### **📌Affinity Types**
-- **Hard Affinity** (`requiredDuringSchedulingIgnoredDuringExecution`):the pod will only be scheduled on nodes that meet the affinity rule.
-- **Soft Affinity** (`preferredDuringSchedulingIgnoredDuringExecution`): the scheduler prefers to schedule the pod on matching nodes but can still place it on other nodes if necessary.
+#### **📌Affinityand Anti-Affinity Types**
+- **Hard Affinity** (`requiredDuringSchedulingIgnoredDuringExecution`): The pod will only be scheduled on nodes that meet the affinity rule.
+- **Soft Affinity** (`preferredDuringSchedulingIgnoredDuringExecution`): The scheduler prefers to schedule the pod on matching nodes but can still place it on other nodes if necessary.
 
 
 ### 🔥Node Affinity
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**`Node Affinity` is a more flexible and expressive version of** **`nodeSelector`**. It allows pods to be scheduled onto specific nodes based on **`labels`** and the conditions defined by the administrator. It is used when workloads require specific types of nodes or hardware.
+**`Node Affinity` is a more flexible and expressive version of** **`nodeSelector`**. It allows pods to be scheduled onto specific nodes based on **`labels`** and the conditions defined by the administrator. It is used when workloads require specific types of nodes or hardware.\
+You must apply node `labels` first on the node (e.g.,`disktype=ssd`, `region=hdd`, etc.). Then, you can use either `nodeSelector` or `Node Affinity` to schedule the pod on the node(s) with the matching label.
 
-You must apply node labels first on the node (e.g.,`disktype=ssd`, `region=us-west`, etc.). Then, you can use either nodeSelector or Node Affinity to schedule the pod on the node(s) with the matching label.
+**`nodeSelector`** can only perform exact matches with a key-value pair. `Node Affinity` supports advanced operators like `In`, `NotIn`, `Exists`, and `DoesNotExist` for more complex matching logic.
 
-#### **📌noSelector Commands** | Before Affinity applying have to need adding labels
-- **🌟Display Labels of a Node**\
-`kubectl get node kb8-worker-1 --show-labels | awk '{print $NF}' | sed 's/,/\n/g' | sed 's/^/Labels:         /'`
+
+#### **Q❓Why use Node Affinity if `nodeSelector` already exists?**
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`nodeSelector` provides basic scheduling capabilities, but **`Node Affinity`** offers more **flexibility** and **advanced control** over where pods are scheduled. Here's why `nodeAffinity` is needed despite having `nodeSelector`:
+
+
+#### 📌Node Affinity Examples
+Before we start, we need to `label` your nodes to use `Node Affinity` or `nodeSelector`
+
+- **🌟Display Exiting Labels of a Node**\
+```sh
+kubectl get node <node_name> --show-labels | awk '{print $NF}' | sed 's/,/\n/g' | sed 's/^/Labels:         /'
+```
 - **🌟Label a Node** | `kubectl label nodes <node-name> <key>=<value>`\
-`kubectl label nodes node-01 disktype=ssd`
+```sh
+kubectl label nodes <node-name> disktype=ssd
+```
+
 - **🌟Get Nodes with Specific Labels** | `kubectl get nodes -l <key>=<value>`\
 `kubectl get nodes -l disktype=ssd`   
 - **🌟Get Detailed Information about a Node**\
@@ -1553,13 +1569,13 @@ You must apply node labels first on the node (e.g.,`disktype=ssd`, `region=us-we
 - **🌟Pod scheduling using `nodeSelector`**\
 **`kubectl run manual-scheduling-nodeSelector-pod --image=nginx -o yaml --dry-run=client > manual-scheduling-nodeSelector-pod.yaml`**
 
-#### **🔥Why Use Node Affinity if nodeSelector Exists?**
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`nodeSelector` provides basic scheduling capabilities, but **`Node Affinity`** offers more **flexibility** and **advanced control** over where pods are scheduled. Here's why `nodeAffinity` is needed despite having `nodeSelector`:
+ 
+using the operators In, NotIn, Exists, and DoesNotExist
 
-- #### **📌1.Soft Constraints (Preferred Scheduling)**
+
+- #### **📌2.Soft Affinity (Preferred Scheduling)** - 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-With nodeSelector, scheduling is a hard constraint—pods will only run on nodes that match the label, otherwise, they won’t run. nodeAffinity allows for soft constraints using preferredDuringSchedulingIgnoredDuringExecution
+**Node Affinity** allows for soft constraints or Affinity using `preferredDuringSchedulingIgnoredDuringExecution`
 
 ```sh
 apiVersion: v1
@@ -1572,7 +1588,7 @@ spec:
       image: nginx
   affinity:
     nodeAffinity:
-      # Soft constraint: Prefer nodes with label zone=us-west
+      # Soft constraint: Prefer nodes with label zone=hdd
       preferredDuringSchedulingIgnoredDuringExecution:
         - weight: 1
           preference:
@@ -1580,13 +1596,12 @@ spec:
               - key: zone
                 operator: In
                 values:
-                  - bd-west
-
+                  - hdd
 ```
 
 - #### **📌2.Advanced Operators and Expressions:**
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`nodeSelector` can only perform exact matches with a key-value pair. `nodeAffinity` supports advanced operators like `In`, `NotIn`, `Exists`, and `DoesNotExist` for more complex matching logic.
+
 
 **Use Case:** You want a pod to be scheduled on nodes that have a disktype that’s either `ssd` or `nvme`, but **Avoid** any node labeled with `disktype=hdd`.
 
@@ -1794,7 +1809,7 @@ spec:
 
 You have a Kubernetes cluster with 2 worker nodes and deploy a 3 replica pod using a Pod Anti-Affinity rule. What will happen to the third pod?
 
-A. All 3 pods will be scheduled.\
+A. All 3 pods will be scheduled on 2 workers \
 B. The third pod will be scheduled but on the same node as the first one.\
 C. The third pod will remain in Pending state.\
 D. The cluster will auto-scale to accommodate the third pod.

@@ -146,3 +146,17 @@ Yes. You can have TLS configurations in your ingress object definition. The TLS 
 
 
 
+My 10 Favourite Cloud/DevOps Interview Questions(L2):
+
+1. Headless Service vs NodePort Service
+2. Ingress vs Gateway API
+3. HeatMaps vs FlameGraphs
+4. Kube-Proxy vs CNI
+5. CPU Limit vs Memory Limit
+6. SSL Passthrough LB vs SSL proxy LB
+7. Data Lakes vs Data Warehouses 
+8. Validating vs Mutating webhooks
+9. Side Cars vs init containers 
+10. Blue-green vs Rollout Deployments
+
+

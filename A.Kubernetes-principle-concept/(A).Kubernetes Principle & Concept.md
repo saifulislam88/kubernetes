@@ -1242,11 +1242,11 @@ spec:
 - **2.Value:** Additional information or context (e.g., **backend**).
 - **3.Effect:** There are 3 types of effect in in taints
    - **1.[`NoSchedule`](#1-noschedule)**: The pod will not get scheduled to the node without a matching `toleration` for the tainted nodes.\
-&nbsp;&nbsp;&nbsp;&nbsp**`kubectl taint node worker-node1 dedicated=backend:NoSchedule`**
+&nbsp;&nbsp;&nbsp;&nbsp; **`kubectl taint node worker-node1 dedicated=backend:NoSchedule`**
    - **2.[`PreferNoSchedule`](#2-prefernoschedule)**: This softer version of NoSchedule attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it.\
-&nbsp;&nbsp;&nbsp;&nbsp**`kubectl taint node worker-node2 temporary-use=true:PreferNoSchedule`**
+&nbsp;&nbsp;&nbsp;&nbsp; **`kubectl taint node worker-node2 temporary-use=true:PreferNoSchedule`**
    - **3.[`NoExecute`](#3-noexecute)**: Evicts existing pods that do not tolerate the taint.
-&nbsp;&nbsp;&nbsp;&nbsp**`kubectl taint node worker-node3 maintenance=true:NoExecute`**
+&nbsp;&nbsp;&nbsp;&nbsp; **`kubectl taint node worker-node3 maintenance=true:NoExecute`**
 
 **`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that represent your node’s attributes or goals, **while the effect determines the action taken on pods that do not tolerate the taint**
 

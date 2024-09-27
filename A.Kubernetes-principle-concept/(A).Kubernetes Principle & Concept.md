@@ -1241,15 +1241,16 @@ spec:
 - **1.Key:** A label that identifies the taint (e.g., **special-node**).
 - **2.Value:** Additional information or context (e.g., **backend**).
 - **3.Effect:** There are 3 types of effect in in taints
-   - **1.[`NoSchedule`](#1-noschedule)**: The pod will not get scheduled to the node without a matching `toleration` for the tainted nodes.
-&nbsp;&nbsp;&nbsp;&nbsp **`kubectl taint node worker-node1 dedicated=backend:NoSchedule`**
-
-   - **2.`PreferNoSchedule`**
-   - **3.`NoExecute`**)
+   - **1.[`NoSchedule`](#1-noschedule)**: The pod will not get scheduled to the node without a matching `toleration` for the tainted nodes.\
+&nbsp;&nbsp;&nbsp;&nbsp**`kubectl taint node worker-node1 dedicated=backend:NoSchedule`**
+   - **2.[`PreferNoSchedule`](#2-prefernoschedule)**: This softer version of NoSchedule attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it.\
+&nbsp;&nbsp;&nbsp;&nbsp**`kubectl taint node worker-node2 temporary-use=true:PreferNoSchedule`**
+   - **3.[`NoExecute`](#3-noexecute)**: Evicts existing pods that do not tolerate the taint.
+&nbsp;&nbsp;&nbsp;&nbsp**`kubectl taint node worker-node3 maintenance=true:NoExecute`**
 
 **`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that represent your node’s attributes or goals, **while the effect determines the action taken on pods that do not tolerate the taint**
 
-#### 📌 To set taints on nodes | `Useful Commands`
+#### 🔴To set taints on nodes | `Useful Commands`
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - 🌟**Viewing Taints on Nodes**
 ```sh
@@ -1288,28 +1289,15 @@ kubectl cordon worker-node-2
 kubectl uncordon worker-node-2
 ```
 
-
-
-
-
-
-
-
 ### 🔥1B.Tolerations
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 A toleration is essentially the counter to a taint, allowing a pod to “ignore” taints applied to a node. A toleration is defined in the pod specification and must match the key, value, and effect of the taint it intends to tolerate.
 
-**🎯A toleration has three main components:**
+**🔴A toleration has 4 main components:**
 
-- **Key:** Identifies the taint the toleration refers to.
-- **Operator:** Defines the relationship between the key and value; common operators are ✅**`Equal`** and ✅**`Exists`**.
-- **Value:** The value associated with the key (used with Equal operator).
-- **Effect:** Specifies the taint effect to tolerate (**`NoSchedule`**, **`PreferNoSchedule`**, **`NoExecute`**).
-
-
-**🎯Tolerations are specified in PodSpec in the following formats depending on the operator.**
-
-**🧩Equal Operator**
+- **1.Key:** Identifies the taint the toleration refers to.
+- **2.Operator:** Defines the relationship between the key and value; common operators are ✅**`Equal`** and ✅**`Exists`**.
+   - **🧩Equal Operator** : Equal Operator (==): Matches a specific key-value pair. It's used when you want to tolerate a taint that has both a specific key and value.
 ```sh
 tolerations:
 - key: "<taint key>"
@@ -1317,34 +1305,38 @@ tolerations:
   value: "<taint value>"
   effect: "<taint effect>"
 ```
-**🧩Exists Operator**
+   - **🧩Exists Operator** : Matches any taint key regardless of the value. It's used when you want to tolerate a taint based only on its key, without checking the value.
 ```sh
 tolerations:
 - key: "<taint key>"
   operator: "Exists"
   effect: "<taint effect>"
 ```
+- **3.Value:** The value associated with the key (used with Equal operator).
+- **4.Effect:** Specifies the taint effect to tolerate (**`NoSchedule`**, **`PreferNoSchedule`**, **`NoExecute`**).
 
+
+## 🚀Example of Tolerations on Taint Ndoes
 
 ### 🔥1. NoSchedule
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
+**The pod will not get scheduled to the node without a matching toleration for the tainted nodes.**
 
 - 📌**Adding a Taint to a Node**\
 `kubectl taint nodes worker-node1 dedicated=backend:NoSchedule`\
-`kubectl taint nodes worker-node2 env=prod:NoSchedule`
+`kubectl taint nodes worker-node2 env=prod:NoSchedule`\
 `kubectl taint nodes worker-node3 gpu=true:NoSchedule`
 
+- 🟢**Adding Tolerations**| `NoSchedule` Effect ** | 🧩`Equal` Operator
 
-📌**Adding Tolerations to Pods**| `NoSchedule` Effect ** 
-
-🧩**A. Equal Operator**\
-`vim toleration-NoSchedule-equal-pod`
+```sh
+vim toleration-noschedule-equal-pod.yaml
+```
 ```sh
 apiVersion: v1
 kind: Pod
 metadata:
-  name: toleration-NoSchedule-equal-pod
+  name: toleration-noschedule-equal-pod
 spec:
   containers:
   - name: nginx
@@ -1355,16 +1347,21 @@ spec:
     value: "backend"
     effect: "NoSchedule"
 ```
-`kubectl apply -f toleration-NoSchedule-equal-pod.yaml`
+```sh
+kubectl apply -f toleration-noschedule-equal-pod.yaml
+kubectl get pod -o wide
+```
 
+- 🟢**Adding Tolerations**| `NoSchedule` Effect ** | 🧩`Exists` Operator
 
-🧩**B. Exists Operator**\
-`vim toleration-NoSchedule-exists-pod`
+```sh
+vim toleration-noschedule-exists-pod.yaml
+```
 ```sh
 apiVersion: v1
 kind: Pod
 metadata:
-  name: toleration-NoSchedule-exists-pod
+  name: toleration-noschedule-exists-pod
 spec:
   containers:
   - name: nginx
@@ -1374,19 +1371,20 @@ tolerations:
   operator: "Exists"
   effect: "NoSchedule"
 ```
-`kubectl apply -f toleration-NoSchedule-exists-pod.yaml`
-`kubectl get pod -o wide`
+```sh
+kubectl apply -f toleration-noschedule-exists-pod.yaml
+kubectl get pod -o wide
+```
 
 ![image](https://github.com/user-attachments/assets/f8c0cf5e-ab0d-4f58-904b-fff0e998dc70)
 
 
 ### 🔥2. PreferNoSchedule
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-This softer version of `NoSchedule` attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**This softer version of `NoSchedule` attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it, allowing for scheduling flexibility under constrained resources.**
 
-The `PreferNoSchedule` taint is a soft rule, meaning it prefers not to schedule general workloads on these nodes but does not strictly prevent it. The scheduler uses this flexibility to make the best use of available resources based on current demand, availability, and overall cluster health.
+The `PreferNoSchedule` taint is a soft rule, meaning it prefers not to schedule general workloads on these nodes but does not strictly prevent it. The scheduler uses this flexibility to make the best use of available resources based on current demand, availability, and overall cluster health. In real-world scenarios, general workloads will be scheduled on nodes tainted with `PreferNoSchedule` when there are specific conditions within the cluster, typically when
 
-In real-world scenarios, general workloads will be scheduled on nodes tainted with PreferNoSchedule when there are specific conditions within the cluster, typically when:\
 **1.Resource Exhaustion on Other Nodes**\
 **2.High Availability and Redundancy**\
 **3.Node Maintenance or Downtime**\
@@ -1394,14 +1392,15 @@ In real-world scenarios, general workloads will be scheduled on nodes tainted wi
 **4.Soft Reservation for Specific Workloads**
 
 - 📌**Adding a `Taint` to a Node**\
-`kubectl taint nodes worker-node-1 special-purpose=true:NoSchedule`\
-`kubectl taint nodes worker-node-1 redundant=true:PreferNoSchedule`\
-`kubectl taint nodes worker-node-3 temporary-use=true:PreferNoSchedule`\
-`kubectl taint nodes worker-node-4 reserved-for-special=true:PreferNoSchedule`
+`kubectl taint nodes worker-node-1 dedicated=backend:NoSchedule`\
+`kubectl taint nodes worker-node-2 backup=true:PreferNoSchedule`\
 
-📌**Adding `Tolerations` to Pods**| `PreferNoSchedule` Effect ** 
 
-**🧩Resource Exhaustion on Other Nodes**
+- 🟢**Without Adding `Tolerations` & `Operators`** | `PreferNoSchedule` Effect 
+
+```sh
+without-adding-tolerations-operators-general-workload-pod.yaml
+```
 ```sh
 apiVersion: v1
 kind: Pod
@@ -1416,67 +1415,100 @@ spec:
       ports:
         - containerPort: 80
 ```
-`kubectl apply -f general-workload-pod.yaml`
-
-
-**🧩High Availability and Redundancy**
 ```sh
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: high-availability-app
-spec:
-  replicas: 5
-  selector:
-    matchLabels:
-      app: ha-app
-  template:
-    metadata:
-      labels:
-        app: ha-app
-    spec:
-      containers:
-        - name: ha-app
-          image: nginx
-          ports:
-            - containerPort: 80
+kubectl apply -f without-adding-tolerations-operators-general-workload-pod.yaml
+kubectl get pod -o wide
 ```
-`kubectl apply -f high-availability-app.yaml`
 
+- 🟢**Adding Tolerations**| `PreferNoSchedule` Effect ** | 🧩`Equal` Operator
 
-### 🔥3. NoExecute
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
-
-📌**Adding `Tolerations` to Pods**| `NoExecute` Effect ** 
-`kubectl taint nodes node1 dedicated=database:NoExecute`\
-`kubectl taint nodes node2 maintenance=true:NoExecute`
-
-
-📌**Adding Tolerations to Pods**| `NoExecute` Effect ** 
-
-🧩**A. Equal Operator**\
-`vim toleration-NoExecute-equal-pod`
+```sh
+vim toleration-prefernoschedule-equal-pod.yaml
+```
 ```sh
 apiVersion: v1
 kind: Pod
 metadata:
-  name: toleration-NoExecute-equal-pod
+  name: toleration-prefernoschedule-equal-pod
 spec:
   containers:
   - name: nginx
     image: nginx
   tolerations:
-  - key: "dedicated"
+  - key: "backup"
+    operator: "Equal"
+    value: "true"
+    effect: "PreferNoSchedule"
+```
+```sh
+kubectl apply -f toleration-prefernoschedule-equal-pod.yaml
+kubectl get pod -o wide
+```
+
+- 🟢**Adding Tolerations**| `PreferNoSchedule` Effect ** | 🧩`Exists` Operator
+
+```sh
+vim toleration-prefernoschedule-exists-pod.yaml
+```
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toleration-prefernoschedule-exists-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+tolerations:
+- key: "backup"
+  operator: "Exists"
+  effect: "PreferNoSchedule"
+```
+```sh
+kubectl apply -f toleration-prefernoschedule-exists-pod.yaml
+kubectl get pod -o wide
+```
+
+
+### 🔥3. NoExecute
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
+
+📌**Adding `Tolerations` to Pods**| `NoExecute` Effect ** 
+`kubectl taint nodes node2 maintenance=database:NoExecute`
+
+
+- 🟢**Adding Tolerations**| `NoExecute` Effect ** | 🧩`Equal` Operator
+
+```sh
+vim toleration-noexecute-equal-pod.yaml
+```
+```sh
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toleration-noexecute-equal-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "maintenance"
     operator: "Equal"
     value: "database"
     effect: "NoExecute"
 ```
-`kubectl apply -f toleration-NoExecute-equal-pod.yaml`
+```sh
+kubectl apply -f toleration-noexecute-equal-pod.yaml
+kubectl get pod -o wide
+```
 
 
-🧩**B. Exists Operator**\
-`vim toleration-NoExecute-exists-pod`
+- 🟢**Adding Tolerations**| `NoExecute` Effect ** | 🧩`Exists` Operator
+
+```sh
+vim toleration-NoExecute-exists-pod.yaml
+```
 ```sh
 apiVersion: v1
 kind: Pod
@@ -1491,8 +1523,10 @@ tolerations:
   operator: "Exists"
   effect: "NoExecute"
 ```
-`kubectl apply -f toleration-NoExecute-exists-pod.yaml`
-`kubectl get pod -o wide`
+```sh
+kubectl apply -f toleration-noexecute-exists-pod.yaml
+kubectl get pod -o wide
+```
 
 ### 🔥Some important Built-in Taints based on three effects
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

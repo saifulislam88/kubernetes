@@ -1418,7 +1418,7 @@ kubectl apply -f without-adding-tolerations-operators-general-workload-pod.yaml
 kubectl get pod -o wide
 ```
 
-- 🟢**Adding Tolerations**| `PreferNoSchedule` Effect ** | 🧩`Equal` Operator
+- 🟢**Adding Tolerations**| `PreferNoSchedule` Effect | 🧩`Equal` Operator
 
 ```sh
 vim toleration-prefernoschedule-equal-pod.yaml
@@ -1443,7 +1443,7 @@ kubectl apply -f toleration-prefernoschedule-equal-pod.yaml
 kubectl get pod -o wide
 ```
 
-- 🟢**Adding Tolerations**| `PreferNoSchedule` Effect ** | 🧩`Exists` Operator
+- 🟢**Adding Tolerations**| `PreferNoSchedule` Effect | 🧩`Exists` Operator
 
 ```sh
 vim toleration-prefernoschedule-exists-pod.yaml
@@ -1472,7 +1472,7 @@ kubectl get pod -o wide
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
 
-- 📌**Adding `Tolerations` to Pods**| `NoExecute` Effect **
+- 📌**Adding a `Taint` to a Node**\
  `kubectl taint nodes node2 maintenance=database:NoExecute`
 
 

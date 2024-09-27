@@ -1213,29 +1213,28 @@ spec:
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🚀Automatic Scheduling
-```                                                                                                                                      ```
+```                                                                                                                                     ```
 <p align="justify">
 
 **Automatic scheduling** refers to Kubernetes' ability to place pods on nodes based on available `resources` and `scheduling policies` without manual intervention. Kubernetes uses its built-in scheduler to decide where to place pods based on factors such as resource requests, constraints, and other scheduling rules.
 
-#### 🔥Taints and Tolerations
+### 🔥1.Taints and Tolerations
 
 🔭"**`Taints and Tolerations`**", the main goal of this feature was to prevent `unwanted pods from being scheduled on some particular nodes`. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
 
 </p>
 
-#### 🔥Taints and Tolerations Use Cases
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- **Specifying nodes with special hardware** 
-- **Creating dedicated nodes**
-- **Reserving Nodes for System Daemons**
-- **Isolating Faulty Nodes**
-- **Node Decommissioning or Maintenance**
-- **Ensuring High Availability**
-- **Preventing Resource Starvation**
+- **Features of `Taints & Tolerations`**
+   - **Specifying nodes with special hardware**
+   - **Creating dedicated nodes**
+   - **Reserving Nodes for System Daemons**
+   - **Isolating Faulty Nodes**
+   - **Node Decommissioning or Maintenance**
+   - **Ensuring High Availability**
+   - **Preventing Resource Starvation**
 
 
-### 🔥Taints
+### 🔥1A.Taints
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Taints** are applied to nodes to indicate that certain pods should avoid or be evicted from those nodes unless the pods have the matching **tolerations.** So when a taint to be applied in a node, each taint consists of three parts **🟢`key`**,**🟢`value`**, and an **🟢`effect`**
 
@@ -1248,20 +1247,53 @@ spec:
 
 **`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that represent your node’s attributes or goals, **while the effect determines the action taken on pods that do not tolerate the taint**
 
+#### 📌 To set taints on nodes | `Useful Commands`
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- 🌟**Viewing Taints on Nodes**
+```sh
+kubectl describe node worker-ndoe1
+```
+- 🌟**To see which nodes have taints:**
+```sh
+kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'
+```
+- 🌟**Find already tainted by the Kubernetes default installation**
+```sh
+kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect
+```
+- 🌟**To add taints to a node**
+```sh
+kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>
+```
+- 🌟**Removing a Taint from a Node** | `kubectl taint nodes <node-name> <key>:<effect>-`
+```sh
+kubectl taint nodes node1 dedicated=database:NoSchedule-
+```
+- 🌟**To remove all taints**
+```sh
+kubectl patch node <node-name> -p '{"spec":{"taints":[]}}'
+```
+- 🌟**Drain the Node: To safely evict pods from the node (e.g., for node shutdown), you might follow up with**
+```sh
+kubectl drain worker-node-2 --ignore-daemonsets --delete-emptydir-data
+```
+- 🌟**Marks worker-node-2 as unschedulable to prevent new pods from being assigned, useful for maintenance, updates, or troubleshooting while keeping existing pods running.**\
+```sh
+kubectl cordon worker-node-2
+```
+- 🌟**This will make worker-node-2 schedulable again, ready to accept new pods.**\
+```sh
+kubectl uncordon worker-node-2
+```
 
 
 
 
 
-To add taints to a node, this is command syntax\
-**`kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>`**
 
 
 
-
-
-
-### 🔥Tolerations
+### 🔥1B.Tolerations
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 A toleration is essentially the counter to a taint, allowing a pod to “ignore” taints applied to a node. A toleration is defined in the pod specification and must match the key, value, and effect of the taint it intends to tolerate.
 
@@ -1290,33 +1322,6 @@ tolerations:
   operator: "Exists"
   effect: "<taint effect>"
 ```
-
-### 🔥The three taints effects and tolerations implementation 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- 🌟**Viewing Taints on Nodes**\
-`kubectl describe node worker-ndoe1`
-
-- 🌟**Removing a Taint from a Node**\
-**`kubectl taint nodes <node-name> <key>:<effect>-`**
-`kubectl taint nodes node1 dedicated=database:NoSchedule-`
-
-- 🌟**To remove all taints**\
-`kubectl patch node <node-name> -p '{"spec":{"taints":[]}}'`
-
-- 🌟**To see which nodes have taints:**\
-`kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'`
-
-- 🌟**Find already tainted by the Kubernetes default installation**\
-`kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect`
-
-- 🌟**Drain the Node: To safely evict pods from the node (e.g., for node shutdown), you might follow up with**\
-`kubectl drain worker-node-2 --ignore-daemonsets --delete-emptydir-data`
-
-- 🌟**Marks worker-node-2 as unschedulable to prevent new pods from being assigned, useful for maintenance, updates, or troubleshooting while keeping existing pods running.**\
-`kubectl cordon worker-node-2`
-
-- 🌟**This will make worker-node-2 schedulable again, ready to accept new pods.**\
-`kubectl uncordon worker-node-2`
 
 
 ### 🔥1. NoSchedule

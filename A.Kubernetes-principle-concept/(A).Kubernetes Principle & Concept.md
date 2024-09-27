@@ -1213,12 +1213,13 @@ spec:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🚀Automatic Scheduling
-```                                                                                                                                     ```
+```                                                                                                                                       ```
+<p align="justify">
 **Automatic scheduling** refers to Kubernetes' ability to place pods on nodes based on available `resources` and `scheduling policies` without manual intervention. Kubernetes uses its built-in scheduler to decide where to place pods based on factors such as resource requests, constraints, and other scheduling rules.
 
+🔭"**`Taints and Tolerations`**", the main goal of this feature was to prevent unwanted pods from being scheduled on some particular nodes. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
 
-### 🔥Taints and Tolerations
-"Taints and Tolerations", the main goal of this feature was to prevent unwanted pods from being scheduled on some particular nodes. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
+</p>
 
 ### 🔥Taints
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

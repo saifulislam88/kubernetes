@@ -1244,9 +1244,9 @@ spec:
    - **1.[`NoSchedule`](#1-noschedule)**: The pod will not get scheduled to the node without a matching `toleration` for the tainted nodes.\
 &nbsp;&nbsp;&nbsp;&nbsp; **`kubectl taint node worker-node1 dedicated=backend:NoSchedule`**
    - **2.[`PreferNoSchedule`](#2-prefernoschedule)**: This softer version of NoSchedule attempts to avoid placing non-tolerant pods on the node but does not strictly enforce it.\
-&nbsp;&nbsp;&nbsp;&nbsp; **`kubectl taint node worker-node2 temporary-use=true:PreferNoSchedule`**
+&nbsp;&nbsp;&nbsp;&nbsp; **`kubectl taint node worker-node2 backup=true:PreferNoSchedule`**
    - **3.[`NoExecute`](#3-noexecute)**: Evicts existing pods that do not tolerate the taint.\
-     &nbsp;&nbsp;&nbsp;&nbsp; **`kubectl taint node worker-node3 maintenance=true:NoExecute`**
+     &nbsp;&nbsp;&nbsp;&nbsp; **`kubectl taint node worker-node3 maintenance=database:NoExecute`**
 
 **`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that represent your node’s attributes or goals, **while the effect determines the action taken on pods that do not tolerate the taint**
 
@@ -1323,9 +1323,7 @@ tolerations:
 **The pod will not get scheduled to the node without a matching toleration for the tainted nodes.**
 
 - 📌**Adding a Taint to a Node**\
-`kubectl taint nodes worker-node1 dedicated=backend:NoSchedule`\
-`kubectl taint nodes worker-node2 env=prod:NoSchedule`\
-`kubectl taint nodes worker-node3 gpu=true:NoSchedule`
+`kubectl taint nodes worker-node1 dedicated=backend:NoSchedule`
 
 - 🟢**Adding Tolerations**| `NoSchedule` Effect ** | 🧩`Equal` Operator
 

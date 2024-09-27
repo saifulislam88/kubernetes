@@ -1316,7 +1316,7 @@ tolerations:
 - **4.Effect:** Specifies the taint effect to tolerate (**`NoSchedule`**, **`PreferNoSchedule`**, **`NoExecute`**).
 
 
-## 🚀Example of Tolerations on Taint Ndoes
+## 🚀Example of Tolerations on Taint Nodes
 
 ### 🔥1. NoSchedule
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1350,7 +1350,7 @@ kubectl apply -f toleration-noschedule-equal-pod.yaml
 kubectl get pod -o wide
 ```
 
-- 🟢**Adding Tolerations**| `NoSchedule` Effect ** | 🧩`Exists` Operator
+- 🟢**Adding Tolerations**| `NoSchedule` Effect | 🧩`Exists` Operator
 
 ```sh
 vim toleration-noschedule-exists-pod.yaml
@@ -1397,7 +1397,7 @@ The `PreferNoSchedule` taint is a soft rule, meaning it prefers not to schedule 
 - 🟢**Without Adding `Tolerations` & `Operators`** | `PreferNoSchedule` Effect 
 
 ```sh
-without-adding-tolerations-operators-general-workload-pod.yaml
+vim without-adding-tolerations-operators-general-workload-pod.yaml
 ```
 ```sh
 apiVersion: v1
@@ -1472,8 +1472,8 @@ kubectl get pod -o wide
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This will immediately evict all(running,stop,others) if the pods don’t have tolerations for the tainted nodes.It's crucial for maintaining node conditions like dedicated hardware usage or regulatory compliance.
 
-📌**Adding `Tolerations` to Pods**| `NoExecute` Effect ** 
-`kubectl taint nodes node2 maintenance=database:NoExecute`
+- 📌**Adding `Tolerations` to Pods**| `NoExecute` Effect **
+ `kubectl taint nodes node2 maintenance=database:NoExecute`
 
 
 - 🟢**Adding Tolerations**| `NoExecute` Effect ** | 🧩`Equal` Operator

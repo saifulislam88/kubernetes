@@ -1134,11 +1134,11 @@ https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/
          - [Node Condition Taints](#2-node-condition-taints)
          - [Node Lifecycle Taints](#3-node-lifecycle-taints)
          - [Importance-of-built-in-taints](#importance-of-built-in-taints---these-built-in-taints-ensure)
-      - [Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity](#node-affinityanti-affinity-and-pod-affinityanti-affinity)
-         - [Node Affinity](#Node-Affinity)
-         - [Node Anti-Affinity](#node-anti-affinity)
-         - [POD Affinity](#pod-affinity)
-         - [POD Anti-Affinity](#pod-anti-affinity)
+   - [Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity](#node-affinityanti-affinity-and-pod-affinityanti-affinity)
+     - [Node Affinity](#Node-Affinity)
+     - [Node Anti-Affinity](#node-anti-affinity)
+     - [POD Affinity](#pod-affinity)
+     - [POD Anti-Affinity](#pod-anti-affinity)
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1210,34 +1210,59 @@ spec:
 **`kubectl apply -f manual-scheduling-nodeSelector-pod.yaml`**\
 **`kubectl get pods -o wide`**
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🚀Automatic Scheduling
-```                                                                                                                                       ```
+```                                                                                                                                      ```
 <p align="justify">
+
 **Automatic scheduling** refers to Kubernetes' ability to place pods on nodes based on available `resources` and `scheduling policies` without manual intervention. Kubernetes uses its built-in scheduler to decide where to place pods based on factors such as resource requests, constraints, and other scheduling rules.
 
-🔭"**`Taints and Tolerations`**", the main goal of this feature was to prevent unwanted pods from being scheduled on some particular nodes. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
+#### 🔥Taints and Tolerations
+
+🔭"**`Taints and Tolerations`**", the main goal of this feature was to prevent `unwanted pods from being scheduled on some particular nodes`. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
 
 </p>
 
-### 🔥Taints
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Taints** are applied to nodes to indicate that certain pods should avoid or be evicted from those nodes unless the pods have the matching **tolerations.**
+#### 🔥Taints and Tolerations Use Cases
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- **Specifying nodes with special hardware** 
+- **Creating dedicated nodes**
+- **Reserving Nodes for System Daemons**
+- **Isolating Faulty Nodes**
+- **Node Decommissioning or Maintenance**
+- **Ensuring High Availability**
+- **Preventing Resource Starvation**
 
-The kubectl taint command with the required taint allows us to add taints to nodes. The general syntax for the command is:\
+
+### 🔥Taints
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Taints** are applied to nodes to indicate that certain pods should avoid or be evicted from those nodes unless the pods have the matching **tolerations.** So when a taint to be applied in a node, each taint consists of three parts **🟢`key`**,**🟢`value`**, and an **🟢`effect`**
+
+- **1.Key:** A label that identifies the taint (e.g., **special-node**).
+- **2.Value:** Additional information or context (e.g., **backend**).
+- **3.Effect:** There are 3 types of effect in in taints
+   - **1.`NoSchedule`**
+   - **2.`PreferNoSchedule`**
+   - **3.`NoExecute`**)
+
+**`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that represent your node’s attributes or goals, **while the effect determines the action taken on pods that do not tolerate the taint**
+
+
+
+
+
+
+To add taints to a node, this is command syntax\
 **`kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>`**
 
-So when a taint to be applied, it consists of a **`key`**,**`value`**, and an **`effect`**
 
-**Key:** A label that identifies the taint (e.g., **special-node**).\
-**Value:** Additional information or context (e.g., **backend**).\
-**Effect:** Specifies the action (e.g., **`NoSchedule`**, **`PreferNoSchedule`**, or **`NoExecute`**).
 
-**`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that you assign, **while the effect determines what happens to pods that do not tolerate the taint:**
+
+
 
 ### 🔥Tolerations
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 A toleration is essentially the counter to a taint, allowing a pod to “ignore” taints applied to a node. A toleration is defined in the pod specification and must match the key, value, and effect of the taint it intends to tolerate.
 
 **🎯A toleration has three main components:**
@@ -1266,18 +1291,8 @@ tolerations:
   effect: "<taint effect>"
 ```
 
-### 🔥Taints and Tolerations Use Cases
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- **Specifying nodes with special hardware :** Often, pod workloads must run on nodes with specialized hardware such as non-x86 processors, optimized memory/storage, or resources like GPUs.
-- **Creating dedicated nodes**
-- **Reserving Nodes for System Daemons**
-- **Isolating Faulty Nodes**
-- **Node Decommissioning or Maintenance**
-- **Ensuring High Availability**
-- **Preventing Resource Starvation**
-
-### 🔥The three taints effects implementation and tolerations managing
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### 🔥The three taints effects and tolerations implementation 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - 🌟**Viewing Taints on Nodes**\
 `kubectl describe node worker-ndoe1`
 
@@ -1305,7 +1320,7 @@ tolerations:
 
 
 ### 🔥1. NoSchedule
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 The pod will not get scheduled to the node without a matching toleration for the tainted nodes.
 
 - 📌**Adding a Taint to a Node**\

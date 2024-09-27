@@ -1242,9 +1242,8 @@ spec:
 - **2.Value:** Additional information or context (e.g., **backend**).
 - **3.Effect:** There are 3 types of effect in in taints
    - **1.[`NoSchedule`](#1-noschedule)**: The pod will not get scheduled to the node without a matching `toleration` for the tainted nodes.
-```sh
-kubectl taint node worker-node1 dedicated=backend:NoSchedule
-```
+&nbsp;&nbsp;&nbsp;&nbsp **`kubectl taint node worker-node1 dedicated=backend:NoSchedule`**
+
    - **2.`PreferNoSchedule`**
    - **3.`NoExecute`**)
 

@@ -1223,7 +1223,7 @@ spec:
        - [To set taints | Useful-commands](#to-set-taints-on-nodes--useful-commands)
       - [Tolerations](#1btolerations)
       - [Taints and Tolerations Use Cases](#taints-and-tolerations-use-cases)
-      - [The Three Taints Effects Implementation and Tolerations Managing](#the-three-taints-effects-implementation-and-tolerations-managing)
+      - [Example of Tolerations on Taint Nodes](#example-of-tolerations-on-taint-nodes)
          - [1.NoSchedule](#1-noschedule)
          - [2.PreferNoSchedule](#2-prefernoschedule)
          - [3.NoExecute](#3-noexecute)

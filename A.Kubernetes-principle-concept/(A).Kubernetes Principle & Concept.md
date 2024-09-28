@@ -1254,6 +1254,8 @@ spec:
    - **Ensuring High Availability**
    - **Preventing Resource Starvation**
 
+![image](https://github.com/user-attachments/assets/f68e2560-58a5-4360-962a-eca63516b069)
+
 
 ### 🔥1.A.Taints
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

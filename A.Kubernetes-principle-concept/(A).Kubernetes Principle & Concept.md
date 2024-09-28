@@ -1218,6 +1218,31 @@ spec:
 
 **Automatic scheduling** refers to Kubernetes' ability to place pods on nodes based on available `resources` and `scheduling policies` without manual intervention. Kubernetes uses its built-in scheduler to decide where to place pods based on factors such as resource requests, constraints, and other scheduling rules.
 
+  - [Taints-and Tolerations](#1taints-and-tolerations)
+      - [Taints](#1ataints)
+       - [To set taints | Useful-commands](#to-set-taints-on-nodes--useful-commands)
+      - [Tolerations](#1btolerations)
+      - [Taints and Tolerations Use Cases](#taints-and-tolerations-use-cases)
+      - [The Three Taints Effects Implementation and Tolerations Managing](#the-three-taints-effects-implementation-and-tolerations-managing)
+         - [1.NoSchedule](#1-noschedule)
+         - [2.PreferNoSchedule](#2-prefernoschedule)
+         - [3.NoExecute](#3-noexecute)
+      - [Some important built in taints-based-on-three-effects](#some-important-built-in-taints-based-on-three-effects)
+         - [Node Role Taints](#1-node-role-taints)
+         - [Node Condition Taints](#2-node-condition-taints)
+         - [Node Lifecycle Taints](#3-node-lifecycle-taints)
+         - [Importance-of-built-in-taints](#importance-of-built-in-taints---these-built-in-taints-ensure)
+      - [Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity](#node-affinityanti-affinity-and-pod-affinityanti-affinity)
+         - [Node Affinity](#Node-Affinity)
+         - [Node Anti-Affinity](#node-anti-affinity)
+         - [POD Affinity](#pod-affinity)
+         - [POD Anti-Affinity](#pod-anti-affinity)
+
+
+
+
+
+
 ### 🔥1.Taints and Tolerations
 
 🔭"**`Taints and Tolerations`**", the main goal of this feature was to prevent `unwanted pods from being scheduled on some particular nodes`. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
@@ -1252,25 +1277,25 @@ spec:
 
 #### 🔴`To set taints on nodes` | `Useful Commands`
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- 🌟**Viewing Taints on Nodes**
+- 🌟**Viewing Taints on Nodes**\
 `kubectl describe node worker-ndoe
 
-- 🌟**To see which nodes have taints:**
+- 🌟**To see which nodes have taints:**\
 `kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'`
 
-- 🌟**Find already tainted by the Kubernetes default installation**
+- 🌟**Find already tainted by the Kubernetes default installation**\
 `kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect`
 
-- 🌟**To add taints to a node**
+- 🌟**To add taints to a node**\
 `kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>`
 
-- 🌟**Removing a Taint from a Node** | `kubectl taint nodes <node-name> <key>:<effect>-`
+- 🌟**Removing a Taint from a Node** | `kubectl taint nodes <node-name> <key>:<effect>-`\
 `kubectl taint nodes node1 dedicated=database:NoSchedule-`
 
-- 🌟**To remove all taints**
+- 🌟**To remove all taints**\
 `kubectl patch node <node-name> -p '{"spec":{"taints":[]}}'`
 
-- 🌟**Drain the Node: To safely evict pods from the node (e.g., for node shutdown), you might follow up with**
+- 🌟**Drain the Node: To safely evict pods from the node (e.g., for node shutdown), you might follow up with**\
 `kubectl drain worker-node-2 --ignore-daemonsets --delete-emptydir-data`
 
 - 🌟**Marks worker-node-2 as unschedulable to prevent new pods from being assigned, useful for maintenance, updates, or troubleshooting while keeping existing pods running.**\
@@ -1296,7 +1321,7 @@ tolerations:
   value: "<taint value>"
   effect: "<taint effect>"
 ```
-   - **🧩Exists Operator** : Matches any taint key regardless of the value. It's used when you want to tolerate a taint based only on its key, without checking the value.
+  &nbsp;&nbsp; - **🧩Exists Operator** : Matches any taint key regardless of the value. It's used when you want to tolerate a taint based only on its key, without checking the value.
 ```sh
 tolerations:
 - key: "<taint key>"

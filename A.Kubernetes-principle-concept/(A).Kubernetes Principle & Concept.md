@@ -1321,7 +1321,7 @@ tolerations:
   value: "<taint value>"
   effect: "<taint effect>"
 ```
-  &nbsp;&nbsp; - **🧩Exists Operator** : Matches any taint key regardless of the value. It's used when you want to tolerate a taint based only on its key, without checking the value.
+   - **🧩Exists Operator** : Matches any taint key regardless of the value. It's used when you want to tolerate a taint based only on its key, without checking the value.
 ```sh
 tolerations:
 - key: "<taint key>"

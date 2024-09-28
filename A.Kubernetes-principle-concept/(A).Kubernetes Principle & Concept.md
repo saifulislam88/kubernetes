@@ -1234,7 +1234,7 @@ spec:
    - **Preventing Resource Starvation**
 
 
-### 🔥1A.Taints
+### 🔥1.A.Taints
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Taints** are applied to nodes to indicate that certain pods should avoid or be evicted from those nodes unless the pods have the matching **tolerations.** So when a taint to be applied in a node, each taint consists of three parts **🟢`key`**,**🟢`value`**, and an **🟢`effect`**
 
@@ -1289,11 +1289,11 @@ kubectl cordon worker-node-2
 kubectl uncordon worker-node-2
 ```
 
-### 🔥1B.Tolerations
+### 🔥1.B.Tolerations
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 A toleration is essentially the counter to a taint, allowing a pod to “ignore” taints applied to a node. A toleration is defined in the pod specification and must match the key, value, and effect of the taint it intends to tolerate.
 
-**🔴A toleration has 4 main components:**
+**🔴Tolerations has 4 main components:**
 
 - **1.Key:** Identifies the taint the toleration refers to.
 - **2.Operator:** Defines the relationship between the key and value; common operators are ✅**`Equal`** and ✅**`Exists`**.

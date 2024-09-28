@@ -1238,18 +1238,13 @@ spec:
          - [POD Affinity](#pod-affinity)
          - [POD Anti-Affinity](#pod-anti-affinity)
 
-
-
-
-
-
 ### 🔥1.Taints and Tolerations
 
 🔭"**`Taints and Tolerations`**", the main goal of this feature was to prevent `unwanted pods from being scheduled on some particular nodes`. Kubernetes also used this feature to prevent pods from being scheduled on the master node and to ensure the master node was free from taking on workloads. Taints are generally applied on nodes to prevent unwanted scheduling, tolerations are applied on pods to allow them to be scheduled on nodes that have taints
 
 </p>
 
-- **Features of `Taints & Tolerations`**
+### **Features of `Taints & Tolerations`**
    - **Specifying nodes with special hardware**
    - **Creating dedicated nodes**
    - **Reserving Nodes for System Daemons**

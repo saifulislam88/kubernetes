@@ -1250,44 +1250,35 @@ spec:
 
 **`Key`**, **`Value`**, and **`Effect`**: These three elements define the characteristic and behavior of a **taint**. The **key and value** are arbitrary strings that represent your node’s attributes or goals, **while the effect determines the action taken on pods that do not tolerate the taint**
 
-#### 🔴To set taints on nodes | `Useful Commands`
+#### 🔴`To set taints on nodes` | `Useful Commands`
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - 🌟**Viewing Taints on Nodes**
-```sh
-kubectl describe node worker-ndoe1
-```
+`kubectl describe node worker-ndoe
+
 - 🌟**To see which nodes have taints:**
-```sh
-kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'
-```
+`kubectl get nodes -o jsonpath='{.items[*].metadata.name}{"\n"}{.items[*].spec.taints}'`
+
 - 🌟**Find already tainted by the Kubernetes default installation**
-```sh
-kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect
-```
+`kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect`
+
 - 🌟**To add taints to a node**
-```sh
-kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>
-```
+`kubectl taint nodes <node name> <taint key>=<taint value>:<taint effect>`
+
 - 🌟**Removing a Taint from a Node** | `kubectl taint nodes <node-name> <key>:<effect>-`
-```sh
-kubectl taint nodes node1 dedicated=database:NoSchedule-
-```
+`kubectl taint nodes node1 dedicated=database:NoSchedule-`
+
 - 🌟**To remove all taints**
-```sh
-kubectl patch node <node-name> -p '{"spec":{"taints":[]}}'
-```
+`kubectl patch node <node-name> -p '{"spec":{"taints":[]}}'`
+
 - 🌟**Drain the Node: To safely evict pods from the node (e.g., for node shutdown), you might follow up with**
-```sh
-kubectl drain worker-node-2 --ignore-daemonsets --delete-emptydir-data
-```
+`kubectl drain worker-node-2 --ignore-daemonsets --delete-emptydir-data`
+
 - 🌟**Marks worker-node-2 as unschedulable to prevent new pods from being assigned, useful for maintenance, updates, or troubleshooting while keeping existing pods running.**\
-```sh
-kubectl cordon worker-node-2
-```
+`kubectl cordon worker-node-2`
+
 - 🌟**This will make worker-node-2 schedulable again, ready to accept new pods.**\
-```sh
-kubectl uncordon worker-node-2
-```
+`kubectl uncordon worker-node-2`
+
 
 ### 🔥1.B.Tolerations
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

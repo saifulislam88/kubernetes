@@ -32,19 +32,24 @@
        - [kube-proxy](#kube-proxy)
        - [Container Runtime Interface(CRI)](#Container-Runtime-Interface-CRI)
        - [coredns](#coredns)
-- [Deploy Highly Available Kubernetes Cluster using Kubeadm](#deploy-highly-available-kubernetes-cluster-using-kubeadm) 
+- [Deploy Highly Available Kubernetes Cluster using Kubeadm](#deploy-highly-available-kubernetes-cluster-using-kubeadm)
+  - [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md)
+- Kubernetes Manifest/Yaml
+   - Structure of a Kubernetes Manifest
+   - Example Structure
+   - Detailed Breakdown of the Metadata Section
+   - Different types of YAML Manifests
 - [Kubernetes Native Objects](#kubernetes-native-objects)
   - [Kubernetes Workload Objects](#Kubernetes-Workload-Objects)
       - [Pods](#pods)
-       - [Static Pods](#static-pods)
+        - [Static Pods](#static-pods)
       - [ReplicaSets](#ReplicaSets)
       - [Deployments](#Deployments)
       - [StatefulSets](#StatefulSets)
       - [DaemonSets](#DaemonSets)
       - [Jobs]()
       - [CronJobs]()
-      - [Horizontal Pod Autoscaler[
-      - [Vertical Pod Autoscaler[
+     
   - [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
     - [Kubernetes Services Type](#kubernetes-services-type)
       - [ClusterIP](#1-clusteripdefault)
@@ -58,11 +63,14 @@
       - [Kubernetes Ingress](#ingress)
         - [Ingress Controlller](#ingress-controller)
           - [MetalLB | BareMetal LB](#metallb--baremetal-lb)
-  - [Kubernetes Configuration & Management Objects]
+    - NetworkPolicy
+  - [Kubernetes Configuration & Resource Management Objects]
       - ConfigMaps
       - Namespaces
       - ResourceQuotas
-      - LimitRanges
+      - LimitRange
+  - Autoscaling and Monitoring Objects
+      - HorizontalPodAutoscaler (HPA)
       - Pod Disruption Budgets (PDB)
       - Pod Priority and Preemption
   - [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
@@ -70,7 +78,7 @@
       - Persistent Volume Claims (PVC)
       - [Storage Classes/Type](#types-of-volumes)
       - Access Modes for Volumes
-  - [Kubernetes Security Objects](#Kubernetes-Security-Objects)
+  - [Kubernetes Security and Access Control Objects](#Kubernetes-Security-Objects)
       - [Secrets](#Secrets)
       - ServiceAccounts (sa)
       - Roles
@@ -78,6 +86,7 @@
       - ClusterRoles
       - ClusterRoleBindings
   - [Kubernetes Metadata Objects]
+  - 
 - [Kubernetes Scheduling](#Kubernetes-Scheduling)
   - [Manual Scheduling](#Manual-Scheduling)
     - [nodeName](#nodename)

@@ -58,6 +58,26 @@
       - [Kubernetes Ingress](#ingress)
         - [Ingress Controlller](#ingress-controller)
           - [MetalLB | BareMetal LB](#metallb--baremetal-lb)
+  - [Kubernetes Configuration & Management Objects]
+      - ConfigMaps
+      - Namespaces
+      - ResourceQuotas
+      - LimitRanges
+      - Pod Disruption Budgets (PDB)
+      - Pod Priority and Preemption
+  - [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
+      - Persistent Volumes (PV)
+      - Persistent Volume Claims (PVC)
+      - [Storage Classes/Type](#types-of-volumes)
+      - Access Modes for Volumes
+  - [Kubernetes Security Objects](#Kubernetes-Security-Objects)
+      - [Secrets](#Secrets)
+      - ServiceAccounts (sa)
+      - Roles
+      - RoleBindings
+      - ClusterRoles
+      - ClusterRoleBindings
+  - [Kubernetes Metadata Objects]
 - [Kubernetes Scheduling](#Kubernetes-Scheduling)
   - [Manual Scheduling](#Manual-Scheduling)
     - [nodeName](#nodename)
@@ -81,27 +101,6 @@
          - [Node Anti-Affinity](#node-anti-affinity)
          - [POD Affinity](#pod-affinity)
          - [POD Anti-Affinity](#pod-anti-affinity)
-  - [Kubernetes Configuration & Management Objects]
-      - ConfigMaps
-      - Namespaces
-      - ResourceQuotas
-      - LimitRanges
-      - Pod Disruption Budgets (PDB)
-      - Pod Priority and Preemption
-  - [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
-      - Persistent Volumes (PV)
-      - Persistent Volume Claims (PVC)
-      - [Storage Classes/Type](#types-of-volumes)
-      - Access Modes for Volumes
-  - [Kubernetes Security Objects](#Kubernetes-Security-Objects)
-      - [Secrets](#Secrets)
-      - ServiceAccounts (sa)
-      - Roles
-      - RoleBindings
-      - ClusterRoles
-      - ClusterRoleBindings
-  - [Kubernetes Metadata Objects]
-
 ----
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 

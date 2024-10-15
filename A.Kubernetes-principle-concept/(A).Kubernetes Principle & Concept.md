@@ -38,7 +38,7 @@
    - Structure of a Kubernetes Manifest
    - Example Structure
    - Detailed Breakdown of the Metadata Section
-   - Different types of YAML Manifests
+   - Different types of Manifests
 - [Kubernetes Native Objects](#kubernetes-native-objects)
   - [Kubernetes Workload Objects](#Kubernetes-Workload-Objects)
       - [Pods](#pods)
@@ -49,7 +49,6 @@
       - [DaemonSets](#DaemonSets)
       - [Jobs]()
       - [CronJobs]()
-     
   - [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
     - [Kubernetes Services Type](#kubernetes-services-type)
       - [ClusterIP](#1-clusteripdefault)
@@ -85,8 +84,6 @@
       - RoleBindings
       - ClusterRoles
       - ClusterRoleBindings
-  - [Kubernetes Metadata Objects]
-  - 
 - [Kubernetes Scheduling](#Kubernetes-Scheduling)
   - [Manual Scheduling](#Manual-Scheduling)
     - [nodeName](#nodename)

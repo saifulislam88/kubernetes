@@ -6,4 +6,4 @@ The followings are effective and practical methods to restore etcd for multi-mas
  - Restore etcd Database to a Fresh Kubernetes Cluster and Join Additional Masters
  - Restore etcd Database to an Existing or Running Kubernetes Cluster
     - Restore to only one Master, remove others temporarily, then rejoin them
-	  - Restore on All Master Nodes Simultaneously
+    - Restore on All Master Nodes Simultaneously

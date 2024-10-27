@@ -16,7 +16,33 @@ The followings are effective and practical methods to restore etcd for multi-mas
 apt  install etcd-client
 ```
 
-### `Step:2` - Taking an etcd Snapshot
+### `Step:2` - Investigation etcd command
+
+- To find etcd member list
+```sh
+ETCDCTL_API=3 etcdctl member list --endpoints=https://localhost:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key
+```
+
+- To check the status of the etcd health
+ - Single Master
+
+   ```sh
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key endpoint health
+```
+ - Multi-Master Masters(Change IPs according to your masters)
+
+```sh
+ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.140:2379 --endpoints=https://192.168.4.168:2379 --endpoints=https://192.168.4.138:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key endpoint health
+```
+
+
+- To check the status of the etcd cluster endpoints | Show details about DB Size,Leader | Multi-Masters (`Change IPs according to your masters`)
+
+```sh
+sudo ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.138:2379 --endpoints=https://192.168.4.140:2379 --endpoints=https://192.168.4.168:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key endpoint status --write-out=table
+```
+
+### `Step:3` - Taking an etcd Snapshot
 
 ### **Option 1(`Good`):** 
 - Before starting, set up these environment variables to simplify commands to all master nodes
@@ -40,5 +66,9 @@ etcdctl snapshot save /backup/etcd-snapshot.db --cacert="${ETCDCTL_CACERT}" --ce
 - To take a backup, run the following command on any master node:
 
 ```sh
-ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save snapshot.db
+ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /backup/etcd-snapshot.db
 ```
+
+### `Step:4` - verify the snapshot using the following command
+
+`ETCDCTL_API=3 etcdctl --write-out=table snapshot status /backup/etcd-snapshot.db`

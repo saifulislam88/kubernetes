@@ -18,19 +18,18 @@ apt  install etcd-client
 
 ### `Step:2` - Investigation etcd command
 
-- To find etcd member list
+- **To find etcd member list**
   
 ```sh
 ETCDCTL_API=3 etcdctl member list --endpoints=https://localhost:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key
 ```
 
-- To check the status of the etcd health
-  - Single Master
-
+- **To check the status of the etcd health**
+#### `Single Master`
 ```sh
 ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key endpoint health
 ```
-  - Multi-Master Masters(Change IPs according to your masters)
+#### Multi-Master Masters(Change IPs according to your masters)
 
 ```sh
 ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.140:2379 --endpoints=https://192.168.4.168:2379 --endpoints=https://192.168.4.138:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key endpoint health

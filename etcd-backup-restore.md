@@ -18,7 +18,7 @@ apt  install etcd-client
 
 ### `Step:2` - Taking an etcd Snapshot
 
-#### **Option 1(`Good)`:** 
+### **Option 1(`Good`):** 
 - Before starting, set up these environment variables to simplify commands to all master nodes
 
 ```sh
@@ -36,7 +36,7 @@ export ETCDCTL_ENDPOINTS="https://127.0.0.1:2379
 etcdctl snapshot save /backup/etcd-snapshot.db --cacert="${ETCDCTL_CACERT}" --cert="${ETCDCTL_CERT}" --key="${ETCDCTL_KEY}" --endpoints="${ETCDCTL_ENDPOINTS}"
 ```
 
-#### **Option 2(`Complex`):** 
+### **Option 2(`Complex`):** 
 - To take a backup, run the following command on any master node:
 
 ```sh

@@ -39,7 +39,7 @@ ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.140:2379 --endpoints=https:/
 ```
 
 
-####  To check the status of the etcd cluster endpoints | Show details about DB Size,Leader | Multi-Masters (`Change IPs according to your masters`)
+####  To check the status of the etcd cluster endpoints | Show details about DB Size,Leader | Multi-Masters
 
 ```sh
 sudo ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.138:2379 --endpoints=https://192.168.4.140:2379 --endpoints=https://192.168.4.168:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key endpoint status --write-out=table

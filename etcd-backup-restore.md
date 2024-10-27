@@ -3,10 +3,10 @@ The followings are effective and practical methods to restore etcd for `multi-ma
 
 - ETCD restoration methods for single-master Kubernetes clusters
 - ETCD restoration methods for multi-master Kubernetes clusters
- - Restore ETCD database to a fresh Kubernetes cluster and then join additional masters
- - Restore ETCD database to an existing or running Kubernetes cluster
-    - Restore to only one master, remove others temporarily before restoring, then rejoin them
-    - Restore on all master nodes simultaneously
+  - Restore ETCD database to a fresh Kubernetes cluster and then join additional masters
+  - Restore ETCD database to an existing or running Kubernetes cluster
+     - Restore to only one master, remove others temporarily before restoring, then rejoin them
+     - Restore on all master nodes simultaneously
 
 ### `Step:1` - Install etcdctl client in all master nodes
 

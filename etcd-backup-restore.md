@@ -1,10 +1,10 @@
 
 The followings are effective and practical methods to restore etcd for `multi-master` | `single-master` Kubernetes clusters, and they cater to two main situations.
 
-- ETCD restoration methods for single-master Kubernetes clusters
-- ETCD restoration methods for multi-master Kubernetes clusters
-  - Restore ETCD database to a fresh Kubernetes cluster and then join additional masters
-  - Restore ETCD database to an existing or running Kubernetes cluster
+- 1. ETCD restoration methods for single-master Kubernetes clusters
+- 2. ETCD restoration methods for multi-master Kubernetes clusters
+  - 2.1. Restore ETCD database to a fresh Kubernetes cluster and then join additional masters
+  - 2.2. Restore ETCD database to an existing or running Kubernetes cluster
      - Restore to only one master, remove others temporarily before restoring, then rejoin them
      - Restore on all master nodes simultaneously
 
@@ -43,6 +43,7 @@ ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.140:2379 --endpoints=https:/
 sudo ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.138:2379 --endpoints=https://192.168.4.140:2379 --endpoints=https://192.168.4.168:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key endpoint status --write-out=table
 ```
 
+## Backup etcd snapshot
 ### `Step:3` - Taking an etcd backup snapshot
 We can take backup using two methods command likes `option:1` & `option:2` where 1 is more easy.
 
@@ -74,3 +75,38 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
 ### `Step:4` - verify the snapshot using the following command
 
 `ETCDCTL_API=3 etcdctl --write-out=table snapshot status /backup/etcd-snapshot.db`
+
+
+## Restoring etcd backup
+
+### Restore etcd backup for single-master Kubernetes clusters
+- Before restoring etcd, Ensure that all static pods (kube-apiserver, control-plane, etcd, scheduler) are not in the running state on all control plane nodes.
+
+  `mv /etc/kubernetes/manifests /etc/kubernetes/manifests.bak`
+  `kubectl get po -n kube-system`
+
+- To remove all ETCD data
+  
+  `yes | rm -rf /var/lib/etcd`
+  
+- Restore ETCD Snapshot to a new folder
+  
+`ETCDCTL_API=3 etcdctl --data-dir /var/lib/etcd-new snapshot restore /backup/etcd-snapshot.db`
+  
+- Modify /etc/kubernetes/manifests.bak/etcd.yaml
+
+`- --data-dir=/var/lib/etcd`
+`- - mountPath: /var/lib/etcd`
+
+
+
+- Move the backup directory
+
+  
+- Restart the system services.
+  
+```sh
+systemctl daemon-reload
+systemctl restart containerd
+systemctl restart kubelet
+```

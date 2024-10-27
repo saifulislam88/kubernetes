@@ -25,12 +25,12 @@ ETCDCTL_API=3 etcdctl member list --endpoints=https://localhost:2379 --cacert=/e
 ```
 
 - To check the status of the etcd health
- - Single Master
+  - Single Master
 
 ```sh
 ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key endpoint health
 ```
- - Multi-Master Masters(Change IPs according to your masters)
+  - Multi-Master Masters(Change IPs according to your masters)
 
 ```sh
 ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.140:2379 --endpoints=https://192.168.4.168:2379 --endpoints=https://192.168.4.138:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key endpoint health

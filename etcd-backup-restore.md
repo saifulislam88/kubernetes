@@ -150,7 +150,7 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
   mv /etc/kubernetes/manifests-bak /etc/kubernetes/manifests
   ```
 
-  ### `Step:6`
+### `Step:6`
 - Restart the system services.
   
   ```sh

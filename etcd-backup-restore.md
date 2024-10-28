@@ -83,6 +83,7 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
 
 ### Restore etcd backup for single-master Kubernetes clusters
 
+### `Step:1`
 - Before restoring etcd, Ensure that all static pods (`kube-apiserver`, `control-plane`, `etcd`, `scheduler`) are not in the running state on all control plane nodes.
 
    ```sh
@@ -90,20 +91,21 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
    kubectl get po -n kube-system
    ```
 
+### `Step:2`
 - **To remove all ETCD data**
   Run the commands below on all control plane nodes. Ensure that the /var/lib/etcd directory is empty after running these commands.
 
   ```sh
   mv /var/lib/etcd /var/lib/bak-etcd
   ```
-  
+### `Step:3`
 - Restore ETCD Snapshot to a new folder
   Here is the command to restore etcd and `--data-dir /var/lib/etcd-new`specific data directory for the restore.
 
   ```sh
   ETCDCTL_API=3 etcdctl --data-dir /var/lib/etcd-new snapshot restore /backup/etcd-snapshot.db
   ```
-
+### `Step:4`
 - **Modify/Updating /etc/kubernetes/manifests-bak/etcd.yaml for ETCD Data Directory**
 
   The following steps modify **`/etc/kubernetes/manifests-bak/etcd.yaml`** to use a new data directory path, `/var/lib/etcd-new`, for etcd. Here is below existing/original path `/var/lib/etcd` which need to be update according to new backup restore location.
@@ -139,14 +141,20 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
        type: DirectoryOrCreate
      name: etcd-data
   ```
+### `Step:5`
+- Active static pods (`kube-apiserver`, `control-plane`, `etcd`, `scheduler`)
 
-- Move the backup directory
+  Move the backup directory of `/etc/kubernetes/manifests-bak` to `/etc/kubernetes/manifests` on all control plane nodes. This action will cause the static pods to start up, as Kubelet recognizes the static path manifests. All new pods will come up with restored ETCD data.
 
-  
+  ```sh
+  mv /etc/kubernetes/manifests-bak /etc/kubernetes/manifests
+  ```
+
+  ### `Step:6`
 - Restart the system services.
   
-```sh
-systemctl daemon-reload
-systemctl restart containerd
-systemctl restart kubelet
-```
+  ```sh
+  systemctl daemon-reload
+  systemctl restart containerd
+  systemctl restart kubelet
+  ```

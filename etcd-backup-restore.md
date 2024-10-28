@@ -125,15 +125,15 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
   `sudo vi /etc/kubernetes/manifests-bak/etcd.yaml`
 
   ```sh
-  - --data-dir=**`/var/lib/etcd-new`** # Update the `data-dir` path: Change this line
+  - --data-dir=`/var/lib/etcd-new`     # Update the `data-dir` path: Change this line
   
   volumeMounts:                        # Update `volumeMounts` path: Change this section:
-   - mountPath: **`/var/lib/etcd-new`**
+   - mountPath: `/var/lib/etcd-new`
      name: etcd-data
      
   volumes:
    - hostPath:                        # Update `hostPath` under volumes: Change this section:
-       path: **`/var/lib/etcd-new`**
+       path: `/var/lib/etcd-new`
        type: DirectoryOrCreate
      name: etcd-data
   ```

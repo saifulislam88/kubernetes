@@ -84,22 +84,22 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
 - Before restoring etcd, Ensure that all static pods (kube-apiserver, control-plane, etcd, scheduler) are not in the running state on all control plane nodes.
 
    ```sh
-   mv /etc/kubernetes/manifests /etc/kubernetes/manifests-bak`
+   mv /etc/kubernetes/manifests /etc/kubernetes/manifests-bak
+   kubectl get po -n kube-system
    ```
-  `kubectl get po -n kube-system`
 
 - To remove all ETCD data
   Run the commands below on all control plane nodes. Ensure that the /var/lib/etcd directory is empty after running these commands.
 
   ```sh
-  mv /var/lib/etcd /var/lib/bak-etcd`
+  mv /var/lib/etcd /var/lib/bak-etcd
   ```
   
 - Restore ETCD Snapshot to a new folder
   Here is the command to restore etcd and `--data-dir /var/lib/etcd-new`specific data directory for the restore.
 
   ```sh
-  ETCDCTL_API=3 etcdctl --data-dir /var/lib/etcd-new snapshot restore /backup/etcd-snapshot.db`
+  ETCDCTL_API=3 etcdctl --data-dir /var/lib/etcd-new snapshot restore /backup/etcd-snapshot.db
   ```
 
 - Modify/Updating /etc/kubernetes/manifests-bak/etcd.yaml for ETCD Data Directory

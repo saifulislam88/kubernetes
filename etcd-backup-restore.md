@@ -81,14 +81,14 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
 
 ### Restore etcd backup for single-master Kubernetes clusters
 
-- Before restoring etcd, Ensure that all static pods (kube-apiserver, control-plane, etcd, scheduler) are not in the running state on all control plane nodes.
+- Before restoring etcd, Ensure that all static pods (`kube-apiserver`, `control-plane`, `etcd`, `scheduler`) are not in the running state on all control plane nodes.
 
    ```sh
    mv /etc/kubernetes/manifests /etc/kubernetes/manifests-bak
    kubectl get po -n kube-system
    ```
 
-- To remove all ETCD data
+- **To remove all ETCD data**
   Run the commands below on all control plane nodes. Ensure that the /var/lib/etcd directory is empty after running these commands.
 
   ```sh
@@ -102,9 +102,9 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
   ETCDCTL_API=3 etcdctl --data-dir /var/lib/etcd-new snapshot restore /backup/etcd-snapshot.db
   ```
 
-- Modify/Updating /etc/kubernetes/manifests-bak/etcd.yaml for ETCD Data Directory
+- **Modify/Updating /etc/kubernetes/manifests-bak/etcd.yaml for ETCD Data Directory**
 
-  The following steps modify /etc/kubernetes/manifests-bak/etcd.yaml to use a new data directory path, /var/lib/etcd-new, for etcd. Here is below existing/original path /var/lib/etcd which need to be update according to new restore location.
+  The following steps modify **`/etc/kubernetes/manifests-bak/etcd.yaml`** to use a new data directory path, `/var/lib/etcd-new`, for etcd. Here is below existing/original path `/var/lib/etcd` which need to be update according to new backup restore location.
 
   ```sh
   - --data-dir=/var/lib/etcd
@@ -120,28 +120,23 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
       name: etcd-data
   ```
 
-#### Updating Paths in etcd.yaml to Use /var/lib/etcd-new
+    **After dpdating paths in` etcd.yaml` for `var/lib/etcd-new`**
 
-sudo vi /etc/kubernetes/manifests-bak/etcd.yaml
+  `sudo vi /etc/kubernetes/manifests-bak/etcd.yaml`
 
-##### Update the `data-dir` path: Change this line
-
-- --data-dir=**`/var/lib/etcd-new`**
-
-##### Update `volumeMounts` path: Change this section:
-
-volumeMounts:
- - mountPath: **`/var/lib/etcd-new`**
-   name: etcd-data
-   
-##### Update `hostPath` under volumes: Change this section:
-
-volumes:
- - hostPath:
-     path: **`/var/lib/etcd-new`**
-     type: DirectoryOrCreate
-   name: etcd-data
-
+  ```sh
+  - --data-dir=**`/var/lib/etcd-new`** # Update the `data-dir` path: Change this line
+  
+  volumeMounts:                        # Update `volumeMounts` path: Change this section:
+   - mountPath: **`/var/lib/etcd-new`**
+     name: etcd-data
+     
+  volumes:
+   - hostPath:                        # Update `hostPath` under volumes: Change this section:
+       path: **`/var/lib/etcd-new`**
+       type: DirectoryOrCreate
+     name: etcd-data
+  ```
 
 - Move the backup directory
 

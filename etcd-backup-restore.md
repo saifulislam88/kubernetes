@@ -8,6 +8,9 @@ The followings are effective and practical methods to restore etcd for `multi-ma
      - Restore to only one master, remove others temporarily before restoring, then rejoin them
      - Restore on all master nodes simultaneously
 
+
+## Backup etcd snapshot
+
 ### `Step:1` - Install etcdctl client in all master nodes
 
 ```sh
@@ -43,7 +46,6 @@ ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.140:2379 --endpoints=https:/
 sudo ETCDCTL_API=3 etcdctl --endpoints=https://192.168.4.138:2379 --endpoints=https://192.168.4.140:2379 --endpoints=https://192.168.4.168:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/peer.crt --key=/etc/kubernetes/pki/etcd/peer.key endpoint status --write-out=table
 ```
 
-## Backup etcd snapshot
 ### `Step:3` - Taking an etcd backup snapshot
 We can take backup using two methods command likes `option:1` & `option:2` where 1 is more easy.
 

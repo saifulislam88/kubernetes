@@ -120,7 +120,7 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
       name: etcd-data
   ```
 
-    **After dpdating paths in` etcd.yaml` for `var/lib/etcd-new`**
+    **Updating paths accordingly below in` etcd.yaml` for `var/lib/etcd-new`**
 
   `sudo vi /etc/kubernetes/manifests-bak/etcd.yaml`
 

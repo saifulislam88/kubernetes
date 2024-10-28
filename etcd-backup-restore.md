@@ -93,6 +93,7 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
 
 ### `Step:2`
 - **To remove all ETCD data**
+  
   Run the commands below on all control plane nodes. Ensure that the /var/lib/etcd directory is empty after running these commands.
 
   ```sh

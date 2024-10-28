@@ -104,21 +104,21 @@ ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 --cacert=/etc/kuberne
 
 - Modify/Updating /etc/kubernetes/manifests-bak/etcd.yaml for ETCD Data Directory
 
-The following steps modify /etc/kubernetes/manifests-bak/etcd.yaml to use a new data directory path, /var/lib/etcd-new, for etcd. Here is below existing/original path /var/lib/etcd which need to be update according to new restore location.
+  The following steps modify /etc/kubernetes/manifests-bak/etcd.yaml to use a new data directory path, /var/lib/etcd-new, for etcd. Here is below existing/original path /var/lib/etcd which need to be update according to new restore location.
 
-```sh
-- --data-dir=/var/lib/etcd
-
-volumeMounts:
-    - mountPath: /var/lib/etcd
+  ```sh
+  - --data-dir=/var/lib/etcd
+  
+  volumeMounts:
+      - mountPath: /var/lib/etcd
+        name: etcd-data
+  
+  volumes:
+    - hostPath:
+        path: /var/lib/etcd
+        type: DirectoryOrCreate
       name: etcd-data
-
-volumes:
-  - hostPath:
-      path: /var/lib/etcd
-      type: DirectoryOrCreate
-    name: etcd-data
-```
+  ```
 
 #### Updating Paths in etcd.yaml to Use /var/lib/etcd-new
 

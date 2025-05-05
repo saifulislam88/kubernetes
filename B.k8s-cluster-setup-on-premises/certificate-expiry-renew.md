@@ -113,12 +113,3 @@ sudo kubeadm certs renew all
 
 ---
 
-##### 📌 GitHub Tracking
-
-**Task Title**: `Kubernetes Certificate Expiry & Recovery Strategy`
-
--
-
----
-
-> Maintainer: `saiful`> Updated: `$(date +%F)`

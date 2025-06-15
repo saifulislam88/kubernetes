@@ -63,19 +63,14 @@ spec:
 
 1. **Pod Creation:**
    - `kubectl create -f db.yml` দিলে client API server-এ Pod তৈরির request পাঠায়।
-
 2. **Detection by Scheduler:**
    - API server দেখতে পায় একটি unassigned Pod এসেছে।
-
 3. **Node Assignment:**
    - Scheduler resource-based decision নিয়ে একটি node নির্বাচন করে Pod assign করে।
-
 4. **Kubelet Trigger:**
    - Assigned node-এর Kubelet API server থেকে জানতে পারে তার node-এ নতুন Pod রান হবে।
-
 5. **Container Launch:**
    - Kubelet, container runtime (যেমন Docker) কে Pod অনুযায়ী container চালাতে বলে।
-
 6. **Status Reporting:**
    - Pod সফলভাবে চালু হলে, Kubelet API server-এ জানিয়ে দেয়।
 

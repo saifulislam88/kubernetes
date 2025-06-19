@@ -1064,7 +1064,64 @@ Ingress is actually NOT a type of service. Instead, it sits in front of multiple
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### [Ingress Controller](#ingressresource)
 
+```sh
 
+                                                     +--------------------------+
+                                                     |    External Clients      |
+                                                     |  https://example.com/api |
+                                                     +--------------------------+
+                                                     DNS resolves example.com to a public IP — the Ingress Controller service IP.
+                                                     Request hits the NodePort/LoadBalancer Service → forwarded to the Ingress Controller Pod.
+
+                                                                 |
+                                                                 v
+                                                     +---------------------------+
+                                                     | Ingress Controller Service|  (Type: LoadBalancer(Cloud) or NodePort(bare-Metal))
+                                                     | (e.g., ingress-nginx svc) |  (Role: Exposes the Ingress Controller pod to external clients on ports 80/443)
+                                                     +---------------------------+
+                                                                 |
+                                                                 v
+                                                     +---------------------------+
+                                                     | Ingress Controller Pod    |  (Pod- e.g., ingress-nginx contoller, haproxy-ingress)
+                                                     | (e.g., nginx-controller)  |  Function: Reads Ingress rules → configures internal reverse proxy → handles external requests.
+                                                     +---------------------------+            - Watches Ingress resources 
+                                                                                              - Applies rules to reverse proxy config
+                                                                                              - Handles actual L7 (HTTP/S) traffic 
+                                                                                              - Matches hostname and path against Ingress rules.
+                                                                                              - Forwards request to the matching K8s Service, which routes to Pods.
+                                                      
+                                                                 |
+                                                                 v
+                  +----------------------------------------------+------------------------------------------------+------------------------------------------------------------------------------------------------------
+                  |                                                                                               |                                                                                                     |
+       +------------------------+                                                       +--------------------------------------------------+                                                         +----------------------------------------+                                                                    
+       | Ingress Resource (CRD) |                                                       |    ConfigMap/Annotations                         |                                                         |          TLS Secrets(opt)              |
+       |      (Rules)           |                                                       |          (Settings)                              |                                                         | - Tuning controller behavior           |
+       +------------------------+                                                       +--------------------------------------------------+                                                         | - SSL, headers, timeouts, rewrites     |                                               
+What it is: A Kubernetes object (kind: Ingress) that defines routing rules.             Purpose: Fine-tune behavior of the controller (timeouts, header rewrites, SSL settings, etc.).               +----------------------------------------+
+Example: Match example.com/path1 and route to service-a; match /path2 → service-b.      Source: ConfigMap is loaded at pod startup; annotations are read from each Ingress object.
+
+ 
+                                         |
+                                         v
+                            +-----------------------------+     
+                            |  Internal K8s Service       |
+                            |  Routes to target Pods      |
+                            |  - Type: ClusterIP          |
+                            |  - e.g., svc: my-app        |
+                            +-----------------------------+
+ What they are: Normal Kubernetes ClusterIP services (e.g., svc: my-app-service) that point to pods.
+                                         |
+                                         v
+                            +-----------------------------+
+                            |      Application Pod        |
+                            |  (e.g., my-app-xxx-xxxx)    |
+                            +-----------------------------+
+
+
+
+
+```
 
 
 **An Ingress Controller is a software program of Ingress that runs inside your Kubernetes cluster and implements the Ingress API. It reads Ingress objects and takes actions to properly route incoming requests.** Essentially, the Ingress Controller is responsible for making Ingress resources functional. So It acts as an interpreter for Ingress resources, translating the traffic rules defined in the Ingress objects into configurations for your load balancer or edge router.

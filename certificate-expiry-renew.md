@@ -24,6 +24,32 @@ kubeadm certs check-expiration
 
 Shows expiration of all certs and residual time remaining.
 
+```sh
+root@prod-k8-master-node:~# kubeadm certs check-expiration
+[check-expiration] Reading configuration from the cluster...
+[check-expiration] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+
+CERTIFICATE                EXPIRES                  RESIDUAL TIME   CERTIFICATE AUTHORITY   EXTERNALLY MANAGED
+admin.conf                 Jul 15, 2025 10:47 UTC   23d             ca                      no
+apiserver                  Jul 15, 2025 10:47 UTC   23d             ca                      no
+apiserver-etcd-client      Jul 15, 2025 10:47 UTC   23d             etcd-ca                 no
+apiserver-kubelet-client   Jul 15, 2025 10:47 UTC   23d             ca                      no
+controller-manager.conf    Jul 15, 2025 10:47 UTC   23d             ca                      no
+etcd-healthcheck-client    Jul 15, 2025 10:47 UTC   23d             etcd-ca                 no
+etcd-peer                  Jul 15, 2025 10:47 UTC   23d             etcd-ca                 no
+etcd-server                Jul 15, 2025 10:47 UTC   23d             etcd-ca                 no
+front-proxy-client         Jul 15, 2025 10:47 UTC   23d             front-proxy-ca          no
+scheduler.conf             Jul 15, 2025 10:47 UTC   23d             ca                      no
+
+CERTIFICATE AUTHORITY   EXPIRES                  RESIDUAL TIME   EXTERNALLY MANAGED
+ca                      Jul 13, 2034 10:47 UTC   9y              no
+etcd-ca                 Jul 13, 2034 10:47 UTC   9y              no
+front-proxy-ca          Jul 13, 2034 10:47 UTC   9y              no
+```
+
+
+
+
 ---
 
 #### ✅ Renewing Certificates Safely

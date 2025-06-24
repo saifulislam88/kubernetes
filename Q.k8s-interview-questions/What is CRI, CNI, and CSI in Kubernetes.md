@@ -1,11 +1,11 @@
 
-# What is CRI, CNI, and CSI in Kubernetes?
+## What is CRI, CNI, and CSI in Kubernetes?
 
 In Kubernetes, **CRI**, **CNI**, and **CSI** are interfaces that enable pluggable architecture for container runtime, networking, and storage:
 
 ---
 
-## 1. CRI – Container Runtime Interface
+### 1. CRI – Container Runtime Interface
 
 - **Purpose**: Allows Kubernetes to use different container runtimes (like containerd, CRI-O, Docker via shim).  
 - **Role**: Connects the `kubelet` to the underlying container runtime.  
@@ -16,7 +16,7 @@ In Kubernetes, **CRI**, **CNI**, and **CSI** are interfaces that enable pluggabl
 
 ---
 
-## 2. CNI – Container Network Interface
+### 2. CNI – Container Network Interface
 
 - **Purpose**: Manages network connectivity for pods.  
 - **Role**: Provides IP addressing and routing so that pods can communicate with each other and with external services.  
@@ -28,7 +28,7 @@ In Kubernetes, **CRI**, **CNI**, and **CSI** are interfaces that enable pluggabl
 
 ---
 
-## 3. CSI – Container Storage Interface
+### 3. CSI – Container Storage Interface
 
 - **Purpose**: Allows Kubernetes to use various storage systems (block or file storage).  
 - **Role**: Standardizes how storage volumes are provisioned, attached, and mounted.  
@@ -40,7 +40,7 @@ In Kubernetes, **CRI**, **CNI**, and **CSI** are interfaces that enable pluggabl
 
 ---
 
-## Summary Table
+### Summary Table
 
 | Interface | Purpose                      | Connected Component       | Examples                     |
 |-----------|------------------------------|----------------------------|------------------------------|

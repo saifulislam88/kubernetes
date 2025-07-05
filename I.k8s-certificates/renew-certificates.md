@@ -1,6 +1,4 @@
 
-
-
 ---
 
 #### ✅ Renewing Certificates Safely

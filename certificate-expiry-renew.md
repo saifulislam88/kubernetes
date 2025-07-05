@@ -22,6 +22,96 @@ This knowledgebase covers how Kubernetes handles TLS certificates, the implicati
 | `controller-manager.conf`      | kubeconfig for controller manager                   | `ca`             | 1 year           |
 | `scheduler.conf`               | kubeconfig for scheduler                            | `ca`             | 1 year           |
 
+# 🎯 Logical Categories of Kubernetes Certificates
+
+This document summarizes the main Kubernetes certificates, their categories, and how they depend on each other.
+
+---
+
+## 🟢 1️⃣ Cluster CA Certificates
+
+These are **root certificates** that sign other certificates in the cluster.
+
+### ✅ Cluster CA
+- **File:** `ca.crt`
+- **Signs:**
+  - `apiserver.crt`
+  - `apiserver-kubelet-client.crt`
+  - `admin.conf`
+  - `controller-manager.conf`
+  - `scheduler.conf`
+
+---
+
+### ✅ etcd CA
+- **File:** `etcd-ca.crt`
+- **Signs:**
+  - `etcd-server.crt`
+  - `etcd-peer.crt`
+  - `etcd-healthcheck-client.crt`
+  - `apiserver-etcd-client.crt`
+
+---
+
+### ✅ Front-Proxy CA
+- **File:** `front-proxy-ca.crt`
+- **Signs:**
+  - `front-proxy-client.crt`
+
+> 📝 These 3 CAs are **independent roots**, each responsible for a different part of the system.
+
+---
+
+## 🟡 2️⃣ API Server Certificates
+
+Used for securing API server traffic.
+
+- `apiserver.crt` – serves HTTPS for API server
+- `apiserver-kubelet-client.crt` – used by API server to authenticate to kubelet
+- `apiserver-etcd-client.crt` – used by API server to authenticate to etcd
+
+**Dependencies:**
+- `apiserver.crt` depends on `ca.crt`
+- `apiserver-kubelet-client.crt` depends on `ca.crt`
+- `apiserver-etcd-client.crt` depends on `etcd-ca.crt`
+
+---
+
+## 🟣 3️⃣ etcd Certificates
+
+Used internally by etcd cluster nodes.
+
+- `etcd-server.crt`
+- `etcd-peer.crt`
+- `etcd-healthcheck-client.crt`
+
+**Dependency:**
+- All signed by `etcd-ca.crt`
+
+---
+
+## 🔵 4️⃣ Client Kubeconfigs
+
+Certificates embedded in kubeconfigs for admins and controllers.
+
+- `admin.conf`
+- `controller-manager.conf`
+- `scheduler.conf`
+
+**Dependency:**
+- All signed by `ca.crt`
+
+---
+
+## 🟠 5️⃣ Front Proxy Certificates
+
+Used by the API aggregation layer.
+
+- `front-proxy-client.crt`
+
+**Dependency:**
+- Signed by `front-proxy-ca.crt`
+
 
 ---
 

@@ -4,7 +4,7 @@ This guide helps you renew Kubernetes component certificates without regeneratin
 
 ---
 
-### 🚀 1️⃣ Backup /etc/kubernetes
+### 1️⃣ Backup /etc/kubernetes
 
 ```bash
 sudo tar -czvf /root/kubernetes-backup-$(date +%F).tar.gz /etc/kubernetes

@@ -55,7 +55,16 @@ sudo kubeadm certs check-expiration
 This approach **generates a completely new private key** for each CA.  
 **All component certificates must be re-issued** because they are no longer trusted by the new CA.
 
-⚠️ **Important: This process causes API downtime during rotation.**
+⚠️ **Important: This process causes API downtime during rotation.**\
+⚠️ **This is the disruptive scenario.**
+
+- Downtime: Yes, there will be a short interruption.
+- All old certificates become invalid.
+- You must regenerate all component certs and kubeconfigs.
+- API server and kubelet connections are interrupted while restarting.
+- Clients using old admin.conf cannot connect until they get updated kubeconfig.
+
+
 
 ##### 🚀 Steps
 

@@ -1,10 +1,10 @@
-## ✅ Renewing Only Component Certificates (without touching CA)
+### ✅ Renewing Only Component Certificates (without touching CA)
 
 This guide helps you renew Kubernetes component certificates without regenerating CA certificates.
 
 ---
 
-### 1️⃣ Backup /etc/kubernetes
+#### 1️⃣ Backup /etc/kubernetes
 
 ```bash
 sudo tar -czvf /root/kubernetes-backup-$(date +%F).tar.gz /etc/kubernetes
@@ -12,7 +12,7 @@ sudo tar -czvf /root/kubernetes-backup-$(date +%F).tar.gz /etc/kubernetes
 
 ---
 
-### 2️⃣ Check Certificate Expiration
+#### 2️⃣ Check Certificate Expiration
 
 ```bash
 sudo kubeadm certs check-expiration
@@ -36,7 +36,7 @@ scheduler.conf             Mar 12, 2026 05:32 UTC   5d              ca          
 
 ---
 
-### 3️⃣ Renew All Component Certificates
+#### 3️⃣ Renew All Component Certificates
 
 - Uses existing CA.
 - Generates new certs with a new expiry (default: 1 year).
@@ -47,7 +47,7 @@ sudo kubeadm certs renew all
 
 ---
 
-### 4️⃣ Verify Renewed Certificates
+#### 4️⃣ Verify Renewed Certificates
 
 ```bash
 sudo kubeadm certs check-expiration
@@ -55,7 +55,7 @@ sudo kubeadm certs check-expiration
 
 ---
 
-### 5️⃣ Restart Relevant Components
+#### 5️⃣ Restart Relevant Components
 
 **Get container IDs:**
 
@@ -85,7 +85,7 @@ sudo crictl stop <etcd-ID>
 
 ---
 
-### 6️⃣ Verify Containers Restarted
+#### 6️⃣ Verify Containers Restarted
 
 ```bash
 sudo crictl ps | grep kube-apiserver
@@ -96,7 +96,7 @@ sudo crictl ps | grep etcd
 
 ---
 
-### 7️⃣ Test Cluster Connectivity
+#### 7️⃣ Test Cluster Connectivity
 
 ```bash
 kubectl get nodes --kubeconfig /etc/kubernetes/admin.conf
@@ -106,7 +106,7 @@ kubectl get nodes --kubeconfig /etc/kubernetes/admin.conf
 
 ---
 
-### 8️⃣ Update Kubeconfig on Admin Workstation (if applicable)
+#### 8️⃣ Update Kubeconfig on Admin Workstation (if applicable)
 
 **Copy renewed kubeconfig:**
 
@@ -123,7 +123,7 @@ From your workstation:
 scp root@prod-k8-master-node:/home/saiful/admin.conf ~/.kube/config
 ```
 
-### 🔁 If All Certs (Including CA) Expire
+#### 🔁 If All Certs (Including CA) Expire
 
 | Scenario                    | Impact                        |
 | --------------------------- | ----------------------------- |
@@ -131,14 +131,14 @@ scp root@prod-k8-master-node:/home/saiful/admin.conf ~/.kube/config
 | CA certs expire             | Cluster breaks, kubelet fails |
 | Both expire                 | Full outage, manual recovery  |
 
-### Recovery Plan
+#### Recovery Plan
 
 - Restore backup of `/etc/kubernetes/pki`
 - Restart `kubelet` and relevant static pods
 
 ---
 
-### 🧠 Best Practices
+#### 🧠 Best Practices
 
 - ✅ Rotate certs **before** expiry
 - ✅ Keep regular backup of `/etc/kubernetes/pki`

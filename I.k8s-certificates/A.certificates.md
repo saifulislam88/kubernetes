@@ -4,21 +4,21 @@ This knowledgebase covers how Kubernetes handles TLS certificates, the implicati
 
 #### 📌 Certificate Types in Kubernetes
 
-| Certificate                    | Purpose                                             | Signed By        | Default Validity |   TYPE   |
-| ------------------------------ | --------------------------------------------------- | ---------------- | ---------------- |----------|
-| `ca.crt`                       | Cluster Certificate Authority                       | Self-signed      | 10 years         | CA       |
-| `etcd-ca.crt`                  | CA for etcd-related certificates                    | Self-signed      | 10 years         | CA       |
-| `front-proxy-ca.crt`           | CA for front proxy communication                    | Self-signed      | 10 years         | CA       |
-| `apiserver.crt`                | TLS certificate for Kubernetes API Server           | `ca`             | 1 year           | component|
-| `apiserver-kubelet-client.crt` | Used by API server to authenticate against kubelets | `ca`             | 1 year           | component|
-| `apiserver-etcd-client.crt`    | Used by API server to connect securely to etcd      | `etcd-ca`        | 1 year           | component|
-| `front-proxy-client.crt`       | Used by API server to communicate with front-proxy  | `front-proxy-ca` | 1 year           | component|
-| `etcd-server.crt`              | TLS for etcd server itself                          | `etcd-ca`        | 1 year           | component|
-| `etcd-peer.crt`                | etcd peer-to-peer communication                     | `etcd-ca`        | 1 year           | component|
-| `etcd-healthcheck-client.crt`  | etcd health check client certificate                | `etcd-ca`        | 1 year           | component|
-| `admin.conf`                   | kubeconfig for admin user                           | `ca`             | 1 year           | component|
-| `controller-manager.conf`      | kubeconfig for controller manager                   | `ca`             | 1 year           | component|
-| `scheduler.conf`               | kubeconfig for scheduler                            | `ca`             | 1 year           | component|
+| Certificate                    | Purpose                                             | Signed By        | D.Validity |   TYPE   |
+| ------------------------------ | --------------------------------------------------- | ---------------- | -----------|----------|
+| `ca.crt`                       | Cluster Certificate Authority                       | Self-signed      | 10 years   | CA       |
+| `etcd-ca.crt`                  | CA for etcd-related certificates                    | Self-signed      | 10 years   | CA       |
+| `front-proxy-ca.crt`           | CA for front proxy communication                    | Self-signed      | 10 years   | CA       |
+| `apiserver.crt`                | TLS certificate for Kubernetes API Server           | `ca`             | 1 year     | component|
+| `apiserver-kubelet-client.crt` | Used by API server to authenticate against kubelets | `ca`             | 1 year     | component|
+| `apiserver-etcd-client.crt`    | Used by API server to connect securely to etcd      | `etcd-ca`        | 1 year     | component|
+| `front-proxy-client.crt`       | Used by API server to communicate with front-proxy  | `front-proxy-ca` | 1 year     | component|
+| `etcd-server.crt`              | TLS for etcd server itself                          | `etcd-ca`        | 1 year     | component|
+| `etcd-peer.crt`                | etcd peer-to-peer communication                     | `etcd-ca`        | 1 year     | component|
+| `etcd-healthcheck-client.crt`  | etcd health check client certificate                | `etcd-ca`        | 1 year     | component|
+| `admin.conf`                   | kubeconfig for admin user                           | `ca`             | 1 year     | component|
+| `controller-manager.conf`      | kubeconfig for controller manager                   | `ca`             | 1 year     | component|
+| `scheduler.conf`               | kubeconfig for scheduler                            | `ca`             | 1 year     | component|
 
 #### 🎯 Logical Categories of Kubernetes Certificates
 

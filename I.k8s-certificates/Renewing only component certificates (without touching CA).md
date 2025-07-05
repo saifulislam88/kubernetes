@@ -134,7 +134,6 @@ scp root@prod-k8-master-node:/home/saiful/admin.conf ~/.kube/config
 ### Recovery Plan
 
 - Restore backup of `/etc/kubernetes/pki`
-- Or: Recreate CA using OpenSSL + sign new certs manually
 - Restart `kubelet` and relevant static pods
 
 ---
@@ -144,4 +143,4 @@ scp root@prod-k8-master-node:/home/saiful/admin.conf ~/.kube/config
 - ✅ Rotate certs **before** expiry
 - ✅ Keep regular backup of `/etc/kubernetes/pki`
 - ✅ Monitor using cron or Prometheus alerts
-- ⚠️ Avoid extending component certs to 10 years unless you have a specific reason
+

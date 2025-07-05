@@ -1,7 +1,7 @@
 
 ## **During Kubernetes Certificate Renewal, will application pods continue to serve requests?**
 
-### Short Answe ✅ **Yes.**  
+✅ Short Answer **Yes.**  
 Running application pods (workloads) will **continue serving external traffic** during certificate renewal.
 
 ---

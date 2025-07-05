@@ -22,17 +22,17 @@ This knowledgebase covers how Kubernetes handles TLS certificates, the implicati
 | `controller-manager.conf`      | kubeconfig for controller manager                   | `ca`             | 1 year           |
 | `scheduler.conf`               | kubeconfig for scheduler                            | `ca`             | 1 year           |
 
-# 🎯 Logical Categories of Kubernetes Certificates
+#### 🎯 Logical Categories of Kubernetes Certificates
 
 This document summarizes the main Kubernetes certificates, their categories, and how they depend on each other.
 
 ---
 
-## 🟢 1️⃣ Cluster CA Certificates
+#### 🟢 1️⃣ Cluster CA Certificates
 
 These are **root certificates** that sign other certificates in the cluster.
 
-### ✅ Cluster CA
+##### ✅ Cluster CA
 - **File:** `ca.crt`
 - **Signs:**
   - `apiserver.crt`
@@ -43,7 +43,7 @@ These are **root certificates** that sign other certificates in the cluster.
 
 ---
 
-### ✅ etcd CA
+##### ✅ etcd CA
 - **File:** `etcd-ca.crt`
 - **Signs:**
   - `etcd-server.crt`
@@ -53,7 +53,7 @@ These are **root certificates** that sign other certificates in the cluster.
 
 ---
 
-### ✅ Front-Proxy CA
+##### ✅ Front-Proxy CA
 - **File:** `front-proxy-ca.crt`
 - **Signs:**
   - `front-proxy-client.crt`
@@ -62,7 +62,7 @@ These are **root certificates** that sign other certificates in the cluster.
 
 ---
 
-## 🟡 2️⃣ API Server Certificates
+#### 🟡 2️⃣ API Server Certificates
 
 Used for securing API server traffic.
 
@@ -77,7 +77,7 @@ Used for securing API server traffic.
 
 ---
 
-## 🟣 3️⃣ etcd Certificates
+#### 🟣 3️⃣ etcd Certificates
 
 Used internally by etcd cluster nodes.
 
@@ -90,7 +90,7 @@ Used internally by etcd cluster nodes.
 
 ---
 
-## 🔵 4️⃣ Client Kubeconfigs
+#### 🔵 4️⃣ Client Kubeconfigs
 
 Certificates embedded in kubeconfigs for admins and controllers.
 
@@ -103,7 +103,7 @@ Certificates embedded in kubeconfigs for admins and controllers.
 
 ---
 
-## 🟠 5️⃣ Front Proxy Certificates
+#### 🟠 5️⃣ Front Proxy Certificates
 
 Used by the API aggregation layer.
 

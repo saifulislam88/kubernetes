@@ -1,0 +1,1 @@
+✅ Backup etcd, update control plane first, then drain and update worker nodes one by one while verifying health.

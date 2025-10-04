@@ -58,6 +58,7 @@ We know that there are different methods for deploying Kubernetes clusters. From
 | Load Balancer   | lb2.saiful.com            | 172.16.16.52   | Ubuntu 22.04 |  2G    |  2   |  10G    |
 | Master          | kmaster1.saiful.com       | 172.16.16.101  | Ubuntu 22.04 |  4G    |  3   |  20G    |
 | Master          | kmaster2.saiful.com       | 172.16.16.102  | Ubuntu 22.04 |  4G    |  3   |  20G    |
+| Master          | kmaster3.saiful.com       | 172.16.16.103  | Ubuntu 22.04 |  4G    |  3   |  20G    |
 | Worker          | kworker1.saiful.com       | 172.16.16.120  | Ubuntu 22.04 |  4G    |  3   |  20G    |
 | Worker          | kworker2.saiful.com       | 172.16.16.121  | Ubuntu 22.04 |  4G    |  3   |  20G    |
 
@@ -525,3 +526,4 @@ ETCDCTL_API=3 etcdctl member list --endpoints=https://127.0.0.1:2379 \
   --cert=/etc/kubernetes/pki/etcd/peer.crt \
   --key=/etc/kubernetes/pki/etcd/peer.key
 ```
+

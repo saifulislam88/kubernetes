@@ -6,6 +6,24 @@ In this article, we will explore Kubernetes objects together. Assuming you have 
 
 **So now we will dive into the world of Kubernetes objects.**
 
+## [Kubernetes Native Objects](#Kubernetes-Native-Objects)
+
+Kubernetes objects are persistent entities in the Kubernetes system that represent the state of your cluster. These objects are the fundamental components that describe what resources are present, what applications are running, and how they behave. They are essential because they allow you to define the desired state of your applications and infrastructure in a declarative manner. By managing Kubernetes objects, you can control everything from workloads to networking, storage, and security within your cluster.
+
+Kubernetes objects are the core building blocks that define and control the state of your Kubernetes cluster. Here are crucial Kubernetes Native Head Objects:
+
+
+- [Kubernetes Workload Objects](#kubernetes-workload-objects)
+- [Kubernetes Service & Networking Objects](#kubernetes-service--networking-objects)
+- [Kubernetes Scheduling](#Kubernetes-Scheduling)
+- [Kubernetes Configuration & Management Objects](#Kubernetes-Configuration--Management-Objects)
+- [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
+- [Kubernetes Security Objects](#Kubernetes-Security-Objects)
+- [Kubernetes Metadata Objects](#Kubernetes-Metadata-Objects)
+
+
+
+
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/saifulislam88/kubernetes/assets/68442870/334db1f0-3240-4e5e-b058-a2d908a1cb9e" alt="Image 1" style="width: 48%; height: 600px;">
   <img src="https://github.com/saifulislam88/kubernetes/assets/68442870/42b7edd0-dd4c-4356-b1f6-50ec946d9107" alt="Image 2" style="width: 48%; height: 600px;">

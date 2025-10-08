@@ -66,33 +66,15 @@ In this setup:
 
 ------------------------------------------------------------------------
 
-### Common commands & steps
-
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Purpose            Command                                                                                                Notes / Example
-  ------------------ ------------------------------------------------------------------------------------------------------ -------------------------------------------------------
-  View all contexts  `kubectl config get-contexts`                                                                          Shows table of contexts. Current one has `*` marker.
-
-  View current       `kubectl config current-context`                                                                       E.g. `dev-context`
-  context                                                                                                                   
-
-  Switch to another  `kubectl config use-context <context-name>`                                                            e.g. `kubectl config use-context prod-context`
-  context                                                                                                                   
-
-  Create or modify a `kubectl config set-context <ctx-name> --cluster=<cluster-name> --user=<user-name> --namespace=<ns>`   Adds or updates context.
-  context                                                                                                                   
-
-  Change default     `kubectl config set-context --current --namespace=<namespace>`                                         E.g.
-  namespace of                                                                                                              `kubectl config set-context --current --namespace=qa`
-  current context                                                                                                           
-
-  Delete a context   `kubectl config delete-context <context-name>`                                                         Removes context from kubeconfig
-
-  Inspect kubectl    `kubectl config view`                                                                                  Shows effective config (merged with KUBECONFIG)
-  merged config                                                                                                             
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-------------------------------------------------------------------------
+| Purpose | Command | Notes / Example |
+|----------|----------|----------------|
+| **View all contexts** | `kubectl config get-contexts` | Shows table of contexts. Current one has `*` marker. |
+| **View current context** | `kubectl config current-context` | E.g. `dev-context` |
+| **Switch to another context** | `kubectl config use-context <context-name>` | E.g. `kubectl config use-context prod-context` |
+| **Create or modify a context** | `kubectl config set-context <ctx-name> --cluster=<cluster-name> --user=<user-name> --namespace=<ns>` | Adds or updates context. |
+| **Change default namespace of current context** | `kubectl config set-context --current --namespace=<namespace>` | E.g. `kubectl config set-context --current --namespace=qa` |
+| **Delete a context** | `kubectl config delete-context <context-name>` | Removes context from kubeconfig. |
+| **Inspect kubectl merged config** | `kubectl config view` | Shows effective kubeconfig (merged from files). |
 
 ### Step-by-step: Example workflow
 

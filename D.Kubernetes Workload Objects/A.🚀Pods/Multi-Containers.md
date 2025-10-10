@@ -19,6 +19,10 @@ kubectl exec -it multi-container-pod -c nginx-container -- ls /usr/share/nginx/h
 kubectl exec -it multi-container-pod -c busybox-container -- cat /usr/share/nginx/html/index.html
 ```
 
+```
+vim multi-containers.yaml
+```
+
 ```yaml
 apiVersion: v1
 kind: Pod

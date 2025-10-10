@@ -1,1 +1,25 @@
 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: shared-data
+          mountPath: /usr/share/nginx/html   # Nginx serves this path
+    - name: busybox-container
+      image: busybox:latest
+      command: ["sh", "-c", "echo 'Hello from Busybox' > /usr/share/nginx/html/index.html; sleep 3600"]
+      volumeMounts:
+        - name: shared-data
+          mountPath: /usr/share/nginx/html   # Must match Nginx mount
+  volumes:
+    - name: shared-data
+      emptyDir: {}
+```

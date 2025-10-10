@@ -3,7 +3,7 @@
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.
 
-**Pods in a Kubernetes cluster are used in two main ways:**
+### **Pods in a Kubernetes cluster are used in two main ways:**
    **1**. Pods that run a `single container`.\
    **2**. Pods that run `multiple containers` that need to work together.
 

@@ -51,50 +51,28 @@ kubectl exec -it multi-container-pod -c busybox-container -- cat /usr/share/ngin
 
 
 
+Run with Labels, Example tier
 
+```
+kubectl run redis -l tier=db --image=redis:alpine  || kubectl run redis --image=redis:alpine --labels tier=db
+kubectl get pods --show-labels
+```
 
+Use "kubectl describe" for related events and troubleshooting
 
+```
+kubectl get nodes
+kubectl get pods --all-namespaces
+kubectl get pods -o wide --all-namespaces
+kubectl get pods -o wide
+kubectl describe pods <podid>
+```
 
+Start a busybox pod and keep it in the foreground, don't restart it if it exits.
 
-
-Create an NGINX Pod\
-`kubectl run nginx --image=nginx`
-
-Dry run. Print the corresponding API objects without creating them.\  
-`kubectl run nginx --image=nginx --dry-run=client`
-
-Generate POD Manifest YAML file (-o yaml) with (–dry-run)\
-`kubectl run nginx --image=nginx --dry-run=client -o yaml`
-
-
-
-Run with Labels, Example tier\
-`kubectl run redis -l tier=db --image=redis:alpine`
-
-Deploy a `redis` pod using the `redis:alpine` image with the labels set to `tier=db`.\
-`kubectl run redis --image=redis:alpine --labels tier=db`
-
-List all pods with their labels.\
-`kubectl get pods --show-labels`
-
-List all pods in all namespaces, with more details\
-`kubectl get pods -o wide --all-namespaces`
-
-List the nodes\
-`kubectl get nodes`
-
-Use "kubectl describe" for related events and troubleshooting\
-`kubectl describe pods <podid>`
-
-Add "-o wide" in order to use wide output, which gives you more details.\
-`kubectl get pods -o wide`
-
-Check always all namespaces by including "--all-namespaces"\
-`kubectl get pods --all-namespaces`
-
-Start a busybox pod and keep it in the foreground, don't restart it if it exits.\
-`kubectl run -i -t busybox --image=busybox --restart=Never`
-
+```
+kubectl run -i -t busybox --image=busybox --restart=Never
+```
 
 
 

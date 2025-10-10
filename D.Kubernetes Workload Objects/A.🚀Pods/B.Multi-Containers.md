@@ -76,6 +76,7 @@ kubectl get pods --all-namespaces
 kubectl get pods -o wide --all-namespaces
 kubectl get pods -o wide
 kubectl describe pods <podid>
+kubectl logs multi-container-pod
 kubectl delete pod multi-container-pod
 ```
 

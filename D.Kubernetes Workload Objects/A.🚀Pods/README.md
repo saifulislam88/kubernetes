@@ -9,3 +9,4 @@ Pods are the smallest deployable units of Kubernetes Cluster that you can create
 
 So We can create pods in Kubernetes Cluster in two method which already we know Like as `Imperative Approach` & `Declarative Approach`. Lets see example:
   
+- [Single container](https://github.com/saifulislam88/kubernetes/blob/main/D.Kubernetes%20Workload%20Objects/A.%F0%9F%9A%80Pods/A.Single-Container.md)

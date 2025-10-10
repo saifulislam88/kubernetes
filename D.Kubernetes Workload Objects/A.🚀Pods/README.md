@@ -1,4 +1,5 @@
 ## 🚀Pods
+<img width="1659" height="548" alt="image" src="https://github.com/user-attachments/assets/45f52824-e20b-4aee-9673-c625ebe2c9ec" />
 
 Pods are the smallest deployable units of Kubernetes Cluster that you can create and manage. Kubernetes pods have a defined lifecycle.
 

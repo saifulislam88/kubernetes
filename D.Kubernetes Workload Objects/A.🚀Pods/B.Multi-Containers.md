@@ -58,6 +58,14 @@ kubectl run redis -l tier=db --image=redis:alpine  || kubectl run redis --image=
 kubectl get pods --show-labels
 ```
 
+Check Current Kubernetes Context and Namespace
+
+```
+kubectl config get-contexts
+kubectl config view --minify --output 'jsonpath={..namespace}'; echo
+echo "Current Namespace: $(kubectl config view --minify --output 'jsonpath={..namespace}')"
+```
+
 Use "kubectl describe" for related events and troubleshooting
 
 ```
@@ -73,8 +81,6 @@ Start a busybox pod and keep it in the foreground, don't restart it if it exits.
 ```
 kubectl run -i -t busybox --image=busybox --restart=Never
 ```
-
-
 
 
 

@@ -40,3 +40,4 @@ spec:
     targetPort: 8080
   type: ClusterIP
 ```
+`kubectl get endpoints keycloak-svc`

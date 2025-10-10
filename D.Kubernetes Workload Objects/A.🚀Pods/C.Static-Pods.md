@@ -9,7 +9,7 @@
 - **etcd:** Stores all cluster data.
 These pods are directly managed by the `Kubelet` on the `master node` and are essential for the functioning of the Kubernetes control plane.
 
-`vim /etc/kubernetes/manifests/static-keycloak.yaml`
+`vim /etc/kubernetes/manifests/static-keycloak-pod-svc.yaml`
 
 ```sh
 apiVersion: v1
@@ -26,4 +26,17 @@ spec:
     args: ["start-dev"]
     ports:
     - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-svc
+  namespace: test1
+spec:
+  selector:
+    app: keycloak
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
 ```

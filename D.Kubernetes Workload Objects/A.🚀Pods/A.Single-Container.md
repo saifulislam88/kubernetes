@@ -6,7 +6,7 @@
 **2.📌Creating a pod using `Declarative way`**\
 **`kubectl create ns ops`**\
 **`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml --dry-run=client > nginx-01.yaml`**
-`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml > test.yaml`
+**`kubectl run nginx-01 --image=nginx --namespace=ops -o yaml > test.yaml`**
 
 ### Help Tips : kubectl run --help
 

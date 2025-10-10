@@ -28,9 +28,22 @@ spec:
       emptyDir: {}
 ```
 
-This output confirms that your pod multi-container-pod has two containers.\
-`kubectl get pod multi-container-pod -o jsonpath='{.spec.containers[*].name}'; echo`
+Check Current Kubernetes Context and Namespace
 
+```
+kubectl config get-contexts
+kubectl config view --minify --output 'jsonpath={..namespace}'; echo
+echo "Current Namespace: $(kubectl config view --minify --output 'jsonpath={..namespace}')"
+```
+
+```
+kubectl apply -f multi-containers.yaml
+```
+
+This output confirms that your pod multi-container-pod has two containers.
+```
+kubectl get pod multi-container-pod -o jsonpath='{.spec.containers[*].name}'; echo
+```
 Check logs of each container.
 ```
 kubectl logs multi-container-pod -c nginx-container
@@ -48,22 +61,11 @@ kubectl exec -it multi-container-pod -c nginx-container -- ls /usr/share/nginx/h
 kubectl exec -it multi-container-pod -c busybox-container -- cat /usr/share/nginx/html/index.html
 ```
 
-
-
-
 Run with Labels, Example tier
 
 ```
 kubectl run redis -l tier=db --image=redis:alpine  || kubectl run redis --image=redis:alpine --labels tier=db
 kubectl get pods --show-labels
-```
-
-Check Current Kubernetes Context and Namespace
-
-```
-kubectl config get-contexts
-kubectl config view --minify --output 'jsonpath={..namespace}'; echo
-echo "Current Namespace: $(kubectl config view --minify --output 'jsonpath={..namespace}')"
 ```
 
 Use "kubectl describe" for related events and troubleshooting
@@ -74,6 +76,7 @@ kubectl get pods --all-namespaces
 kubectl get pods -o wide --all-namespaces
 kubectl get pods -o wide
 kubectl describe pods <podid>
+kubectl delete pod multi-container-pod
 ```
 
 Start a busybox pod and keep it in the foreground, don't restart it if it exits.

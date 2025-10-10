@@ -9,19 +9,21 @@
 - **etcd:** Stores all cluster data.
 These pods are directly managed by the `Kubelet` on the `master node` and are essential for the functioning of the Kubernetes control plane.
 
-`vim /etc/kubernetes/manifests/static-nginx.yaml`
+`vim /etc/kubernetes/manifests/static-keycloak.yaml`
 
 ```sh
 apiVersion: v1
 kind: Pod
 metadata:
-  name: static-nginx
+  name: static-keycloak
+  #namespace: test1
   labels:
-    app: nginx
+    app: keycloak
 spec:
   containers:
-  - name: nginx
-    image: nginx:latest
+  - name: keycloak
+    image: quay.io/keycloak/keycloak:24.0.3
+    args: ["start-dev"]
     ports:
-    - containerPort: 80
+    - containerPort: 8080
 ```

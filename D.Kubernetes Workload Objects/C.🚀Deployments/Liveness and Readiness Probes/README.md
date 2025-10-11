@@ -71,7 +71,7 @@ CMD ["python3","app.py"]
 flask
 ~~~
 
-I have uploaded this Container Image to docker hub and it is available in sebinxavi/k8s-readiness:v1
+I have uploaded this Container Image to docker hub and it is available in `saifulislam88/k8s-readiness-liveness:v1`
 
 ### Step-3:
 As the app is now ready, we have to write the deployment manifest with LivenessProbe and ReadinessProbe defined along with service resource to deploy it on Kubernetes cluster.  
@@ -123,7 +123,7 @@ spec:
     spec:
       containers:
         - name: healthcheck-pod
-          image: sebinxavi/k8s-readiness:v1
+          image: saifulislam88/k8s-readiness-liveness:v1
           ports:
             - containerPort: 5000
 		  

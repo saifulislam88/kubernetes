@@ -6,6 +6,11 @@ Liveness and Readiness probes are used to control the health of an application r
 ### Liveness probe
 Liveness probes let Kubernetes know if your app is alive or dead. If your app is alive, then Kubernetes leaves it alone. If your app is dead, Kubernetes removes the Pod and starts a new one to replace it.
 
+<p align="center">
+<img width="700" height="450" src=https://github.com/user-attachments/assets/093431ee-9010-48a7-81a2-d29feb2a7e74>
+</p>
+
+
 ### Readiness probe
 Readiness probes are designed to let Kubernetes know when your app is ready to serve traffic. Kubernetes makes sure the readiness probe passes before allowing a service to send traffic to the pod. If a readiness probe starts to fail, Kubernetes stops sending traffic to the pod until it passes.
 
@@ -14,11 +19,6 @@ Readiness probes are designed to let Kubernetes know when your app is ready to s
 </p>
 
 In this article, we will see how we can have the Liveness & Readiness probe defined and deployed in Kubernetes.
-
-
-<p align="center">
-  <img width="700" height="450" src=https://x.com/i/status/1016407921587089410>
-</p>
 
 
 ### Step-1: 

@@ -157,11 +157,49 @@ spec:
             failureThreshold: 3
 ~~~
 
+### Common Fields
+| Field | Description |
+|-------|-------------|
+| `initialDelaySeconds` | Time to wait after container start before first probe. |
+| `periodSeconds` | How often to perform the probe. |
+| `timeoutSeconds` | How long to wait for a response. |
+| `failureThreshold` | Number of failures before action (restart or mark unready). |
+| `successThreshold` | Number of successes before marking ready. |
 
-- initialDelaySeconds: Number of seconds after the container has started before liveness or readiness probes are initiated.
-- periodSeconds: How often (in seconds) to perform the probe. 
-- timeoutSeconds: Number of seconds after which the probe times out. 
-- failureThreshold: When a probe fails, Kubernetes will try failureThreshold times before giving up. Giving up in case of liveness probe means restarting the container. In case of readiness probe the Pod will be marked Unready.
+### initialDelaySeconds
+
+- What it is: The number of seconds Kubernetes waits after the container starts before performing the first probe.
+- Why it’s important: Some applications need time to initialize before they can respond correctly. If Kubernetes probes too early, it might think the container is unhealthy and restart it unnecessarily.
+
+### periodSeconds
+- What it is: How often Kubernetes performs the probe after the initial delay.
+- Why it’s important: Determines the frequency of health checks. A shorter interval detects failures faster but adds more load; a longer interval reduces load but detects failures slower.
+
+---
+
+## 3. Importance of Liveness and Readiness Probes
+
+1. **Automatic Recovery**  
+   Liveness probes detect hung or deadlocked containers and restart them automatically, improving reliability.
+
+2. **Traffic Management**  
+   Readiness probes prevent traffic from going to containers that are not ready, e.g., waiting for DB connections or initialization tasks.
+
+3. **Zero Downtime Deployments**  
+   Readiness probes ensure rolling updates don’t route traffic to unready pods, preventing failed requests during deployments.
+
+4. **Resource Optimization**  
+   Kubernetes stops sending requests to unready pods, reducing failed requests and CPU/memory waste.
+
+---
+
+## 4. Use Cases
+
+| Probe Type | Use Case Example |
+|------------|----------------|
+| **Liveness**  | A web server gets stuck in a deadlock — restart automatically. |
+| **Readiness** | App waits for database connection — mark unready until DB is available. |
+| **Liveness + Readiness** | Microservices that need DB connection and periodic health checks — ensures reliability and safe traffic routing. |
 
 Deploy the manifest through kubectl apply. Once deployed, I’ve run a --watch command to keep an eye on the deployment. Here’s what it looked like.
 

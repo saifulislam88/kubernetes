@@ -6,6 +6,11 @@ Liveness and Readiness probes are used to control the health of an application r
 ### Liveness probe
 Liveness probes let Kubernetes know if your app is alive or dead. If your app is alive, then Kubernetes leaves it alone. If your app is dead, Kubernetes removes the Pod and starts a new one to replace it.
 
+- Checks if a container is **alive** (running properly).
+- If it fails, Kubernetes **restarts the container** automatically.
+- **Purpose:** Ensure the container doesn’t hang or enter a deadlock.
+
+
 <p align="center">
 <img width="500" height="350" src=https://github.com/user-attachments/assets/093431ee-9010-48a7-81a2-d29feb2a7e74>
 </p>
@@ -14,9 +19,23 @@ Liveness probes let Kubernetes know if your app is alive or dead. If your app is
 ### Readiness probe
 Readiness probes are designed to let Kubernetes know when your app is ready to serve traffic. Kubernetes makes sure the readiness probe passes before allowing a service to send traffic to the pod. If a readiness probe starts to fail, Kubernetes stops sending traffic to the pod until it passes.
 
+- Checks if a container is **ready to serve traffic**.
+- If it fails, Kubernetes **removes the Pod from Service endpoints**, so it won’t receive requests until ready.
+- **Purpose:** Prevent sending traffic to containers that aren’t fully initialized.
+
 <p align="center">
 <img width="500" height="350" src=https://github.com/user-attachments/assets/7d0b069e-b680-4825-89b6-7123be66fa48>
 </p>
+
+
+
+### How Probes Work
+
+#### Probe Types
+- **HTTP GET:** Kubernetes sends an HTTP request to a container endpoint, e.g., `/healthz` or `/ready`.
+- **TCP Socket:** Kubernetes tries to open a TCP connection on a port.
+- **Exec Command:** Kubernetes executes a command inside the container; exit code `0` = success, non-zero = failure.
+
 
 In this article, we will see how we can have the Liveness & Readiness probe defined and deployed in Kubernetes.
 

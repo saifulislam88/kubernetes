@@ -17,7 +17,7 @@ In this article, we will see how we can have the Liveness & Readiness probe defi
 
 
 <p align="center">
-  <img width="700" height="450" src="https://i.ibb.co/0qxzdM4/readiness-diagram-1.png">
+  <img width="700" height="450" src="https://x.com/i/status/1016407921587089410">
 </p>
 
 

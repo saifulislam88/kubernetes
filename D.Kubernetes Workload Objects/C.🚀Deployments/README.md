@@ -1,6 +1,6 @@
 ## 🚀Deployments
 
-A Deployment provides declarative updates for Pods and ReplicaSets.
+A Deployment provides declarative updates for `Pods` and `ReplicaSets`.
 
 You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate. You can define Deployments to create new ReplicaSets, or to remove existing Deployments and adopt all their resources with new Deployments.
 
@@ -57,7 +57,7 @@ To see the rollout status, run.\
 `kubectl rollout status deployment/nginx-deployment`
 
 
-## Rolling Back a Deploymen
+## Rolling Back a Deployment
 Suppose that you made a typo while updating the Deployment, by putting the image name as nginx:1.161 instead of nginx:1.16.1.\
 `kubectl set image deployment/nginx-deployment nginx=nginx:1.161`
 

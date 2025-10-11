@@ -7,7 +7,7 @@ Liveness and Readiness probes are used to control the health of an application r
 Liveness probes let Kubernetes know if your app is alive or dead. If your app is alive, then Kubernetes leaves it alone. If your app is dead, Kubernetes removes the Pod and starts a new one to replace it.
 
 <p align="center">
-<img width="700" height="450" src=https://github.com/user-attachments/assets/093431ee-9010-48a7-81a2-d29feb2a7e74>
+<img width="500" height="350" src=https://github.com/user-attachments/assets/093431ee-9010-48a7-81a2-d29feb2a7e74>
 </p>
 
 

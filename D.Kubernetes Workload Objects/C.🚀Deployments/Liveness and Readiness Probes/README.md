@@ -71,7 +71,7 @@ CMD ["python3","app.py"]
 flask
 ~~~
 
-````
+```
 docker build -t saifulislam88/k8s-readiness-liveness:v1 .
 docker run -it -d saifulislam88/k8s-readiness-liveness:v1
 docker exec -it 30108d950d4a sh

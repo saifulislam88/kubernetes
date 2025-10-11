@@ -9,6 +9,7 @@ Liveness probes let Kubernetes know if your app is alive or dead. If your app is
 ### Readiness probe
 Readiness probes are designed to let Kubernetes know when your app is ready to serve traffic. Kubernetes makes sure the readiness probe passes before allowing a service to send traffic to the pod. If a readiness probe starts to fail, Kubernetes stops sending traffic to the pod until it passes.
 
+![kubernetes-probe-readiness](https://github.com/user-attachments/assets/7d0b069e-b680-4825-89b6-7123be66fa48)
 
 <p align="center">
 <img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/c5af4854-23d6-4d7c-9a1d-ba275b6feda2.gif" />

@@ -71,6 +71,17 @@ CMD ["python3","app.py"]
 flask
 ~~~
 
+````
+docker build -t saifulislam88/k8s-readiness-liveness:v1 .
+docker run -it -d saifulislam88/k8s-readiness-liveness:v1
+docker exec -it 30108d950d4a sh
+apk add --no-cache wget
+curl -v http://localhost:5000/readiness
+url -v http://localhost:5000/livenes
+docker login
+docker push saifulislam88/k8s-readiness-liveness:v1
+```
+
 I have uploaded this Container Image to docker hub and it is available in `saifulislam88/k8s-readiness-liveness:v1`
 
 ### Step-3:
@@ -166,8 +177,4 @@ If we access the application service, we can see a successful response once /rea
 
 Both liveness and readiness probes are used to control the application's health. If the liveness probe fails, the container will be restarted, whereas the readiness probe will stop our application from serving traffic.
 
-## Author
-Created by [@sebinxavi](https://www.linkedin.com/in/sebinxavi/) - feel free to contact me and advise as necessary!
 
-<a href="mailto:sebin.xavi1@gmail.com"><img src="https://img.shields.io/badge/-sebin.xavi1@gmail.com-D14836?style=flat&logo=Gmail&logoColor=white"/></a>
-<a href="https://www.linkedin.com/in/sebinxavi"><img src="https://img.shields.io/badge/-Linkedin-blue"/></a>

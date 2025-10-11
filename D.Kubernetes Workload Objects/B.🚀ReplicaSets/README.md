@@ -11,7 +11,7 @@ vim nginx-replicaset.yaml`
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: nginx-08
+  name: nginx-replicaset
   labels:
     app: nginx
 spec:

@@ -255,4 +255,5 @@ done
 [We can follow this blog also for metal lb based nginx deployment](https://blog.cloudnloud.com/kubernetes-loadbalancer)
 [Metallb](https://medium.com/@DhaneshMalviya/ingress-with-metallb-loadbalancer-on-local-4-node-kubernetes-cluster-a0445357048)
 
-
+### MetalLB | BareMetal LB
+https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/

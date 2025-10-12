@@ -1,6 +1,6 @@
 ## ClusterIP Service (internal-only access)
 
-[**1.ClusterIP**](#1-clusteripdefault)\
+[**1.ClusterIP**](#1-clusteripdefault)
 ### [1. ClusterIP(Default)]()
 
 A ClusterIP is a virtual IP address assigned to a Kubernetes service, which is used for internal cluster communication.\

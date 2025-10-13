@@ -3,8 +3,24 @@
 [**1.ClusterIP**](#1-clusteripdefault)
 ### [1. ClusterIP(Default)]()
 
+ClusterIP — Internal Load Balancer (Inside the Cluster).It exposes a Service inside the cluster only — not to the outside world.
 A ClusterIP is a virtual IP address assigned to a Kubernetes service, which is used for internal cluster communication.\
 **ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: `ClusterIP`**. **ClusterIP services are managed by the `Kubernetes API` Server and `kube-proxy`.**
+
+
+#### 🧠 How It Works:
+
+- Kubernetes assigns a virtual IP (ClusterIP) to the Service.
+- When a Pod inside the cluster (e.g., another microservice) calls this IP,
+- kube-proxy load balances the traffic across all backend **`Pods that match the Service’s selector`**.
+- Load balancing is typically `round-robin` at the connection level.
+- Acts as an internal Layer 4 load balancer
+- 🔒 Only accessible within the cluster network.
+
+#### ✅ Use Case:
+
+- Internal microservice communication (backend → database, etc.)
+- Ingress or API Gateway routing internally to backend Services.
 
 If we deploy Kubernetes Cluster uisng `kubeadm`, ClusterIP default IP is **`10.96.0.0/12`**. If needed to change ClusterIP IP Block, this could be in a file such as `/etc/kubernetes/manifests/kube-apiserver.yaml` (if using kubeadm) or in a systemd service file.
 

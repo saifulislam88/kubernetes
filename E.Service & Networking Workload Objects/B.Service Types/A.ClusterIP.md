@@ -3,7 +3,7 @@
 [**1.ClusterIP**](#1-clusteripdefault)
 ### [1. ClusterIP(Default)]()
 
-ClusterIP — Internal Load Balancer (Inside the Cluster).It exposes a Service inside the cluster only — not to the outside world.
+**ClusterIP — Internal Load Balancer (Inside the Cluster)**. It exposes a Service inside the cluster only — not to the outside world.
 A ClusterIP is a virtual IP address assigned to a Kubernetes service, which is used for internal cluster communication.\
 **ClusterIP is the default Kubernetes service. Your service will be exposed on a ClusterIP unless you manually define another type or type: `ClusterIP`**. **ClusterIP services are managed by the `Kubernetes API` Server and `kube-proxy`.**
 

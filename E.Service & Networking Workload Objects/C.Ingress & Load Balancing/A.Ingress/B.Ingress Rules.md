@@ -176,6 +176,3 @@ Ingress Rule → Service (backend-service:8080)
 Pods (running your app)
 ```
 
----
-**Author:** Progoti Systems  
-**File:** `k8s_ingress_rules.md`

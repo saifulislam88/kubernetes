@@ -8,24 +8,60 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: multi-container-pod
+  labels:
+    app: multi-container-pod          # <-- must match the Service selector
 spec:
   containers:
     - name: nginx-container
       image: nginx:latest
       ports:
         - containerPort: 80
+      readinessProbe:                 # ensures Endpoints appear only when ready
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 2
+        periodSeconds: 5
       volumeMounts:
         - name: shared-data
-          mountPath: /usr/share/nginx/html   # Nginx serves this path
+          mountPath: /usr/share/nginx/html
     - name: busybox-container
       image: busybox:latest
       command: ["sh", "-c", "echo 'Hello from Busybox' > /usr/share/nginx/html/index.html; sleep 3600"]
       volumeMounts:
         - name: shared-data
-          mountPath: /usr/share/nginx/html   # Must match Nginx mount
+          mountPath: /usr/share/nginx/html
   volumes:
     - name: shared-data
       emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: multi-container-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: multi-container-pod          # <-- matches Pod label above
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: multi-container-svc
+spec:
+  type: NodePort
+  selector:
+    app: multi-container-pod
+  ports:
+    - name: http
+      port: 80          # Service port
+      targetPort: 80    # Pod's containerPort
+      nodePort: 32080   # 30000–32767; change or omit to auto-assign
+  externalTrafficPolicy: Cluster
 ```
 
 Check Current Kubernetes Context and Namespace

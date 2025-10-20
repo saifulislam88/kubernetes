@@ -45,7 +45,7 @@ spec:
       - name: web
         image: nginx:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 ```
 
 ### `service-nodeport.yaml`

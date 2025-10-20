@@ -60,7 +60,7 @@ spec:
     app: web
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 80
     nodePort: 30080
 ```
 

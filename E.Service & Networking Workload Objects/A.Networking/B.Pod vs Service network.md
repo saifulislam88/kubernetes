@@ -1,0 +1,3 @@
+- Pod network(CNI-Overlay)
+- Service network= Cluster IP, Host IP(NodePort), LB(Host Network or Cloud IP)
+- k8s Cluster Network

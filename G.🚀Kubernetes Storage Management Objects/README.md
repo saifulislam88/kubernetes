@@ -7,8 +7,6 @@ Storage has always been a challenge for IT practitioners, with issues like integ
       - Persistent Volume Claims (PVC)
       - [Storage Classes/Type](#types-of-volumes)
 
-https://medium.com/@seifeddinerajhi/understanding-storage-in-kubernetes-ee2c19001aae
-
 
 
 

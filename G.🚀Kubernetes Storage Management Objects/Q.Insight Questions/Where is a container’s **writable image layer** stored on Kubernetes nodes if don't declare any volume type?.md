@@ -1,6 +1,6 @@
 ### Where is a container’s **writable image layer** stored on Kubernetes nodes if don't declare any volume type?
 
-> **Interviewer:** Is there one universal filesystem path for a container’s writable layer on Kubernetes nodes?  
+> Is there one universal filesystem path for a container’s writable layer on Kubernetes nodes?  
 > **Answer:** **No.** It depends on the **container runtime** (containerd, Docker, CRI-O) and its configuration.
 
 ---

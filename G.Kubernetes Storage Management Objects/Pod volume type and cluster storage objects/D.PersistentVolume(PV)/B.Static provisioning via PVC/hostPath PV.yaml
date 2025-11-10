@@ -13,6 +13,7 @@ spec:
   hostPath:
     path: "/mnt/data"
 
+---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -25,6 +26,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
+---
 
 apiVersion: v1
 kind: Pod
@@ -46,6 +48,7 @@ spec:
       volumeMounts:
         - mountPath: "/usr/share/nginx/html"
           name: task-pv-storage
+---
 
 apiVersion: v1
 kind: Service

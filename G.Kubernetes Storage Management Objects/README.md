@@ -2,20 +2,12 @@
 
 Storage has always been a challenge for IT practitioners, with issues like integrity, retention, replication and migration of large data sets. These challenges are not new, and with modern, decentralized systems based on containers, they haven't gone away.
 
-  - [Kubernetes Storage Management Objects](#Kubernetes-Storage-Management-Objects)
-      - Persistent Volumes (PV)
-      - Persistent Volume Claims (PVC)
-      - [Storage Classes/Type](#types-of-volumes)
+### Volumes : 
+A directory mounted into a container at runtime.
 
+### Type of Volumes
 
-
-
-
-### Types of Volumes:
-
-In Kubernetes, volumes serve as directories accessible to all pod containers, facilitating data sharing and persistence beyond container lifetimes. Let's delve into the types and best practices.
-![image](https://github.com/saifulislam88/kubernetes/assets/68442870/801c8e39-be3d-44b7-8257-442d27944589)
-
+📂 **No Volume specified(default)**:
 
 📂 **EmptyDir**:
 - Starts as an empty directory.

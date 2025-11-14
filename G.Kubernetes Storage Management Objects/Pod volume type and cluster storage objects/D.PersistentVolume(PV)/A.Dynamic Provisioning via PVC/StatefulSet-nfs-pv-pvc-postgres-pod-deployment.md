@@ -14,7 +14,8 @@ We will configure the following:
 ## 2. **Prerequisites**
 
 - **Kubernetes cluster** running with `kubectl` access.
-- **NFS server** setup and accessible by all nodes in the Kubernetes cluster.
+- **NFS server** setup and accessible by all nodes in the Kubernetes cluster. To configure an NFS server in ubuntu go to this [nfs-server install](https://github.com/saifulislam88/nfs-server). Just make sure you add this in your NFS exports file **```insecure,no_root_squash,rw,sync,no_subtree_check```**.
+- [Install **`nfs-client`**](https://github.com/saifulislam88/nfs-server?tab=readme-ov-file#linux-client) to **`worker node`** where **nfs mounted** via kubernetes using this command `sudo apt install nfs-common -y`
 - **NFS client provisioner** installed to dynamically provision volumes.
 
 > To install the NFS client provisioner:

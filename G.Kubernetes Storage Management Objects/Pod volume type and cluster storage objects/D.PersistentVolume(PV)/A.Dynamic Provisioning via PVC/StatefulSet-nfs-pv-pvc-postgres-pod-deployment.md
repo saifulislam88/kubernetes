@@ -64,6 +64,15 @@ spec:
 
 This StatefulSet will use the **PVC** created above and mount the dynamic NFS volume.
 
+`echo -n 'my_secure_password' | base64`
+
+```bash
+kubectl create secret generic postgres-secret \
+  --from-literal=password=bXlfc2VjdXJlX3Bhc3N3b3Jk \
+  --namespace=database
+```
+
+
 ```yaml
 apiVersion: apps/v1
 kind: StatefulSet

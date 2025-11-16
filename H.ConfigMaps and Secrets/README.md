@@ -1,0 +1,3 @@
+- Managing application configuration.
+- Secrets management (TLS, DB credentials, API keys).
+- Hands-on: Deploy app with external config & secure secrets.

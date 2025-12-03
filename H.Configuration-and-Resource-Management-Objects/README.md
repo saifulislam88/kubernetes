@@ -13,3 +13,4 @@
       - HorizontalPodAutoscaler (HPA)
       - Pod Disruption Budgets (PDB)
       - Pod Priority and Preemption
+      - 𝗣𝗿𝗶𝗼𝗿𝗶𝘁𝘆𝗖𝗹𝗮𝘀𝘀

@@ -55,45 +55,8 @@
         - [Ingress Controlller](#ingress-controller)
           - [MetalLB | BareMetal LB](#metallb--baremetal-lb)
     - NetworkPolicy
-  - [Kubernetes Configuration & Resource Management Objects]
-      - ConfigMaps
-      - Namespaces
-      - ResourceQuotas
-      - LimitRange
-  - Autoscaling and Monitoring Objects
-      - HorizontalPodAutoscaler (HPA)
-      - Pod Disruption Budgets (PDB)
-      - Pod Priority and Preemption
-  - [Kubernetes Security and Access Control Objects](#Kubernetes-Security-Objects)
-      - [Secrets](#Secrets)
-      - ServiceAccounts (sa)
-      - Roles
-      - RoleBindings
-      - ClusterRoles
-      - ClusterRoleBindings
-- [Kubernetes Scheduling](#Kubernetes-Scheduling)
-  - [Manual Scheduling](#Manual-Scheduling)
-    - [nodeName](#nodename)
-    - [nodeSelector](#nodeSelector--label)
-  - [Automatic Scheduling](#Automatic-Scheduling)
-    - [Taints and Tolerations](#taints-and-tolerations)
-      - [Taints](#Taints)
-      - [Tolerations](#Tolerations)
-      - [Taints and Tolerations Use Cases](#taints-and-tolerations-use-cases)
-      - [The Three Taints Effects Implementation and Tolerations Managing](#the-three-taints-effects-implementation-and-tolerations-managing)
-         - [1.NoSchedule](#1-noschedule)
-         - [2.PreferNoSchedule](#2-prefernoschedule)
-         - [3.NoExecute](#3-noexecute)
-      - [Some important built in taints-based-on-three-effects](#some-important-built-in-taints-based-on-three-effects)
-         - [Node Role Taints](#1-node-role-taints)
-         - [Node Condition Taints](#2-node-condition-taints)
-         - [Node Lifecycle Taints](#3-node-lifecycle-taints)
-         - [Importance-of-built-in-taints](#importance-of-built-in-taints---these-built-in-taints-ensure)
-      - [Node Affinity/Anti-Affinity and Pod Affinity/Anti-Affinity](#node-affinityanti-affinity-and-pod-affinityanti-affinity)
-         - [Node Affinity](#Node-Affinity)
-         - [Node Anti-Affinity](#node-anti-affinity)
-         - [POD Affinity](#pod-affinity)
-         - [POD Anti-Affinity](#pod-anti-affinity)
+
+
 ----
 <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 

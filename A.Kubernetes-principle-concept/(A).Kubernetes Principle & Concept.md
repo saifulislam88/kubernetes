@@ -441,10 +441,6 @@ The following Service manifest has a selector that specifies two labels. The sel
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-
 ### [Endpoint(ep) | Pod IP - is not a service](#endpointep--pod-ip---is-not-a-service)
 
 **Endpoints are not services;** they are objects that store the actual IP addresses of the pods that match a service selector, used internally by services to direct traffic to the correct pods.
@@ -469,75 +465,6 @@ The following Service manifest has a selector that specifies two labels. The sel
 `kubectl logs <ingress-controller-pod> -n <ingress-namespace>`\
 `kubectl get svc -n <ingress-namespace>`\
 `curl -H "Host: <your-hostname>" http://<ingress-ip>`
-
-
-
-
-
-
-
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-[Back to Top](#top)
-
-
-## 🚀Kubernetes Security Objects
-```                                                                                                                                     ```
-  - [Kubernetes Security Objects](Kubernetes-Security-Objects)
-      - [Secrets](#Secrets)
-      - ServiceAccounts (sa)
-      - Roles
-      - RoleBindings
-      - ClusterRoles
-      - ClusterRoleBindings
-
-### 🔥Secrets
-
-In Kubernetes, Secrets are used to securely store and manage sensitive information such as `passwords`, `OAuth tokens`, and `SSH keys`. Unlike `ConfigMaps`, which store general configuration data, `Secrets` ensure that sensitive data is stored in a way that reduces exposure risk (e.g., `base64-encoded`). Secrets can be referenced by pods to pass secure data to containers through environment variables or mounted as files, keeping sensitive data out of the application code. They can be created using `kubectl` or defined in manifest files.
-
-```sh
-apiVersion: v1
-kind: Secret
-metadata:
-  name: my-secret
-type: Opaque
-data:
-  username: YWRtaW4=   # "admin" in base64
-  password: MWYyZDFlMmU2N2Rm  # "1f2d1e2e67df" in base64
-```
-`kubectl apply -f my-secret.yaml`
-
-
-```sh
-apiVersion: v1
-kind: Pod
-metadata:
-  name: secret-example-pod
-spec:
-  containers:
-  - name: mycontainer
-    image: nginx
-    env:
-    - name: USERNAME
-      valueFrom:
-        secretKeyRef:
-          name: my-secret
-          key: username
-    - name: PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: my-secret
-          key: password
-  restartPolicy: Never
-```
-`kubectl apply -f pod-using-secret.yaml`\
-`kubectl exec -it secret-example-pod -- printenv`
 
 
 

@@ -1,0 +1,5 @@
+- Kubernetes Manifest/Yaml
+   - Structure of a Kubernetes Manifest
+   - Example Structure
+   - Detailed Breakdown of the Metadata Section
+   - Different types of Manifests

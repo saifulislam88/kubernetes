@@ -34,14 +34,7 @@
        - [coredns](#coredns)
 - [Deploy Highly Available Kubernetes Cluster using Kubeadm](#deploy-highly-available-kubernetes-cluster-using-kubeadm)
   - [Kubeadm](https://github.com/saifulislam88/kubernetes/blob/main/B.k8s-cluster-setup-on-premises/A.Kubernetes-cluster-setup-on-Ubuntu-22.04.md)
-- Kubernetes Manifest/Yaml
-   - Structure of a Kubernetes Manifest
-   - Example Structure
-   - Detailed Breakdown of the Metadata Section
-   - Different types of Manifests
-- [Kubernetes Native Objects](#kubernetes-native-objects)
 
-    - NetworkPolicy
 
 
 ----
